@@ -1,0 +1,5 @@
+
+themes/*
+.DS_Store
+.history/
+content/post/
