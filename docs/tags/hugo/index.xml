@@ -7,12 +7,12 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <lastBuildDate>Tue, 20 Jun 2023 23:46:50 +0800</lastBuildDate><atom:link href="https://ghbjayce.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>记录hugo快速上手搭建一个静态博客</title>
-        <link>https://ghbjayce.github.io/p/hugo-quick-start-and-build-blog/</link>
+        <title>hugo快速上手搭建一个静态博客</title>
+        <link>https://ghbjayce.github.io/p/static-site-generator/hugo/quick-start/</link>
         <pubDate>Tue, 20 Jun 2023 23:46:50 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/hugo-quick-start-and-build-blog/</guid>
-        <description>&lt;img src="https://repository-images.githubusercontent.com/11180687/9d3d8200-abf2-11e9-803c-4cdfde0d22e5" alt="Featured image of post 记录hugo快速上手搭建一个静态博客" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <guid>https://ghbjayce.github.io/p/static-site-generator/hugo/quick-start/</guid>
+        <description>&lt;img src="https://repository-images.githubusercontent.com/11180687/9d3d8200-abf2-11e9-803c-4cdfde0d22e5" alt="Featured image of post hugo快速上手搭建一个静态博客" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;开头废话有点多，&lt;a class=&#34;link&#34; href=&#34;#%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8&#34; &gt;点我进入正题&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -210,6 +210,8 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/getting-started/quick-start/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Quick Start | Hugo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/content-management/urls/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;URL management | Hugo&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
         </item>
