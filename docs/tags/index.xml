@@ -6,7 +6,31 @@
         <description>Recent content in Tags on GHBJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 20 Jun 2023 23:46:50 +0800</lastBuildDate><atom:link href="https://ghbjayce.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 20 Aug 2023 16:36:20 +0800</lastBuildDate><atom:link href="https://ghbjayce.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>笔记</title>
+        <link>https://ghbjayce.github.io/tags/%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Sun, 20 Aug 2023 16:36:20 +0800</pubDate>
+        
+        <guid>https://ghbjayce.github.io/tags/%E7%AC%94%E8%AE%B0/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>计算机科学与技术</title>
+        <link>https://ghbjayce.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/</link>
+        <pubDate>Sun, 20 Aug 2023 16:36:20 +0800</pubDate>
+        
+        <guid>https://ghbjayce.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>数据结构导论</title>
+        <link>https://ghbjayce.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/</link>
+        <pubDate>Sun, 20 Aug 2023 16:36:20 +0800</pubDate>
+        
+        <guid>https://ghbjayce.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>hugo</title>
         <link>https://ghbjayce.github.io/tags/hugo/</link>
         <pubDate>Tue, 20 Jun 2023 23:46:50 +0800</pubDate>
