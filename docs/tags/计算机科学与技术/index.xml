@@ -14,7 +14,7 @@
         <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter1/</guid>
         <description>&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;&lt;strong&gt;第一章 概论&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt;&lt;/li&gt;
@@ -83,8 +83,8 @@
 &lt;h2 id=&#34;数据数据元素和数据项&#34;&gt;数据、数据元素和数据项&lt;/h2&gt;
 &lt;h3 id=&#34;概念和联系&#34;&gt;概念和联系&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;数据项：在数据表中指的是一个个的字段，数据的最小标识单位。&lt;/li&gt;
-&lt;li&gt;数据元素：在数据表中相当于一行记录，由若干个数据项组成。&lt;/li&gt;
+&lt;li&gt;数据项：在数据表中指的是一个个的字段，又称&lt;strong&gt;字段&lt;/strong&gt;或&lt;strong&gt;域&lt;/strong&gt;，数据的最小标识单位。&lt;/li&gt;
+&lt;li&gt;数据元素：在数据表中相当于一行记录，又称&lt;strong&gt;结点&lt;/strong&gt;，由若干个数据项组成。&lt;/li&gt;
 &lt;li&gt;数据：被计算机处理、存储的对象，由若干个数据元素组成。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;数据的逻辑结构和存储结构&#34;&gt;数据的逻辑结构和存储结构&lt;/h2&gt;
@@ -103,9 +103,6 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;逻辑结构&#34;&gt;逻辑结构&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;为了简便称呼，以下一个结点表示一个数据元素&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;p&gt;四类基本的逻辑结构：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;集合：任意两个结点之间都没有邻接关系，&lt;strong&gt;组织形式松散，就像抽奖箱里的乒乓球&lt;/strong&gt;。
@@ -223,9 +220,9 @@
 &lt;p&gt;要估算某段代码的执行次数，可以用&lt;code&gt;T(n)&lt;/code&gt;来表示：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;T&lt;/code&gt;：某段代码的总执行次数。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;n&lt;/code&gt;：输入数据的大小或者数量。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;n&lt;/code&gt;：输入数据的规模大小或者数量。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;代入以上例子来表示：&lt;/p&gt;
+&lt;p&gt;也就是一个算法的计算量是问题规模n的函数，代入以上例子来表示：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;例子A：T(n) = 2&lt;/li&gt;
 &lt;li&gt;例子B：T(n) = 3n + 3&lt;/li&gt;
@@ -242,7 +239,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;表达方式还不完整，需要加上大O表示法，例如：&lt;code&gt;O(时间复杂度估算值)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;表达方式还不完整，需要加上大O表示法，也称渐进表示法，例如：&lt;code&gt;O(时间复杂度估算值)&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;结合以上例子，那么时间复杂度表示为：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;例子A：&lt;code&gt;O(1)&lt;/code&gt;&lt;/li&gt;
@@ -333,20 +330,87 @@
 &lt;h4 id=&#34;性能对比&#34;&gt;性能对比&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;常数阶：O(1)&lt;/li&gt;
-&lt;li&gt;对数阶：O(logn)&lt;/li&gt;
+&lt;li&gt;对数阶：O(log&lt;sub&gt;2&lt;/sub&gt;n)，log的底数可以省略不写，也就是：O(logn)，下面也是一样&lt;/li&gt;
 &lt;li&gt;线性阶：O(n)&lt;/li&gt;
 &lt;li&gt;线性对数阶：O(nlogn)&lt;/li&gt;
-&lt;li&gt;多项式阶：O(n²)
+&lt;li&gt;多项式阶：O(n&lt;sup&gt;c&lt;/sup&gt;)，C为大于1的正整数，下面也是一样
 &lt;ol&gt;
 &lt;li&gt;平方阶：O(n²)&lt;/li&gt;
 &lt;li&gt;立方阶：O(n&lt;sup&gt;3&lt;/sup&gt;)&lt;/li&gt;
 &lt;li&gt;K次方阶：O(n&lt;sup&gt;k&lt;/sup&gt;)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
-&lt;li&gt;指数阶：O(2&lt;sup&gt;n&lt;/sup&gt;)&lt;/li&gt;
+&lt;li&gt;指数阶：O(C&lt;sup&gt;n&lt;/sup&gt;)，常见是O(2&lt;sup&gt;n&lt;/sup&gt;)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;以上时间复杂度，复杂程度和耗时从上往下依次增加，即越往下时间复杂度越高，所需耗时越多。&lt;/p&gt;
+&lt;p&gt;通常认为，具有指数阶的算法是不可计算的，而阶数低于平方阶的算法是高效率的。&lt;/p&gt;
+&lt;p&gt;另外，时间复杂度的性能还会受到输入数据的变化而有所影响，基于相同输入数据量的不同输入数据，分为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;最坏时间复杂度：算法时间用量的最大值。&lt;/li&gt;
+&lt;li&gt;平均时间复杂度：算法时间用量的平均值。&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&#34;空间复杂度&#34;&gt;空间复杂度&lt;/h3&gt;
+&lt;p&gt;一个算法的空间复杂度定义为该算法所耗费的存储空间，它也是问题规模n的函数，记为：
+$$S(n)=O(g(n))$$
+其中，g(n)为问题规模n的某个函数。一个算法在执行期间所需的存储空间量分为：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;程序代码所占用的空间，对不同算法来说也不会有数量级的差别。&lt;/li&gt;
+&lt;li&gt;输入数据所占用的空间，由问题规模决定的，不随算法的不同而改变。&lt;/li&gt;
+&lt;li&gt;辅助变量所占用的空间，也称附加存储空间，它所占用的空间会受到问题规模和不同的算法所影响。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;来个例子实践一下，假设，n=100。&lt;/p&gt;
+&lt;p&gt;例子A：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;f1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[],&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;f1所需要的辅助变量为2个整型变量i和temp，与问题的规模无关，空间复杂度为：O(1)。&lt;/p&gt;
+&lt;p&gt;例子B：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;f2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[],&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//随n的大小
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;f2所需要的辅助变量为1个整型变量i和随n大小的数组b，b与问题的规模有关，空间复杂度为：O(n)。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;如果是递归调用呢？&lt;/p&gt;
 &lt;p&gt;待补充&amp;hellip;&lt;/p&gt;
 &lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 &lt;ol&gt;
