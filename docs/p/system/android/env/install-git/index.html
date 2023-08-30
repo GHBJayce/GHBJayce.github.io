@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='前言 一开始打算在手机上安装git，想到的是安装app，于是各种找，找到了有如：
+agit MGit &amp;hellip; 但是试过这些app以后发现要么BUG很多，要么根本不能正常使用，而且项目也很久没有更新了，只能另外再找别的app。
+机缘巧合下，让我找到了口袋git（com.aor.pocketgit）的app，正常使用了一段时间，最近再用的时候，频繁出现了Failed to fetch my_project.，没有办法fetch项目，也就没法继续使用了。
+开始我以为是账号密码的认证方式出了问题，于是我尝试换另一种认证方式——私钥，但是它的私钥是.ppk的格式，和ssh生成的密钥不太一样，一轮搜索以后：
+说是需要用到PuTTy的PuTTY Key Generator来对ssh的密码进行转换处理得到.ppk的文件。 按照步骤转换好以后再放到app上，显示了感叹号，感觉不太对劲，进行fetch操作时果然，提示Invalid Private Key. 好家伙，ppk的方式也不行，也不想再试了，那为什么用的好好的账密认证方式出了问题呢？
+我估计是最近github强制使用MFA的关系，登录账号需要经过MFA的验证，app应该是没有做这个异常处理，而且app也没办法升级。
+于是我放弃了这个app，换了另一条路。
+安装git环境 在逛Stack Overflow时发现了Termux这个app，它是在Android上运行的一个终端软件，也就是直接敲命令在手机上安装git环境。
+打开app，执行以下命令安装：
+1 2 $ apt update $ apt install git 安装完以后，熟悉的操作方式就回来了：
+1 2 $ git --version git version 2.42.0 剩下的就不用多说了，ssh-keygen走一波，下面贴一下我遇到的问题和解决过程。
+操作过程 第一时间就是进入到项目目录，先看看自己在哪个目录：
+1 2 3 4 5 $ pwd /data/data/com.termux/files/home # 然后查看根目录都有些什么 $ ls / ls: cannot open directory &amp;#39;/&amp;#39;: Permission denied 竟然没权限，whoami一看，哦，看来还是root用习惯了，普通用户只拥有/data/data/com.termux目录下的权限，而/data/data之前的目录都没有权限。
+那怎么搞？没有权限我怎么知道我的项目在哪个路径下？？
+熟悉安卓开发的同学或者搞过机的同学就知道，我们在文件管理看到的根目录，是在/storage/emulated/0/下，我也是在折腾了一番以后才得知。
+这么长的路径，不行，我得设置成全局变量才行
+1 2 3 4 5 6 7 8 # 习惯用vim去编辑，其实还有别的方式 $ vim ~/.'>
+<title>在android上安装git环境</title>
+
+<link rel='canonical' href='https://ghbjayce.github.io/p/system/android/env/install-git/'>
+
+<link rel="stylesheet" href="/scss/style.min.8191399262444ab68b72a18c97392f5349be20a1615d77445be51e974c144cff.css"><meta property='og:title' content='在android上安装git环境'>
+<meta property='og:description' content='前言 一开始打算在手机上安装git，想到的是安装app，于是各种找，找到了有如：
+agit MGit &amp;hellip; 但是试过这些app以后发现要么BUG很多，要么根本不能正常使用，而且项目也很久没有更新了，只能另外再找别的app。
+机缘巧合下，让我找到了口袋git（com.aor.pocketgit）的app，正常使用了一段时间，最近再用的时候，频繁出现了Failed to fetch my_project.，没有办法fetch项目，也就没法继续使用了。
+开始我以为是账号密码的认证方式出了问题，于是我尝试换另一种认证方式——私钥，但是它的私钥是.ppk的格式，和ssh生成的密钥不太一样，一轮搜索以后：
+说是需要用到PuTTy的PuTTY Key Generator来对ssh的密码进行转换处理得到.ppk的文件。 按照步骤转换好以后再放到app上，显示了感叹号，感觉不太对劲，进行fetch操作时果然，提示Invalid Private Key. 好家伙，ppk的方式也不行，也不想再试了，那为什么用的好好的账密认证方式出了问题呢？
+我估计是最近github强制使用MFA的关系，登录账号需要经过MFA的验证，app应该是没有做这个异常处理，而且app也没办法升级。
+于是我放弃了这个app，换了另一条路。
+安装git环境 在逛Stack Overflow时发现了Termux这个app，它是在Android上运行的一个终端软件，也就是直接敲命令在手机上安装git环境。
+打开app，执行以下命令安装：
+1 2 $ apt update $ apt install git 安装完以后，熟悉的操作方式就回来了：
+1 2 $ git --version git version 2.42.0 剩下的就不用多说了，ssh-keygen走一波，下面贴一下我遇到的问题和解决过程。
+操作过程 第一时间就是进入到项目目录，先看看自己在哪个目录：
+1 2 3 4 5 $ pwd /data/data/com.termux/files/home # 然后查看根目录都有些什么 $ ls / ls: cannot open directory &amp;#39;/&amp;#39;: Permission denied 竟然没权限，whoami一看，哦，看来还是root用习惯了，普通用户只拥有/data/data/com.termux目录下的权限，而/data/data之前的目录都没有权限。
+那怎么搞？没有权限我怎么知道我的项目在哪个路径下？？
+熟悉安卓开发的同学或者搞过机的同学就知道，我们在文件管理看到的根目录，是在/storage/emulated/0/下，我也是在折腾了一番以后才得知。
+这么长的路径，不行，我得设置成全局变量才行
+1 2 3 4 5 6 7 8 # 习惯用vim去编辑，其实还有别的方式 $ vim ~/.'>
+<meta property='og:url' content='https://ghbjayce.github.io/p/system/android/env/install-git/'>
+<meta property='og:site_name' content='GHBJayce'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='android' /><meta property='article:tag' content='git' /><meta property='article:tag' content='环境安装' /><meta property='article:tag' content='termux' /><meta property='article:published_time' content='2023-08-30T11:15:51&#43;08:00'/><meta property='article:modified_time' content='2023-08-30T11:15:51&#43;08:00'/>
+<meta name="twitter:title" content="在android上安装git环境">
+<meta name="twitter:description" content="前言 一开始打算在手机上安装git，想到的是安装app，于是各种找，找到了有如：
+agit MGit &amp;hellip; 但是试过这些app以后发现要么BUG很多，要么根本不能正常使用，而且项目也很久没有更新了，只能另外再找别的app。
+机缘巧合下，让我找到了口袋git（com.aor.pocketgit）的app，正常使用了一段时间，最近再用的时候，频繁出现了Failed to fetch my_project.，没有办法fetch项目，也就没法继续使用了。
+开始我以为是账号密码的认证方式出了问题，于是我尝试换另一种认证方式——私钥，但是它的私钥是.ppk的格式，和ssh生成的密钥不太一样，一轮搜索以后：
+说是需要用到PuTTy的PuTTY Key Generator来对ssh的密码进行转换处理得到.ppk的文件。 按照步骤转换好以后再放到app上，显示了感叹号，感觉不太对劲，进行fetch操作时果然，提示Invalid Private Key. 好家伙，ppk的方式也不行，也不想再试了，那为什么用的好好的账密认证方式出了问题呢？
+我估计是最近github强制使用MFA的关系，登录账号需要经过MFA的验证，app应该是没有做这个异常处理，而且app也没办法升级。
+于是我放弃了这个app，换了另一条路。
+安装git环境 在逛Stack Overflow时发现了Termux这个app，它是在Android上运行的一个终端软件，也就是直接敲命令在手机上安装git环境。
+打开app，执行以下命令安装：
+1 2 $ apt update $ apt install git 安装完以后，熟悉的操作方式就回来了：
+1 2 $ git --version git version 2.42.0 剩下的就不用多说了，ssh-keygen走一波，下面贴一下我遇到的问题和解决过程。
+操作过程 第一时间就是进入到项目目录，先看看自己在哪个目录：
+1 2 3 4 5 $ pwd /data/data/com.termux/files/home # 然后查看根目录都有些什么 $ ls / ls: cannot open directory &amp;#39;/&amp;#39;: Permission denied 竟然没权限，whoami一看，哦，看来还是root用习惯了，普通用户只拥有/data/data/com.termux目录下的权限，而/data/data之前的目录都没有权限。
+那怎么搞？没有权限我怎么知道我的项目在哪个路径下？？
+熟悉安卓开发的同学或者搞过机的同学就知道，我们在文件管理看到的根目录，是在/storage/emulated/0/下，我也是在折腾了一番以后才得知。
+这么长的路径，不行，我得设置成全局变量才行
+1 2 3 4 5 6 7 8 # 习惯用vim去编辑，其实还有别的方式 $ vim ~/.">
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/17669653" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">😆</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GHBJayce</a></h1>
+            <h2 class="site-description">十年饮冰，难凉热血。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GHBJayce'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archive/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#安装git环境">安装git环境</a>
+      <ol>
+        <li><a href="#操作过程">操作过程</a></li>
+      </ol>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" >
+                操作系统
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/system/android/env/install-git/">在android上安装git环境</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-08-30</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言</h2>
+<p>一开始打算在手机上安装git，想到的是安装app，于是各种找，找到了有如：</p>
+<ol>
+<li><a class="link" href="https://github.com/rtyley/agit"  target="_blank" rel="noopener"
+    >agit</a></li>
+<li><a class="link" href="https://github.com/maks/MGit"  target="_blank" rel="noopener"
+    >MGit</a></li>
+<li>&hellip;</li>
+</ol>
+<p>但是试过这些app以后发现要么BUG很多，要么根本不能正常使用，而且项目也很久没有更新了，只能另外再找别的app。</p>
+<p>机缘巧合下，让我找到了口袋git（com.aor.pocketgit）的app，正常使用了一段时间，最近再用的时候，频繁出现了<code>Failed to fetch my_project.</code>，没有办法fetch项目，也就没法继续使用了。</p>
+<p>开始我以为是账号密码的认证方式出了问题，于是我尝试换另一种认证方式——私钥，但是它的私钥是<code>.ppk</code>的格式，和ssh生成的密钥不太一样，一轮搜索以后：</p>
+<ul>
+<li>说是需要用到<code>PuTTy</code>的<code>PuTTY Key Generator</code>来对ssh的密码进行转换处理得到<code>.ppk</code>的文件。</li>
+<li>按照步骤转换好以后再放到app上，显示了感叹号，感觉不太对劲，进行fetch操作时果然，提示<code>Invalid Private Key.</code></li>
+</ul>
+<p>好家伙，ppk的方式也不行，也不想再试了，那为什么用的好好的账密认证方式出了问题呢？</p>
+<p>我估计是最近github强制使用MFA的关系，登录账号需要经过MFA的验证，app应该是没有做这个异常处理，而且app也没办法升级。</p>
+<p>于是我放弃了这个app，换了另一条路。</p>
+<h2 id="安装git环境">安装git环境</h2>
+<p>在逛Stack Overflow时发现了<a class="link" href="https://github.com/termux/termux-app"  target="_blank" rel="noopener"
+    >Termux</a>这个app，它是在Android上运行的一个终端软件，也就是直接敲命令在手机上安装git环境。</p>
+<p>打开app，执行以下命令安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ apt update
+</span></span><span class="line"><span class="cl">$ apt install git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装完以后，熟悉的操作方式就回来了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git --version
+</span></span><span class="line"><span class="cl">git version 2.42.0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>剩下的就不用多说了，ssh-keygen走一波，下面贴一下我遇到的问题和解决过程。</p>
+<h3 id="操作过程">操作过程</h3>
+<p>第一时间就是进入到项目目录，先看看自己在哪个目录：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">pwd</span>
+</span></span><span class="line"><span class="cl">/data/data/com.termux/files/home
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后查看根目录都有些什么</span>
+</span></span><span class="line"><span class="cl">$ ls /
+</span></span><span class="line"><span class="cl">ls: cannot open directory <span class="s1">&#39;/&#39;</span>: Permission denied
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>竟然没权限，<code>whoami</code>一看，哦，看来还是root用习惯了，普通用户只拥有<code>/data/data/com.termux</code>目录下的权限，而<code>/data/data</code>之前的目录都没有权限。</p>
+<p>那怎么搞？没有权限我怎么知道我的项目在哪个路径下？？</p>
+<p>熟悉安卓开发的同学或者搞过机的同学就知道，我们在文件管理看到的根目录，是在<code>/storage/emulated/0/</code>下，我也是在折腾了一番以后才得知。</p>
+<p>这么长的路径，不行，我得设置成全局变量才行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 习惯用vim去编辑，其实还有别的方式</span>
+</span></span><span class="line"><span class="cl">$ vim ~/.bash_profile
+</span></span><span class="line"><span class="cl">The program vim is not installed. Install it by executing:
+</span></span><span class="line"><span class="cl">pkg install vim
+</span></span><span class="line"><span class="cl">or
+</span></span><span class="line"><span class="cl">pkg install vim-gtk, after running pkg in x11-repo
+</span></span><span class="line"><span class="cl">or
+</span></span><span class="line"><span class="cl">pkg install vim-python
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里我执行了<code>pkg install vim</code>，然后你懂的。</p>
+<p>然后cd进项目路径，查看配置信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git config --list
+</span></span><span class="line"><span class="cl">fatal: detected dubious ownership in repository at <span class="s1">&#39;/xxx/xxx&#39;</span> To add an exception <span class="k">for</span> this directory, call:
+</span></span><span class="line"><span class="cl">git config --global --add safe.directory /xxx/xxx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>跟着提示将我们的项目路径设置成安全目录就行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh-keygen -t rsa -C <span class="s2">&#34;your@email.com&#34;</span>
+</span></span><span class="line"><span class="cl">The program ssh-keygen is not installed. Install it by executing:
+</span></span><span class="line"><span class="cl">pkg install openssh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>跟着提示执行<code>pkg install openssh</code>，然后遇到连续四个<code>CANNOT LINK EXECUTABLE &quot;ssh-keygen&quot;: library &quot;libcrypto.so.3&quot; not found</code>。</p>
+<p>这里需要执行<code>pkg install openssl</code>安装相关依赖，再重新执行安装命令就可以了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git fetch origin
+</span></span><span class="line"><span class="cl">CANNOT LINK EXECUTABLE <span class="s2">&#34;/data/data/com.termux/files/usr/libexec/git-core/git-remote-https&#34;</span>: library <span class="s2">&#34;libssl.so.1.1&#34;</span> not found
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解决：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ find /data/data/com.termux/files -name <span class="s1">&#39;libssl.so.*&#39;</span>
+</span></span><span class="line"><span class="cl">/data/data/com.termux/files/usr/lib/openssl-1.1/libssl.so.1.1
+</span></span><span class="line"><span class="cl">/data/data/com.termux/files/usr/lib/libssl.so.3
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果没有的话，先执行</span>
+</span></span><span class="line"><span class="cl">pkg install openssl1.1-tool
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加环境变量</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;export LD_LIBRARY_PATH=/data/data/com.termux/files/usr/lib/openssl-1.1&#34;</span> &gt;&gt; ~/.bash_profile <span class="o">&amp;&amp;</span> <span class="nb">source</span> ~/.bash_profile
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>新的问题：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git fetch origin
+</span></span><span class="line"><span class="cl">fatal unable to access <span class="s1">&#39;https://github.com/xxx.git&#39;</span>: HTTP/2 stream <span class="m">1</span> was not closed cleanly before end of the underlying stream
+</span></span><span class="line"><span class="cl"><span class="c1"># 解决：</span>
+</span></span><span class="line"><span class="cl">$ git config --global http.version HTTP/1.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考">参考</h2>
+<ol>
+<li><a class="link" href="https://stackoverflow.com/questions/2701078/how-to-use-git-on-android"  target="_blank" rel="noopener"
+    >How to use Git on Android? - Stack Overflow</a></li>
+<li><a class="link" href="https://www.rstk.cn/news/1474415.html"  target="_blank" rel="noopener"
+    >生成Git ssh公钥和私钥（ppk）文件</a></li>
+<li><a class="link" href="https://wiki.termux.com/wiki/Termux-setup-storage"  target="_blank" rel="noopener"
+    >Termux-setup-storage - Termux Wiki</a></li>
+<li><a class="link" href="https://blog.csdn.net/qq_42560204/article/details/125670804"  target="_blank" rel="noopener"
+    >library “libssl.so.1.1“ not found 安卓神器termux使用命令时的报错。_4ustn1ne的博客-CSDN博客</a></li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/android/">android</a>
+        
+            <a href="/tags/git/">git</a>
+        
+            <a href="/tags/%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/">环境安装</a>
+        
+            <a href="/tags/termux/">termux</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://unpkg.com/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://unpkg.com/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 GHBJayce
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/default-skin/default-skin.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://unpkg.com/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

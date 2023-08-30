@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='目录 第一章 概论 第二章 线性表 第三章 栈、队列和数组 第四章 树和二叉树 第五章 图 第六章 查找 第七章 排序 概要 线性表 概念 特征 基本运算的功能描述 初始化 求表长 读取元素 定位 插入 删除 线性表的顺序存储结构——顺序表 概念 用类C语言的描述 运算实现的关键步骤和算法 容量 表长 插入 删除 定位 应用 实现简单算法 算法实现的分析 线性表的链式存储结构——单链表 特点和结构 基本概念 头指针 头结点 首结点 尾结点 空链表 用类C语言的描述 运算实现的关键步骤和算法 插入 删除 定位 综合应用 设计算法解决应用问题 顺序表和链表的优缺点、适用场景 循环链表和双向循环链表 特点和结构 用类C语言的描述 基本运算 插入 删除 线性表 概念 线性表Linear List是一种线性结构，它是由n（n ≥ 0）个数据元素组成的有穷序列，其中：
+数据元素又称为结点。 这里的n代表线性表的总结点个数，又称为表长。 当表长为0时，也就是线性表没有任何结点，称为空表，用 () 或 Ø 表示。 线性表通常表示成：(A1, A2, A3, .'>
+<title>第二章 线性表 - 《数据结构导论》笔记</title>
+
+<link rel='canonical' href='https://ghbjayce.github.io/p/book/080901/02142/chapter2/'>
+
+<link rel="stylesheet" href="/scss/style.min.8191399262444ab68b72a18c97392f5349be20a1615d77445be51e974c144cff.css"><meta property='og:title' content='第二章 线性表 - 《数据结构导论》笔记'>
+<meta property='og:description' content='目录 第一章 概论 第二章 线性表 第三章 栈、队列和数组 第四章 树和二叉树 第五章 图 第六章 查找 第七章 排序 概要 线性表 概念 特征 基本运算的功能描述 初始化 求表长 读取元素 定位 插入 删除 线性表的顺序存储结构——顺序表 概念 用类C语言的描述 运算实现的关键步骤和算法 容量 表长 插入 删除 定位 应用 实现简单算法 算法实现的分析 线性表的链式存储结构——单链表 特点和结构 基本概念 头指针 头结点 首结点 尾结点 空链表 用类C语言的描述 运算实现的关键步骤和算法 插入 删除 定位 综合应用 设计算法解决应用问题 顺序表和链表的优缺点、适用场景 循环链表和双向循环链表 特点和结构 用类C语言的描述 基本运算 插入 删除 线性表 概念 线性表Linear List是一种线性结构，它是由n（n ≥ 0）个数据元素组成的有穷序列，其中：
+数据元素又称为结点。 这里的n代表线性表的总结点个数，又称为表长。 当表长为0时，也就是线性表没有任何结点，称为空表，用 () 或 Ø 表示。 线性表通常表示成：(A1, A2, A3, .'>
+<meta property='og:url' content='https://ghbjayce.github.io/p/book/080901/02142/chapter2/'>
+<meta property='og:site_name' content='GHBJayce'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='数据结构导论' /><meta property='article:tag' content='计算机科学与技术' /><meta property='article:tag' content='笔记' /><meta property='article:published_time' content='2023-08-29T14:46:12&#43;08:00'/><meta property='article:modified_time' content='2023-08-29T14:46:12&#43;08:00'/>
+<meta name="twitter:title" content="第二章 线性表 - 《数据结构导论》笔记">
+<meta name="twitter:description" content="目录 第一章 概论 第二章 线性表 第三章 栈、队列和数组 第四章 树和二叉树 第五章 图 第六章 查找 第七章 排序 概要 线性表 概念 特征 基本运算的功能描述 初始化 求表长 读取元素 定位 插入 删除 线性表的顺序存储结构——顺序表 概念 用类C语言的描述 运算实现的关键步骤和算法 容量 表长 插入 删除 定位 应用 实现简单算法 算法实现的分析 线性表的链式存储结构——单链表 特点和结构 基本概念 头指针 头结点 首结点 尾结点 空链表 用类C语言的描述 运算实现的关键步骤和算法 插入 删除 定位 综合应用 设计算法解决应用问题 顺序表和链表的优缺点、适用场景 循环链表和双向循环链表 特点和结构 用类C语言的描述 基本运算 插入 删除 线性表 概念 线性表Linear List是一种线性结构，它是由n（n ≥ 0）个数据元素组成的有穷序列，其中：
+数据元素又称为结点。 这里的n代表线性表的总结点个数，又称为表长。 当表长为0时，也就是线性表没有任何结点，称为空表，用 () 或 Ø 表示。 线性表通常表示成：(A1, A2, A3, .">
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/17669653" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">😆</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GHBJayce</a></h1>
+            <h2 class="site-description">十年饮冰，难凉热血。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GHBJayce'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archive/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#目录">目录</a></li>
+    <li><a href="#概要">概要</a></li>
+    <li><a href="#线性表">线性表</a>
+      <ol>
+        <li><a href="#概念">概念</a></li>
+        <li><a href="#特征">特征</a></li>
+        <li><a href="#基本运算的功能描述">基本运算的功能描述</a></li>
+      </ol>
+    </li>
+    <li><a href="#顺序表">顺序表</a>
+      <ol>
+        <li><a href="#概念-1">概念</a></li>
+        <li><a href="#用类c语言来描述">用类C语言来描述</a></li>
+        <li><a href="#运算">运算</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E4%B9%A6%E7%B1%8D/" >
+                书籍
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/book/080901/02142/chapter2/">第二章 线性表 - 《数据结构导论》笔记</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-08-29</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="目录">目录</h2>
+<ul>
+<li><a class="link" href="../chapter1" >第一章 概论</a></li>
+<li><a class="link" href="../chapter2" ><strong>第二章 线性表</strong></a></li>
+<li><a class="link" href="../chapter3" >第三章 栈、队列和数组</a></li>
+<li><a class="link" href="../chapter4" >第四章 树和二叉树</a></li>
+<li><a class="link" href="../chapter5" >第五章 图</a></li>
+<li><a class="link" href="../chapter6" >第六章 查找</a></li>
+<li><a class="link" href="../chapter7" >第七章 排序</a></li>
+</ul>
+<h2 id="概要">概要</h2>
+<ol>
+<li>线性表
+<ol>
+<li>概念</li>
+<li>特征</li>
+<li>基本运算的功能描述
+<ul>
+<li>初始化</li>
+<li>求表长</li>
+<li>读取元素</li>
+<li>定位</li>
+<li>插入</li>
+<li>删除</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>线性表的顺序存储结构——顺序表
+<ol>
+<li>概念</li>
+<li>用类C语言的描述</li>
+<li>运算实现的关键步骤和算法
+<ul>
+<li>容量</li>
+<li>表长</li>
+<li>插入</li>
+<li>删除</li>
+<li>定位</li>
+</ul>
+</li>
+<li>应用
+<ul>
+<li>实现简单算法</li>
+<li>算法实现的分析</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>线性表的链式存储结构——单链表
+<ol>
+<li>特点和结构</li>
+<li>基本概念
+<ul>
+<li>头指针</li>
+<li>头结点</li>
+<li>首结点</li>
+<li>尾结点</li>
+<li>空链表</li>
+</ul>
+</li>
+<li>用类C语言的描述</li>
+<li>运算实现的关键步骤和算法
+<ul>
+<li>插入</li>
+<li>删除</li>
+<li>定位</li>
+</ul>
+</li>
+<li>综合应用
+<ul>
+<li>设计算法解决应用问题</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>顺序表和链表的优缺点、适用场景</li>
+<li>循环链表和双向循环链表
+<ol>
+<li>特点和结构</li>
+<li>用类C语言的描述</li>
+<li>基本运算
+<ul>
+<li>插入</li>
+<li>删除</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="线性表">线性表</h2>
+<h3 id="概念">概念</h3>
+<p>线性表Linear List是一种线性结构，它是由n（n ≥ 0）个数据元素组成的有穷序列，其中：</p>
+<ol>
+<li>数据元素又称为<strong>结点</strong>。</li>
+<li>这里的n代表线性表的总结点个数，又称为<strong>表长</strong>。</li>
+<li>当表长为0时，也就是线性表没有任何结点，称为<strong>空表</strong>，用 <code>()</code> 或 <code>Ø</code> 表示。</li>
+<li>线性表通常表示成：<code>(A1, A2, A3, ..., An)</code>，其中：
+<ul>
+<li>A1称为<strong>起始结点</strong>。</li>
+<li>An称为<strong>终端结点</strong>。</li>
+<li>A1是A2的<strong>直接前驱</strong>，其他结点同理。</li>
+<li>A3是A2的<strong>直接后继</strong>，其他结点同理。</li>
+</ul>
+</li>
+</ol>
+<h3 id="特征">特征</h3>
+<ol>
+<li>线性表中结点之间具有一对一的关系。</li>
+<li>非空表的情况下：
+<ul>
+<li>除了起始结点没有直接前驱（例：A1），其他的结点有且仅有一个直接前驱（例：A2、A3等）。</li>
+<li>除了终端结点没有直接后继（例：An），其他的结点有且仅有一个直接后继（例：A1、A2等）。</li>
+</ul>
+</li>
+</ol>
+<h3 id="基本运算的功能描述">基本运算的功能描述</h3>
+<ol>
+<li>初始化<code>Initiate(L)</code>：建立一个空表<code>L=()</code>，L不包含任何结点。</li>
+<li>求表长<code>Length(L)</code>：返回线性表L的长度，以下简称表L。</li>
+<li>读取元素<code>Get(L, n)</code>：返回表L的第n个结点，当n超出<code>Length(L) ≥ n ≥ 1</code>范围，返回一特殊值。</li>
+<li>定位<code>Locate(L, x)</code>：返回表L中第一个结点的值等于x的序号，如果找不到则返回0。</li>
+<li>插入<code>Insert(L, x, n)</code> ：两个步骤。
+<ul>
+<li>在表L的第n个结点之前插入一个新结点x，n的合法范围：<code>Length(L) + 1 ≥ n ≥ 1</code>。</li>
+<li>表长度加1。</li>
+</ul>
+</li>
+<li>删除<code>Delete(L, n)</code>：两个步骤。
+<ul>
+<li>删除表L的第n个结点，n的合法范围：<code>Length(L) ≥ i ≥ 1</code>。</li>
+<li>表长度减1。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>这里的n指的是no序号，避免用i是怕和数组的下标混在一起，数组的下标是从0开始，而序号是从1开始。</p>
+</blockquote>
+<h2 id="顺序表">顺序表</h2>
+<h3 id="概念-1">概念</h3>
+<ul>
+<li>顺序存储：将结点依次存放在计算机内存中一组连续的存储单元中，逻辑结构中相邻的结点它的存储位置也相邻。</li>
+<li>顺序表：用顺序存储实现的线性表，一般使用数组来表示顺序表。</li>
+</ul>
+<h3 id="用类c语言来描述">用类C语言来描述</h3>
+<p>假设线性表的数据元素的类型为DataType，顺序表的结构定义如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">Maxsize</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span> <span class="c1">// 预先定义一个足够大的常数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">DataType</span> <span class="n">data</span><span class="p">[</span><span class="n">Maxsize</span><span class="p">];</span> <span class="c1">// 存放数据的数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">length</span><span class="p">;</span> <span class="c1">// 顺序表的实际长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> <span class="n">SeqList</span><span class="p">;</span> <span class="c1">// 顺序表类型名为SeqList
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">SeqList</span> <span class="n">L</span><span class="p">;</span> <span class="c1">// 定义L为一个顺序表
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="运算">运算</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="n">SeqList</span> <span class="n">L</span><span class="p">,</span> <span class="n">DataType</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 1. 检查插入位置是否合法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">length</span> <span class="o">===</span> <span class="n">Maxsize</span><span class="p">)</span> <span class="nf">exit</span><span class="p">(</span><span class="s">&#34;表已满&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 序号小于1或者序号超过表长都不行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">L</span><span class="p">.</span><span class="n">length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="nf">exit</span><span class="p">(</span><span class="s">&#34;插入位置不正确&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 2. 从后往前依次将结点往后一个位置移动，直到到达插入序号的位置，执行完移动后停止
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">L</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 3. 插入新的结点x
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">L</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 4. 表长加一
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/">数据结构导论</a>
+        
+            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/">计算机科学与技术</a>
+        
+            <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://unpkg.com/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://unpkg.com/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/book/080901/02142/chapter1/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">第一章 概论 - 《数据结构导论》笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 GHBJayce
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/default-skin/default-skin.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://unpkg.com/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
