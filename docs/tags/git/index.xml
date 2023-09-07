@@ -6,10 +6,10 @@
         <description>Recent content in git on GHBJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Wed, 30 Aug 2023 11:15:51 +0800</lastBuildDate><atom:link href="https://ghbjayce.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 30 Aug 2023 13:26:26 +0800</lastBuildDate><atom:link href="https://ghbjayce.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>在android上安装git环境</title>
         <link>https://ghbjayce.github.io/p/system/android/env/install-git/</link>
-        <pubDate>Wed, 30 Aug 2023 11:15:51 +0800</pubDate>
+        <pubDate>Wed, 30 Aug 2023 13:26:26 +0800</pubDate>
         
         <guid>https://ghbjayce.github.io/p/system/android/env/install-git/</guid>
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -29,7 +29,7 @@
 &lt;li&gt;按照步骤转换好以后再放到app上，显示了感叹号，感觉不太对劲，进行fetch操作时果然，提示&lt;code&gt;Invalid Private Key.&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;好家伙，ppk的方式也不行，也不想再试了，那为什么用的好好的账密认证方式出了问题呢？&lt;/p&gt;
-&lt;p&gt;我估计是最近github强制使用MFA的关系，登录账号需要经过MFA的验证，app应该是没有做这个异常处理，而且app也没办法升级。&lt;/p&gt;
+&lt;p&gt;我估计是最近github强制使用2FA的关系，登录账号需要经过两步验证，app应该是没有做这个异常处理，而且在app内也没有办法升级。&lt;/p&gt;
 &lt;p&gt;于是我放弃了这个app，换了另一条路。&lt;/p&gt;
 &lt;h2 id=&#34;安装git环境&#34;&gt;安装git环境&lt;/h2&gt;
 &lt;p&gt;在逛Stack Overflow时发现了&lt;a class=&#34;link&#34; href=&#34;https://github.com/termux/termux-app&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

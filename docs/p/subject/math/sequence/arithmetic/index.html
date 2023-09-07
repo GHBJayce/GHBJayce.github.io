@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='概念 数列：按特定规律排列的一组数字的集合。 等差数列：指从第二项起，每一项与它的前一项的差都是同一个常数，这个常数称为公差。 例如：
+1、4、7、10、13、16、19 这是一组等差数列，每个数字之间相差3，其中：
+公差为：3。 首项（数列的第一个数字）是：1。 末项（数列的最后一个数字）是：19。 项数（数列的总数）：7。 数列的项（简称项）：数列中的一个个数字。 辨认 以下数列是否是等差数列？
+2、6、10、14、18、22，是 1、2、1、2、3、4、5、6，不是 1、2、4、8、16、32、64，不是 9、8、7、6、5、4、3、2，是 计算 求项的数 2、5、8、11、14、&amp;hellip;、?，求？第21项的数字是多少？
+如果项是最后一个也称为求末项
+分析：
+公差是3，找一下规律：
+5，序号2，和2之间差1个3。 8，序号3，和2之间差2个3（2&#43;2个3）。 11，序号4，和2之间差3个3（2&#43;3个3）。 14，序号5，和2之间差4个3（2&#43;4个3）。 &amp;hellip; 根据规律问题变成了：序号21，2到底要加几个3？
+答案是：2 &#43; (序号 - 1)个3，也就是2&#43;20个3，所以第21项的数字是：62。
+因此得出公式：$$第n项的数 = 首项 &#43; (n的序号 - 1) \times 公差$$ 如果求第1个项的数字，也就是求首项，那么公式是： $$首项 = 末项 - (项数 - 1) ×公差$$
+求项的序号 5、8、11、14、17、20、&amp;hellip;、65是其中的第几项？
+如果项是最后一个也称为求项数
+直接套公式：$$某项的序号 = (某项的数 - 首项) \div 公差 &#43; 1$$ 公差是3，也就是：(65 - 5) / 3 &#43; 1，65项的序号是：21。'>
+<title>什么是等差数列？</title>
+
+<link rel='canonical' href='https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/'>
+
+<link rel="stylesheet" href="/scss/style.min.8191399262444ab68b72a18c97392f5349be20a1615d77445be51e974c144cff.css"><meta property='og:title' content='什么是等差数列？'>
+<meta property='og:description' content='概念 数列：按特定规律排列的一组数字的集合。 等差数列：指从第二项起，每一项与它的前一项的差都是同一个常数，这个常数称为公差。 例如：
+1、4、7、10、13、16、19 这是一组等差数列，每个数字之间相差3，其中：
+公差为：3。 首项（数列的第一个数字）是：1。 末项（数列的最后一个数字）是：19。 项数（数列的总数）：7。 数列的项（简称项）：数列中的一个个数字。 辨认 以下数列是否是等差数列？
+2、6、10、14、18、22，是 1、2、1、2、3、4、5、6，不是 1、2、4、8、16、32、64，不是 9、8、7、6、5、4、3、2，是 计算 求项的数 2、5、8、11、14、&amp;hellip;、?，求？第21项的数字是多少？
+如果项是最后一个也称为求末项
+分析：
+公差是3，找一下规律：
+5，序号2，和2之间差1个3。 8，序号3，和2之间差2个3（2&#43;2个3）。 11，序号4，和2之间差3个3（2&#43;3个3）。 14，序号5，和2之间差4个3（2&#43;4个3）。 &amp;hellip; 根据规律问题变成了：序号21，2到底要加几个3？
+答案是：2 &#43; (序号 - 1)个3，也就是2&#43;20个3，所以第21项的数字是：62。
+因此得出公式：$$第n项的数 = 首项 &#43; (n的序号 - 1) \times 公差$$ 如果求第1个项的数字，也就是求首项，那么公式是： $$首项 = 末项 - (项数 - 1) ×公差$$
+求项的序号 5、8、11、14、17、20、&amp;hellip;、65是其中的第几项？
+如果项是最后一个也称为求项数
+直接套公式：$$某项的序号 = (某项的数 - 首项) \div 公差 &#43; 1$$ 公差是3，也就是：(65 - 5) / 3 &#43; 1，65项的序号是：21。'>
+<meta property='og:url' content='https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/'>
+<meta property='og:site_name' content='GHBJayce'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='数学' /><meta property='article:tag' content='等差数列' /><meta property='article:tag' content='数列' /><meta property='article:published_time' content='2023-09-07T19:05:42&#43;08:00'/><meta property='article:modified_time' content='2023-09-07T19:05:42&#43;08:00'/>
+<meta name="twitter:title" content="什么是等差数列？">
+<meta name="twitter:description" content="概念 数列：按特定规律排列的一组数字的集合。 等差数列：指从第二项起，每一项与它的前一项的差都是同一个常数，这个常数称为公差。 例如：
+1、4、7、10、13、16、19 这是一组等差数列，每个数字之间相差3，其中：
+公差为：3。 首项（数列的第一个数字）是：1。 末项（数列的最后一个数字）是：19。 项数（数列的总数）：7。 数列的项（简称项）：数列中的一个个数字。 辨认 以下数列是否是等差数列？
+2、6、10、14、18、22，是 1、2、1、2、3、4、5、6，不是 1、2、4、8、16、32、64，不是 9、8、7、6、5、4、3、2，是 计算 求项的数 2、5、8、11、14、&amp;hellip;、?，求？第21项的数字是多少？
+如果项是最后一个也称为求末项
+分析：
+公差是3，找一下规律：
+5，序号2，和2之间差1个3。 8，序号3，和2之间差2个3（2&#43;2个3）。 11，序号4，和2之间差3个3（2&#43;3个3）。 14，序号5，和2之间差4个3（2&#43;4个3）。 &amp;hellip; 根据规律问题变成了：序号21，2到底要加几个3？
+答案是：2 &#43; (序号 - 1)个3，也就是2&#43;20个3，所以第21项的数字是：62。
+因此得出公式：$$第n项的数 = 首项 &#43; (n的序号 - 1) \times 公差$$ 如果求第1个项的数字，也就是求首项，那么公式是： $$首项 = 末项 - (项数 - 1) ×公差$$
+求项的序号 5、8、11、14、17、20、&amp;hellip;、65是其中的第几项？
+如果项是最后一个也称为求项数
+直接套公式：$$某项的序号 = (某项的数 - 首项) \div 公差 &#43; 1$$ 公差是3，也就是：(65 - 5) / 3 &#43; 1，65项的序号是：21。">
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/17669653" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">😆</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GHBJayce</a></h1>
+            <h2 class="site-description">十年饮冰，难凉热血。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GHBJayce'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archive/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#概念">概念</a>
+      <ol>
+        <li><a href="#辨认">辨认</a></li>
+      </ol>
+    </li>
+    <li><a href="#计算">计算</a>
+      <ol>
+        <li><a href="#求项的数">求项的数</a></li>
+        <li><a href="#求项的序号">求项的序号</a></li>
+        <li><a href="#求和">求和</a></li>
+      </ol>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%AD%A6%E7%A7%91/" >
+                学科
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/subject/math/sequence/arithmetic/">什么是等差数列？</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-09-07</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 1 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="概念">概念</h2>
+<ul>
+<li>数列：按特定规律排列的一组数字的集合。</li>
+<li>等差数列：指从第二项起，每一项与它的前一项的差都是同一个常数，这个常数称为公差。</li>
+</ul>
+<p>例如：</p>
+<ul>
+<li>1、4、7、10、13、16、19</li>
+</ul>
+<p>这是一组等差数列，每个数字之间相差3，其中：</p>
+<ol>
+<li>公差为：3。</li>
+<li>首项（数列的第一个数字）是：1。</li>
+<li>末项（数列的最后一个数字）是：19。</li>
+<li>项数（数列的总数）：7。</li>
+<li>数列的项（简称项）：数列中的一个个数字。</li>
+</ol>
+<h3 id="辨认">辨认</h3>
+<p>以下数列是否是等差数列？</p>
+<ul>
+<li>2、6、10、14、18、22，是</li>
+<li>1、2、1、2、3、4、5、6，不是</li>
+<li>1、2、4、8、16、32、64，不是</li>
+<li>9、8、7、6、5、4、3、2，是</li>
+</ul>
+<h2 id="计算">计算</h2>
+<h3 id="求项的数">求项的数</h3>
+<p>2、5、8、11、14、&hellip;、?，求？第21项的数字是多少？</p>
+<blockquote>
+<p>如果项是最后一个也称为求末项</p>
+</blockquote>
+<p>分析：</p>
+<p>公差是3，找一下规律：</p>
+<ul>
+<li>5，序号2，和2之间差1个3。</li>
+<li>8，序号3，和2之间差2个3（2+2个3）。</li>
+<li>11，序号4，和2之间差3个3（2+3个3）。</li>
+<li>14，序号5，和2之间差4个3（2+4个3）。</li>
+<li>&hellip;</li>
+</ul>
+<p>根据规律问题变成了：序号21，2到底要加几个3？</p>
+<p>答案是：<code>2 + (序号 - 1)个3</code>，也就是2+20个3，所以第21项的数字是：62。</p>
+<p>因此得出公式：$$第n项的数 = 首项 + (n的序号 - 1) \times 公差$$
+如果求第1个项的数字，也就是求首项，那么公式是：
+$$首项 = 末项 - (项数 - 1) ×公差$$</p>
+<h3 id="求项的序号">求项的序号</h3>
+<p>5、8、11、14、17、20、&hellip;、65是其中的第几项？</p>
+<blockquote>
+<p>如果项是最后一个也称为求项数</p>
+</blockquote>
+<p>直接套公式：$$某项的序号 = (某项的数 - 首项) \div 公差 + 1$$
+公差是3，也就是：(65 - 5) / 3 + 1，65项的序号是：21。</p>
+<h3 id="求和">求和</h3>
+<p>2、4、6、8、10、12、14，这个数列各项加起来的和是多少？</p>
+<p>分析：</p>
+<p>倒序相加求和</p>
+<ul>
+<li>正序 S = 2 + 4 + 6 + 8 + 10 + 12 + 14</li>
+<li>倒序 S = 14 + 12 + 10 + 8 + 6 + 4 + 2</li>
+</ul>
+<p>2+14、4+12、6+10，正序和倒序的值加在一起都是相等的，于是可以写成：</p>
+<ul>
+<li>2S = (2 + 14) × 7</li>
+<li>S = (2 + 14) × 7 ÷ 2</li>
+</ul>
+<p>最终各项加起来的和是：56。</p>
+<p>得出公式，这个公式也称为高斯求和：
+$$和 = (首项 + 末项) \times 项数 \div 2$$</p>
+<h2 id="参考">参考</h2>
+<ol>
+<li><a class="link" href="https://www.bilibili.com/video/BV1u8411j7Tn"  target="_blank" rel="noopener"
+    >小学数学—计算之等差数列_哔哩哔哩_bilibili</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s?__biz=MzAxNTA3MTI4NQ==&amp;mid=2652402199&amp;idx=3&amp;sn=5aff4f40aa0708a04eee1ff3eccdf821&amp;chksm=8065734db712fa5bce409989f535ae86178e22dbc6b4451f61a7a3323e29ff08f678f8a130bf&amp;scene=27"  target="_blank" rel="noopener"
+    >小学奥数——高斯求和公式，简单问题的再思考</a></li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+        
+            <a href="/tags/%E7%AD%89%E5%B7%AE%E6%95%B0%E5%88%97/">等差数列</a>
+        
+            <a href="/tags/%E6%95%B0%E5%88%97/">数列</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://unpkg.com/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://unpkg.com/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 GHBJayce
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/default-skin/default-skin.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://unpkg.com/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

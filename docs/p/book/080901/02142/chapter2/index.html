@@ -237,9 +237,18 @@
       <ol>
         <li><a href="#概念-1">概念</a></li>
         <li><a href="#用类c语言来描述">用类C语言来描述</a></li>
-        <li><a href="#运算">运算</a></li>
+        <li><a href="#运算">运算</a>
+          <ol>
+            <li><a href="#插入">插入</a></li>
+            <li><a href="#删除">删除</a></li>
+            <li><a href="#定位">定位</a></li>
+            <li><a href="#表长">表长</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
+    <li><a href="#链表">链表</a></li>
+    <li><a href="#参考">参考</a></li>
   </ol>
 </nav>
         </div>
@@ -304,7 +313,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -420,8 +429,7 @@
 <ul>
 <li>A1称为<strong>起始结点</strong>。</li>
 <li>An称为<strong>终端结点</strong>。</li>
-<li>A1是A2的<strong>直接前驱</strong>，其他结点同理。</li>
-<li>A3是A2的<strong>直接后继</strong>，其他结点同理。</li>
+<li>A1是A2的<strong>直接前驱</strong>，A3是A2的<strong>直接后继</strong>，其他结点同理。</li>
 </ul>
 </li>
 </ol>
@@ -436,27 +444,28 @@
 </li>
 </ol>
 <h3 id="基本运算的功能描述">基本运算的功能描述</h3>
+<blockquote>
+<p>以下的no指的是序号，文中所有提到的“位置”都是指序号。</p>
+<p>避免用i命名是怕和数组的下标混在一起，数组的下标是从0开始，而序号是从1开始。</p>
+</blockquote>
 <ol>
 <li>初始化<code>Initiate(L)</code>：建立一个空表<code>L=()</code>，L不包含任何结点。</li>
 <li>求表长<code>Length(L)</code>：返回线性表L的长度，以下简称表L。</li>
-<li>读取元素<code>Get(L, n)</code>：返回表L的第n个结点，当n超出<code>Length(L) ≥ n ≥ 1</code>范围，返回一特殊值。</li>
-<li>定位<code>Locate(L, x)</code>：返回表L中第一个结点的值等于x的序号，如果找不到则返回0。</li>
-<li>插入<code>Insert(L, x, n)</code> ：两个步骤。
+<li>读取元素<code>Get(L, no)</code>：返回表L的第no个结点，当no超出<code>Length(L) ≥ no ≥ 1</code>范围，返回一特殊值。</li>
+<li>定位<code>Locate(L, x)</code>：返回表L中第一个结点的值等于x值的序号，如果找不到则返回0。</li>
+<li>插入<code>Insert(L, x, no)</code> ：两个步骤。
 <ul>
-<li>在表L的第n个结点之前插入一个新结点x，n的合法范围：<code>Length(L) + 1 ≥ n ≥ 1</code>。</li>
+<li>在表L的第no个结点之前插入一个新结点x，no的合法范围：<code>Length(L) + 1 ≥ no ≥ 1</code>。</li>
 <li>表长度加1。</li>
 </ul>
 </li>
-<li>删除<code>Delete(L, n)</code>：两个步骤。
+<li>删除<code>Delete(L, no)</code>：两个步骤。
 <ul>
-<li>删除表L的第n个结点，n的合法范围：<code>Length(L) ≥ i ≥ 1</code>。</li>
+<li>删除表L的第no个结点，no的合法范围：<code>Length(L) ≥ no ≥ 1</code>。</li>
 <li>表长度减1。</li>
 </ul>
 </li>
 </ol>
-<blockquote>
-<p>这里的n指的是no序号，避免用i是怕和数组的下标混在一起，数组的下标是从0开始，而序号是从1开始。</p>
-</blockquote>
 <h2 id="顺序表">顺序表</h2>
 <h3 id="概念-1">概念</h3>
 <ul>
@@ -485,7 +494,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">SeqList</span> <span class="n">L</span><span class="p">;</span> <span class="c1">// 定义L为一个顺序表
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="运算">运算</h3>
+</div><p>例子：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -501,28 +510,224 @@
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="n">SeqList</span> <span class="n">L</span><span class="p">,</span> <span class="n">DataType</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">Maxsize</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span> <span class="c1">// 预先定义数组大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// 1. 检查插入位置是否合法
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">length</span> <span class="o">===</span> <span class="n">Maxsize</span><span class="p">)</span> <span class="nf">exit</span><span class="p">(</span><span class="s">&#34;表已满&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// 序号小于1或者序号超过表长都不行
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">L</span><span class="p">.</span><span class="n">length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="nf">exit</span><span class="p">(</span><span class="s">&#34;插入位置不正确&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// 2. 从后往前依次将结点往后一个位置移动，直到到达插入序号的位置，执行完移动后停止
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">num</span><span class="p">;</span> <span class="c1">// 学号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span> <span class="c1">// 姓名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">age</span><span class="p">;</span> <span class="c1">// 年龄
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> <span class="n">DataType</span><span class="p">;</span> <span class="c1">// 定义结点的类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">DataType</span> <span class="n">data</span><span class="p">[</span><span class="n">Maxsize</span><span class="p">];</span> <span class="c1">// 存放数据的数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">length</span><span class="p">;</span> <span class="c1">// 线性表的实际长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> <span class="n">SeqList</span><span class="p">;</span> <span class="c1">// 顺序表的类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">SeqList</span> <span class="n">student</span><span class="p">;</span> <span class="c1">// student是顺序表的名称
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="运算">运算</h3>
+<h4 id="插入">插入</h4>
+<p>算法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="n">SeqList</span> <span class="n">L</span><span class="p">,</span> <span class="n">DataType</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">no</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">length</span> <span class="o">&gt;=</span> <span class="n">Maxsize</span><span class="p">)</span> <span class="nf">exit</span><span class="p">(</span><span class="s">&#34;表已满&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 等同于：no &lt;= 0 || no &gt;= L.length + 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="n">no</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">no</span> <span class="o">&gt;</span> <span class="n">L</span><span class="p">.</span><span class="n">length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="nf">exit</span><span class="p">(</span><span class="s">&#34;插入位置不正确&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">no</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="n">L</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// 3. 插入新的结点x
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">L</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// 4. 表长加一
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">L</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">no</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="o">++</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><p>步骤：</p>
+<ol>
+<li>检查插入位置是否合法。
+<ol>
+<li>表容量，<strong>表满了以后不能再插入</strong>。</li>
+<li>插入位置：
+<ul>
+<li><strong>不能插入序号no = 0及之前的位置</strong>，no = 1的位置可以插入。</li>
+<li>要插入的位置，它前面的位置不能是空的，也就是<strong>不能断开插入</strong>。
+<ul>
+<li>例：插入第5个位置，第4个位置是空的。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>为插入位置腾出空位，从最后一个结点开始从后往前循环，将结点往后移一个位置，直到插入位置结束。</li>
+<li>插入新的结点x，也就是序号no的位置，对应下标为：no-1。</li>
+<li>表长度加一。</li>
+</ol>
+<p>分析：</p>
+<ul>
+<li>算法复杂度：O(n)。</li>
+<li>平均移动次数：$\frac{n}{2}$。</li>
+</ul>
+<p>插入算法中，元素的移动次数不仅与顺序表的长度n有关，还和插入的no位置有关：</p>
+<ul>
+<li>当插入位置是n+1时，移动次数为0。</li>
+<li>当插入位置是n时，移动次数为1，这个称为首项（从存在的元素中选取，它也可以是尾项）。</li>
+<li>当插入位置是n-1时，移动次数为2。</li>
+<li>当插入位置是n-2时，移动次数为3。</li>
+<li>&hellip;</li>
+<li>当插入位置是1时，移动次数为n，这个称为末项。</li>
+</ul>
+<p>根据移动次数变化的规律可以看出：</p>
+<ol>
+<li>移动次数的计算方式为：<code>n - no + 1</code>。</li>
+<li>可插入的位置有：<code>n + 1</code>个。</li>
+<li>这是个<a class="link" href="https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/"  target="_blank" rel="noopener"
+    >等差数列</a>。
+<ul>
+<li>使用<a class="link" href="https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/#%e6%b1%82%e5%92%8c"  target="_blank" rel="noopener"
+    >高斯求和</a>公式可以得出总的移动次数为：$\frac{(n + 1) \times n}{2}$。</li>
+<li>因此平均移动次数：$\frac{总移动次数}{可插入位置}$也就是$\frac{\frac{(n + 1) \times n}{2}}{n + 1}$约为$\frac{n}{2}$。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>如果我有理解错平均移动次数，请大佬随时斧正，<a href="mailto:jaycedeng@outlook.com" target="_blank" class="link">联系我</a>。</p>
+</blockquote>
+<h4 id="删除">删除</h4>
+<p>算法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">DeleteSeqList</span><span class="p">(</span><span class="n">SeqList</span> <span class="n">L</span><span class="p">,</span> <span class="kt">int</span> <span class="n">no</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 等同于：no &lt;= 0 || no &gt;= L.length + 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="n">no</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">no</span> <span class="o">&gt;</span> <span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">exit</span><span class="p">(</span><span class="s">&#34;非法位置&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="n">no</span><span class="p">,</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">L</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
+</div><p>步骤：</p>
+<ol>
+<li>检查删除位置是否合法，不能是0及之前的位置，也不能是超出表长之后的位置。</li>
+<li>覆盖结点，从删除位置开始，后一个结点移动到前一个位置，直到最后一个结点结束，即表示删除。</li>
+<li>表长度减一。</li>
+</ol>
+<p>分析：</p>
+<ul>
+<li>算法复杂度：O(n)。</li>
+<li>平均移动次数：$\frac{n-1}{2}$。</li>
+</ul>
+<p>跟插入算法一样：</p>
+<ul>
+<li>当删除位置是n时，移动次数为0。</li>
+<li>当删除位置是n-1时，移动次数为1。</li>
+<li>当删除位置是n-2时，移动次数为2。</li>
+<li>&hellip;</li>
+<li>当删除位置是1时，移动次数为n-1。</li>
+</ul>
+<p>根据规律得出：</p>
+<ul>
+<li>移动次数的计算方式：<code>n - no</code>。</li>
+<li>可删除的位置有：<code>n</code>个。</li>
+<li>同样是<a class="link" href="https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/"  target="_blank" rel="noopener"
+    >等差数列</a>。
+<ul>
+<li>使用<a class="link" href="https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/#%e6%b1%82%e5%92%8c"  target="_blank" rel="noopener"
+    >高斯求和</a>公式得出总的移动次数：$\frac{(0 + n - 1) \times n}{2}$。</li>
+<li>平均移动次数：$\frac{总移动次数}{可删除的位置}$也就是$\frac{\frac{(0 + n - 1) \times n}{2}}{n}$约为$\frac{n-1}{2}$。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>如果我有理解错平均移动次数，请大佬随时斧正，<a href="mailto:jaycedeng@outlook.com" target="_blank" class="link">联系我</a>。</p>
+</blockquote>
+<h4 id="定位">定位</h4>
+<p>算法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">findSeqList</span><span class="p">(</span><span class="n">SeqList</span> <span class="n">L</span><span class="p">,</span> <span class="n">DataType</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span> <span class="p">((</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">x</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">i</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>步骤：</p>
+<ol>
+<li>初始化一个下标值：0。</li>
+<li>从头到尾逐个比对，数组中的结点是否与结点x相等：
+<ol>
+<li>不相等则继续循环。</li>
+<li>相等则表示已经找到，停止循环。</li>
+</ol>
+</li>
+<li>返回查找结果。</li>
+</ol>
+<h4 id="表长">表长</h4>
+<p>只需要返回L.length即可</p>
+<h2 id="链表">链表</h2>
+<ul>
+<li>链式存储：各个结点在内存中的存储位置并不连续，可以存放在不同位置，指针表示数据元素之间的逻辑关系。</li>
+<li>链表：用链式存储实现的线性表，结点之间可以重新链接，链表分为：
+<ul>
+<li>单链表：一个链表结点由一个数据元素和一个指针构成。</li>
+<li>循环链表：</li>
+<li>双向循环链表：</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考">参考</h2>
+
 </section>
 
 
