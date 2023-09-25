@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='目录 第一章 概论 第二章 线性表 第三章 栈、队列和数组 第四章 树和二叉树 第五章 图 第六章 查找 第七章 排序 阅读说明 本文涉及到的代码描述均为C语言。 概要 栈 概念 特征 用C语言描述 顺序栈 链栈 基本运算 初始化 栈空 栈满 进栈 出栈 取栈顶元素 应用 解决简单问题 队列 概念 特征 用C语言描述 顺序队列 循环队列 基本运算 初始化 队列空 队列满 入队列 出队列 取队列首元素 应用 解决简单问题 数组 一维和二维数组 逻辑结构 存储结构 存储位置计算 矩阵的压缩存储 特殊矩阵 对称矩阵 三角矩阵 上三角矩阵 下三角矩阵 稀疏矩阵 三元组表示法 简单的综合运用 栈 概念 栈Stack可以看作是特殊的线性表，特殊性在于基本运算是线性表运算的子集，是一种运算受限的线性表。而受限是指插入和删除运算限定在表的某一端进行。
+进栈：指插入运算。 出栈：指删除运算。 栈顶：允许进栈和出栈的一端。 栈底：栈顶的另一端。 空栈：不含任何数据元素的栈。 栈顶元素：处于栈顶位置的数据元素。 上溢：栈的容量已经满了，此时再进行进栈就会发生上溢。 下溢：空栈做出栈就会产生下溢，因为栈中没有任何数据元素。 栈是计算机科学中广泛使用的数据结构之一，例如：函数的嵌套调用和程序递归的处理都是用栈来实现的。'>
+<title>第三章 栈、队列和数组 - 《数据结构导论》笔记</title>
+
+<link rel='canonical' href='https://ghbjayce.github.io/p/book/080901/02142/chapter3/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='第三章 栈、队列和数组 - 《数据结构导论》笔记'>
+<meta property='og:description' content='目录 第一章 概论 第二章 线性表 第三章 栈、队列和数组 第四章 树和二叉树 第五章 图 第六章 查找 第七章 排序 阅读说明 本文涉及到的代码描述均为C语言。 概要 栈 概念 特征 用C语言描述 顺序栈 链栈 基本运算 初始化 栈空 栈满 进栈 出栈 取栈顶元素 应用 解决简单问题 队列 概念 特征 用C语言描述 顺序队列 循环队列 基本运算 初始化 队列空 队列满 入队列 出队列 取队列首元素 应用 解决简单问题 数组 一维和二维数组 逻辑结构 存储结构 存储位置计算 矩阵的压缩存储 特殊矩阵 对称矩阵 三角矩阵 上三角矩阵 下三角矩阵 稀疏矩阵 三元组表示法 简单的综合运用 栈 概念 栈Stack可以看作是特殊的线性表，特殊性在于基本运算是线性表运算的子集，是一种运算受限的线性表。而受限是指插入和删除运算限定在表的某一端进行。
+进栈：指插入运算。 出栈：指删除运算。 栈顶：允许进栈和出栈的一端。 栈底：栈顶的另一端。 空栈：不含任何数据元素的栈。 栈顶元素：处于栈顶位置的数据元素。 上溢：栈的容量已经满了，此时再进行进栈就会发生上溢。 下溢：空栈做出栈就会产生下溢，因为栈中没有任何数据元素。 栈是计算机科学中广泛使用的数据结构之一，例如：函数的嵌套调用和程序递归的处理都是用栈来实现的。'>
+<meta property='og:url' content='https://ghbjayce.github.io/p/book/080901/02142/chapter3/'>
+<meta property='og:site_name' content='GHBJayce'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='数据结构导论' /><meta property='article:tag' content='计算机科学与技术' /><meta property='article:tag' content='笔记' /><meta property='article:published_time' content='2023-09-18T12:24:10&#43;08:00'/><meta property='article:modified_time' content='2023-09-18T12:24:10&#43;08:00'/>
+<meta name="twitter:title" content="第三章 栈、队列和数组 - 《数据结构导论》笔记">
+<meta name="twitter:description" content="目录 第一章 概论 第二章 线性表 第三章 栈、队列和数组 第四章 树和二叉树 第五章 图 第六章 查找 第七章 排序 阅读说明 本文涉及到的代码描述均为C语言。 概要 栈 概念 特征 用C语言描述 顺序栈 链栈 基本运算 初始化 栈空 栈满 进栈 出栈 取栈顶元素 应用 解决简单问题 队列 概念 特征 用C语言描述 顺序队列 循环队列 基本运算 初始化 队列空 队列满 入队列 出队列 取队列首元素 应用 解决简单问题 数组 一维和二维数组 逻辑结构 存储结构 存储位置计算 矩阵的压缩存储 特殊矩阵 对称矩阵 三角矩阵 上三角矩阵 下三角矩阵 稀疏矩阵 三元组表示法 简单的综合运用 栈 概念 栈Stack可以看作是特殊的线性表，特殊性在于基本运算是线性表运算的子集，是一种运算受限的线性表。而受限是指插入和删除运算限定在表的某一端进行。
+进栈：指插入运算。 出栈：指删除运算。 栈顶：允许进栈和出栈的一端。 栈底：栈顶的另一端。 空栈：不含任何数据元素的栈。 栈顶元素：处于栈顶位置的数据元素。 上溢：栈的容量已经满了，此时再进行进栈就会发生上溢。 下溢：空栈做出栈就会产生下溢，因为栈中没有任何数据元素。 栈是计算机科学中广泛使用的数据结构之一，例如：函数的嵌套调用和程序递归的处理都是用栈来实现的。">
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/17669653" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">😆</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GHBJayce</a></h1>
+            <h2 class="site-description">十年饮冰，难凉热血。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GHBJayce'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archive/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#目录">目录</a></li>
+    <li><a href="#阅读说明">阅读说明</a></li>
+    <li><a href="#概要">概要</a></li>
+    <li><a href="#栈">栈</a>
+      <ol>
+        <li><a href="#概念">概念</a></li>
+        <li><a href="#特征">特征</a>
+          <ol>
+            <li><a href="#生活中的例子">生活中的例子</a></li>
+          </ol>
+        </li>
+        <li><a href="#实现">实现</a></li>
+        <li><a href="#顺序栈">顺序栈</a>
+          <ol>
+            <li><a href="#定义">定义</a></li>
+            <li><a href="#初始化">初始化</a></li>
+            <li><a href="#栈空">栈空</a></li>
+            <li><a href="#栈满">栈满</a></li>
+            <li><a href="#进栈">进栈</a></li>
+            <li><a href="#出栈">出栈</a></li>
+            <li><a href="#取栈顶元素">取栈顶元素</a></li>
+          </ol>
+        </li>
+        <li><a href="#双栈">双栈</a></li>
+        <li><a href="#链栈">链栈</a>
+          <ol>
+            <li><a href="#定义-1">定义</a></li>
+            <li><a href="#初始化-1">初始化</a></li>
+            <li><a href="#栈空-1">栈空</a></li>
+            <li><a href="#进栈-1">进栈</a></li>
+            <li><a href="#出栈-1">出栈</a></li>
+            <li><a href="#取栈顶元素-1">取栈顶元素</a></li>
+            <li><a href="#应用">应用</a></li>
+          </ol>
+        </li>
+        <li><a href="#练习">练习</a></li>
+      </ol>
+    </li>
+    <li><a href="#队列">队列</a>
+      <ol>
+        <li><a href="#概念-1">概念</a></li>
+        <li><a href="#特征-1">特征</a>
+          <ol>
+            <li><a href="#生活中的例子-1">生活中的例子</a></li>
+          </ol>
+        </li>
+        <li><a href="#实现-1">实现</a></li>
+        <li><a href="#顺序队列">顺序队列</a>
+          <ol>
+            <li><a href="#定义-2">定义</a></li>
+          </ol>
+        </li>
+        <li><a href="#循环队列">循环队列</a>
+          <ol>
+            <li><a href="#定义-3">定义</a></li>
+            <li><a href="#初始化-2">初始化</a></li>
+            <li><a href="#判断队列空">判断队列空</a></li>
+            <li><a href="#入队列">入队列</a></li>
+            <li><a href="#出队列">出队列</a></li>
+            <li><a href="#取队列首元素">取队列首元素</a></li>
+          </ol>
+        </li>
+        <li><a href="#链队列">链队列</a>
+          <ol>
+            <li><a href="#定义-4">定义</a></li>
+            <li><a href="#初始化-3">初始化</a></li>
+            <li><a href="#判断队列空-1">判断队列空</a></li>
+            <li><a href="#入队列-1">入队列</a></li>
+            <li><a href="#出队列-1">出队列</a></li>
+          </ol>
+        </li>
+        <li><a href="#应用-1">应用</a></li>
+      </ol>
+    </li>
+    <li><a href="#数组">数组</a>
+      <ol>
+        <li><a href="#概念-2">概念</a></li>
+        <li><a href="#运算">运算</a></li>
+        <li><a href="#存储结构">存储结构</a>
+          <ol>
+            <li><a href="#计算存储位置">计算存储位置</a></li>
+          </ol>
+        </li>
+        <li><a href="#矩阵的压缩存储">矩阵的压缩存储</a>
+          <ol>
+            <li><a href="#特殊矩阵">特殊矩阵</a></li>
+            <li><a href="#稀疏矩阵">稀疏矩阵</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#综合运用">综合运用</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E4%B9%A6%E7%B1%8D/" >
+                书籍
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/book/080901/02142/chapter3/">第三章 栈、队列和数组 - 《数据结构导论》笔记</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-09-18</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 6 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="目录">目录</h2>
+<ul>
+<li><a class="link" href="../chapter1" >第一章 概论</a></li>
+<li><a class="link" href="../chapter2" >第二章 线性表</a></li>
+<li><a class="link" href="../chapter3" ><strong>第三章 栈、队列和数组</strong></a></li>
+<li><a class="link" href="../chapter4" >第四章 树和二叉树</a></li>
+<li><a class="link" href="../chapter5" >第五章 图</a></li>
+<li><a class="link" href="../chapter6" >第六章 查找</a></li>
+<li><a class="link" href="../chapter7" >第七章 排序</a></li>
+</ul>
+<h2 id="阅读说明">阅读说明</h2>
+<ol>
+<li>本文涉及到的代码描述均为C语言。</li>
+</ol>
+<h2 id="概要">概要</h2>
+<ol>
+<li>栈
+<ol>
+<li>概念</li>
+<li>特征</li>
+<li>用C语言描述
+<ul>
+<li>顺序栈</li>
+<li>链栈</li>
+</ul>
+</li>
+<li>基本运算
+<ul>
+<li>初始化</li>
+<li>栈空</li>
+<li>栈满</li>
+<li>进栈</li>
+<li>出栈</li>
+<li>取栈顶元素</li>
+</ul>
+</li>
+<li>应用
+<ul>
+<li>解决简单问题</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>队列
+<ol>
+<li>概念</li>
+<li>特征</li>
+<li>用C语言描述
+<ul>
+<li>顺序队列</li>
+<li>循环队列</li>
+</ul>
+</li>
+<li>基本运算
+<ul>
+<li>初始化</li>
+<li>队列空</li>
+<li>队列满</li>
+<li>入队列</li>
+<li>出队列</li>
+<li>取队列首元素</li>
+</ul>
+</li>
+<li>应用
+<ul>
+<li>解决简单问题</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>数组
+<ol>
+<li>一维和二维数组
+<ul>
+<li>逻辑结构</li>
+<li>存储结构
+<ul>
+<li>存储位置计算</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>矩阵的压缩存储
+<ul>
+<li>特殊矩阵
+<ul>
+<li>对称矩阵</li>
+<li>三角矩阵
+<ul>
+<li>上三角矩阵</li>
+<li>下三角矩阵</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>稀疏矩阵
+<ul>
+<li>三元组表示法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>简单的综合运用</li>
+</ol>
+<h2 id="栈">栈</h2>
+<h3 id="概念">概念</h3>
+<p>栈Stack可以看作是特殊的线性表，特殊性在于基本运算是线性表运算的子集，是一种运算受限的线性表。而受限是指插入和删除运算限定在表的某一端进行。</p>
+<ul>
+<li>进栈：指插入运算。</li>
+<li>出栈：指删除运算。</li>
+<li>栈顶：允许进栈和出栈的一端。</li>
+<li>栈底：栈顶的另一端。</li>
+<li>空栈：不含任何数据元素的栈。</li>
+<li>栈顶元素：处于栈顶位置的数据元素。</li>
+<li>上溢：栈的容量已经满了，此时再进行进栈就会发生上溢。</li>
+<li>下溢：空栈做出栈就会产生下溢，因为栈中没有任何数据元素。</li>
+</ul>
+<blockquote>
+<p>栈是计算机科学中广泛使用的数据结构之一，例如：函数的嵌套调用和程序递归的处理都是用栈来实现的。</p>
+</blockquote>
+<h3 id="特征">特征</h3>
+<p>栈的修改原则是<strong>后进先出（Last In First Out）</strong>，好比桌面上叠放着待清洗的碗碟，收拾以后的碗碟被放在栈顶，而在栈顶的碗碟会优先得到清洗。因此又称为<strong>后进先出线性表</strong>，简称后进先出表。</p>
+<h4 id="生活中的例子">生活中的例子</h4>
+<p>具有栈特征的生活场景：</p>
+<ol>
+<li>购物篮：顾客往购物篮放商品会放在栈顶，结账时从栈顶取出商品。</li>
+<li>购物推车：顾客的购物车在结账完以后会被回收，叠放在栈顶，下一个顾客需要时会从栈顶取出。</li>
+<li>射击：先装的子弹最后才被打出来，特殊子弹夹除外，例如左轮。</li>
+<li>添饭：新加的米饭放在栈顶，栈顶的米饭先吃。</li>
+<li>水杯加水：这个例子可能不太严谨，因为水流动的特性也有可能喝到非栈顶的水。</li>
+</ol>
+<h3 id="实现">实现</h3>
+<p>栈的实现有两种方式：</p>
+<ul>
+<li>顺序栈：用一组连续的存储单元存放数据元素，通常用一个一维数组和一个记录栈顶位置的变量来实现顺序存储。</li>
+<li>链栈：用带头结点的单链表实现，命名LS（linkStack），LS指向头结点，<code>LS-&gt;next</code>指向栈顶结点，也是首结点，尾结点是栈底结点，通过各结点的指针连接组成栈。</li>
+</ul>
+<p>栈的基本运算的功能描述：</p>
+<ol>
+<li>初始化<code>InitStack(S)</code>：构造一个空栈S。</li>
+<li>判断栈空<code>EmptyStack(S)</code>：若为空栈返回1，否则返回0。</li>
+<li>进栈<code>Push(S, x)</code>：将元素x插入栈S中，x成为栈顶元素。</li>
+<li>出栈<code>Pop(S)</code>：删除栈顶元素。</li>
+<li>取栈顶<code>GetTop(S)</code>：返回栈顶元素。</li>
+</ol>
+<h3 id="顺序栈">顺序栈</h3>
+<h4 id="定义">定义</h4>
+<blockquote>
+<p>顺序栈相关代码放在了<a class="link" href="https://github.com/GHBJayce/code-example/tree/main/code/c/data-structure/list/stack/sequence/1"  target="_blank" rel="noopener"
+    >GHBJayce/code-example - sequence stack</a>中，感兴趣可以clone到本地查看运行结果。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">maxSize</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span> <span class="c1">// 顺序栈的容量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">sequenceStack</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dataType</span> <span class="n">data</span><span class="p">[</span><span class="n">maxSize</span><span class="p">];</span> <span class="c1">// 存储栈中数据元素的数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">top</span><span class="p">;</span> <span class="c1">// 指向栈顶位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> <span class="n">seqStack</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="初始化">初始化</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">seqStack</span> <span class="nf">init</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">seqStack</span> <span class="n">stack</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stack</span><span class="p">.</span><span class="n">top</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">stack</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="栈空">栈空</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="n">seqStack</span> <span class="o">*</span><span class="n">stack</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">stack</span><span class="o">-&gt;</span><span class="n">top</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="栈满">栈满</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">isFull</span><span class="p">(</span><span class="n">seqStack</span> <span class="o">*</span><span class="n">stack</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">stack</span><span class="o">-&gt;</span><span class="n">top</span> <span class="o">==</span> <span class="n">maxSize</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="进栈">进栈</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">push</span><span class="p">(</span><span class="n">seqStack</span> <span class="o">*</span><span class="n">stack</span><span class="p">,</span> <span class="n">dataType</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">isFull</span><span class="p">(</span><span class="n">stack</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;栈已满&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stack</span><span class="o">-&gt;</span><span class="n">top</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stack</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="n">stack</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="出栈">出栈</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">pop</span><span class="p">(</span><span class="n">seqStack</span> <span class="o">*</span><span class="n">stack</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">isEmpty</span><span class="p">(</span><span class="n">stack</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;栈空&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stack</span><span class="o">-&gt;</span><span class="n">top</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="取栈顶元素">取栈顶元素</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">dataType</span> <span class="nf">getTop</span><span class="p">(</span><span class="n">seqStack</span> <span class="o">*</span><span class="n">stack</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">isEmpty</span><span class="p">(</span><span class="n">stack</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;栈空&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">stack</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="n">stack</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="双栈">双栈</h3>
+<p>待补充&hellip;</p>
+<h3 id="链栈">链栈</h3>
+<h4 id="定义-1">定义</h4>
+<blockquote>
+<p>链栈相关代码放在了<a class="link" href="https://github.com/GHBJayce/code-example/tree/5dcbf53aebbc1141bff179a4e7571c43956b31ef/code/c/data-structure/list/stack/link/1"  target="_blank" rel="noopener"
+    >GHBJayce/code-example - link stack</a>中，感兴趣可以clone到本地查看运行结果。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">dataType</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">node</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dataType</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">node</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">linkStack</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="初始化-1">初始化</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">linkStack</span> <span class="o">*</span><span class="nf">init</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">linkStack</span> <span class="o">*</span><span class="n">stack</span> <span class="o">=</span> <span class="p">(</span><span class="n">linkStack</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">linkStack</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stack</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">stack</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="栈空-1">栈空</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="n">linkStack</span> <span class="o">*</span><span class="n">stack</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">stack</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="进栈-1">进栈</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="n">linkStack</span> <span class="o">*</span><span class="n">stack</span><span class="p">,</span> <span class="n">dataType</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">linkStack</span> <span class="o">*</span><span class="n">newNode</span> <span class="o">=</span> <span class="p">(</span><span class="n">linkStack</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">linkStack</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">newNode</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">newNode</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">stack</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stack</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">newNode</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="出栈-1">出栈</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">pop</span><span class="p">(</span><span class="n">linkStack</span> <span class="o">*</span><span class="n">stack</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nf">isEmpty</span><span class="p">(</span><span class="n">stack</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">linkStack</span> <span class="o">*</span><span class="n">removeNode</span> <span class="o">=</span> <span class="n">stack</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stack</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">removeNode</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">free</span><span class="p">(</span><span class="n">removeNode</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="取栈顶元素-1">取栈顶元素</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">dataType</span> <span class="o">*</span><span class="nf">getTop</span><span class="p">(</span><span class="n">linkStack</span> <span class="o">*</span><span class="n">stack</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">isEmpty</span><span class="p">(</span><span class="n">stack</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">&amp;</span><span class="p">(</span><span class="n">stack</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="应用">应用</h4>
+<p>1、将链栈中的结点进行逆置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">linkStack</span> <span class="o">*</span><span class="nf">reverse</span><span class="p">(</span><span class="n">linkStack</span> <span class="o">*</span><span class="n">stack</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">linkStack</span> <span class="o">*</span><span class="n">newStack</span> <span class="o">=</span> <span class="nf">init</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">linkStack</span> <span class="o">*</span><span class="n">stackNode</span> <span class="o">=</span> <span class="n">stack</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">stackNode</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">push</span><span class="p">(</span><span class="n">newStack</span><span class="p">,</span> <span class="n">stackNode</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stackNode</span> <span class="o">=</span> <span class="n">stackNode</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stackNode</span> <span class="o">=</span> <span class="n">stack</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nf">isEmpty</span><span class="p">(</span><span class="n">newStack</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dataType</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="nf">getTop</span><span class="p">(</span><span class="n">newStack</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">data</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stackNode</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">=</span> <span class="o">*</span><span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">pop</span><span class="p">(</span><span class="n">newStack</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stackNode</span> <span class="o">=</span> <span class="n">stackNode</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">stack</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路：</p>
+<ol>
+<li>遍历（逐个访问链表元素）要逆置的链栈（称为A链栈）的结点，将结点通过进栈的方式放到新的链栈（称为B链栈）中，此时B链表中结点的顺序已经与A链栈相反。</li>
+<li>对B链栈进行逐一出栈，将出栈的结点按A链表的顺序对结点进行覆盖，完成逆置。</li>
+</ol>
+<p>2、递归和栈，用递归实现阶乘函数</p>
+<p>待补充&hellip;</p>
+<h3 id="练习">练习</h3>
+<p>1、设栈S的初始状态为空，若元素a、b、c、d、e、f依次进栈，得到的出栈序列是b、d、c、f、e、a，则栈S的容量至少是多少？</p>
+<p>答：至少3。</p>
+<ul>
+<li>a进，b进，容量2。</li>
+<li>b出，容量1。</li>
+<li>c进，d进，容量3。</li>
+<li>d出，c出，容量1。</li>
+<li>e进，f进，容量3。</li>
+<li>f出，e出，a出，容量0。</li>
+</ul>
+<hr>
+<p>2、设一个链栈的输入序列为A、B、C，试写出所得到的所有可能得输出序列。</p>
+<p>答：共有5种可能的输出序列。</p>
+<ul>
+<li>输出ABC，A进，A出，B进，B出，C进，C出。</li>
+<li>输出ACB，A进，A出，B进，C进，C出，B出。</li>
+<li>输出BAC，A进，B进，B出，A出，C进，C出。</li>
+<li>输出BCA，A进，B进，B出，C进，C出，A出。</li>
+<li>输出CBA，A进，B进，C进，C出，B出，A出。</li>
+</ul>
+<hr>
+<p>3、有一个整数序列，其输入顺序为20，30，90，-10，45，78，试利用栈将其输出序列改变为30，-10，45，90，78，20，试给出该整数序列进栈和出栈的操作步骤，用push(x)表示x进栈，pop(x)表示x出栈。</p>
+<p>答：</p>
+<ol>
+<li>push(20)，20</li>
+<li>push(30)，20、30</li>
+<li>pop(30)，20</li>
+<li>push(90)，20、90</li>
+<li>push(-10)，20、90、-10</li>
+<li>pop(-10)，20、90</li>
+<li>push(45)，20、90、45</li>
+<li>pop(45)，20、90</li>
+<li>pop(90)，20</li>
+<li>push(78)，20、78</li>
+<li>pop(78)，20</li>
+<li>pop(20)</li>
+</ol>
+<h2 id="队列">队列</h2>
+<h3 id="概念-1">概念</h3>
+<p>队列Queue，和栈一样可以看作是特殊的运动受限的线性表，受限在于插入和删除分别在两端进行。</p>
+<ul>
+<li>入队列：在队列尾部进行插入运算。</li>
+<li>出队列：在队列首部进行删除运算。</li>
+<li>队列首元素：队列首部第一个数据元素。</li>
+<li>队列尾元素：队列尾部最后一个数据元素。</li>
+</ul>
+<blockquote>
+<p>队列也是计算机科学中广泛使用的数据结构之一，例如：操作系统中进程调度、网络管理中的打印服务等都是用队列来实现的。</p>
+</blockquote>
+<h3 id="特征-1">特征</h3>
+<p>队列的修改原则是<strong>先进先出（First In First out）</strong>，就像排队一样，但不允许插队，新加入的成员只能排在队列尾部，先加入的成员先离开队伍。</p>
+<h4 id="生活中的例子-1">生活中的例子</h4>
+<ul>
+<li>排队做核酸。</li>
+<li>银行办业务。</li>
+<li>排队上车/登机等。</li>
+</ul>
+<h3 id="实现-1">实现</h3>
+<p>队列也有两种存储实现方式：</p>
+<ul>
+<li>顺序队列：由一个一维数组以及两个分别指向队列首部元素和队列尾部元素的指针。</li>
+<li>链队列：由一个带头结点的单链表实现，头指针front指向链表的头结点，头结点的next指向队列首结点，尾指针rear指向队列的尾结点。</li>
+</ul>
+<p>队列的基本运算的功能描述：</p>
+<ol>
+<li>队列初始化<code>InitQueue(Q)</code>：设置一个空队列Q。</li>
+<li>判断队列为空<code>EmptyQueue(Q)</code>：若队列Q为空，返回1，否则返回0。</li>
+<li>入队列<code>EnQueue(Q, x)</code>：将数据元素x从队尾一段插入队列。</li>
+<li>出队列<code>OutQueue(Q)</code>：删除队列首元素。</li>
+<li>取队列首元素<code>GetHead(Q)</code>：返回队列首元素的值。</li>
+</ol>
+<h3 id="顺序队列">顺序队列</h3>
+<h4 id="定义-2">定义</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">maxSize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">sequenceQueue</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">dataType</span> <span class="n">data</span><span class="p">[</span><span class="n">maxSize</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">front</span><span class="p">,</span> <span class="n">rear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">seqQueue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">seqQueue</span> <span class="n">SQ</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>front表示队列首部，rear表示队列尾部，默认值均为0，也就是指向数组的0下标，该位置不存放数据元素。</p>
+<p>那么入队列的操作核心关键是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">SQ</span><span class="p">.</span><span class="n">rear</span> <span class="o">=</span> <span class="n">SQ</span><span class="p">.</span><span class="n">rear</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">SQ</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">SQ</span><span class="p">.</span><span class="n">rear</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>出队列的操作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">SQ</span><span class="p">.</span><span class="n">front</span> <span class="o">=</span> <span class="n">SQ</span><span class="p">.</span><span class="n">front</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>这里出队列并不会去删除队列首元素，而是移动指向队列首部的指针。</p>
+</blockquote>
+<p>但是会存在一个问题，举一个例子：</p>
+<ul>
+<li>a)为空队列，<code>SQ.rear</code>指向0的下标，<code>SQ.front</code>指向0的下标。</li>
+<li>b)为20入队后，<code>SQ.rear</code>指向下标1，<code>SQ.front</code>为0。</li>
+<li>c)为入队列30、40、50后的队列，<code>SQ.rear</code>为4，<code>SQ.front</code>为0。</li>
+<li>d)为出队列20、30、40、50后的队列，<code>SQ.rear</code>为4，<code>SQ.front</code>为4。</li>
+<li>e)为入队列60后，<code>SQ.rear</code>为5，<code>SQ.front</code>为4。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/list/queue/sequence-queue-fake-overflow.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="顺序队列的假溢出问题"
+	
+	
+></p>
+<p>如果在e)的状态下，要做入队列的操作，<code>SQ.rear</code>将会超出数组下标的范围，也就是新元素没有办法入队列，但是1-4的位置明明是空的，数组的实际空间并没有沾满，这就是<strong>假溢出</strong>现象。</p>
+<blockquote>
+<p>另外还有一个问题是，队列空和队列满没有办法区分，就如a)和d)的情况。</p>
+</blockquote>
+<h3 id="循环队列">循环队列</h3>
+<p>为了解决顺序队列的假溢出问题，于是就有了循环队列，它将顺序队列数组的首尾进行相接，形成了一个环状，思路就是当入队列操作<code>SQ.rear</code>即将要超出数组下标范围的时候，将<code>SQ.rear=0</code>进行重置，也就是<code>SQ.data[0]</code>作为新的队列尾，这样新的元素就能够利用上空闲的空间，达到循环使用。</p>
+<p>至于没有办法区分队列空和队列满的解决方法有两种：</p>
+<ol>
+<li>为队列另设一个标志，也就是多加一个变量用作区分。</li>
+<li>队列少用一个元素空间，当只剩最后一个空间时就认为队列满，也就是<code>CQ.rear</code>差一步就要追上<code>CQ.front</code>，如图b)，书中采用了该解决方法。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/list/queue/cycle-queue.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="循环队列、队列满和队列空示意图"
+	
+	
+></p>
+<blockquote>
+<p>有点像MySQL redo log的checkpoint和write pos。</p>
+</blockquote>
+<h4 id="定义-3">定义</h4>
+<blockquote>
+<p>循环队列相关代码放在了<a class="link" href="https://github.com/GHBJayce/code-example/tree/efc87b84c0232d1747226820a36fd4e8460466c2/code/c/data-structure/list/queue/cycle/1"  target="_blank" rel="noopener"
+    >GHBJayce/code-example - cycle queue</a>中，感兴趣可以clone到本地查看运行结果。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">cycleQueue</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">dataType</span> <span class="n">data</span><span class="p">[</span><span class="n">maxSize</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">front</span><span class="p">,</span> <span class="n">rear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">cycleQueue</span> <span class="n">CQ</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>按以上的解决思路，以下是几个操作的关键核心：</p>
+<p><strong>入队列的操作：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">CQ</span><span class="p">.</span><span class="n">rear</span> <span class="o">=</span> <span class="p">(</span><span class="n">CQ</span><span class="p">.</span><span class="n">rear</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">maxSize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">CQ</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">CQ</span><span class="p">.</span><span class="n">rear</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>出队列的操作：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">CQ</span><span class="p">.</span><span class="n">front</span> <span class="o">=</span> <span class="p">(</span><span class="n">CQ</span><span class="p">.</span><span class="n">front</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">maxSize</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>队列满的条件：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="p">(</span><span class="n">CQ</span><span class="p">.</span><span class="n">rear</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">maxSize</span> <span class="o">==</span> <span class="n">CQ</span><span class="p">.</span><span class="n">front</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>队列空的条件：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">CQ</span><span class="p">.</span><span class="n">rear</span> <span class="o">==</span> <span class="n">CQ</span><span class="p">.</span><span class="n">front</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="初始化-2">初始化</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">init</span><span class="p">(</span><span class="n">cycleQueue</span> <span class="n">CQ</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CQ</span><span class="p">.</span><span class="n">front</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CQ</span><span class="p">.</span><span class="n">rear</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="判断队列空">判断队列空</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="n">cycleQueue</span> <span class="n">CQ</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">CQ</span><span class="p">.</span><span class="n">front</span> <span class="o">==</span> <span class="n">CQ</span><span class="p">.</span><span class="n">rear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="入队列">入队列</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">push</span><span class="p">(</span><span class="n">cycleQueue</span> <span class="n">CQ</span><span class="p">,</span> <span class="n">dataType</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">((</span><span class="n">CQ</span><span class="p">.</span><span class="n">rear</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">maxSize</span> <span class="o">==</span> <span class="n">CQ</span><span class="p">.</span><span class="n">front</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;\s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;队列满&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CQ</span><span class="p">.</span><span class="n">rear</span> <span class="o">=</span> <span class="n">CQ</span><span class="p">.</span><span class="n">rear</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CQ</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">CQ</span><span class="p">.</span><span class="n">rear</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="出队列">出队列</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">pop</span><span class="p">(</span><span class="n">cycleQueue</span> <span class="n">CQ</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="nf">isEmpty</span><span class="p">(</span><span class="n">CQ</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CQ</span><span class="p">.</span><span class="n">front</span> <span class="o">=</span> <span class="p">(</span><span class="n">CQ</span><span class="p">.</span><span class="n">front</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">maxSize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="取队列首元素">取队列首元素</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">dataType</span> <span class="nf">getHead</span><span class="p">(</span><span class="n">cycleQueue</span> <span class="o">*</span><span class="n">CQ</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dataType</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">isEmpty</span><span class="p">(</span><span class="n">CQ</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">CQ</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[(</span><span class="n">CQ</span><span class="o">-&gt;</span><span class="n">front</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">maxSize</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="链队列">链队列</h3>
+<p>再重复一遍，链队列是一个带有头结点的单链表组成，队列首部的指针指向头结点，头指针指向首结点，队列尾部的指针指向尾结点，<strong>队列空的时候，队列首部和尾部的指针均指向头结点</strong>。</p>
+<p>链接的实现需要动态申请内存空间，所以不会出现队列满的情况。</p>
+<h4 id="定义-4">定义</h4>
+<blockquote>
+<p>链队列相关代码放在了<a class="link" href="https://github.com/GHBJayce/code-example/tree/efc87b84c0232d1747226820a36fd4e8460466c2/code/c/data-structure/list/queue/link/1"  target="_blank" rel="noopener"
+    >GHBJayce/code-example - link queue</a>中，感兴趣可以clone到本地查看运行结果。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">dataType</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">linkQueueNode</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dataType</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">linkQueueNode</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">linkQueueNode</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">linkQueue</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">linkQueueNode</span> <span class="o">*</span><span class="n">front</span><span class="p">,</span> <span class="o">*</span><span class="n">rear</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">linkQueue</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="初始化-3">初始化</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">linkQueue</span> <span class="o">*</span><span class="nf">init</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">linkQueue</span> <span class="o">*</span><span class="n">LQ</span> <span class="o">=</span> <span class="p">(</span><span class="n">linkQueue</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">linkQueue</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 生成队列的头结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">linkQueueNode</span> <span class="o">*</span><span class="n">node</span> <span class="o">=</span> <span class="p">(</span><span class="n">linkQueueNode</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">linkQueueNode</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">LQ</span><span class="o">-&gt;</span><span class="n">front</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">LQ</span><span class="o">-&gt;</span><span class="n">rear</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">(</span><span class="n">LQ</span><span class="o">-&gt;</span><span class="n">front</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">reutrn</span> <span class="n">LQ</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="判断队列空-1">判断队列空</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="n">linkQueue</span> <span class="n">LQ</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">LQ</span><span class="p">.</span><span class="n">rear</span> <span class="o">==</span> <span class="n">LQ</span><span class="p">.</span><span class="n">front</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="入队列-1">入队列</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="n">linkQueue</span> <span class="o">*</span><span class="n">LQ</span><span class="p">,</span> <span class="n">dataType</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">linkQueueNode</span> <span class="o">*</span><span class="n">newNode</span> <span class="o">=</span> <span class="p">(</span><span class="n">linkQueueNode</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">linkQueueNode</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">newNode</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">newNode</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="n">LQ</span><span class="o">-&gt;</span><span class="n">rear</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">newNode</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">LQ</span><span class="o">-&gt;</span><span class="n">rear</span> <span class="o">=</span> <span class="n">newNode</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="出队列-1">出队列</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">pop</span><span class="p">(</span><span class="n">linkQueue</span> <span class="o">*</span><span class="n">LQ</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">isEmpty</span><span class="p">(</span><span class="n">LQ</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;队列空&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">linkQueueNode</span> <span class="o">*</span><span class="n">deleteNode</span> <span class="o">=</span> <span class="n">LQ</span><span class="o">-&gt;</span><span class="n">front</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">LQ</span><span class="o">-&gt;</span><span class="n">front</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">deleteNode</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">deleteNode</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">LQ</span><span class="o">-&gt;</span><span class="n">rear</span> <span class="o">=</span> <span class="n">LQ</span><span class="o">-&gt;</span><span class="n">front</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">deleteNode</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>取队列首元素</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">dataType</span> <span class="o">*</span><span class="nf">getHead</span><span class="p">(</span><span class="n">linkQueue</span> <span class="o">*</span><span class="n">LQ</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">isEmpty</span><span class="p">(</span><span class="n">LQ</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">linkQueueNode</span> <span class="o">*</span><span class="n">node</span> <span class="o">=</span> <span class="n">LQ</span><span class="o">-&gt;</span><span class="n">front</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">&amp;</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="应用-1">应用</h3>
+<p>待补充&hellip;</p>
+<h2 id="数组">数组</h2>
+<h3 id="概念-2">概念</h3>
+<p>数组array可以看成是线性表的一种推广，由一组相同类型的数据元素组成，并存储在一组连续的存储单元中。</p>
+<ul>
+<li>一维数组：又称向量。</li>
+<li>二维数组：一维数组中的数据元素是一维数组，一般写成<code>a[m][n]</code>，可看作由m行n列组成的线性表。</li>
+<li>三维数组：一维数组中的数据元素是二维数组。</li>
+<li>n维数组：一维数组中数据元素为n-1维数组。</li>
+</ul>
+<h3 id="运算">运算</h3>
+<p>通常只有两种基本运算：</p>
+<ol>
+<li>读：返回指定下标的数据元素。</li>
+<li>写：修改指定下标的数据元素。</li>
+</ol>
+<h3 id="存储结构">存储结构</h3>
+<p>一维数组数据元素的内存地址是连续的，而二维数组的数据元素有两种存储方法：</p>
+<ol>
+<li>以列序为主序的存储。</li>
+<li>以行序为主序的存储，C语言编译数组采用的正是该方法。</li>
+</ol>
+<p>存储结构演示和数组的逻辑结构插图.png（待补充&hellip;）</p>
+<h4 id="计算存储位置">计算存储位置</h4>
+<p>有一个二维数组<code>a[m][n]</code>，每个数据元素占用<code>k</code>个存储单元大小，以行为主序，数组元素<code>a[i][j]</code>的存储位置是多少？要怎么计算？</p>
+<ul>
+<li>m：行数量。</li>
+<li>n：列数量。</li>
+<li>i：m行的下标。</li>
+<li>j：n列的下标。</li>
+</ul>
+<p>下标是从0开始，那么数据元素<code>a[i][j]</code>：</p>
+<ul>
+<li>该下标之前总共有：<code>n * i + j + 1</code>个数据元素，其中：
+<ul>
+<li>每行有<code>n</code>（列的数量）个元素。</li>
+<li>在第<code>i</code>行，有<code>i</code>行元素，在第<code>j</code>列，有<code>j+1</code>个元素。</li>
+</ul>
+</li>
+<li>第一个元素<code>a[0][0]</code>与<code>a[i][j]</code>相差<code>n * i + j + 1 - 1</code>个位置。</li>
+</ul>
+<p><code>a[i][j]</code>的存储位置计算公式为：
+$$loc[i, j] = loc[0, 0] + (n * i + j) * k$$
+实战一下，例如：</p>
+<p>有一个二维数组<code>a[10][20]</code>，每个数据元素占用2个存储大小，数组的起始内存地址为2000，求：</p>
+<ol>
+<li><code>a[5][10]</code>的存储位置是多少？
+<ul>
+<li>整理数据：
+<ul>
+<li>m：10。</li>
+<li>n：20。</li>
+<li>i：5。</li>
+<li>j：10。</li>
+<li>k：2。</li>
+</ul>
+</li>
+<li>将数据套入公式：<code>2000 + (20 * 5 + 10) * 2</code>，存储位置最终为：<code>2220</code>。</li>
+</ul>
+</li>
+<li><code>a[8][19]</code>呢？留给你来计算。</li>
+</ol>
+<h3 id="矩阵的压缩存储">矩阵的压缩存储</h3>
+<p>待补充&hellip;</p>
+<h4 id="特殊矩阵">特殊矩阵</h4>
+<h5 id="对称矩阵">对称矩阵</h5>
+<h5 id="三角矩阵">三角矩阵</h5>
+<h4 id="稀疏矩阵">稀疏矩阵</h4>
+<h2 id="综合运用">综合运用</h2>
+<p>待补充&hellip;</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/">数据结构导论</a>
+        
+            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/">计算机科学与技术</a>
+        
+            <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://unpkg.com/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://unpkg.com/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/book/080901/02142/chapter2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">第二章 线性表 - 《数据结构导论》笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/book/080901/02142/chapter1/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">第一章 概论 - 《数据结构导论》笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 GHBJayce
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/default-skin/default-skin.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://unpkg.com/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
