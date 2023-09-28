@@ -6,7 +6,116 @@
         <description>Recent content in 数学 on GHBJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 07 Sep 2023 19:05:42 +0800</lastBuildDate><atom:link href="https://ghbjayce.github.io/tags/%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 28 Sep 2023 14:47:45 +0800</lastBuildDate><atom:link href="https://ghbjayce.github.io/tags/%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>什么是对数？</title>
+        <link>https://ghbjayce.github.io/p/subject/math/sequence/logarithm/</link>
+        <pubDate>Thu, 28 Sep 2023 14:47:45 +0800</pubDate>
+        
+        <guid>https://ghbjayce.github.io/p/subject/math/sequence/logarithm/</guid>
+        <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;比如现在来看一组幂运算（也叫求幂）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;2&lt;sup&gt;2&lt;/sup&gt;，2的2次方，也就是2×2，结果是4。&lt;/li&gt;
+&lt;li&gt;2&lt;sup&gt;3&lt;/sup&gt;，就是2×2×2，结果是8，其中2是底数，3是指数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;那假如只给出结果16，底数是2，2&lt;sup&gt;x&lt;/sup&gt; = 16，求x也就是指数是多少？要怎么做？&lt;/p&gt;
+&lt;p&gt;猜得没错，这里就需要用到对数去解决。&lt;/p&gt;
+&lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
+&lt;p&gt;对数是求幂的逆运算，正如除法是乘法的逆运算，定义为$N = a^x (a &amp;gt; 0, a \neq 1)$，即a的x次方等于N。&lt;/p&gt;
+&lt;p&gt;记作 $x = log_aN$ ，也就是 $a^x = N$ 等同于$x = log_aN$&lt;/p&gt;
+&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a叫做底数。&lt;/li&gt;
+&lt;li&gt;N叫做真数。&lt;/li&gt;
+&lt;li&gt;x叫做以a为底N的对数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以上面的例子为例，用对数的表示就是：$x = log_216$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;当底数a=10的时候，叫做常用对数，可以缩写为：$lgN$&lt;/li&gt;
+&lt;li&gt;当底数a=无理数e的时候，叫做自然对数，缩写为：$lnN$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;性质&#34;&gt;性质&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;零和负数无对数。&lt;/li&gt;
+&lt;li&gt;1的对数为0，$0 = log_a1$，也就是$a^0 = 1$&lt;/li&gt;
+&lt;li&gt;底数和真数相同时，对数是1，$1 = log_aa$，也就是$a^1 = a$&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;练习&#34;&gt;练习&lt;/h3&gt;
+&lt;p&gt;1、将下面指数式写成对数式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$5^4=625$
+&lt;ul&gt;
+&lt;li&gt;答：$4 = log_5625$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;$2^{-6} = \frac{1}{64}$
+&lt;ul&gt;
+&lt;li&gt;答：$-6 = log2\frac{1}{64}$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2、将下面对数式写成指数式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$log_\frac{1}{2}16 = -4$
+&lt;ul&gt;
+&lt;li&gt;答：$\frac{1}{2}^{-4} = 16$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;$log_2128 = 7$
+&lt;ul&gt;
+&lt;li&gt;答：$2^7 = 128$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;运算&#34;&gt;运算&lt;/h2&gt;
+&lt;p&gt;$$a^x = M, \quad a^y = N$$
+$$a^x \times a^y = a^{x+y}$$
+$$M \times N = a^{x+y}$$
+$$log_a(M \times N) = x + y$$&lt;/p&gt;
+&lt;h3 id=&#34;运算法则&#34;&gt;运算法则&lt;/h3&gt;
+&lt;p&gt;1、$log_aN = \frac{log_mN}{log_ma}$（a＞0，且a≠1，m＞0，且m≠1，N＞0）&lt;/p&gt;
+&lt;p&gt;又称换底公式，用m替换a，m可以是任意一个数。&lt;/p&gt;
+&lt;p&gt;以 $log_216$ 为例，将2替换成10，就是 $\frac{log_{10}16}{log_{10}2}$ ，用计算器算一算：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$log_{10}16$的精确结果是：1.204119982655948。&lt;/li&gt;
+&lt;li&gt;$log_{10}2$的精确结果是：0.3010299956639812。&lt;/li&gt;
+&lt;li&gt;相除以后的精确结果是：4.000000000000077，计算器取了近似值，所以答案是4，先取近似值再相除或者用精确结果相除再取近似值都可以，取决于计算时的选择。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2、$log_a(MN) = log_aM + log_aN$（a＞0，且a≠1，M、N＞0）&lt;/p&gt;
+&lt;p&gt;对数的乘法法则。&lt;/p&gt;
+&lt;p&gt;3、$log_a\frac{M}{N} = log_aM - log_aN$（a＞0，且a≠1，M、N＞0）&lt;/p&gt;
+&lt;p&gt;对数的除法法则。&lt;/p&gt;
+&lt;p&gt;4、$a^{log_aM} = M$（a＞0，且a≠1，M＞0）&lt;/p&gt;
+&lt;p&gt;5、$log_{a^{m}}b^{n} = \frac{n}{m}log_ab$（a、b＞0，且a、b≠1）&lt;/p&gt;
+&lt;h2 id=&#34;疑问&#34;&gt;疑问&lt;/h2&gt;
+&lt;p&gt;1、为什么定义中$a &amp;gt; 0, a\neq1$？
+因为这些取值都是没有意义的，所以要限制，比如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当a=0时，无论指数是多少，最终结果都是0。&lt;/li&gt;
+&lt;li&gt;当a=1时，无论指数是多少，最终结果都是1。&lt;/li&gt;
+&lt;li&gt;当a＜0时，即负数时，求幂的结果可能会有两种情况，要么是正数要么是负数，带来的多义性无法保证对数运算结果的唯一性，比如：
+&lt;ul&gt;
+&lt;li&gt;指数为奇数时，求幂的结果是负数。&lt;/li&gt;
+&lt;li&gt;指数为偶数时，求幂的结果是正数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://baike.baidu.com/item/%E5%AF%B9%E6%95%B0&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;对数_百度百科&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1Li4y1M7St?p=3&amp;amp;vd_source=030e90a2464f7af11a177beceaf9bdc8&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;03.什么是对数__哔哩哔哩_bilibili&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1Dh411s7TT&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;指数函数、对数函数、幂函数 -快速入门到完美精通_哔哩哔哩_bilibili&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV18F411h78H/?spm_id_from=333.788&amp;amp;vd_source=030e90a2464f7af11a177beceaf9bdc8&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;（高一）对数（一）（对数的基本性质和性质）_哔哩哔哩_bilibili&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
         <title>什么是等差数列？</title>
         <link>https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/</link>
         <pubDate>Thu, 07 Sep 2023 19:05:42 +0800</pubDate>

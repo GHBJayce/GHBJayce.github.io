@@ -159,10 +159,10 @@ params:
                   limit: 5
             - type: categories
               params:
-                  limit: 10
+                  limit: 1000
             - type: tag-cloud
               params:
-                  limit: 10
+                  limit: 1000
         page:
             - type: toc
 
