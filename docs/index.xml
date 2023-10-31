@@ -6,7 +6,977 @@
         <description>Recent content on GHBJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 28 Sep 2023 14:47:45 +0800</lastBuildDate><atom:link href="https://ghbjayce.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 20 Oct 2023 09:27:30 +0800</lastBuildDate><atom:link href="https://ghbjayce.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>第七章 排序 - 《数据结构导论》笔记</title>
+        <link>https://ghbjayce.github.io/p/book/080901/02142/chapter7/</link>
+        <pubDate>Fri, 20 Oct 2023 09:27:30 +0800</pubDate>
+        
+        <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter7/</guid>
+        <description>&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;第五章 图&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;第六章 查找&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;&lt;strong&gt;第七章 排序&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;概要&#34;&gt;概要&lt;/h2&gt;
+&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
+&lt;p&gt;以下排序方法均以按递增（即升序）排列的方式对序列进行排序。&lt;/p&gt;
+&lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;排序就是将一组对象按照规定的次序重新排列的过程，是数据处理中一种很重要也很常用的运算。&lt;/p&gt;
+&lt;p&gt;排序是为检索服务的，例如图书馆书的摆放是按照索引号排序以后的结果，再例如电话号码簿、字典等。&lt;/p&gt;
+&lt;p&gt;而排序又分为两大类：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;内部排序（Internal Sorting）：待排序的记录全部存放在计算机内存中进行的排序过程。&lt;/li&gt;
+&lt;li&gt;外部排序（External Sorting）：待排序的记录数量很大，内存不能存储全部记录，需要对外存进行访问的排序过程。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;排序的方法有很多，例如插入排序、交换排序、选择排序和归并排序等等。&lt;/p&gt;
+&lt;p&gt;而排序方法一般会关注以下指标：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;稳定性：对于相当的元素，排序前和排序后的相对位置（位置关系）是否有发生变化，如果没有，则说明排序的方法是稳定的，否则是不稳定的。
+&lt;ul&gt;
+&lt;li&gt;例如一个序列中有两个66，分别用R0和R1表示，排序前R0在R1的前面，而稳定是指排序以后R0仍然在R1的前面。&lt;/li&gt;
+&lt;li&gt;稳定性是排序方法本身的特性，与数据无关，也就是说，一种排序方法如果是稳定的，则排序处理对数据序列中的所有数据都是稳定的，相反如果有一组数据出现不稳定，该方法就是不稳定的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;时间复杂度和空间复杂度。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;插入排序&#34;&gt;插入排序&lt;/h2&gt;
+&lt;p&gt;常用的插入排序有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;直接插入排序，文中只介绍了这一种。&lt;/li&gt;
+&lt;li&gt;折半插入排序。&lt;/li&gt;
+&lt;li&gt;表插入排序。&lt;/li&gt;
+&lt;li&gt;希尔排序。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;直接插入排序&#34;&gt;直接插入排序&lt;/h3&gt;
+&lt;p&gt;Straight Insertion Sorting是一种简单的排序方法，它的思想是将未排序区的元素逐个有序地插入到已排序区的合适位置，并始终保持已排序区的有序性。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;直接插入排序类似图书馆中整理图书的过程。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;步骤如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将待排序的序列分成已排序区和未排序区。&lt;/li&gt;
+&lt;li&gt;从未排序区中取出第一个元素，在已排序区中，从后往前比较，小的话就往前面的位置放，直到找到插入位置并进行插入操作，此时已排序区依然是有序的。&lt;/li&gt;
+&lt;li&gt;重复步骤2，直到所有元素都被插入到已排序区中。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;例如有一个待排序的序列：(45, 38, 66, 90, 88, 10, 25, 45)，序列中有两个45以说明算法的稳定性。&lt;/p&gt;
+&lt;p&gt;排序过程如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;已排序区为空，未排序区为如上序列。&lt;/li&gt;
+&lt;li&gt;未排序区中取出第一个元素45，直接放进已排序区中。&lt;/li&gt;
+&lt;li&gt;取出第二个元素38，在已排序区中从后往前对元素进行比较，即45和38比，大了，让38排在前面。
+&lt;ul&gt;
+&lt;li&gt;此时已排序区序列：(38, 45)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;取出第三个元素66，比45大，排在45的后面，90同理，不做赘述。
+&lt;ul&gt;
+&lt;li&gt;此时已排序区序列：(38, 45, 66, 90)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;取出第五个元素88，90和88比，大了，再往前找一个元素进行比较，即66和88比，小了，说明再往前的元素都是比66还要小，无需再往前找了，就排在90的前面。
+&lt;ul&gt;
+&lt;li&gt;此时已排序区序列：(38, 45, 66, 88, 90)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;后面的元素同理，不再赘述。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;给出具体的算法，说明：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;序列R的0的位置不使用，用于岗哨的作用。&lt;/li&gt;
+&lt;li&gt;n为表长。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;StraightInsertSort&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;List&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;该算法，&lt;code&gt;R[0]&lt;/code&gt;的位置起到了两个作用：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;保存了&lt;code&gt;R[i]&lt;/code&gt;位置的值，拿上面例子的步骤6为例，把已排序区中大于88的元素全部往后一个位置覆盖，当和66比较的时候结束了while循环，这个时候就从岗哨的位置即&lt;code&gt;R[0]&lt;/code&gt;里取出88，避免了覆盖导致的丢失，最终放到了&lt;code&gt;R[j+1]&lt;/code&gt;的位置，已排序区保持有序。&lt;/li&gt;
+&lt;li&gt;在while循环条件中起到了监视数组下标变量&lt;code&gt;j&lt;/code&gt;是否越界，实现了自动控制while循环的结束，而不必特意去检查越界的情况。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;一个字，妙 啊。&lt;/p&gt;
+&lt;p&gt;总结规律：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;直接插入排序算法简单，易于理解，容易实现。&lt;/li&gt;
+&lt;li&gt;来看下指标：
+&lt;ul&gt;
+&lt;li&gt;45的相对位置没有变化，具有稳定性。&lt;/li&gt;
+&lt;li&gt;时间复杂度为O(n²)。&lt;/li&gt;
+&lt;li&gt;只需要一个记录的辅助空间，并不随循环的变化而导致空间的增加，空间复杂度为O(1)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;若待排序记录的数量很大时，一般不选用直接插入排序。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;交换排序&#34;&gt;交换排序&lt;/h2&gt;
+&lt;p&gt;交换排序的基本思想：比较两个记录键值的大小，如果结果是逆序，则交换这两个记录。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;递增排序，记录值小的放到前面，大的放到后面。&lt;/li&gt;
+&lt;li&gt;递减排序，大的放到前面，小的放到后面。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;冒泡排序&#34;&gt;冒泡排序&lt;/h3&gt;
+&lt;p&gt;冒泡排序Bubble Sorting是一种交换排序方法，其处理过程是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将第一个记录键值和第二个记录键值比较。
+&lt;ul&gt;
+&lt;li&gt;若为逆序，即第一个记录比第二个记录大，则交换这两个记录。&lt;/li&gt;
+&lt;li&gt;不为逆序，不操作。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;然后继续比较第二个和第三个记录键值，依次类推，直至比较完最后一个记录键值。&lt;/li&gt;
+&lt;li&gt;以上过程称为第一趟起泡，作用是将记录键值最大的记录移到第n个位置上，即第n个位置已经是排序好的区域了。&lt;/li&gt;
+&lt;li&gt;第二趟起泡将从步骤1重新开始，直到未排序区域的最后一个记录键值结束。&lt;/li&gt;
+&lt;li&gt;重复以上过程，直到未排序区域仅剩下一个时，整个排序过程终止。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;举个例子，现有一组待排序序列：(45，38，66，90，88，10，25，45)，排序过程如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;第一趟排序结果：38，45，66，88，10，25，45，&lt;strong&gt;90&lt;/strong&gt;。
+&lt;ul&gt;
+&lt;li&gt;45和38比较，45大，交换两者位置。
+&lt;ul&gt;
+&lt;li&gt;交换后序列：38，45，66，90，88，10，25，45。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;45和66比，无逆序，不操作。&lt;/li&gt;
+&lt;li&gt;66和90比，不操作。&lt;/li&gt;
+&lt;li&gt;90和88比，90大，交换位置。
+&lt;ul&gt;
+&lt;li&gt;交换后序列：38，45，66，88，90，10，25，45。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;90和10比，90大，交换位置。
+&lt;ul&gt;
+&lt;li&gt;交换后序列：38，45，66，88，10，90，25，45。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;后者同理，不再赘述。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;第二趟排序结果：38，45，66，10，25，45，&lt;strong&gt;88，90&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;第三趟排序结果：38，45，10，25，45，&lt;strong&gt;66，88，90&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;第四趟排序结果：38，10，25，45，&lt;strong&gt;45，66，88，90&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;第五趟排序结果：10，25，38，&lt;strong&gt;45，45，66，88，90&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;第六趟排序结果：10，25，&lt;strong&gt;38，45，45，66，88，90&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;第七趟排序结果：10，&lt;strong&gt;25，38，45，45，66，88，90&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;算法如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;bubbleSort&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[],&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;总结：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;冒泡排序时间复杂度为$O(n^2)$。&lt;/li&gt;
+&lt;li&gt;冒泡排序是稳定的排序方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;快速排序&#34;&gt;快速排序&lt;/h3&gt;
+&lt;p&gt;快速排序Quick Sorting是交换排序的一种，实际上是对冒泡排序的一种改进。思想是：&lt;/p&gt;
+&lt;h2 id=&#34;选择排序&#34;&gt;选择排序&lt;/h2&gt;
+&lt;h3 id=&#34;直接选择排序&#34;&gt;直接选择排序&lt;/h3&gt;
+&lt;h3 id=&#34;堆排序&#34;&gt;堆排序&lt;/h3&gt;
+&lt;h2 id=&#34;归并排序&#34;&gt;归并排序&lt;/h2&gt;
+&lt;h3 id=&#34;二路归并排序&#34;&gt;二路归并排序&lt;/h3&gt;
+</description>
+        </item>
+        <item>
+        <title>第六章 查找 - 《数据结构导论》笔记</title>
+        <link>https://ghbjayce.github.io/p/book/080901/02142/chapter6/</link>
+        <pubDate>Thu, 19 Oct 2023 12:23:25 +0800</pubDate>
+        
+        <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter6/</guid>
+        <description>&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;第五章 图&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;&lt;strong&gt;第六章 查找&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;第七章 排序&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;概要&#34;&gt;概要&lt;/h2&gt;
+&lt;p&gt;分析查找运算的时间性能可以将“查找成功时的平均查找长度”作为评价查找算法时间性能的度量。&lt;/p&gt;
+&lt;h2 id=&#34;静态查找表&#34;&gt;静态查找表&lt;/h2&gt;
+&lt;p&gt;书中主要讨论查找操作在不同存储结构下的实现。&lt;/p&gt;
+&lt;h3 id=&#34;顺序表上的查找&#34;&gt;顺序表上的查找&lt;/h3&gt;
+&lt;p&gt;静态查找表最简单的实现方法是以顺序表作为存储结构。&lt;/p&gt;
+&lt;p&gt;用C语言表示如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;maxSize&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tableEle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;tableEle&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;maxSize&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;lastEleIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 最后一个数据元素的下标
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sequenceTable&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;data[0]&lt;/code&gt;用于设置“岗哨”，不存储数据元素，以便简化查找运算的实现。&lt;/p&gt;
+&lt;p&gt;在以上存储结构上实现顺序查找Sequential Search操作的步骤如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从表的最后一个数据元素位置开始，从后往前依次将各个位置的数据元素和给定值比较。&lt;/li&gt;
+&lt;li&gt;如果相等，则查找成功，返回该下标位置作为结果。&lt;/li&gt;
+&lt;li&gt;如果查找到第一个元素，仍然与给定值不等，则查找不成功。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;算法如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 返回0表示查找失败。
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;searchSequenceTable&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sequenceTable&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;table&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;table&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;table&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;lastEleIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;table&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;该算法巧妙利用&lt;code&gt;data[0]&lt;/code&gt;存储待查找的key，从而免去了每次查找都要检测表是否查找完毕，保证了while循环一定会终止，起到了岗哨的作用，这一改进对一次查找所花费的平均时间减少一半。&lt;/p&gt;
+&lt;p&gt;因此对于分析查找运算的时间性能，通常用“数据元素的值与给定值的比较次数”作为衡量查找算法的好坏依据，其中的比较次数称为&lt;strong&gt;查找长度&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;若待查找值在顺序表的第n个位置上，则查找长度为1。&lt;/li&gt;
+&lt;li&gt;而待查找值在顺序表的第1个位置上，查找长度为n。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;那么可以将查找成功时的平均查找长度记为ASL，作为评价查找算法时间性能的度量。&lt;/p&gt;
+&lt;p&gt;公式为：&lt;/p&gt;
+&lt;p&gt;$ASL=\displaystyle \sum^{n}_{i=1}P_iC_i$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$P_i$：查找第i个元素的概率，即给定值与顺序表中第i个元素值相等的概率，且$\displaystyle \sum^{n}_{i=1}P_i=1$。&lt;/li&gt;
+&lt;li&gt;$C_i$：表示在找到第i个元素时，顺序表中值与给定值已进行比较的个数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;假设顺序表为(b1, b2, b3)，查找b1，b2，b3的概率分别为0.2、0.2、0.6，则顺序查找法的平均查找长度为：&lt;/p&gt;
+&lt;p&gt;$(0.2\times3)+(0.2\times2)+(0.6\times1)=1.6$，即平均需要1.6次与给定值的比较才能找到待查找元素。&lt;/p&gt;
+&lt;p&gt;由于多种因素的影响，$P_i$的值是难以确定的，通常假设$P_i$概率相等，即对所有i，有$P_i=\frac{1}{n}$，并在此假设下确定查找算法的平均查找长度，因此得到顺序查找算法的平均查找长度为：
+$$ASL=\displaystyle \sum^{n}_{i=1}\frac{1}{n}\times(n-i+1)=\frac{n+1}{2}$$&lt;/p&gt;
+&lt;h3 id=&#34;有序表上的查找&#34;&gt;有序表上的查找&lt;/h3&gt;
+&lt;h4 id=&#34;二分查找&#34;&gt;二分查找&lt;/h4&gt;
+&lt;p&gt;有序表：顺序表中的数据元素按照值的大小顺序排列。&lt;/p&gt;
+&lt;p&gt;思想：在有序表中，用给定值和表中间位置的值进行比较，确定值所在的区间，然后逐步缩小查找区间，重复这个过程直到找到或者确认找不到为止，&lt;strong&gt;简单点说就是每找一次，区间缩小为原来的二分之一，因此得名二分查找&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;例如《幸运52》节目中的“&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/av260963077&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;看商品猜价格&lt;/a&gt;（13:40）”环节里，可以很好地应用二分查找的思想猜价格。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;例如有一个有序表：(10, 13, 17, 20, 30, 55, 68, 89, 95)，需要找17的值，以下是过程：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;确定搜索区间，low为1，即10的位置，high为9，即95的位置，区间就是&lt;code&gt;[1, 9]&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;取区间的中间位置，$(1+9)\div2=5$，也就是30，发现大了，往左重新确定搜索区间。&lt;/li&gt;
+&lt;li&gt;接下来要搜索的区间是&lt;code&gt;[1, 4]&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;取中间位置，$(1+4)\div2=2.5$，向下取整，为2，也就是13，发现小了，往右重新确定搜索区间。&lt;/li&gt;
+&lt;li&gt;接下来要搜索的区间是&lt;code&gt;[3, 4]&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;取中间位置，$(3+4)\div2=3.5$，为3，也就是17，成功找到。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;总结规律：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;二分查找的查找长度不超过⌊log&lt;sub&gt;2&lt;/sub&gt;n⌋-1。&lt;/li&gt;
+&lt;li&gt;二分查找的平均查找长度为：$ASL_b = \frac{n+1}{n}log_2(n + 1) - 1$。
+&lt;ul&gt;
+&lt;li&gt;当n较大时可得：$ASL_b \approx log_2(n + 1) - 1$。&lt;/li&gt;
+&lt;li&gt;因此二分查找算法的时间复杂度为&lt;code&gt;O(logn)&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;散列表&#34;&gt;散列表&lt;/h2&gt;
+&lt;p&gt;用散列技术实现动态查找表，通过使数据元素的键值和存储位置之间建立某种联系，以减少比较次数。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文中键值是指一个东西，键值和值是两个东西。例如拿数组来说，键值是指下标，值就是下标指向的值。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;散列函数：数据元素的键值和存储位置之间建立的对应关系，也称为哈希（hash）函数。&lt;/li&gt;
+&lt;li&gt;散列值：经过散列函数处理以后的值，也称哈希值、哈希码。&lt;/li&gt;
+&lt;li&gt;散列：指用键值通过散列函数来获取存储位置的映射过程。
+&lt;ul&gt;
+&lt;li&gt;散列地址：指其中的存储位置。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;散列表（Hash Table）：通过散列进行存储的方式，即这种存储结构。&lt;/li&gt;
+&lt;li&gt;冲突：也称哈希冲突，设有散列函数H，键值key有k1、k2，k1≠k2，冲突是指$H(k1)=H(k2)$。
+&lt;ul&gt;
+&lt;li&gt;即不同的键值散列到了同一个存储位置上。&lt;/li&gt;
+&lt;li&gt;这种情况在实际应用中经常出现，只能尽可能减少而不能完全避免。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此使用散列技术时需要考虑两个问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如何构造均匀的散列函数？&lt;/li&gt;
+&lt;li&gt;用什么方法有效地解决冲突？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;散列法&#34;&gt;散列法&lt;/h3&gt;
+&lt;h4 id=&#34;数字分析法&#34;&gt;数字分析法&lt;/h4&gt;
+&lt;p&gt;数字分析法（Digit Analysis Method），大概说一下它的思想：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将键值经过转换成数字。
+&lt;ul&gt;
+&lt;li&gt;例：abc转换成了301482。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;再将数字进行分析，取出这些数字或者这些数字中的一部分。
+&lt;ul&gt;
+&lt;li&gt;例：将这些数字拆成单独的一个个数字，3，0，1，4，8，2。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;将这些数字通过某种方式组织成一个值，这个值就是散列值。
+&lt;ul&gt;
+&lt;li&gt;例：把这些数字加起来，得到18。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;除留余数法&#34;&gt;除留余数法&lt;/h4&gt;
+&lt;p&gt;是一种简单有效且最常用的方法。&lt;/p&gt;
+&lt;p&gt;它的基本思想是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将键值转换成非负整数。&lt;/li&gt;
+&lt;li&gt;将该整数除以n（一般是散列表的长度），并取余数，这个余数就是散列值。
+&lt;ul&gt;
+&lt;li&gt;例如：整数37，n是10，37除以10，得到商3和余数7。&lt;/li&gt;
+&lt;li&gt;这个过程在C语言中可以用&lt;code&gt;%&lt;/code&gt;进行运算。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在书中的表示是：$H(key) = key {\quad} mod {\quad} p(p{\leq}n)$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;mod是指取余运算。&lt;/li&gt;
+&lt;li&gt;p是指除数（正整数）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;该方法对p的选取比较关键，通常选n为小于散列表长度的素数。&lt;/p&gt;
+&lt;p&gt;素数是指除了1和自身，再没有其他正整数能够整除它。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;例如2、3、5、7、11都是素数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果p选的不合适的情况下，容易发生冲突，会遇到以下的问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;遇到奇数键值，散列值总是得到奇数。&lt;/li&gt;
+&lt;li&gt;遇到偶数键值，散列值总是得到偶数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;平方取中法&#34;&gt;平方取中法&lt;/h4&gt;
+&lt;p&gt;平方取中法（Square-Then-Choose Method）是一种简单的伪随机数生成算法。&lt;/p&gt;
+&lt;p&gt;它的基本思想是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;先将某个种子值进行平方运算。&lt;/li&gt;
+&lt;li&gt;再从中间选取若干位作为新的种子值。&lt;/li&gt;
+&lt;li&gt;重复以上过程直到得到想要的随机数。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;而用在散列函数中，因为计算简单，也是一种较为常用的方法。&lt;/p&gt;
+&lt;p&gt;一般步骤如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将键值转换为一个初始种子值x0，x0是数字。&lt;/li&gt;
+&lt;li&gt;对x0进行平方运算，得到x1。&lt;/li&gt;
+&lt;li&gt;从x1的中间取出若干位作为值，这个值就是散列值。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;基数转换法&#34;&gt;基数转换法&lt;/h4&gt;
+&lt;p&gt;&amp;hellip;&lt;/p&gt;
+&lt;h3 id=&#34;散列冲突解决&#34;&gt;散列冲突解决&lt;/h3&gt;
+&lt;p&gt;冲突解决的核心思想：给冲突的键值找一个空闲的散列地址，如果仍然冲突，重复这个过程，直到不发生冲突为止。&lt;/p&gt;
+&lt;p&gt;那么接下来就是介绍都有哪种方式去找一个空闲的散列地址。&lt;/p&gt;
+&lt;h4 id=&#34;线性探测法&#34;&gt;线性探测法&lt;/h4&gt;
+&lt;p&gt;设H(key)=d，d是散列值，散列表容量为m，那么线性探测法找一个空闲的散列地址遵循以下的规律：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;d+1。&lt;/li&gt;
+&lt;li&gt;d+2。&lt;/li&gt;
+&lt;li&gt;d+3。&lt;/li&gt;
+&lt;li&gt;&amp;hellip;。&lt;/li&gt;
+&lt;li&gt;m-1。&lt;/li&gt;
+&lt;li&gt;0。&lt;/li&gt;
+&lt;li&gt;1。&lt;/li&gt;
+&lt;li&gt;2。&lt;/li&gt;
+&lt;li&gt;&amp;hellip;。&lt;/li&gt;
+&lt;li&gt;d-1。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;举个例子，有长度13（即m=13）的散列表，存储地址的下标有0-12，采用除留余数法进行散列，表中已有16、30、54的元素，分别位于下标为3、4、2的存储空间。&lt;/p&gt;
+&lt;p&gt;此时插入一个键值为29的元素，散列函数求出散列地址为3，即下标为3，而下标为3已经被占用了，采用线性探测法进行冲突解决，过程如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;进行第一次找空闲空间，d+1，即3+1，找到了下标为4的空间，发现仍然被占用。&lt;/li&gt;
+&lt;li&gt;继续第二次找空间空间，d+2，即3+2，找到了下标为5的空间，是空闲的，那就将29放到这个空间里。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;线性探测法：&lt;strong&gt;当键值冲突时，将得到的散列值按照顺序依次往后寻找空闲的空间，直到散列值下标的前一个空间为止。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;可以看出寻找空闲散列地址的计算过程（书上称为生成后继散列地址）还是很简单的。&lt;/p&gt;
+&lt;p&gt;但是，存在一个问题：以键值16和29为例，它们并不相同（书上称为不是同义词）却发生了冲突。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这种非同义词之间对同一个散列地址的争夺现象称为堆积。&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;因为某个键值冲突而被安排到一个空闲空间，而本该被分配到这个空闲空间的键值出现时，又因为被占用，而需要重新寻找空闲空间。&lt;/p&gt;
+&lt;p&gt;这个方法实际上非常容易出现堆积现象，意味着插入时间复杂度非常高，特别是在散列表快满了的时候。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;二次探测法&#34;&gt;二次探测法&lt;/h4&gt;
+&lt;p&gt;思想：生成的后续散列地址不是连续的，而是跳跃式的，目的是减少堆积问题。&lt;/p&gt;
+&lt;p&gt;二次探测法找一个空闲的散列地址遵循以下的计算方式：
+$$d_0 = H(key)$$
+$$d_i = (d_0 \pm i){\quad}mod{\quad}m$$
+其中i的规律是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$i = 1^2$&lt;/li&gt;
+&lt;li&gt;$i = -1^2$&lt;/li&gt;
+&lt;li&gt;$i = 2^2$&lt;/li&gt;
+&lt;li&gt;$i = -2^2$&lt;/li&gt;
+&lt;li&gt;$i = 3^2$&lt;/li&gt;
+&lt;li&gt;$i = -3^2$&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;$i = {\pm}k^2(k \leq\frac{m}{2})$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;举个例子，有长度11（即m=11）的散列表，存储地址的下标有0-10，采用除留余数法进行散列，序列为：（20，38，16，27，5，23，56，29），建立出对应的散列表以及计算出等概率的情况下查找成功的平均查找长度。&lt;/p&gt;
+&lt;p&gt;以下是过程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;20取余，得到下标9。
+&lt;ul&gt;
+&lt;li&gt;查找长度为1，经过1次散列函数才找到。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;38取余，得到下标5。&lt;/li&gt;
+&lt;li&gt;16取余，得到下标5，发生冲突。
+&lt;ul&gt;
+&lt;li&gt;寻找第一次空闲空间：$(5 + 1^2){\quad}\%{\quad}11$，得到下标6，空间空闲可用（以下可用时不再赘述）。&lt;/li&gt;
+&lt;li&gt;查找长度为2，经过2次散列函数才找到（以下同理不再赘述）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;27取余，得到下标5，发生冲突。
+&lt;ul&gt;
+&lt;li&gt;寻找第一次空闲空间：$(5 + 1^2){\quad}\%{\quad}11$，得到下标6，空间被（16）占用。&lt;/li&gt;
+&lt;li&gt;第二次空闲空间：$(5 - 1^2){\quad}\%{\quad}11$，得到下标4。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;5取余，得到下标5，发生冲突。
+&lt;ul&gt;
+&lt;li&gt;寻找第一次空闲空间：$(5 + 1^2){\quad}\%{\quad}11$，得到下标6，空间被（16）占用。&lt;/li&gt;
+&lt;li&gt;第二次空闲空间：$(5 - 1^2){\quad}\%{\quad}11$，得到下标4，空间被（27）占用。&lt;/li&gt;
+&lt;li&gt;第三次空闲空间：$(5 + 2^2){\quad}\%{\quad}11$，得到下标9，空间被（20）占用。&lt;/li&gt;
+&lt;li&gt;第四次空闲空间：$(5 - 2^2){\quad}\%{\quad}11$，得到下标1。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;23取余，得到下标1，发生冲突。
+&lt;ul&gt;
+&lt;li&gt;寻找第一次空闲空间：$(5 + 1^2){\quad}\%{\quad}11$，得到下标2。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;56取余，得到下标1，发生冲突。
+&lt;ul&gt;
+&lt;li&gt;寻找第一次空闲空间：$(5 + 1^2){\quad}\%{\quad}11$，得到下标2，空间被（23）占用。&lt;/li&gt;
+&lt;li&gt;第二次空闲空间：$(5 - 1^2){\quad}\%{\quad}11$，得到下标0。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;29取余，得到下标7。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;得出序列：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;下标&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;th&gt;2&lt;/th&gt;
+&lt;th&gt;3&lt;/th&gt;
+&lt;th&gt;4&lt;/th&gt;
+&lt;th&gt;5&lt;/th&gt;
+&lt;th&gt;6&lt;/th&gt;
+&lt;th&gt;7&lt;/th&gt;
+&lt;th&gt;8&lt;/th&gt;
+&lt;th&gt;9&lt;/th&gt;
+&lt;th&gt;10&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;序列&lt;/td&gt;
+&lt;td&gt;56&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;23&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;27&lt;/td&gt;
+&lt;td&gt;38&lt;/td&gt;
+&lt;td&gt;16&lt;/td&gt;
+&lt;td&gt;29&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;20&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;查找长度&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;等概率情况下查找成功的平均查找长度为：$ASL=\frac{1+1+2+3+5+2+3+1}{11}=\frac{18}{11}$。&lt;/p&gt;
+&lt;h4 id=&#34;链地址法&#34;&gt;链地址法&lt;/h4&gt;
+&lt;h4 id=&#34;多重散列法&#34;&gt;多重散列法&lt;/h4&gt;
+</description>
+        </item>
+        <item>
+        <title>第五章 图 - 《数据结构导论》笔记</title>
+        <link>https://ghbjayce.github.io/p/book/080901/02142/chapter5/</link>
+        <pubDate>Mon, 16 Oct 2023 10:31:20 +0800</pubDate>
+        
+        <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter5/</guid>
+        <description>&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;&lt;strong&gt;第五章 图&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;第六章 查找&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;第七章 排序&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
+&lt;p&gt;为了方便文章表述，以下内容有一些调整：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;书中顶点v&lt;sub&gt;0&lt;/sub&gt;、v&lt;sub&gt;1&lt;/sub&gt;、v&lt;sub&gt;2&lt;/sub&gt;，在文中以v0、v1、v2的方式进行描述（文字以及配图）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;概要&#34;&gt;概要&lt;/h2&gt;
+&lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
+&lt;h3 id=&#34;应用背景&#34;&gt;应用背景&lt;/h3&gt;
+&lt;p&gt;假如有这样一个问题，在N个城市间建立通信网络，使得其中任意两个城市之间有直接或间接的通信线路，假设已知每两个城市之间通信线路的造价，要求找出一个总造价最低的通讯网络。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当N很大时，这个问题十分复杂，就需要用到计算机来求解，而使用到的数据结构就是图结构。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这里有几个需要解决的问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如何描述该问题的数据？&lt;/li&gt;
+&lt;li&gt;如何在计算机中存储数据？&lt;/li&gt;
+&lt;li&gt;解决问题的算法是什么？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/graph/graph-application.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;用图描述通信网络的问题&#34;
+	
+	
+&gt;
+$$图1$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;顶点：即上图的圆圈。
+&lt;ul&gt;
+&lt;li&gt;如图1a)，v0、v1、v2等。&lt;/li&gt;
+&lt;li&gt;在上面的例子圆圈代表一个城市。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;边：即上图圆圈之间的连线，也称为顶点的偶对。
+&lt;ul&gt;
+&lt;li&gt;如图1a)，v0和v1之间的连线。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;权：即连线旁边的数值，也称为边的权。
+&lt;ul&gt;
+&lt;li&gt;如图1a)，v0和v1的权为50。&lt;/li&gt;
+&lt;li&gt;在实际应用中，权可以表示一个顶点到另一个顶点的距离、代价或耗费等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;带权图：每条边都带有权的图。
+&lt;ul&gt;
+&lt;li&gt;如图1a)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/graph/graph-term.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;用图描述通信网络的问题&#34;
+	
+	
+&gt;
+$$图2$$&lt;/p&gt;
+&lt;p&gt;图Graph由两个集合V和E组成，记为$G=(V, E)$，其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;V是顶点的有穷非空集合，一般表示为：V = {v0, v1, v2}。&lt;/li&gt;
+&lt;li&gt;E是边的集合，一般表示为：E = {&amp;lt;v0, v1&amp;gt;, &amp;lt;v1, v2&amp;gt;}。&lt;/li&gt;
+&lt;li&gt;有向图：顶点的偶对是有序的。
+&lt;ul&gt;
+&lt;li&gt;有序偶对用尖括号括起来，例：&amp;lt;v0, v1&amp;gt;，含义是从顶点v0到顶点v1有一条边。&lt;/li&gt;
+&lt;li&gt;如图2a)是一个有向图，可以看到边是带有箭头的，即有方向的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;无向图：顶点的偶对是无序的。
+&lt;ul&gt;
+&lt;li&gt;无序偶对用圆括号括起来，例：(v0, v1)，含义与有向图一样。&lt;/li&gt;
+&lt;li&gt;如图2b)是一个无向图。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;弧：有向图的边又称为弧（无向图可没有这种说法，大概用于区分的作用）。&lt;/li&gt;
+&lt;li&gt;弧头：表示弧的终点，即弧有箭头的一端。
+&lt;ul&gt;
+&lt;li&gt;例：&amp;lt;v0, v1&amp;gt;，图2a)的v0和v1的弧，v1就是弧头的一端。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;弧尾：表示弧的始点/起点。
+&lt;ul&gt;
+&lt;li&gt;例：&amp;lt;v0, v1&amp;gt;，图2a)的v0和v1的弧，v0就是弧尾的一端。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;无向图中(v0, v1)和(v1, v0)是同一条边，但对于有向图来说，&amp;lt;v0, v1&amp;gt;和&amp;lt;v1, v0&amp;gt;可是两条不同的弧。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;有向完全图：任何两个顶点之间都有弧的有向图。
+&lt;ul&gt;
+&lt;li&gt;一个具有n个顶点的有向完全图的弧的数量为：$n(n-1)$。
+&lt;ul&gt;
+&lt;li&gt;为什么？怎么得出来的公式？
+&lt;ul&gt;
+&lt;li&gt;将所有顶点连接起来只需要顶点数量&lt;code&gt;-1&lt;/code&gt;条边就足够了，例如2个顶点只需1条线，3个顶点只需2条线，因此得出&lt;code&gt;n-1&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;而作为有向完全图来说，两个顶点都有弧则需要两条边才行，例如2个顶点需要2条线，3个顶点需要6条线，就是在上面的基准下再加多一条线，因此得出&lt;code&gt;n(n - 1)&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;无向完全图：任何两个顶点之间都有边的无向图。
+&lt;ul&gt;
+&lt;li&gt;一个具有n个顶点的无向完全图的边的数量为：$\frac{n(n-1)}{2}$。
+&lt;ul&gt;
+&lt;li&gt;怎么得出来的公式？根据定义得知，无向图顶点之间的边是同一条边，即2个顶点只需要1条线，因此拿有向完全图的公式除2就能够得出无向完全图的边的数目了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;顶点的度：与该顶点相关联的边共有多少，记为D(v)。
+&lt;ul&gt;
+&lt;li&gt;D全称：degree。&lt;/li&gt;
+&lt;li&gt;v表示顶点。&lt;/li&gt;
+&lt;li&gt;顶点度 = 入度 + 出度之和，即D(v) = ID(v) + OD(v)。
+&lt;ul&gt;
+&lt;li&gt;以图2a)，v2为例：
+&lt;ul&gt;
+&lt;li&gt;ID(v2) = 1。&lt;/li&gt;
+&lt;li&gt;OD(v2) = 2。&lt;/li&gt;
+&lt;li&gt;D(v2) = 3。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;以图2b)为例：
+&lt;ul&gt;
+&lt;li&gt;D(v1) = 2。&lt;/li&gt;
+&lt;li&gt;D(v2) = 3。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;入度：仅有向图，以顶点为终点的弧共有多少，记为ID。
+&lt;ul&gt;
+&lt;li&gt;I全称：input。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;出度：仅有向图，以顶点为始点的弧共有多少，记为OD。
+&lt;ul&gt;
+&lt;li&gt;O全称：output。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;子图：$G=(V, E)$是一个图，若&lt;code&gt;E&#39;&lt;/code&gt;是E的子集，&lt;code&gt;V&#39;&lt;/code&gt;是V的子集，并且&lt;code&gt;E&#39;&lt;/code&gt;中的边仅与&lt;code&gt;V&#39;&lt;/code&gt;中的顶点相关联，则图$G&amp;rsquo;=(V&amp;rsquo;, E&amp;rsquo;)$称为图G的子图。&lt;/li&gt;
+&lt;li&gt;路径：从一个顶点x到另一个顶点y之间的路线，这个路径也称为顶点的序列。
+&lt;ul&gt;
+&lt;li&gt;例图2b)，无向图的顶点v0到v3的路径共有2条：
+&lt;ul&gt;
+&lt;li&gt;顶点序列v0，v1，v2，v3，路径长度为3。&lt;/li&gt;
+&lt;li&gt;顶点序列v0，v2，v3，路径长度为2。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;路径长度：路径上边/弧的数目。&lt;/li&gt;
+&lt;li&gt;简单路径：序列中顶点不重复出现的路径。
+&lt;ul&gt;
+&lt;li&gt;例图2b)，顶点序列v0，v1，v2，v3就是一条简单路径。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;回路：第一个顶点和最后一个顶点相同的路径，也称为环。
+&lt;ul&gt;
+&lt;li&gt;例图2b)，以下路径都是回路：
+&lt;ul&gt;
+&lt;li&gt;v0→v1→v2→v0→v2→v0&lt;/li&gt;
+&lt;li&gt;v0→v1→v2→v0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;简单回路：除了第一个顶点和最后一个顶点外，其余顶点不重复的回路。
+&lt;ul&gt;
+&lt;li&gt;例图2b)，以下是简单回路：
+&lt;ul&gt;
+&lt;li&gt;v0→v1→v2→v0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;连通：顶点x到顶点y有路径，则称顶点x和顶点y是连通的。&lt;/li&gt;
+&lt;li&gt;连通图：图中任意两个顶点都是连通的。
+&lt;ul&gt;
+&lt;li&gt;例图2b)是一个连通图。
+&lt;ul&gt;
+&lt;li&gt;v0和v3没有直接的边但也能通过v0-&amp;gt;v2-&amp;gt;v3进行连通，因此符合连通图的定义。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;例图2f)是非连通图，因为存在多个不连通顶点，例如v0和v3是不连通的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;连通分量：无向图中的极大（最大）连通子图。
+&lt;ul&gt;
+&lt;li&gt;简单点说，以图2f)为例，把一个图中的所有顶点看成一个整体的图，而单独取v0、v1、v2三个顶点构成的子图来说，就像图2g)，它就是一个连通图，也是一个连通分量，它是一个整体图中的一个连通分量，包括v3和v4构成的子图也是一样是一个连通分量。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;连通相关的术语是针对无向图的，而强连通相关术语就是用来描述有向图的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;强连通：与连通的含义一样，区别是无向图的连通本身就是双向的，如果是有向图，则要求顶点和顶点之间是双向相连才称为强连通。&lt;/li&gt;
+&lt;li&gt;强连通图：与连通的含义一样，任意两个顶点都是强连通的。&lt;/li&gt;
+&lt;li&gt;强连通分量：与连通分量的含义一样，不做赘述（估计是用来区分有向和无向的专业术语）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果极大（最大）连通子图是用来讨论分量的，那么极小（最小）连通子图就是用来讨论生成树的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;生成树：一个连通图&lt;code&gt;例图2b)&lt;/code&gt;，含有全部顶点的一个极小连通子图就是生成树，就像例图2g)所示。
+&lt;ul&gt;
+&lt;li&gt;观察规律得知：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;如果连通图G的顶点数量为n，G的生成树的边数则为&lt;code&gt;n-1&lt;/code&gt;&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;如果G的一个子图G&amp;rsquo;的边数大于&lt;code&gt;n-1&lt;/code&gt;，则G&amp;rsquo;子图中一定有环&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;相反，如果边数小于&lt;code&gt;n-1&lt;/code&gt;，则G&amp;rsquo;一定不连通&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;特征&#34;&gt;特征&lt;/h2&gt;
+&lt;p&gt;在图Graph结构中，任意两个结点之间都可能有关系，结点之间的邻接关系可以是任意的，即多对多的关系。&lt;/p&gt;
+&lt;h2 id=&#34;存储结构&#34;&gt;存储结构&lt;/h2&gt;
+&lt;p&gt;图的存储结构有很多种：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;邻接矩阵。&lt;/li&gt;
+&lt;li&gt;邻接表。&lt;/li&gt;
+&lt;li&gt;十字链表。&lt;/li&gt;
+&lt;li&gt;邻接多重表。&lt;/li&gt;
+&lt;li&gt;等等等等&amp;hellip;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;文中主要介绍邻接矩阵和邻接表。&lt;/p&gt;
+&lt;h3 id=&#34;邻接矩阵&#34;&gt;邻接矩阵&lt;/h3&gt;
+&lt;p&gt;使用二维数组很容易就能够实现。&lt;/p&gt;
+&lt;p&gt;以&amp;lt;v&lt;sub&gt;i&lt;/sub&gt;, v&lt;sub&gt;j&lt;/sub&gt;&amp;gt;或者(v&lt;sub&gt;i&lt;/sub&gt;, v&lt;sub&gt;j&lt;/sub&gt;)为例，定义如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用0表示v&lt;sub&gt;i&lt;/sub&gt;和v&lt;sub&gt;j&lt;/sub&gt;之间，即偶对并没有关联。&lt;/li&gt;
+&lt;li&gt;用1表示v&lt;sub&gt;i&lt;/sub&gt;和v&lt;sub&gt;j&lt;/sub&gt;之间，即偶对存在关联。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以图2为例，有向图G1和无向图G2的邻接矩阵，M1和M2分别如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;无向图的邻接矩阵是一个对称矩阵，有向图的邻接矩阵是一个稀疏矩阵。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;配图5，p134，待补充&amp;hellip;
+$$图5$$
+如图5，反映出了顶点之间的邻接关系，即逻辑关系，其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;矩阵M1的有向图为例：
+&lt;ul&gt;
+&lt;li&gt;&amp;lt;v&lt;sub&gt;0&lt;/sub&gt;, v&lt;sub&gt;1&lt;/sub&gt;&amp;gt;第0行第1列为1，表示顶点v&lt;sub&gt;0&lt;/sub&gt;和v&lt;sub&gt;1&lt;/sub&gt;之间存在关联。&lt;/li&gt;
+&lt;li&gt;顶点的集合是：V = {v&lt;sub&gt;0&lt;/sub&gt;, v&lt;sub&gt;1&lt;/sub&gt;, v&lt;sub&gt;2&lt;/sub&gt;, v&lt;sub&gt;3&lt;/sub&gt;}，即顶点共有4个。&lt;/li&gt;
+&lt;li&gt;弧的集合是：E = {&amp;lt;v&lt;sub&gt;0&lt;/sub&gt;, v&lt;sub&gt;1&lt;/sub&gt;&amp;gt;, &amp;lt;v&lt;sub&gt;1&lt;/sub&gt;, v&lt;sub&gt;0&lt;/sub&gt;&amp;gt;, &amp;lt;v&lt;sub&gt;1&lt;/sub&gt;, v&lt;sub&gt;2&lt;/sub&gt;&amp;gt;, &amp;lt;v&lt;sub&gt;2&lt;/sub&gt;, v&lt;sub&gt;0&lt;/sub&gt;&amp;gt;, &amp;lt;v&lt;sub&gt;2&lt;/sub&gt;, v&lt;sub&gt;3&lt;/sub&gt;&amp;gt;}，弧共有5条。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;矩阵M2的无向图为例：
+&lt;ul&gt;
+&lt;li&gt;&amp;lt;v&lt;sub&gt;0&lt;/sub&gt;, v&lt;sub&gt;1&lt;/sub&gt;&amp;gt;第0行第1列和&amp;lt;v&lt;sub&gt;1&lt;/sub&gt;, v&lt;sub&gt;0&lt;/sub&gt;&amp;gt;第1例第0行都是1，表示顶点v&lt;sub&gt;0&lt;/sub&gt;和v&lt;sub&gt;1&lt;/sub&gt;之间存在关联，注意是双向的。
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;这两个偶对实际上是指同一条边，要和有向图区分开来。&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;顶点的集合是：V = {v&lt;sub&gt;0&lt;/sub&gt;, v&lt;sub&gt;1&lt;/sub&gt;, v&lt;sub&gt;2&lt;/sub&gt;, v&lt;sub&gt;3&lt;/sub&gt;}，即顶点共有4个。&lt;/li&gt;
+&lt;li&gt;边的集合是：E = {&amp;lt;v&lt;sub&gt;0&lt;/sub&gt;, v&lt;sub&gt;1&lt;/sub&gt;&amp;gt;, &amp;lt;v&lt;sub&gt;1&lt;/sub&gt;, v&lt;sub&gt;2&lt;/sub&gt;&amp;gt;, &amp;lt;v&lt;sub&gt;0&lt;/sub&gt;, v&lt;sub&gt;2&lt;/sub&gt;&amp;gt;, &amp;lt;v&lt;sub&gt;2&lt;/sub&gt;, v&lt;sub&gt;3&lt;/sub&gt;&amp;gt;}，边共有4条。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;仅邻接关系还不够，用C语言完整的表示是：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;num&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 一般为x*y数量的积
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vertexType&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;val&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;graph&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;vertexType&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vexs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 顶点信息
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;matrix&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 邻接矩阵
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vertexNum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sideNum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 顶点数，边数
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;graph&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;若是带权的邻接矩阵，则是：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;num&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 用于标识矩阵下没有数值的情况，值的大小按实际情况定义，只要能与权值区分开即可
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;maxNum&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;32767&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vertexType&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;val&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;weightType&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;weight&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;weightType&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;graph&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;vertexType&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vertexs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;weightType&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;matrix&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vertexNum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sideNum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;graph&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;邻接表&#34;&gt;邻接表&lt;/h3&gt;
+&lt;p&gt;邻接表是顺序存储与链式存储相结合的存储方法。&lt;/p&gt;
+&lt;h2 id=&#34;图的应用&#34;&gt;图的应用&lt;/h2&gt;
+&lt;h3 id=&#34;最小生成树&#34;&gt;最小生成树&lt;/h3&gt;
+&lt;h4 id=&#34;prim&#34;&gt;Prim&lt;/h4&gt;
+&lt;h2 id=&#34;遍历&#34;&gt;遍历&lt;/h2&gt;
+&lt;p&gt;图的遍历是指从图中的某个顶点出发，系统地访问图中的每个顶点，每个顶点仅访问一次。&lt;/p&gt;
+&lt;p&gt;图的遍历操作类似于树的遍历操作，遍历的方式有两种，且都适用于有向图和无向图：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;深度优先搜索遍历，类似于树的先序遍历。&lt;/li&gt;
+&lt;li&gt;广度优先搜索遍历，类似于树的层次遍历。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;由于图的顶点可能会与多个顶点相关联，在遍历过程中可能会多次访问到某个顶点，为了避免重复访问的问题，要记下每个已访问的顶点。可以用到数组，当顶点被访问后，对应下标的位置标记成1。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/zsy3757486/article/details/125266607&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;【精选】【数据结构】连通图、连通分量与强连通图、强连通分量—区别在于强，强强在哪里？&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
         <title>什么是对数？</title>
         <link>https://ghbjayce.github.io/p/subject/math/sequence/logarithm/</link>
         <pubDate>Thu, 28 Sep 2023 14:47:45 +0800</pubDate>
@@ -75,6 +1045,7 @@ $$a^x \times a^y = a^{x+y}$$
 $$M \times N = a^{x+y}$$
 $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;h3 id=&#34;运算法则&#34;&gt;运算法则&lt;/h3&gt;
+&lt;p&gt;以下将介绍求出对数的方法都有哪些。&lt;/p&gt;
 &lt;p&gt;1、$log_aN = \frac{log_mN}{log_ma}$（a＞0，且a≠1，m＞0，且m≠1，N＞0）&lt;/p&gt;
 &lt;p&gt;又称换底公式，用m替换a，m可以是任意一个数。&lt;/p&gt;
 &lt;p&gt;以 $log_216$ 为例，将2替换成10，就是 $\frac{log_{10}16}{log_{10}2}$ ，用计算器算一算：&lt;/p&gt;
@@ -102,6 +1073,22 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id=&#34;应用&#34;&gt;应用&lt;/h2&gt;
+&lt;p&gt;1、一棵完全二叉树中有65个结点，请算出完全二叉树的深度。&lt;/p&gt;
+&lt;p&gt;根据&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/book/080901/02142/chapter4/#%E6%80%A7%E8%B4%A8%E7%89%B9%E5%BE%81&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;二叉树的性质4&lt;/a&gt;我们知道计算深度对应的公式是：$⌊log_2n⌋+1$。&lt;/p&gt;
+&lt;p&gt;将数据代入公式可以得到$⌊log_265⌋+1$，使用换底公式，把底数2换成10，就是$\frac{log_{10}65}{log_{10}2}$。&lt;/p&gt;
+&lt;p&gt;我们用计算器算一下，精确结果是：&lt;code&gt;6.022367813028454&lt;/code&gt;，向下取整就是6，代入公式。&lt;/p&gt;
+&lt;p&gt;最终答案是：$⌊log_{2}65⌋+1=6+1=7$。&lt;/p&gt;
+&lt;p&gt;如果在不能使用计算器的情况下，当然还有一种笨方法，把$log_{2}65$写成指数式，即$2^x=65$。&lt;/p&gt;
+&lt;p&gt;把不同的数字代入x，用穷举法来找一找哪个数字最接近65：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;来大一点的数字，直接上5，即$2^5$，答案是32，还差的远，继续往上递增。&lt;/li&gt;
+&lt;li&gt;上6，即$2^6$，答案是64，非常接近了。&lt;/li&gt;
+&lt;li&gt;再往上递增看看，$2^7$，结果是128，超过65了。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;那么估算答案可能是6和7之间的小数：&lt;code&gt;6.xxx&lt;/code&gt;，因为有向下取整函数，无论有多少个小数，最终答案都是6。&lt;/p&gt;
+&lt;p&gt;所以实际上我们并不需要精确的结果，同样也能够解决问题。&lt;/p&gt;
 &lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://baike.baidu.com/item/%E5%AF%B9%E6%95%B0&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -130,6 +1117,16 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;第五章 图&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;第六章 查找&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;第七章 排序&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
+&lt;h3 id=&#34;涉及知识点&#34;&gt;涉及知识点&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;数学知识
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/subject/math/sequence/logarithm/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;对数&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;概要&#34;&gt;概要&lt;/h2&gt;
 &lt;ol&gt;
@@ -198,7 +1195,7 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;遍历&lt;/li&gt;
-&lt;li&gt;判断树和哈夫曼树
+&lt;li&gt;判定树和哈夫曼树
 &lt;ul&gt;
 &lt;li&gt;概念
 &lt;ul&gt;
@@ -360,7 +1357,7 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;二叉树&#34;&gt;二叉树&lt;/h2&gt;
 &lt;h3 id=&#34;概念-1&#34;&gt;概念&lt;/h3&gt;
-&lt;p&gt;二叉树Binary Tree是n(n≥0)个元素的有限集合，即在树的基础上，一棵二叉树需要满足其中任意一个条件：&lt;/p&gt;
+&lt;p&gt;二叉树Binary Tree是n(n≥0)个元素的有限集合，即在树的基础上，一棵二叉树需要满足其中一个条件：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;空树，什么结点都没有。&lt;/li&gt;
 &lt;li&gt;只有一个根结点，即左右子树均为空。&lt;/li&gt;
@@ -368,10 +1365,21 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;li&gt;左子树为空。&lt;/li&gt;
 &lt;li&gt;由一个根结点和两棵互不相交的左子树和右子树组成，子树之间是有次序关系的，且均是一棵二叉树。&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/tree/binary-tree/binary-tree.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;二叉树&#34;
+	
+	
+&gt;
+$$图4.2$$&lt;/p&gt;
 &lt;h3 id=&#34;性质特征&#34;&gt;性质特征&lt;/h3&gt;
 &lt;p&gt;二叉树的5个性质特征：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;性质1：二叉树第i（i≥1）层上至多有2&lt;sup&gt;i-1&lt;/sup&gt;个结点，也就是：
+&lt;li&gt;性质1：&lt;strong&gt;二叉树第i（i≥1）层上至多有2&lt;sup&gt;i-1&lt;/sup&gt;个结点&lt;/strong&gt;，也就是：
 &lt;ul&gt;
 &lt;li&gt;第一层最多有1个结点。&lt;/li&gt;
 &lt;li&gt;第二层最多有2个结点。&lt;/li&gt;
@@ -379,21 +1387,38 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;li&gt;第四层最多有8个结点，以此类推。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;性质2：深度为k（k≥1）的二叉树至多有2&lt;sup&gt;k-1&lt;/sup&gt;个结点，也就是例如二叉树高为3，那么最多有4个结点。
+&lt;li&gt;性质2：&lt;strong&gt;深度为k（k≥1）的二叉树至多有2&lt;sup&gt;k-1&lt;/sup&gt;个结点&lt;/strong&gt;，也就是例如二叉树高为3，那么最多有4个结点。
 &lt;ul&gt;
 &lt;li&gt;符合该性质的称为&lt;strong&gt;满二叉树&lt;/strong&gt;。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;性质3：对任何一棵二叉树，若度数为0的结点个数为n&lt;sub&gt;0&lt;/sub&gt;，度数为2的结点个数为n&lt;sub&gt;2&lt;/sub&gt;，则n&lt;sub&gt;0&lt;/sub&gt;=n&lt;sub&gt;2&lt;/sub&gt;+1。
+&lt;li&gt;性质3：&lt;strong&gt;对任何一棵二叉树，若度数为0的结点个数为$n_0$，度数为2的结点个数为$n_2$，则 $n_0=n_2+1$&lt;/strong&gt;。
 &lt;ul&gt;
-&lt;li&gt;q&lt;/li&gt;
+&lt;li&gt;例如上图c)，度数为0的结点个数是3（D、G、F），度数为2的结点个数是2（A、B）。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;完全二叉树&lt;/strong&gt;：如果对满二叉树按从上到下，从左到右的顺序编号，并在树的最后一层删去部分结点（最后一层至少还剩一个结点），删完以后整棵树的结点还是顺序的排列，这就是棵完全二叉树。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;完全二叉树&lt;/strong&gt;：如果对满二叉树按从上到下，从左到右的顺序编号，并在树的最后一层删去部分结点（最后一层至少还剩一个结点），删完以后整棵树的结点还是顺序的排列，这就是棵完全二叉树，其性质有：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;性质4：含有n个结点的完全二叉树的深度为⌊log&lt;sub&gt;2&lt;/sub&gt;n⌋+1。&lt;/li&gt;
+&lt;li&gt;性质4：&lt;strong&gt;含有n个结点的完全二叉树的深度为$⌊log_2n⌋+1$&lt;/strong&gt;。
+&lt;ul&gt;
+&lt;li&gt;其中&lt;code&gt;⌊x⌋&lt;/code&gt;表示不大于x的最大整数，即向下取整函数，指⌊$log_2n$⌋，$log_2n$是对数，&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/subject/math/sequence/logarithm/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;什么是对数？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;例如上图b)，共有10个结点，即⌊log&lt;sub&gt;2&lt;/sub&gt;10⌋+1，对数结果是&lt;code&gt;3.32..&lt;/code&gt;向下取整后是3，最终深度是4。&lt;/li&gt;
 &lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;性质5：&lt;strong&gt;按上面完全二叉树的定义对结点进行顺序编号，对任意一编号为i(1 ≤ i ≤ n)的结点x，性质有&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;若&lt;code&gt;i = 1&lt;/code&gt;，结点x是根。&lt;/li&gt;
+&lt;li&gt;若&lt;code&gt;i &amp;gt; 1&lt;/code&gt;，结点x的双亲的编号为：&lt;code&gt;⌊i / 2⌋&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;若&lt;code&gt;2 * i ＞ n&lt;/code&gt;，结点x无左和右孩子；若有左孩子，其编号为&lt;code&gt;2 * i&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;若&lt;code&gt;2 * i + 1 ＞ n&lt;/code&gt;，结点x无右孩子，若有右孩子，其编号为&lt;code&gt;2 * i + 1&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;书上原话：二叉树不是完全二叉树，满二叉树一定是完全二叉树，完全二叉树不一定是满二叉树。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;基本运算的功能描述-1&#34;&gt;基本运算的功能描述&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;初始化&lt;code&gt;Initiate(BT)&lt;/code&gt;：建立一棵空二叉树，BT=∅。&lt;/li&gt;
@@ -407,15 +1432,984 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;li&gt;层次遍历&lt;code&gt;LevelOrder(BT)&lt;/code&gt;：按层从上往下，每层从左往右对二叉树进行遍历，每个结点仅被访问一次。BT为空不操作。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;存储结构&#34;&gt;存储结构&lt;/h3&gt;
+&lt;p&gt;二叉树通常有两种存储结构：顺序存储和链式存储结构。&lt;/p&gt;
 &lt;h4 id=&#34;顺序存储&#34;&gt;顺序存储&lt;/h4&gt;
+&lt;p&gt;二叉树的顺序存储可以用一维数组来实现，按照性质5的特性，对结点进行从上到下从左到右的顺序进行编号，从根结点1开始，将结点顺序地存进数组的对应下标位置，下标0不使用。&lt;/p&gt;
+&lt;p&gt;顺序存储分为两种情况：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如果二叉树是完全二叉树，如下图a)、b)的方式进行存储。&lt;/li&gt;
+&lt;li&gt;如果二叉树非完全二叉树：
+&lt;ol&gt;
+&lt;li&gt;首先必须用某种方法将其转换成完全二叉树。&lt;/li&gt;
+&lt;li&gt;对不存在的结点的位置可增设虚拟结点（阴影表示）的方式，如下图e)。&lt;/li&gt;
+&lt;li&gt;对应虚拟结点下标的位置使用特殊记号∧表示。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/tree/binary-tree/binary-tree-sequence-store.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;完全二叉树的顺序存储&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;非完全二叉树的顺序存储虽然可以用转换完全二叉树，以完全二叉树的顺序存储进行处理，这样只要是一棵二叉树（不管是哪种类型）都能够用同一种运算方式进行处理，&lt;strong&gt;但这种方法最大的缺点是造成了空间的浪费&lt;/strong&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;链式存储&#34;&gt;链式存储&lt;/h4&gt;
-&lt;h3 id=&#34;遍历&#34;&gt;遍历&lt;/h3&gt;
+&lt;p&gt;二叉树最常用的是链式存储结构，其中又分为二叉链表和三叉链表。
+&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/tree/binary-tree/binary-tree-link-store.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;二叉树的链式存储&#34;
+	
+	
+&gt;
+其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;lchild表示指向左孩子的指针，即左指针。
+&lt;ul&gt;
+&lt;li&gt;没有左孩子时左指针域的值为NULL。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;rchild表示指向右孩子的指针，即右指针。
+&lt;ul&gt;
+&lt;li&gt;没有右孩子时右指针域的值为NULL。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;每个二叉链表必须有一个指向根结点的指针，即根指针，例如上图 c) 中的root，与链表头指针类似。
+&lt;ul&gt;
+&lt;li&gt;访问二叉链表只能从根指针开始。&lt;/li&gt;
+&lt;li&gt;若二叉树为空，则&lt;code&gt;root = NULL&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;三叉链表在每个结点增加了一个指针域parent，用于指向该结点的双亲。&lt;/li&gt;
+&lt;li&gt;因此总结出规律，在具有 n 个结点的二叉树中，有&lt;code&gt;2n&lt;/code&gt;个指针域：
+&lt;ul&gt;
+&lt;li&gt;其中只有&lt;code&gt;n - 1&lt;/code&gt;个用来指向结点的左、右孩子。&lt;/li&gt;
+&lt;li&gt;其余的&lt;code&gt;n + 1&lt;/code&gt;个指针域为NULL。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;用c语言描述&#34;&gt;用C语言描述&lt;/h3&gt;
+&lt;h4 id=&#34;二叉树-1&#34;&gt;二叉树&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;binaryTreeNode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;dataType&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;binaryTreeNode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;lchild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rchild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;binaryTree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;三叉树&#34;&gt;三叉树&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;TBNode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;dataType&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;TBNode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;lchild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;parent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rchild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ThreeBinaryTree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ThreeBinaryTree&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;root&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;遍历&#34;&gt;遍历&lt;/h3&gt;
+&lt;p&gt;二叉树的遍历是指按某种次序访问二叉树上的所有结点，且每个结点仅访问一次。&lt;/p&gt;
+&lt;p&gt;一棵二叉树由三部分组成：根、根的左子树、根的右子树。&lt;/p&gt;
+&lt;p&gt;因此遍历二叉树总共有三个步骤：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;访问根结点。&lt;/li&gt;
+&lt;li&gt;遍历根的左子树。&lt;/li&gt;
+&lt;li&gt;遍历根的右子树。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;遍历共有三种次序，不同的次序只是三个步骤的顺序不同：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;下面会以图4.2中的c)二叉树为例，分别说明对应次序的序列。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;先序遍历。
+&lt;ul&gt;
+&lt;li&gt;步骤顺序，简记为：根左右。
+&lt;ul&gt;
+&lt;li&gt;访问根结点。&lt;/li&gt;
+&lt;li&gt;先序遍历根的左子树。&lt;/li&gt;
+&lt;li&gt;先序遍历根的右子树。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;先序遍历结点的序列为：ABDEGCF，以下是遍历过程：
+&lt;ol&gt;
+&lt;li&gt;访问A。&lt;/li&gt;
+&lt;li&gt;先序遍历A的左子树（BDEG）。
+&lt;ol&gt;
+&lt;li&gt;访问B。&lt;/li&gt;
+&lt;li&gt;先序遍历B的左子树（D）。
+&lt;ol&gt;
+&lt;li&gt;访问D。&lt;/li&gt;
+&lt;li&gt;先序遍历D的左子树（空）。&lt;/li&gt;
+&lt;li&gt;先序遍历D的右子树（空）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;先序遍历B的右子树（EG）。
+&lt;ol&gt;
+&lt;li&gt;访问E。&lt;/li&gt;
+&lt;li&gt;先序遍历E的左子树（G）。
+&lt;ol&gt;
+&lt;li&gt;访问G。&lt;/li&gt;
+&lt;li&gt;先序遍历G的左子树（空）。&lt;/li&gt;
+&lt;li&gt;先序遍历G的右子树（空）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;先序遍历E的右子树（空）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;先序遍历A的右子树（CF）。
+&lt;ol&gt;
+&lt;li&gt;访问C。&lt;/li&gt;
+&lt;li&gt;先序遍历C的左子树（空）。&lt;/li&gt;
+&lt;li&gt;先序遍历C的右子树（F）。
+&lt;ol&gt;
+&lt;li&gt;访问F。&lt;/li&gt;
+&lt;li&gt;先序遍历F的左子树（空）。&lt;/li&gt;
+&lt;li&gt;先序遍历F的右子树（空）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;中序遍历。
+&lt;ul&gt;
+&lt;li&gt;步骤顺序，简记为：左根右。
+&lt;ul&gt;
+&lt;li&gt;中序遍历根的左子树。&lt;/li&gt;
+&lt;li&gt;访问根结点。&lt;/li&gt;
+&lt;li&gt;中序遍历根的右子树。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;结点的序列为：DBGEACF。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;后序遍历。
+&lt;ul&gt;
+&lt;li&gt;步骤顺序，简记为：左右根。
+&lt;ul&gt;
+&lt;li&gt;后序遍历根的左子树。&lt;/li&gt;
+&lt;li&gt;后序遍历根的右子树。&lt;/li&gt;
+&lt;li&gt;访问根结点。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;结点的序列为：DGEBFCA。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h4 id=&#34;递归实现&#34;&gt;递归实现&lt;/h4&gt;
+&lt;p&gt;先序、中序和后序都是基于递归的实现，下面给出各次序具体的算法。&lt;/p&gt;
+&lt;p&gt;假设&lt;code&gt;visit(bt)&lt;/code&gt;函数是访问指针bt所指结点。&lt;/p&gt;
 &lt;h5 id=&#34;先序遍历&#34;&gt;先序遍历&lt;/h5&gt;
-&lt;h5 id=&#34;中序遍历&#34;&gt;中序遍历&lt;/h5&gt;
-&lt;h5 id=&#34;后序遍历&#34;&gt;后序遍历&lt;/h5&gt;
-&lt;h4 id=&#34;层次遍历&#34;&gt;层次遍历&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;preorder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;binaryTree&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nf&#34;&gt;visit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nf&#34;&gt;preorder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;lchild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nf&#34;&gt;preorder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rchild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h5 id=&#34;中序遍历&#34;&gt;中序遍历&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;inorder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;binaryTree&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nf&#34;&gt;inorder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;lchild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nf&#34;&gt;visit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nf&#34;&gt;inorder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rchild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h5 id=&#34;后序遍历&#34;&gt;后序遍历&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;postorder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;binaryTree&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nf&#34;&gt;postorder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nf&#34;&gt;postorder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nf&#34;&gt;visit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;层次遍历&#34;&gt;层次遍历&lt;/h4&gt;
+&lt;p&gt;不是重点，待补充&amp;hellip;&lt;/p&gt;
 &lt;h4 id=&#34;非递归实现&#34;&gt;非递归实现&lt;/h4&gt;
+&lt;p&gt;不是重点，待补充&amp;hellip;&lt;/p&gt;
+&lt;h4 id=&#34;应用&#34;&gt;应用&lt;/h4&gt;
+&lt;p&gt;1、根据先序遍历和中序遍历次序创建一棵二叉树。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;先序遍历次序：ABDEGCF。&lt;/li&gt;
+&lt;li&gt;中序遍历次序：DBGEACF。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;算法：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;binaryTree&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;createByPreInOrder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;preArr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[],&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inArr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[],&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;preArrMinIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;preArrMaxIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inArrMinIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inArrMaxIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;inArrMaxIndex&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// 如下申请内存的方式出自书上，是高度概括的，会存在内存越界导致结果出现一些不可预料的问题。
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;// binaryTree bt = malloc(sizeof(binaryTree));
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;// 以下是正确的申请方式，两者之间在64位机器上相差16字节，前者8字节，后者24字节
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;binaryTree&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;malloc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;sizeof&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;binaryTreeNode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;val&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;preArr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;preArrMinIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;k&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inArrMinIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;k&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inArrMaxIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;inArr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;preArr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;preArrMinIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]))&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;k&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inArrMaxIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;lchild&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;createByPreInOrder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;preArr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inArr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;preArrMinIndex&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;preArrMinIndex&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;k&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inArrMinIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inArrMinIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;k&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rchild&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;createByPreInOrder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;preArr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inArr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;preArrMinIndex&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;k&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inArrMinIndex&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;preArrMaxIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;k&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inArrMaxIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;bt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;实现思路：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;以递归的方式，逐个将先序遍历次序的结点在中序遍历次序范围中查找，简称在中序遍历中找根结点。&lt;/li&gt;
+&lt;li&gt;找到根节点以后，在中序遍历次序中分出该根节点的左子树（根结点的左边）和右子树（根结点的右边）的范围。
+&lt;ul&gt;
+&lt;li&gt;以A根结点为例，在中序遍历次序中：
+&lt;ul&gt;
+&lt;li&gt;A的左子树即DBGE。&lt;/li&gt;
+&lt;li&gt;A的右子树即CF。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;在左子树和右子树的范围中，再重复步骤1，在范围中寻找先序遍历次序的下一个结点，从而得到完整的左右子树。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;2、根据中序遍历和后序遍历次序创建一棵二叉树。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;中序遍历次序：BACDEFGH。&lt;/li&gt;
+&lt;li&gt;后序遍历次序：BCAEDGHF。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;思路：与先序遍历和中序遍历一样，都是从中序遍历中找到左右子树。&lt;/p&gt;
+&lt;p&gt;步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;由后序遍历次序确定F是根结点，那么在中序遍历次序中，F的左子树是BACDE，右子树是GH。
+&lt;ul&gt;
+&lt;li&gt;即得出后序遍历次序中，BCAED是F的左子树，GH是F的右子树。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;那么从后序遍历次序的左子树范围中确定左子树的根结点是D，重复步骤1。
+&lt;ul&gt;
+&lt;li&gt;在中序遍历次序中：
+&lt;ul&gt;
+&lt;li&gt;D的左子树是：BAC。&lt;/li&gt;
+&lt;li&gt;D的右子树是：E。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;在后序遍历次序中即：
+&lt;ul&gt;
+&lt;li&gt;D的左子树是：BCA。&lt;/li&gt;
+&lt;li&gt;D的右子树是：E。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;继续下一个根节点A，A的左孩子是B，右孩子树C。&lt;/li&gt;
+&lt;li&gt;回到F的右子树：GH，H是根结点，H的左孩子是G。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;算法：&lt;/p&gt;
+&lt;p&gt;待补充&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;树和森林&#34;&gt;树和森林&lt;/h2&gt;
+&lt;h3 id=&#34;树的存储结构&#34;&gt;树的存储结构&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/tree/tree-store-structure.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;树的存储结构示例图&#34;
+	
+	
+&gt;
+$$图4.5$$&lt;/p&gt;
+&lt;h4 id=&#34;孩子链表表示法&#34;&gt;孩子链表表示法&lt;/h4&gt;
+&lt;p&gt;用C语言表示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MAX_NODE_NUM&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dataType&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;val&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dataType&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;node&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;node&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;next&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;childLink&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;childLinkArr&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;dataType&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;childLink&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;firstChild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;childLinkArr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;childLinkArr&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;link&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MAX_NODE_NUM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;结合C语言定义和上图b)所示，其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;childLinkArr是一个数组，数组元素个数与上图a)树T的结点的数量相同，结点存放的顺序按树T从上到下从左到右依次排列。&lt;/li&gt;
+&lt;li&gt;数组元素由数据域 + 首个孩子指针域组成。
+&lt;ul&gt;
+&lt;li&gt;数据域：用于存放结点值。&lt;/li&gt;
+&lt;li&gt;首个孩子指针域：指向从左到右的第一个孩子。&lt;/li&gt;
+&lt;li&gt;首个孩子指针域可以看作是头结点，其所指向的孩子链表（childLink）是一个单链表，分别是结点的第一个孩子、第二个孩子、第三个孩子以此类推。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;孩子链表也由数据域 + 指针域组成。
+&lt;ul&gt;
+&lt;li&gt;数据域：存放孩子在数组childLinkArr中的下标位置。&lt;/li&gt;
+&lt;li&gt;指针域：指向下一个孩子，也是当前孩子的兄弟结点。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为了便于找到双亲，对childLinkArr结构体改进一下：&lt;/p&gt;
+&lt;p&gt;增加一个双亲域parentIndex，存储结点双亲在数组childLinkArr中的下标位置，如上图c)。&lt;/p&gt;
+&lt;p&gt;用C语言表示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;childLinkArr&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;dataType&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;childLink&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;firstChild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;parentIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;childLinkArr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;孩子兄弟链表表示法&#34;&gt;孩子兄弟链表表示法&lt;/h4&gt;
+&lt;p&gt;如上图d)、e)所示，孩子兄弟链表的结构表示形式和二叉链表完全相同，只是结点含义不同：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;二叉链表，当前结点分为左孩子指针和右孩子指针。&lt;/li&gt;
+&lt;li&gt;孩子兄弟链表，当前结点分为首个左孩子指针（简称孩子指针）和兄弟结点指针，剩下的孩子通过遍历孩子指针的兄弟结点指针找到。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用C语言表示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;brotherNode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;dataType&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;brotherNode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;son&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;brother&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;treeLink&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;双亲表示法&#34;&gt;双亲表示法&lt;/h4&gt;
+&lt;p&gt;如上图f)所示，是当中存储结构最简单的一种，同样也是采取数组的方式，由数据域+双亲域组成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据域：将树T所有的结点按从上到下从左到右的顺序，结点从下标0开始，一一存进数组。&lt;/li&gt;
+&lt;li&gt;双亲域：存储双亲结点在数组中的下标位置，没有双亲存储-1。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用C语言表示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;dataType&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;parentIndex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Node&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Node&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;treeParentArr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;疑问：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;只靠双亲怎么知道有哪些孩子？以及孩子的顺序？
+&lt;ul&gt;
+&lt;li&gt;答：
+&lt;ul&gt;
+&lt;li&gt;双亲parentIndex是同一个值的，就表示这些都是孩子。&lt;/li&gt;
+&lt;li&gt;因为存储已经按从左到右顺序存储，把同一个双亲的所有结点找出来，数组下标的顺序就是孩子直接的顺序，即保证了孩子之间的逻辑结构。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;树森林和二叉树之间的转换&#34;&gt;树、森林和二叉树之间的转换&lt;/h3&gt;
+&lt;h4 id=&#34;树转换成二叉树&#34;&gt;树转换成二叉树&lt;/h4&gt;
+&lt;p&gt;转换方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;加线，所有兄弟结点之间加一条线，彼此连接起来。&lt;/li&gt;
+&lt;li&gt;抹线，除了结点的第一个左孩子，其他孩子与结点的连线全部抹掉。&lt;/li&gt;
+&lt;li&gt;旋转，以根节点为轴心，对树进行顺时针的适当旋转。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;森林转换成二叉树&#34;&gt;森林转换成二叉树&lt;/h4&gt;
+&lt;p&gt;转换方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将森林中的每棵树转换成二叉树。&lt;/li&gt;
+&lt;li&gt;加线，转换以后的二叉树，从第二棵二叉树开始，将其根节点作为前一棵二叉树根结点的右子树，以此类推。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;二叉树转换成森林&#34;&gt;二叉树转换成森林&lt;/h4&gt;
+&lt;p&gt;转换方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;抹线，断开根结点与右孩子的连线，此时得到两棵二叉树。&lt;/li&gt;
+&lt;li&gt;抹线再加线，二叉树根节点的左子树的右子树们均断开连接，改成均与根节点之间连接，如果根节点有右子树，重复步骤1的操作。&lt;/li&gt;
+&lt;li&gt;剩下的二叉树重复按以上步骤进行处理。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;树和森林的遍历&#34;&gt;树和森林的遍历&lt;/h3&gt;
+&lt;h4 id=&#34;树-1&#34;&gt;树&lt;/h4&gt;
+&lt;p&gt;以图4.5的a)树为例。&lt;/p&gt;
+&lt;h5 id=&#34;先序遍历-1&#34;&gt;先序遍历&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;访问根结点&lt;/li&gt;
+&lt;li&gt;从左往右依次遍历孩子，以孩子为根节点，重复步骤1和步骤2。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;先序遍历次序为：HABEGFDC。&lt;/p&gt;
+&lt;h5 id=&#34;后序遍历-1&#34;&gt;后序遍历&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;后序遍历根的孩子子树。&lt;/li&gt;
+&lt;li&gt;访问根结点。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;后序遍历次序：BGFDEACH。&lt;/p&gt;
+&lt;h5 id=&#34;层次遍历-1&#34;&gt;层次遍历&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;访问根结点。&lt;/li&gt;
+&lt;li&gt;逐层往下遍历，每层从左到右依次访问结点。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;层次遍历次序：HACBEGFD。&lt;/p&gt;
+&lt;h4 id=&#34;森林&#34;&gt;森林&lt;/h4&gt;
+&lt;p&gt;森林有两种遍历方法：&lt;/p&gt;
+&lt;h5 id=&#34;先序遍历-2&#34;&gt;先序遍历&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;从左到右访问第一棵树的根结点。&lt;/li&gt;
+&lt;li&gt;先序遍历根结点的子树。&lt;/li&gt;
+&lt;li&gt;先序遍历森林中的其他树，重复以上步骤。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&#34;中序遍历-1&#34;&gt;中序遍历&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;从左到右中序遍历第一棵树根结点的第一个孩子的子树。&lt;/li&gt;
+&lt;li&gt;访问第一棵树的根节点。&lt;/li&gt;
+&lt;li&gt;中序遍历剩下的孩子的子树。&lt;/li&gt;
+&lt;li&gt;中序遍历森林中的其他树，重复以上步骤。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;判定树和哈夫曼树&#34;&gt;判定树和哈夫曼树&lt;/h2&gt;
+&lt;h3 id=&#34;分类和判定树&#34;&gt;分类和判定树&lt;/h3&gt;
+&lt;p&gt;树有广泛的应用，其中一种重要的应用是描述分类的过程。&lt;/p&gt;
+&lt;p&gt;分类是一种常用的运算，将输入数据按照标准划分成不同的种类，例如：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类别&lt;/th&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;th&gt;D&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;年龄值 age&lt;/td&gt;
+&lt;td&gt;age &amp;lt; 18&lt;/td&gt;
+&lt;td&gt;18 ≤ age ＜ 45&lt;/td&gt;
+&lt;td&gt;45 ≤ age ＜ 60&lt;/td&gt;
+&lt;td&gt;age ≥ 60&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;百分比&lt;/td&gt;
+&lt;td&gt;0.2&lt;/td&gt;
+&lt;td&gt;0.3&lt;/td&gt;
+&lt;td&gt;0.25&lt;/td&gt;
+&lt;td&gt;0.25&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;插图..&lt;/p&gt;
+&lt;p&gt;用于描述分类过程的二叉树称为判定树，其中上图a)的分类算法为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;classify&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;age&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;age&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;18&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;age&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;45&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;age&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;60&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;C&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;D&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;假设人口有N=10000人，C类别人口占25%，根据a)的判断树，区分1个人是否属于C类别需要进行3次比较，那么10000个人就需要$10000 \times 0.25 \times 3$，即7500次。&lt;/p&gt;
+&lt;p&gt;所有类别总共需要的比较次数就是：23000次。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SUM = (N × 0.2 × 1) + (N × 0.3 × 2) + (N × 0.25 × 3) + (N × 0.25 × 3)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    = N × (0.2 + 0.6 + 0.75 + 0.75)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    = 10000 × 2.3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    = 23000
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;平均比较次数是：$SUM \div N$ 即$23000 \div 10000 = 2.3$次。&lt;/p&gt;
+&lt;p&gt;而如果是b)的判断树，区分1人属于C类别则只需要2次比较，10000个人则需要5000次。&lt;/p&gt;
+&lt;p&gt;所有类别总共需要比较20000次。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SUM = (N × 0.2 × 2) + (N × 0.3 × 2) + (N × 0.25 × 2) + (N × 0.25 × 2)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    = N × (0.4 + 0.6 + 0.5 + 0.5)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    = 10000 × 2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    = 20000
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;平均比较次数是2次，相较a)，总共减少了3000次比较，平均比较次数减少了0.3次。&lt;/p&gt;
+&lt;p&gt;这说明，按不同判定树进行分类的计算量是不同的，有时可以相差很大，怎样才能构造出像b)一样，平均比较次数最少的判定树呢？&lt;/p&gt;
+&lt;p&gt;没错，可以用到哈夫曼树和哈夫曼算法。&lt;/p&gt;
+&lt;h3 id=&#34;哈夫曼树和哈夫曼算法&#34;&gt;哈夫曼树和哈夫曼算法&lt;/h3&gt;
+&lt;p&gt;以上面的例子为例，给定一组权值为{p&lt;sub&gt;1&lt;/sub&gt;, &amp;hellip;, p&lt;sub&gt;k&lt;/sub&gt;}的序列，如何构造出一棵有k个叶子结点分别以权为值的判定树，并且平均比较次数是最小的？&lt;/p&gt;
+&lt;p&gt;步骤如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;根据一组权值为{p&lt;sub&gt;1&lt;/sub&gt;, &amp;hellip;, p&lt;sub&gt;k&lt;/sub&gt;}的序列，构造森林F={T&lt;sub&gt;1&lt;/sub&gt;, &amp;hellip;, T&lt;sub&gt;k&lt;/sub&gt;}，其中T&lt;sub&gt;i&lt;/sub&gt;是一棵只有根结点，权为p&lt;sub&gt;i&lt;/sub&gt;的二叉树。
+&lt;ul&gt;
+&lt;li&gt;如图a)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;从F中选取两个权最小的两棵二叉树，组成一棵新的二叉树，左右孩子分别是两个权最小的二叉树
+&lt;ul&gt;
+&lt;li&gt;如图b)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;从F中删掉步骤2已经合并的两棵二叉树，并将新的二叉树加入F，如图c)。&lt;/li&gt;
+&lt;li&gt;此时再看是否还有多个二叉树。
+&lt;ul&gt;
+&lt;li&gt;如果是，继续重复步骤2。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;直到只剩下一棵二叉树，这棵二叉树就是哈夫曼树&lt;/strong&gt;，如图d)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/tree/huffman-tree/build-huffman-tree-process.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;哈夫曼树构建过程&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;从中得出规律：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;需要经过$n-1$次合并，最终得出一棵哈夫曼树，其中n是指权值的数目，以上面的例子，权值数目为4。&lt;/li&gt;
+&lt;li&gt;最终得到的哈夫曼树共有$2n-1$个结点，其中：
+&lt;ul&gt;
+&lt;li&gt;哈夫曼树没有度数为 1 的分支结点。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用C语言实现，即哈夫曼算法，采用顺序存储，大小是2n-1的数组，数组中的元素有四个域，分别是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;权值。&lt;/li&gt;
+&lt;li&gt;双亲下标值。&lt;/li&gt;
+&lt;li&gt;左孩下标值。&lt;/li&gt;
+&lt;li&gt;右孩下标值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;float.h&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;float&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;weigh&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;parent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;lchild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rchild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;node&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;node&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;huffmanTree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;huffman&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;float&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;weigh&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;huffmanTree&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;float&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// 初始化
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;k&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;parent&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;lchild&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rchild&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;weigh&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;weigh&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;weigh&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;y&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FLT_MAX&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FLT_MAX&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;weigh&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;parent&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;  &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;n&#34;&gt;y&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;weigh&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;weigh&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;parent&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;weigh&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;n&#34;&gt;y&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;parent&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;parent&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;weigh&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;lchild&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rchild&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;哈夫曼编码&#34;&gt;哈夫曼编码&lt;/h3&gt;
+&lt;p&gt;在通信领域中，通常希望字符在传输过程中总的编码长度越短越好，即对字符的存储进行压缩，能否找到最短的编码方案呢？&lt;/p&gt;
+&lt;p&gt;没错，还是哈夫曼树，不过要加点编码。&lt;/p&gt;
+&lt;p&gt;思路：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过对字符出现次数进行统计，字符是值，权是出现次数或者叫出现频率。&lt;/li&gt;
+&lt;li&gt;让出现频率较多的字符采用较短的编码。&lt;/li&gt;
+&lt;li&gt;出现频率较少的字符采用较长的编码。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;哈夫曼二叉树的每个结点的左分支标记为0，右分支为1（如下图f)），这样，从根结点到每个叶子结点的路径，把路径所在的分支标记全部加起来就是对应字符的编码，这些编码就称为哈夫曼编码&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;例如：某个通信系统需要传输一个字符串”aaa bb cccc dd e“，它们出现的频率分别是：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字符&lt;/th&gt;
+&lt;th&gt;a&lt;/th&gt;
+&lt;th&gt;&amp;rsquo;&amp;rsquo; (空)&lt;/th&gt;
+&lt;th&gt;b&lt;/th&gt;
+&lt;th&gt;c&lt;/th&gt;
+&lt;th&gt;d&lt;/th&gt;
+&lt;th&gt;e&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;频率&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;频率序列从小到大排列后是：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字符&lt;/th&gt;
+&lt;th&gt;e&lt;/th&gt;
+&lt;th&gt;b&lt;/th&gt;
+&lt;th&gt;d&lt;/th&gt;
+&lt;th&gt;a&lt;/th&gt;
+&lt;th&gt;&amp;rsquo;&amp;rsquo; (空)&lt;/th&gt;
+&lt;th&gt;c&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;频率&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/tree/huffman-tree/build-huffman-tree-code-process.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;哈夫曼树编码构建过程&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;经过哈夫曼树编码后，如上图f)，字符对应的编码分别是：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字符&lt;/th&gt;
+&lt;th&gt;a&lt;/th&gt;
+&lt;th&gt;&amp;rsquo;&amp;rsquo; (空)&lt;/th&gt;
+&lt;th&gt;b&lt;/th&gt;
+&lt;th&gt;c&lt;/th&gt;
+&lt;th&gt;d&lt;/th&gt;
+&lt;th&gt;e&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;编码&lt;/td&gt;
+&lt;td&gt;00&lt;/td&gt;
+&lt;td&gt;01&lt;/td&gt;
+&lt;td&gt;110&lt;/td&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;td&gt;1111&lt;/td&gt;
+&lt;td&gt;1110&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;即字符串”aaa bb cccc dd e“对应的编码序列为”0000000111011001101010100111111111011110“。&lt;/p&gt;
+&lt;p&gt;为了方便大家查看比对，用&lt;code&gt;|&lt;/code&gt;对每个字符编码进行分开：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;00|00|00|01|110|110|01|10|10|10|10|01|1111|1111|01|1110
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;哈夫曼编码序列在还原成字符串的过程是，以上面的序列为例：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;拿接下来的第一个编码，即0，在哈夫曼树中寻找。&lt;/li&gt;
+&lt;li&gt;未找到，则把第一个编码和下一个编码加在一起，即00（a），继续在哈夫曼树中寻找。
+&lt;ul&gt;
+&lt;li&gt;没找到则一直重复步骤2。&lt;/li&gt;
+&lt;li&gt;找到了，即拿到了编码对应的字符串。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;重置这个过程，继续走步骤1，直至结束。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/qq_42698422/article/details/105367284&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;4.树与二叉树的转换&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/A12115419/article/details/126759251&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;树与二叉树的转换&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/415467000&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;数据结构——哈夫曼树（Huffman Tree）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/FX677588/article/details/70767446&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;详细图解哈夫曼Huffman编码树&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </description>
         </item>
         <item>
@@ -734,7 +2728,33 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;双栈&#34;&gt;双栈&lt;/h3&gt;
-&lt;p&gt;待补充&amp;hellip;&lt;/p&gt;
+&lt;p&gt;为了节省空间，可以让两个数据元素类型一致的栈共享同一个一维数组空间，这种做法使一维数组空间构成了双栈。&lt;/p&gt;
+&lt;p&gt;两个栈的栈底分别设在数组的两端，栈顶分别用top1、top2表示，两个栈分别做进栈运算时，彼此会迎面增长，那么判断为上溢的条件为：$top+1=top2$。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;上溢条件为什么是top+1？&lt;/p&gt;
+&lt;p&gt;假设数组长度为40，0-19是第一个栈的空间范围，20-39是第二个栈的空间范围，而19+1则会超出第一个栈的空间范围，出现上溢。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;双栈示意图，待补充..&lt;/p&gt;
+&lt;p&gt;用C语言表示双栈的数据结构：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;maxSize&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;40&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;doubleStack&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;dataType&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;maxSize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;top1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;top2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;doubleStack&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;双栈运算，待补充..&lt;/p&gt;
 &lt;h3 id=&#34;链栈&#34;&gt;链栈&lt;/h3&gt;
 &lt;h4 id=&#34;定义-1&#34;&gt;定义&lt;/h4&gt;
 &lt;blockquote&gt;
@@ -1065,7 +3085,7 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;如果在e)的状态下，要做入队列的操作，&lt;code&gt;SQ.rear&lt;/code&gt;将会超出数组下标的范围，也就是新元素没有办法入队列，但是1-4的位置明明是空的，数组的实际空间并没有沾满，这就是&lt;strong&gt;假溢出&lt;/strong&gt;现象。&lt;/p&gt;
+&lt;p&gt;如果在e)的状态下，要做入队列的操作，&lt;code&gt;SQ.rear&lt;/code&gt;将会超出数组下标的范围，也就是新元素没有办法入队列，但是1-4的位置明明是空的，数组的实际空间并没有被占满，这就是&lt;strong&gt;假溢出&lt;/strong&gt;现象。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;另外还有一个问题是，队列空和队列满没有办法区分，就如a)和d)的情况。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1087,7 +3107,7 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;有点像MySQL redo log的checkpoint和write pos。&lt;/p&gt;
+&lt;p&gt;循环队列的环状让我想起了MySQL redo log的checkpoint和write pos。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4 id=&#34;定义-3&#34;&gt;定义&lt;/h4&gt;
 &lt;blockquote&gt;
@@ -1262,7 +3282,11 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;链队列&#34;&gt;链队列&lt;/h3&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;为什么是&lt;code&gt;CQ-&amp;gt;front + 1&lt;/code&gt;？&lt;/p&gt;
+&lt;p&gt;上面有提到过，别忘了数组的第0个位置是不使用的，而front默认所指向的位置是0，即front所指向的空间是不存储元素的或者即使有也是已被出队列的元素。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;链队列&#34;&gt;链队列&lt;/h3&gt;
 &lt;p&gt;再重复一遍，链队列是一个带有头结点的单链表组成，队列首部的指针指向头结点，头指针指向首结点，队列尾部的指针指向尾结点，&lt;strong&gt;队列空的时候，队列首部和尾部的指针均指向头结点&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;链接的实现需要动态申请内存空间，所以不会出现队列满的情况。&lt;/p&gt;
 &lt;h4 id=&#34;定义-4&#34;&gt;定义&lt;/h4&gt;
@@ -1496,9 +3520,44 @@ $$loc[i, j] = loc[0, 0] + (n * i + j) * k$$
 &lt;p&gt;待补充&amp;hellip;&lt;/p&gt;
 &lt;h4 id=&#34;特殊矩阵&#34;&gt;特殊矩阵&lt;/h4&gt;
 &lt;h5 id=&#34;对称矩阵&#34;&gt;对称矩阵&lt;/h5&gt;
+&lt;p&gt;如果一个n阶的方阵满足以下条件，则是一个对称矩阵：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;$a_{ij} = a_{ji}$&lt;/li&gt;
+&lt;li&gt;$0 \leq i, j \leq n - 1$&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h5 id=&#34;三角矩阵&#34;&gt;三角矩阵&lt;/h5&gt;
 &lt;h4 id=&#34;稀疏矩阵&#34;&gt;稀疏矩阵&lt;/h4&gt;
-&lt;h2 id=&#34;综合运用&#34;&gt;综合运用&lt;/h2&gt;
+&lt;h3 id=&#34;应用-2&#34;&gt;应用&lt;/h3&gt;
+&lt;p&gt;1、对一个$N{\times}N$阶的矩阵A进行逆置，请设计出算法。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;MM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;n&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;n&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;综合运用&#34;&gt;综合运用&lt;/h2&gt;
 &lt;p&gt;待补充&amp;hellip;&lt;/p&gt;
 </description>
         </item>
@@ -2059,7 +4118,7 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;根据移动次数变化的规律可以看出：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;移动次数的计算方式为：&lt;code&gt;n - no + 1&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;比较和移动次数的计算方式为：&lt;code&gt;n - no + 1&lt;/code&gt;。&lt;/li&gt;
 &lt;li&gt;可插入的位置有：&lt;code&gt;n + 1&lt;/code&gt;个。&lt;/li&gt;
 &lt;li&gt;这是个&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;等差数列&lt;/a&gt;。
@@ -2974,8 +5033,11 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
 &lt;li&gt;数学知识
 &lt;ol&gt;
 &lt;li&gt;乘法分配率&lt;/li&gt;
-&lt;li&gt;对数&lt;/li&gt;
-&lt;li&gt;等差数列、高斯求和&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/subject/math/sequence/logarithm/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;对数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;等差数列&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/#%e6%b1%82%e5%92%8c&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;高斯求和&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;/ol&gt;

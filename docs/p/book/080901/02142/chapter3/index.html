@@ -313,6 +313,7 @@
             <li><a href="#稀疏矩阵">稀疏矩阵</a></li>
           </ol>
         </li>
+        <li><a href="#应用-2">应用</a></li>
       </ol>
     </li>
     <li><a href="#综合运用">综合运用</a></li>
@@ -705,7 +706,33 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="双栈">双栈</h3>
-<p>待补充&hellip;</p>
+<p>为了节省空间，可以让两个数据元素类型一致的栈共享同一个一维数组空间，这种做法使一维数组空间构成了双栈。</p>
+<p>两个栈的栈底分别设在数组的两端，栈顶分别用top1、top2表示，两个栈分别做进栈运算时，彼此会迎面增长，那么判断为上溢的条件为：$top+1=top2$。</p>
+<blockquote>
+<p>上溢条件为什么是top+1？</p>
+<p>假设数组长度为40，0-19是第一个栈的空间范围，20-39是第二个栈的空间范围，而19+1则会超出第一个栈的空间范围，出现上溢。</p>
+</blockquote>
+<p>双栈示意图，待补充..</p>
+<p>用C语言表示双栈的数据结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">maxSize</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">doubleStack</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">dataType</span> <span class="n">data</span><span class="p">[</span><span class="n">maxSize</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">top1</span><span class="p">,</span> <span class="n">top2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">doubleStack</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>双栈运算，待补充..</p>
 <h3 id="链栈">链栈</h3>
 <h4 id="定义-1">定义</h4>
 <blockquote>
@@ -1036,7 +1063,7 @@
 	
 	
 ></p>
-<p>如果在e)的状态下，要做入队列的操作，<code>SQ.rear</code>将会超出数组下标的范围，也就是新元素没有办法入队列，但是1-4的位置明明是空的，数组的实际空间并没有沾满，这就是<strong>假溢出</strong>现象。</p>
+<p>如果在e)的状态下，要做入队列的操作，<code>SQ.rear</code>将会超出数组下标的范围，也就是新元素没有办法入队列，但是1-4的位置明明是空的，数组的实际空间并没有被占满，这就是<strong>假溢出</strong>现象。</p>
 <blockquote>
 <p>另外还有一个问题是，队列空和队列满没有办法区分，就如a)和d)的情况。</p>
 </blockquote>
@@ -1058,7 +1085,7 @@
 	
 ></p>
 <blockquote>
-<p>有点像MySQL redo log的checkpoint和write pos。</p>
+<p>循环队列的环状让我想起了MySQL redo log的checkpoint和write pos。</p>
 </blockquote>
 <h4 id="定义-3">定义</h4>
 <blockquote>
@@ -1233,7 +1260,11 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="链队列">链队列</h3>
+</div><blockquote>
+<p>为什么是<code>CQ-&gt;front + 1</code>？</p>
+<p>上面有提到过，别忘了数组的第0个位置是不使用的，而front默认所指向的位置是0，即front所指向的空间是不存储元素的或者即使有也是已被出队列的元素。</p>
+</blockquote>
+<h3 id="链队列">链队列</h3>
 <p>再重复一遍，链队列是一个带有头结点的单链表组成，队列首部的指针指向头结点，头指针指向首结点，队列尾部的指针指向尾结点，<strong>队列空的时候，队列首部和尾部的指针均指向头结点</strong>。</p>
 <p>链接的实现需要动态申请内存空间，所以不会出现队列满的情况。</p>
 <h4 id="定义-4">定义</h4>
@@ -1467,9 +1498,44 @@ $$loc[i, j] = loc[0, 0] + (n * i + j) * k$$
 <p>待补充&hellip;</p>
 <h4 id="特殊矩阵">特殊矩阵</h4>
 <h5 id="对称矩阵">对称矩阵</h5>
+<p>如果一个n阶的方阵满足以下条件，则是一个对称矩阵：</p>
+<ol>
+<li>$a_{ij} = a_{ji}$</li>
+<li>$0 \leq i, j \leq n - 1$</li>
+</ol>
 <h5 id="三角矩阵">三角矩阵</h5>
 <h4 id="稀疏矩阵">稀疏矩阵</h4>
-<h2 id="综合运用">综合运用</h2>
+<h3 id="应用-2">应用</h3>
+<p>1、对一个$N{\times}N$阶的矩阵A进行逆置，请设计出算法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">MM</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">n</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">temp</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">			<span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">			<span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="综合运用">综合运用</h2>
 <p>待补充&hellip;</p>
 
 </section>
@@ -1541,6 +1607,45 @@ $$loc[i, j] = loc[0, 0] + (n * i + j) * k$$
             
                 
 <article class="">
+    <a href="/p/book/080901/02142/chapter7/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">第七章 排序 - 《数据结构导论》笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/book/080901/02142/chapter6/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">第六章 查找 - 《数据结构导论》笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/book/080901/02142/chapter5/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">第五章 图 - 《数据结构导论》笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
     <a href="/p/book/080901/02142/chapter4/">
         
         
@@ -1560,19 +1665,6 @@ $$loc[i, j] = loc[0, 0] + (n * i + j) * k$$
 
         <div class="article-details">
             <h2 class="article-title">第二章 线性表 - 《数据结构导论》笔记</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/book/080901/02142/chapter1/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">第一章 概论 - 《数据结构导论》笔记</h2>
         </div>
     </a>
 </article>
