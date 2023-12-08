@@ -23,8 +23,10 @@
 &lt;li&gt;文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考&lt;a class=&#34;link&#34; href=&#34;https://github.com/GHBJayce/ghbjayce.github.io&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;我的项目结构&lt;/a&gt;。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;文字非常多，几乎没有图片，有干货和细节，请耐心阅读。&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;#%e5%9c%a8%e5%8e%9f%e5%9f%ba%e7%a1%80%e4%b8%8a%e6%94%af%e6%8c%81&#34; &gt;我只想看改动小且有效的解决方案&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;文字非常多，图片很少，大部分是干货和细节，请耐心阅读。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;#%e5%9c%a8%e5%8e%9f%e5%9f%ba%e7%a1%80%e4%b8%8a%e6%94%af%e6%8c%81&#34; &gt;太多字啦，让我直接看你的解决方案，它最好是改动小且不影响现有的功能&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
 &lt;p&gt;在此之前使用了一段时间&lt;a class=&#34;link&#34; href=&#34;https://github.com/CaiJimmy/hugo-theme-stack&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;CaiJimmy/hugo-theme-stack&lt;/a&gt;的主题，发现它只支持内链图片生成图像组件，并不支持外链图片，意味着外链图片没有办法在页面内点击图片进行一些交互。&lt;/p&gt;
@@ -481,7 +483,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			{{- $image = . -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		{{- end -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	{{- else -}}
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	  {{- errorf &amp;#34;Unable to get remote resource %q, %s&amp;#34; $Permalink .Position -}}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	  {{- warnf &amp;#34;Unable to get remote resource %q&amp;#34; $Permalink -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	{{- end -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{{- else -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	{{- $image = .Page.Resources.GetMatch (printf &amp;#34;%s&amp;#34; (.Destination | safeURL)) -}}

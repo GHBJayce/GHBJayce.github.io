@@ -2,8 +2,8 @@
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='阅读说明 为了方便文章描述，文中词汇的含义、未提及的场景如下：
-内链图片：和站点同一个域名下的图片。 外链图片：和站点非同一个域名下的图片，通常以http开头的链接。 内联图片：文字和图片处于同一行。 图像组件：将图片处理成在页面中可以进行交互的组件。 图片交互效果：经过图像组件处理以后，在页面进行交互的效果。 文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考我的项目结构。 文字非常多，几乎没有图片，有干货和细节，请耐心阅读。
-我只想看改动小且有效的解决方案。
+内链图片：和站点同一个域名下的图片。 外链图片：和站点非同一个域名下的图片，通常以http开头的链接。 内联图片：文字和图片处于同一行。 图像组件：将图片处理成在页面中可以进行交互的组件。 图片交互效果：经过图像组件处理以后，在页面进行交互的效果。 文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考我的项目结构。 文字非常多，图片很少，大部分是干货和细节，请耐心阅读。
+太多字啦，让我直接看你的解决方案，它最好是改动小且不影响现有的功能。
 背景 在此之前使用了一段时间CaiJimmy/hugo-theme-stack的主题，发现它只支持内链图片生成图像组件，并不支持外链图片，意味着外链图片没有办法在页面内点击图片进行一些交互。
 比如我想放大某张外链图片，我得对着图片右键，然后在新的页面中打开，用浏览器的方式对这张图片进行放大，非常的不方便。
 虽然瑕不遮瑜，但在外链需求特别多，又不想使用内链方式（不想放在项目中增加项目的大小）的情况下还是会很抓狂，所以在早些时候，尝试寻找了一些解决办法，于是找到了这个讨论：引用于 cdn 的图片 没法生成图册吗？Discussion #659 · GitHub。
@@ -19,8 +19,8 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 
 <link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？'>
 <meta property='og:description' content='阅读说明 为了方便文章描述，文中词汇的含义、未提及的场景如下：
-内链图片：和站点同一个域名下的图片。 外链图片：和站点非同一个域名下的图片，通常以http开头的链接。 内联图片：文字和图片处于同一行。 图像组件：将图片处理成在页面中可以进行交互的组件。 图片交互效果：经过图像组件处理以后，在页面进行交互的效果。 文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考我的项目结构。 文字非常多，几乎没有图片，有干货和细节，请耐心阅读。
-我只想看改动小且有效的解决方案。
+内链图片：和站点同一个域名下的图片。 外链图片：和站点非同一个域名下的图片，通常以http开头的链接。 内联图片：文字和图片处于同一行。 图像组件：将图片处理成在页面中可以进行交互的组件。 图片交互效果：经过图像组件处理以后，在页面进行交互的效果。 文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考我的项目结构。 文字非常多，图片很少，大部分是干货和细节，请耐心阅读。
+太多字啦，让我直接看你的解决方案，它最好是改动小且不影响现有的功能。
 背景 在此之前使用了一段时间CaiJimmy/hugo-theme-stack的主题，发现它只支持内链图片生成图像组件，并不支持外链图片，意味着外链图片没有办法在页面内点击图片进行一些交互。
 比如我想放大某张外链图片，我得对着图片右键，然后在新的页面中打开，用浏览器的方式对这张图片进行放大，非常的不方便。
 虽然瑕不遮瑜，但在外链需求特别多，又不想使用内链方式（不想放在项目中增加项目的大小）的情况下还是会很抓狂，所以在早些时候，尝试寻找了一些解决办法，于是找到了这个讨论：引用于 cdn 的图片 没法生成图册吗？Discussion #659 · GitHub。
@@ -35,8 +35,8 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Hugo' /><meta property='article:tag' content='静态站点生成器' /><meta property='article:tag' content='hugo-theme-stack' /><meta property='article:tag' content='TypeScript' /><meta property='article:published_time' content='2023-12-05T11:45:25&#43;08:00'/><meta property='article:modified_time' content='2023-12-05T11:45:25&#43;08:00'/><meta property='og:image' content='https://ghbjayce.github.io/asset/blog/95b65eb883dd0529MjAyMzEyMDUgMTUyMzI1.png' />
 <meta name="twitter:title" content="Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？">
 <meta name="twitter:description" content="阅读说明 为了方便文章描述，文中词汇的含义、未提及的场景如下：
-内链图片：和站点同一个域名下的图片。 外链图片：和站点非同一个域名下的图片，通常以http开头的链接。 内联图片：文字和图片处于同一行。 图像组件：将图片处理成在页面中可以进行交互的组件。 图片交互效果：经过图像组件处理以后，在页面进行交互的效果。 文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考我的项目结构。 文字非常多，几乎没有图片，有干货和细节，请耐心阅读。
-我只想看改动小且有效的解决方案。
+内链图片：和站点同一个域名下的图片。 外链图片：和站点非同一个域名下的图片，通常以http开头的链接。 内联图片：文字和图片处于同一行。 图像组件：将图片处理成在页面中可以进行交互的组件。 图片交互效果：经过图像组件处理以后，在页面进行交互的效果。 文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考我的项目结构。 文字非常多，图片很少，大部分是干货和细节，请耐心阅读。
+太多字啦，让我直接看你的解决方案，它最好是改动小且不影响现有的功能。
 背景 在此之前使用了一段时间CaiJimmy/hugo-theme-stack的主题，发现它只支持内链图片生成图像组件，并不支持外链图片，意味着外链图片没有办法在页面内点击图片进行一些交互。
 比如我想放大某张外链图片，我得对着图片右键，然后在新的页面中打开，用浏览器的方式对这张图片进行放大，非常的不方便。
 虽然瑕不遮瑜，但在外链需求特别多，又不想使用内链方式（不想放在项目中增加项目的大小）的情况下还是会很抓狂，所以在早些时候，尝试寻找了一些解决办法，于是找到了这个讨论：引用于 cdn 的图片 没法生成图册吗？Discussion #659 · GitHub。
@@ -390,8 +390,10 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 <li>文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考<a class="link" href="https://github.com/GHBJayce/ghbjayce.github.io"  target="_blank" rel="noopener"
     >我的项目结构</a>。</li>
 </ul>
-<p>文字非常多，几乎没有图片，有干货和细节，请耐心阅读。</p>
-<p><a class="link" href="#%e5%9c%a8%e5%8e%9f%e5%9f%ba%e7%a1%80%e4%b8%8a%e6%94%af%e6%8c%81" >我只想看改动小且有效的解决方案</a>。</p>
+<p>文字非常多，图片很少，大部分是干货和细节，请耐心阅读。</p>
+<blockquote>
+<p><a class="link" href="#%e5%9c%a8%e5%8e%9f%e5%9f%ba%e7%a1%80%e4%b8%8a%e6%94%af%e6%8c%81" >太多字啦，让我直接看你的解决方案，它最好是改动小且不影响现有的功能</a>。</p>
+</blockquote>
 <h2 id="背景">背景</h2>
 <p>在此之前使用了一段时间<a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack"  target="_blank" rel="noopener"
     >CaiJimmy/hugo-theme-stack</a>的主题，发现它只支持内链图片生成图像组件，并不支持外链图片，意味着外链图片没有办法在页面内点击图片进行一些交互。</p>
@@ -848,7 +850,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 </span></span><span class="line"><span class="cl">			{{- $image = . -}}
 </span></span><span class="line"><span class="cl">		{{- end -}}
 </span></span><span class="line"><span class="cl">	{{- else -}}
-</span></span><span class="line"><span class="cl">	  {{- errorf &#34;Unable to get remote resource %q, %s&#34; $Permalink .Position -}}
+</span></span><span class="line"><span class="cl">	  {{- warnf &#34;Unable to get remote resource %q&#34; $Permalink -}}
 </span></span><span class="line"><span class="cl">	{{- end -}}
 </span></span><span class="line"><span class="cl">{{- else -}}
 </span></span><span class="line"><span class="cl">	{{- $image = .Page.Resources.GetMatch (printf &#34;%s&#34; (.Destination | safeURL)) -}}
