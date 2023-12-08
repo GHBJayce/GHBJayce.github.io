@@ -191,7 +191,11 @@ params:
         cover:
             enabled: true
         content:
-            enabled: true
+            enabled: false
+    render:
+        image:
+            extranelLink:
+                enabled: true
 
 ### Custom menu
 ### See https://docs.stack.jimmycai.com/configuration/custom-menu.html

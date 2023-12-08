@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='阅读说明 为了方便文章描述，文中词汇的含义、未提及的场景如下：
+内链图片：和站点同一个域名下的图片。 外链图片：和站点非同一个域名下的图片，通常以http开头的链接。 内联图片：文字和图片处于同一行。 图像组件：将图片处理成在页面中可以进行交互的组件。 图片交互效果：经过图像组件处理以后，在页面进行交互的效果。 文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考我的项目结构。 文字非常多，几乎没有图片，有干货和细节，请耐心阅读。
+我只想看改动小且有效的解决方案。
+背景 在此之前使用了一段时间CaiJimmy/hugo-theme-stack的主题，发现它只支持内链图片生成图像组件，并不支持外链图片，意味着外链图片没有办法在页面内点击图片进行一些交互。
+比如我想放大某张外链图片，我得对着图片右键，然后在新的页面中打开，用浏览器的方式对这张图片进行放大，非常的不方便。
+虽然瑕不遮瑜，但在外链需求特别多，又不想使用内链方式（不想放在项目中增加项目的大小）的情况下还是会很抓狂，所以在早些时候，尝试寻找了一些解决办法，于是找到了这个讨论：引用于 cdn 的图片 没法生成图册吗？Discussion #659 · GitHub。
+看来不止我一个人有着同样的需求。
+不巧的是，作者没有直接给出具体的解决办法，只是提供了解决思路，对hugo模板语法、工作机制不熟的我看的是一头雾水，提问的老哥看起来好像是解决了问题，怎么不分享一下啊，好东西不能藏着啊喂。
+于是打算白嫖的发问一下，白嫖失败。
+那么就跟着作者的提示，着手捣鼓一下：
+layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的钩子之一。 resource.GetRemote相关语法文档。 初步解决方案 就如我在讨论中提到的，我在layouts/_default/_markup/render-image.html钩子模板做了以下的修改：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 {{- $Permalink := .Destination | relURL | safeURL -}} {{- $image := &amp;#34;&amp;#34; -}} {{- if hasPrefix $Permalink &amp;#34;http&amp;#34; -}} {{- $image = resources.GetRemote $Permalink -}} {{- else -}} {{- $image = .'>
+<title>Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？</title>
+
+<link rel='canonical' href='https://ghbjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？'>
+<meta property='og:description' content='阅读说明 为了方便文章描述，文中词汇的含义、未提及的场景如下：
+内链图片：和站点同一个域名下的图片。 外链图片：和站点非同一个域名下的图片，通常以http开头的链接。 内联图片：文字和图片处于同一行。 图像组件：将图片处理成在页面中可以进行交互的组件。 图片交互效果：经过图像组件处理以后，在页面进行交互的效果。 文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考我的项目结构。 文字非常多，几乎没有图片，有干货和细节，请耐心阅读。
+我只想看改动小且有效的解决方案。
+背景 在此之前使用了一段时间CaiJimmy/hugo-theme-stack的主题，发现它只支持内链图片生成图像组件，并不支持外链图片，意味着外链图片没有办法在页面内点击图片进行一些交互。
+比如我想放大某张外链图片，我得对着图片右键，然后在新的页面中打开，用浏览器的方式对这张图片进行放大，非常的不方便。
+虽然瑕不遮瑜，但在外链需求特别多，又不想使用内链方式（不想放在项目中增加项目的大小）的情况下还是会很抓狂，所以在早些时候，尝试寻找了一些解决办法，于是找到了这个讨论：引用于 cdn 的图片 没法生成图册吗？Discussion #659 · GitHub。
+看来不止我一个人有着同样的需求。
+不巧的是，作者没有直接给出具体的解决办法，只是提供了解决思路，对hugo模板语法、工作机制不熟的我看的是一头雾水，提问的老哥看起来好像是解决了问题，怎么不分享一下啊，好东西不能藏着啊喂。
+于是打算白嫖的发问一下，白嫖失败。
+那么就跟着作者的提示，着手捣鼓一下：
+layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的钩子之一。 resource.GetRemote相关语法文档。 初步解决方案 就如我在讨论中提到的，我在layouts/_default/_markup/render-image.html钩子模板做了以下的修改：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 {{- $Permalink := .Destination | relURL | safeURL -}} {{- $image := &amp;#34;&amp;#34; -}} {{- if hasPrefix $Permalink &amp;#34;http&amp;#34; -}} {{- $image = resources.GetRemote $Permalink -}} {{- else -}} {{- $image = .'>
+<meta property='og:url' content='https://ghbjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/'>
+<meta property='og:site_name' content='GHBJayce'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Hugo' /><meta property='article:tag' content='静态站点生成器' /><meta property='article:tag' content='hugo-theme-stack' /><meta property='article:tag' content='TypeScript' /><meta property='article:published_time' content='2023-12-05T11:45:25&#43;08:00'/><meta property='article:modified_time' content='2023-12-05T11:45:25&#43;08:00'/><meta property='og:image' content='https://ghbjayce.github.io/asset/blog/95b65eb883dd0529MjAyMzEyMDUgMTUyMzI1.png' />
+<meta name="twitter:title" content="Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？">
+<meta name="twitter:description" content="阅读说明 为了方便文章描述，文中词汇的含义、未提及的场景如下：
+内链图片：和站点同一个域名下的图片。 外链图片：和站点非同一个域名下的图片，通常以http开头的链接。 内联图片：文字和图片处于同一行。 图像组件：将图片处理成在页面中可以进行交互的组件。 图片交互效果：经过图像组件处理以后，在页面进行交互的效果。 文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考我的项目结构。 文字非常多，几乎没有图片，有干货和细节，请耐心阅读。
+我只想看改动小且有效的解决方案。
+背景 在此之前使用了一段时间CaiJimmy/hugo-theme-stack的主题，发现它只支持内链图片生成图像组件，并不支持外链图片，意味着外链图片没有办法在页面内点击图片进行一些交互。
+比如我想放大某张外链图片，我得对着图片右键，然后在新的页面中打开，用浏览器的方式对这张图片进行放大，非常的不方便。
+虽然瑕不遮瑜，但在外链需求特别多，又不想使用内链方式（不想放在项目中增加项目的大小）的情况下还是会很抓狂，所以在早些时候，尝试寻找了一些解决办法，于是找到了这个讨论：引用于 cdn 的图片 没法生成图册吗？Discussion #659 · GitHub。
+看来不止我一个人有着同样的需求。
+不巧的是，作者没有直接给出具体的解决办法，只是提供了解决思路，对hugo模板语法、工作机制不熟的我看的是一头雾水，提问的老哥看起来好像是解决了问题，怎么不分享一下啊，好东西不能藏着啊喂。
+于是打算白嫖的发问一下，白嫖失败。
+那么就跟着作者的提示，着手捣鼓一下：
+layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的钩子之一。 resource.GetRemote相关语法文档。 初步解决方案 就如我在讨论中提到的，我在layouts/_default/_markup/render-image.html钩子模板做了以下的修改：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 {{- $Permalink := .Destination | relURL | safeURL -}} {{- $image := &amp;#34;&amp;#34; -}} {{- if hasPrefix $Permalink &amp;#34;http&amp;#34; -}} {{- $image = resources.GetRemote $Permalink -}} {{- else -}} {{- $image = ."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ghbjayce.github.io/asset/blog/95b65eb883dd0529MjAyMzEyMDUgMTUyMzI1.png' />
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/17669653" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">😆</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GHBJayce</a></h1>
+            <h2 class="site-description">十年饮冰，难凉热血。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GHBJayce'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archive/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#阅读说明">阅读说明</a></li>
+    <li><a href="#背景">背景</a>
+      <ol>
+        <li><a href="#初步解决方案">初步解决方案</a></li>
+        <li><a href="#再次捣鼓">再次捣鼓</a></li>
+      </ol>
+    </li>
+    <li><a href="#研究">研究</a>
+      <ol>
+        <li><a href="#环境说明">环境说明</a></li>
+        <li><a href="#分析">分析</a></li>
+        <li><a href="#梳理过程">梳理过程</a>
+          <ol>
+            <li><a href="#img-处理成图像组件">img 处理成图像组件</a></li>
+            <li><a href="#处理时机">处理时机</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#解决">解决</a>
+      <ol>
+        <li><a href="#分析-render-imagehtml">分析 render-image.html</a>
+          <ol>
+            <li><a href="#源文件">源文件</a></li>
+            <li><a href="#语法">语法</a></li>
+            <li><a href="#作用">作用</a></li>
+          </ol>
+        </li>
+        <li><a href="#解决方案">解决方案</a>
+          <ol>
+            <li><a href="#在原基础上支持">在原基础上支持</a></li>
+            <li><a href="#更换组件">更换组件</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#致谢">致谢</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/">
+                
+                    <img src="https://ghbjayce.github.io/asset/blog/95b65eb883dd0529MjAyMzEyMDUgMTUyMzI1.png" loading="lazy" alt="Featured image of post Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/" >
+                源码阅读
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/">Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-12-05</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 6 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="阅读说明">阅读说明</h2>
+<p>为了方便文章描述，文中词汇的含义、未提及的场景如下：</p>
+<ul>
+<li>内链图片：和站点同一个域名下的图片。</li>
+<li>外链图片：和站点非同一个域名下的图片，通常以http开头的链接。</li>
+<li>内联图片：文字和图片处于同一行。</li>
+<li>图像组件：将图片处理成在页面中可以进行交互的组件。</li>
+<li>图片交互效果：经过图像组件处理以后，在页面进行交互的效果。</li>
+<li>文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考<a class="link" href="https://github.com/GHBJayce/ghbjayce.github.io"  target="_blank" rel="noopener"
+    >我的项目结构</a>。</li>
+</ul>
+<p>文字非常多，几乎没有图片，有干货和细节，请耐心阅读。</p>
+<p><a class="link" href="#%e5%9c%a8%e5%8e%9f%e5%9f%ba%e7%a1%80%e4%b8%8a%e6%94%af%e6%8c%81" >我只想看改动小且有效的解决方案</a>。</p>
+<h2 id="背景">背景</h2>
+<p>在此之前使用了一段时间<a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack"  target="_blank" rel="noopener"
+    >CaiJimmy/hugo-theme-stack</a>的主题，发现它只支持内链图片生成图像组件，并不支持外链图片，意味着外链图片没有办法在页面内点击图片进行一些交互。</p>
+<p>比如我想放大某张外链图片，我得对着图片右键，然后在新的页面中打开，用浏览器的方式对这张图片进行放大，非常的不方便。</p>
+<p>虽然瑕不遮瑜，但在外链需求特别多，又不想使用内链方式（不想放在项目中增加项目的大小）的情况下还是会很抓狂，所以在早些时候，尝试寻找了一些解决办法，于是找到了这个讨论：<a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack/discussions/659"  target="_blank" rel="noopener"
+    >引用于 cdn 的图片 没法生成图册吗？Discussion #659 · GitHub</a>。</p>
+<p>看来不止我一个人有着同样的需求。</p>
+<p>不巧的是，作者没有直接给出具体的解决办法，只是提供了解决思路，对hugo模板语法、工作机制不熟的我看的是一头雾水，提问的老哥看起来好像是解决了问题，怎么不分享一下啊，好东西不能藏着啊喂。</p>
+<p>于是打算白嫖的发问一下，白嫖失败。</p>
+<p>那么就跟着作者的提示，着手捣鼓一下：</p>
+<ul>
+<li><code>layouts/_default/_markup/render-image.html</code>模板文件，<a class="link" href="https://gohugo.io/templates/render-hooks/"  target="_blank" rel="noopener"
+    >hugo markdown渲染的钩子之一</a>。</li>
+<li><a class="link" href="https://gohugo.io/hugo-pipes/introduction/#get-resource-with-resourcesget-and-resourcesgetremote"  target="_blank" rel="noopener"
+    >resource.GetRemote相关语法文档</a>。</li>
+</ul>
+<h3 id="初步解决方案">初步解决方案</h3>
+<p>就如我在讨论中提到的，我在<code>layouts/_default/_markup/render-image.html</code>钩子模板做了以下的修改：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- $Permalink := .Destination | relURL | safeURL -}}
+</span></span><span class="line"><span class="cl">{{- $image := &#34;&#34; -}}
+</span></span><span class="line"><span class="cl">{{- if hasPrefix $Permalink &#34;http&#34; -}}
+</span></span><span class="line"><span class="cl">	{{- $image = resources.GetRemote $Permalink -}}
+</span></span><span class="line"><span class="cl">{{- else -}}
+</span></span><span class="line"><span class="cl">	{{- $image = .Page.Resources.GetMatch (printf &#34;%s&#34; (.Destination | safeURL)) -}}
+</span></span><span class="line"><span class="cl">{{- end -}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{{- $alt := .PlainText | safeHTML -}}
+</span></span><span class="line"><span class="cl">{{- $Width := 0 -}}
+</span></span><span class="line"><span class="cl">{{- $Height := 0 -}}
+</span></span><span class="line"><span class="cl">{{- $Srcset := &#34;&#34; -}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用一段时间之后发现了以下的问题：</p>
+<ul>
+<li>Q1：外链的图片在启动服务(<code>hugo server</code>)的时候会将资源下载到<code>resources/_gen/images</code>目录下，然后观察渲染以后的img，链接的正是该目录下的图片，外链了个寂寞，还是会增加项目的大小 :(。</li>
+<li>Q2：如果遇到图片下载超时，会出现服务启动不了的问题。</li>
+<li>Q3：如果外链图片比较多，可能会导致启动服务缓慢。</li>
+</ul>
+<blockquote>
+<p>这些问题的描述会有不恰当的地方，下面会有<a class="link" href="#%e4%bd%9c%e7%94%a8" >说明</a>。</p>
+</blockquote>
+<p>因为影响还是比较大，还不如不改呢，所以我去除了这些改动，暂时放下了这个糟心的问题。</p>
+<h3 id="再次捣鼓">再次捣鼓</h3>
+<p>正好最近有空，于是打算对hugo-theme-stack图库的实现研究一番，好好解决这个糟心的问题。</p>
+<p>并将研究过程、当中发现到的一些细节记录下来，写下这篇文章。</p>
+<h2 id="研究">研究</h2>
+<h3 id="环境说明">环境说明</h3>
+<ul>
+<li>hugo v0.113.0</li>
+<li>hugo-theme-stack v3.21.0</li>
+<li>图像库组件PhotoSwipe v4.1.3</li>
+</ul>
+<h3 id="分析">分析</h3>
+<p>从头开始，要解决图像库支持外链图片，那么就要知道：</p>
+<ol>
+<li>hugo是怎么解析markdown中的image语法的？</li>
+<li>用的是哪个图像组件？怎么做到图片处理成组件的？在什么时候做了介入处理？</li>
+</ol>
+<p>在上文中我们知道，<a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack"  target="_blank" rel="noopener"
+    >CaiJimmy/hugo-theme-stack</a>主题中的<code>layouts/_default/_markup/render-image.html</code>对markdown渲染的img标签做了介入处理。</p>
+<p>为了确定使用的是哪个图像组件，看它渲染以后的img标签是怎样的，那就要做一个内链图片来观察下。</p>
+<h3 id="梳理过程">梳理过程</h3>
+<h4 id="img-处理成图像组件">img 处理成图像组件</h4>
+<p>通过<a class="link" href="https://stack.jimmycai.com/writing/markdown"  target="_blank" rel="noopener"
+    >Writing | Stack</a>和<a class="link" href="https://gohugo.io/content-management/page-bundles/"  target="_blank" rel="noopener"
+    >Page bundles | Hugo</a>得知内链图片和文章要放在同级目录。</p>
+<p>目录结构如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">content/
+</span></span><span class="line"><span class="cl">├── posts
+</span></span><span class="line"><span class="cl">│   ├── my-post
+</span></span><span class="line"><span class="cl">│   │   ├── content1.md
+</span></span><span class="line"><span class="cl">│   │   ├── image1.jpg
+</span></span><span class="line"><span class="cl">│   │   ├── image2.jpg
+</span></span><span class="line"><span class="cl">│   │   └── index.md
+</span></span><span class="line"><span class="cl">|   └── _index.md
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>index.md内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">title: Test
+</span></span><span class="line"><span class="cl">description: something
+</span></span><span class="line"><span class="cl">date: 2023-12-07
+</span></span><span class="line"><span class="cl">slug: test
+</span></span><span class="line"><span class="cl">image: image2.jpg
+</span></span><span class="line"><span class="cl">---  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">![<span class="nt">img1</span>](<span class="na">image1.jpg</span>) ![<span class="nt">img2</span>](<span class="na">image2.jpg</span>)
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">External images:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">![<span class="nt">img3</span>](<span class="na">https://cn.bing.com/th?id=OHR.CheetahDay_EN-CN5641048727_1920x1080.webp&amp;qlt=50</span>) ![<span class="nt">img4</span>](<span class="na">https://cn.bing.com/th?id=OHR.ManateeMama_EN-US7376333243_UHD.jpg&amp;pid=hp&amp;w=1920&amp;h=1080&amp;rs=1&amp;c=4</span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>你会发现content1.md在页面上看不到生成的这篇文章。</p>
+<ol>
+<li>当你将my-post里面的index.md改成content2.md的时候，content1.md和content2.md生成的文章都能够在页面中看到了，为什么？</li>
+<li>而如果在my-post里新建一个_index.md，content1.md和index.md生成的文章也可以在页面中看到了，为什么？</li>
+<li>然后1和2中content2.md和index.md中的内链图片都失效了，为什么？</li>
+</ol>
+<p>这不是本文的重点，避免在这上面浪费时间，<strong>挖个坑，后续会写一篇文章专门介绍它</strong>。</p>
+</blockquote>
+<p>打开浏览器，我们看到内链图片和外链图片分别解析如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;gallery&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">figure</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;gallery-image&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;flex-grow: 66; flex-basis: 160px;&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://xxxx/p/test/image1.jpg&#34;</span> <span class="na">target</span><span class="o">=</span><span class="s">&#34;_blank&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;/p/test/image1.jpg&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;667&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;1000&#34;</span> <span class="na">loading</span><span class="o">=</span><span class="s">&#34;lazy&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">alt</span><span class="o">=</span><span class="s">&#34;img1&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;gallery-image&#34;</span> <span class="na">data-flex-grow</span><span class="o">=</span><span class="s">&#34;66&#34;</span> <span class="na">data-flex-basis</span><span class="o">=</span><span class="s">&#34;160px&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">figcaption</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      img1
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">figure</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;gallery-image&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;flex-grow: 149; flex-basis: 359px;&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://xxxx/p/test/image2.jpg&#34;</span> <span class="na">target</span><span class="o">=</span><span class="s">&#34;_blank&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;/p/test/image2.jpg&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;1000&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;667&#34;</span> <span class="na">loading</span><span class="o">=</span><span class="s">&#34;lazy&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">alt</span><span class="o">=</span><span class="s">&#34;img2&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;gallery-image&#34;</span> <span class="na">data-flex-grow</span><span class="o">=</span><span class="s">&#34;149&#34;</span> <span class="na">data-flex-basis</span><span class="o">=</span><span class="s">&#34;359px&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">figcaption</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      img2
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cn.bing.com/th?id=OHR.CheetahDay_EN-CN5641048727_1920x1080.webp&amp;amp;qlt=50&#34;</span> <span class="na">loading</span><span class="o">=</span><span class="s">&#34;lazy&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;img3&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cn.bing.com/th?id=OHR.ManateeMama_EN-US7376333243_UHD.jpg&amp;amp;pid=hp&amp;amp;w=1920&amp;amp;h=1080&amp;amp;rs=1&amp;amp;c=4&#34;</span> <span class="na">loading</span><span class="o">=</span><span class="s">&#34;lazy&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;img4&#34;</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过在项目中搜索<code>gallery-image</code>，找到了<code>themes/hugo-theme-stack/assets/ts/gallery.ts</code>，一个TypeScript文件，从里面的代码看出使用的是<a class="link" href="https://github.com/dimsemenov/PhotoSwipe"  target="_blank" rel="noopener"
+    >PhotoSwipe</a>图像组件。</p>
+<p>接着就是<code>createGallery</code>函数，看了下里面的代码的作用，猜测90%的可能性就是<strong>这里将img图片处理成图像组件的，也就是上面的HTML结构</strong>。</p>
+<h4 id="处理时机">处理时机</h4>
+<p>继续，是<code>constructor(...)</code>里面调用了这个函数，PHPer表示很熟悉，是一个构造函数。</p>
+<p>继续往上找，是<code>themes/hugo-theme-stack/assets/ts/main.ts</code>的<code>init()</code>方法中调用了上面的构造函数，在底部看到了<code>window.addEventListener('load')</code>调用了<code>init()</code>，这就是<strong>将图片处理成图像组件的时机</strong>。</p>
+<p>紧接着找到了<code>themes/hugo-theme-stack/layouts/partials/footer/components/script.html</code>，这里引入了<code>main.ts</code>，结合了页面渲染以后的结构进行比对，实锤了。</p>
+<blockquote>
+<p>partials是hugo的模板结构目录，<a class="link" href="https://gohugo.io/templates/partials/"  target="_blank" rel="noopener"
+    >相关文档</a>。</p>
+</blockquote>
+<p>至此，猜测得到了证实，从markdown到img再到PhotoSwipe图像组件的实现过程，梳理完毕。</p>
+<h2 id="解决">解决</h2>
+<h3 id="分析-render-imagehtml">分析 render-image.html</h3>
+<ol>
+<li>模板语法、变量和函数代表的含义？</li>
+<li>做了哪些事情？</li>
+</ol>
+<h4 id="源文件">源文件</h4>
+<p>以下是v3.21.0，<code>layouts/_default/_markup/render-image.html</code>的源码内容，贴上来方便查看。</p>
+<p><a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack/blob/bdb9e7fc007a665fadb28055bee6e387cd68719b/layouts/_default/_markup/render-image.html"  target="_blank" rel="noopener"
+    >源文件仓库在这</a>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- $image := .Page.Resources.GetMatch (printf &#34;%s&#34; (.Destination | safeURL)) -}}
+</span></span><span class="line"><span class="cl">{{- $Permalink := .Destination | relURL | safeURL -}}
+</span></span><span class="line"><span class="cl">{{- $alt := .PlainText | safeHTML -}}
+</span></span><span class="line"><span class="cl">{{- $Width := 0 -}}
+</span></span><span class="line"><span class="cl">{{- $Height := 0 -}}
+</span></span><span class="line"><span class="cl">{{- $Srcset := &#34;&#34; -}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{{/* SVG and external images won&#39;t work with gallery layout, because their width and height attributes are unknown */}}
+</span></span><span class="line"><span class="cl">{{- $galleryImage := false -}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{{- if $image -}}
+</span></span><span class="line"><span class="cl">	{{- $notSVG := ne (path.Ext .Destination) &#34;.svg&#34; -}}
+</span></span><span class="line"><span class="cl">	{{- $Permalink = $image.RelPermalink -}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	{{- if $notSVG -}}
+</span></span><span class="line"><span class="cl">		{{- $Width = $image.Width -}}
+</span></span><span class="line"><span class="cl">		{{- $Height = $image.Height -}}
+</span></span><span class="line"><span class="cl">		{{- $galleryImage = true -}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		{{- if (default true .Page.Site.Params.imageProcessing.content.enabled) -}}
+</span></span><span class="line"><span class="cl">			{{- $small := $image.Resize `480x` -}}
+</span></span><span class="line"><span class="cl">			{{- $big := $image.Resize `1024x` -}}
+</span></span><span class="line"><span class="cl">			{{- $Srcset = printf `%s 480w, %s 1024w` $small.RelPermalink $big.RelPermalink -}}
+</span></span><span class="line"><span class="cl">		{{- end -}}
+</span></span><span class="line"><span class="cl">	{{- end -}}
+</span></span><span class="line"><span class="cl">{{- end -}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;{{ $Permalink }}&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">{{</span> <span class="na">with</span> <span class="err">$</span><span class="na">Width</span> <span class="err">}}</span><span class="na">width</span><span class="o">=</span><span class="s">&#34;{{ . }}&#34;</span><span class="err">{{</span> <span class="na">end</span> <span class="err">}}</span>
+</span></span><span class="line"><span class="cl">	<span class="err">{{</span> <span class="na">with</span> <span class="err">$</span><span class="na">Height</span> <span class="err">}}</span><span class="na">height</span><span class="o">=</span><span class="s">&#34;{{ . }}&#34;</span><span class="err">{{</span> <span class="na">end</span> <span class="err">}}</span>
+</span></span><span class="line"><span class="cl">	<span class="err">{{</span> <span class="na">with</span> <span class="err">$</span><span class="na">Srcset</span> <span class="err">}}</span><span class="na">srcset</span><span class="o">=</span><span class="s">&#34;{{ . }}&#34;</span><span class="err">{{</span> <span class="na">end</span> <span class="err">}}</span>
+</span></span><span class="line"><span class="cl">	<span class="na">loading</span><span class="o">=</span><span class="s">&#34;lazy&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">{{</span> <span class="na">with</span> <span class="err">$</span><span class="na">alt</span> <span class="err">}}</span>
+</span></span><span class="line"><span class="cl">		<span class="na">alt</span><span class="o">=</span><span class="s">&#34;{{ . }}&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">{{</span> <span class="na">end</span> <span class="err">}}</span>
+</span></span><span class="line"><span class="cl">	<span class="err">{{</span> <span class="na">if</span> <span class="err">$</span><span class="na">galleryImage</span> <span class="err">}}</span>
+</span></span><span class="line"><span class="cl">		<span class="na">class</span><span class="o">=</span><span class="s">&#34;gallery-image&#34;</span> 
+</span></span><span class="line"><span class="cl">		<span class="na">data-flex-grow</span><span class="o">=</span><span class="s">&#34;{{ div (mul $image.Width 100) $image.Height }}&#34;</span>
+</span></span><span class="line"><span class="cl">		<span class="na">data-flex-basis</span><span class="o">=</span><span class="s">&#34;{{ div (mul $image.Width 240) $image.Height }}px&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">{{</span> <span class="na">end</span> <span class="err">}}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="语法">语法</h4>
+<ol>
+<li><code>{{- -}}</code>和<code>{{ }}</code>的写法有什么不同？
+<ul>
+<li>以if为例
+<ul>
+<li><code>{{- if ... -}}</code>：在该语法中，横杠 <code>-</code> 的作用是去除 <code>if</code> 语句前后的空白字符（包括换行符、空格等），以保持输出结果更加紧凑。</li>
+<li><code>{{ if ... }}</code>：在标准的 <code>if</code> 语句语法中，并没有 <code>-</code> 符号。这意味着在渲染过程中，会保留 <code>if</code> 语句前后的空白字符。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>.Page.Resources.GetMatch</code>有什么用？
+<ul>
+<li><a class="link" href="https://gohugo.io/methods/page/resources/"  target="_blank" rel="noopener"
+    >.Page.Resources</a> 是返回页面资源集合。</li>
+<li><a class="link" href="https://gohugo.io/functions/resources/getmatch/"  target="_blank" rel="noopener"
+    >resource.GetMatch</a> 简单点说就是寻找某个匹配规则的资源文件。</li>
+</ul>
+</li>
+<li><a class="link" href="https://gohugo.io/templates/render-hooks/#image-markdown-example"  target="_blank" rel="noopener"
+    >.Destination</a> 获取<code>[](xxx)</code>中的xxx链接。</li>
+<li><code>|</code> 管道操作符。</li>
+<li><a class="link" href="https://gohugo.io/functions/safe/url/"  target="_blank" rel="noopener"
+    >safeURL</a> 将字符串处理成安全的URL字符串。</li>
+<li><a class="link" href="https://gohugo.io/functions/urls/relurl/"  target="_blank" rel="noopener"
+    >relURL</a> 返回相对URL，例如<code>image1.jpg</code>得到<code>/p/test/image1.jpg</code>。</li>
+<li><a class="link" href="https://gohugo.io/templates/render-hooks/#context-passed-to-render-link-and-render-image"  target="_blank" rel="noopener"
+    >.PlainText</a> 获取<code>[](xxx &quot;text&quot;)</code>中的text。</li>
+<li><a class="link" href="https://gohugo.io/functions/safe/html/"  target="_blank" rel="noopener"
+    >safeHTML</a> 将字符串处理成安全的HTML字符串。</li>
+<li><code>ne</code> 比较两个值是否相等。</li>
+<li><a class="link" href="https://gohugo.io/functions/path/ext/"  target="_blank" rel="noopener"
+    >path.Ext</a> 获取后缀，例如<code>/p/test/image1.jpg</code>得到<code>image1.jpg</code>。</li>
+<li><code>.Page.Site.Params.imageProcessing.content.enabled</code>获取<code>hugo.xxx</code>中的配置项，<a class="link" href="https://gohugo.io/methods/site/params/"  target="_blank" rel="noopener"
+    >.Page.Site.Params</a>。</li>
+<li><a class="link" href="https://gohugo.io/functions/compare/default/"  target="_blank" rel="noopener"
+    >default</a> 第二个参数未设置时，使用第一个参数。</li>
+<li><a class="link" href="https://gohugo.io/functions/go-template/with/"  target="_blank" rel="noopener"
+    >with</a> 表达式为true时进入代码块，可以使用<code>.</code>代替表达式。</li>
+<li><a class="link" href="https://gohugo.io/functions/math/div/"  target="_blank" rel="noopener"
+    >div</a> 将一个数字除以一个或多个数字。</li>
+<li><a class="link" href="https://gohugo.io/functions/math/mul/"  target="_blank" rel="noopener"
+    >mul</a> 将多个数字进行相乘返回积。</li>
+</ol>
+<h4 id="作用">作用</h4>
+<p>结合以上，<code>render-image.html</code>主要做了以下几件事：</p>
+<ul>
+<li>E1：从页面资源集合中找到名称一致的图片。</li>
+<li>E2：如果<code>hugo.yaml</code>文件中<code>imageProcessing.content.enabled</code>的配置开启了，<a class="link" href="https://gohugo.io/methods/resource/resize/"  target="_blank" rel="noopener"
+    >Resize</a>会对这张图片进行裁剪，裁出480宽、1024宽的两张图片并放到了<code>resources/_gen/images/post/your_post_slug_name/</code>目录下。</li>
+<li>E3：<code>$galleryImage</code>是能否生成图像库组件的关键，它为<code>img</code>添加了关键的属性。</li>
+</ul>
+<p>这里需要解释和纠正一下<a class="link" href="#%e5%88%9d%e6%ad%a5%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" >初步解决方案</a>中，我对Q1的描述：</p>
+<ul>
+<li>E2回答了为什么<code>resources/_gen/images/</code>目录下会有图片的原因。</li>
+<li><code>hugo server</code>启动的时候因为<code>resources.GetRemote</code>的关系，它会去访问这张图片，而且在首次访问成功后会对这个图片进行缓存（但至于缓存在哪里，我也想知道，如果你知道的话请告诉我），因为在首次之后再执行<code>hugo server</code>会非常快，得到证实。</li>
+<li>很抱歉我在早期的解决反馈中做了一些过于草率的结论。</li>
+</ul>
+<h3 id="解决方案">解决方案</h3>
+<h4 id="在原基础上支持">在原基础上支持</h4>
+<p>我在源文件的基础上，增加了<code>resources.GetRemote</code>获取外链图片的部分，并且在<code>hugo.yaml</code>中增加了一个<code>params.render.image.extranelLink.enabled</code>开关进行控制，是否启用外链图片的逻辑。</p>
+<p>直接给出我的改动：</p>
+<p>1、<code>layouts/_default/_markup/render-image.html</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- $Permalink := .Destination | relURL | safeURL -}}
+</span></span><span class="line"><span class="cl">{{- $image := &#34;&#34; -}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{{- if and (hasPrefix $Permalink &#34;http&#34;) (default false .Page.Site.Params.render.image.extranelLink.enabled) -}}
+</span></span><span class="line"><span class="cl">	{{- with resources.GetRemote $Permalink -}}
+</span></span><span class="line"><span class="cl">		{{- with .Err -}}
+</span></span><span class="line"><span class="cl">			{{- $warnMsg := printf &#34;%s&#34; $Permalink -}}
+</span></span><span class="line"><span class="cl">			{{- warnf &#34;%s.\nPlease check the link: %s\n&#34; . $warnMsg -}}
+</span></span><span class="line"><span class="cl">		{{- else -}}
+</span></span><span class="line"><span class="cl">			{{- $image = . -}}
+</span></span><span class="line"><span class="cl">		{{- end -}}
+</span></span><span class="line"><span class="cl">	{{- else -}}
+</span></span><span class="line"><span class="cl">	  {{- errorf &#34;Unable to get remote resource %q, %s&#34; $Permalink .Position -}}
+</span></span><span class="line"><span class="cl">	{{- end -}}
+</span></span><span class="line"><span class="cl">{{- else -}}
+</span></span><span class="line"><span class="cl">	{{- $image = .Page.Resources.GetMatch (printf &#34;%s&#34; (.Destination | safeURL)) -}}
+</span></span><span class="line"><span class="cl">	{{- if $image -}}
+</span></span><span class="line"><span class="cl">		{{- $Permalink = $image.RelPermalink -}}
+</span></span><span class="line"><span class="cl">	{{- end -}}
+</span></span><span class="line"><span class="cl">{{- end -}}
+</span></span><span class="line"><span class="cl">{{- $alt := .PlainText | safeHTML -}}
+</span></span><span class="line"><span class="cl">{{- $Width := 0 -}}
+</span></span><span class="line"><span class="cl">{{- $Height := 0 -}}
+</span></span><span class="line"><span class="cl">{{- $Srcset := &#34;&#34; -}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{{/* SVG and external images won&#39;t work with gallery layout, because their width and height attributes are unknown */}}
+</span></span><span class="line"><span class="cl">{{- $galleryImage := false -}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{{- if $image -}}
+</span></span><span class="line"><span class="cl">	{{- $notSVG := ne (path.Ext .Destination) &#34;.svg&#34; -}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	{{- if $notSVG -}}
+</span></span><span class="line"><span class="cl">		{{- $Width = $image.Width -}}
+</span></span><span class="line"><span class="cl">		{{- $Height = $image.Height -}}
+</span></span><span class="line"><span class="cl">		{{- $galleryImage = true -}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		{{- if (default true .Page.Site.Params.imageProcessing.content.enabled) -}}
+</span></span><span class="line"><span class="cl">			{{- $small := $image.Resize `480x` -}}
+</span></span><span class="line"><span class="cl">			{{- $big := $image.Resize `1024x` -}}
+</span></span><span class="line"><span class="cl">			{{- $Srcset = printf `%s 480w, %s 1024w` $small.RelPermalink $big.RelPermalink -}}
+</span></span><span class="line"><span class="cl">		{{- end -}}
+</span></span><span class="line"><span class="cl">	{{- end -}}
+</span></span><span class="line"><span class="cl">{{- end -}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;{{ $Permalink }}&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">{{</span> <span class="na">with</span> <span class="err">$</span><span class="na">Width</span> <span class="err">}}</span><span class="na">width</span><span class="o">=</span><span class="s">&#34;{{ . }}&#34;</span><span class="err">{{</span> <span class="na">end</span> <span class="err">}}</span>
+</span></span><span class="line"><span class="cl">	<span class="err">{{</span> <span class="na">with</span> <span class="err">$</span><span class="na">Height</span> <span class="err">}}</span><span class="na">height</span><span class="o">=</span><span class="s">&#34;{{ . }}&#34;</span><span class="err">{{</span> <span class="na">end</span> <span class="err">}}</span>
+</span></span><span class="line"><span class="cl">	<span class="err">{{</span> <span class="na">with</span> <span class="err">$</span><span class="na">Srcset</span> <span class="err">}}</span><span class="na">srcset</span><span class="o">=</span><span class="s">&#34;{{ . }}&#34;</span><span class="err">{{</span> <span class="na">end</span> <span class="err">}}</span>
+</span></span><span class="line"><span class="cl">	<span class="na">loading</span><span class="o">=</span><span class="s">&#34;lazy&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">{{</span> <span class="na">with</span> <span class="err">$</span><span class="na">alt</span> <span class="err">}}</span>
+</span></span><span class="line"><span class="cl">		<span class="na">alt</span><span class="o">=</span><span class="s">&#34;{{ . }}&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">{{</span> <span class="na">end</span> <span class="err">}}</span>
+</span></span><span class="line"><span class="cl">	<span class="err">{{</span> <span class="na">if</span> <span class="err">$</span><span class="na">galleryImage</span> <span class="err">}}</span>
+</span></span><span class="line"><span class="cl">		<span class="na">class</span><span class="o">=</span><span class="s">&#34;gallery-image&#34;</span> 
+</span></span><span class="line"><span class="cl">		<span class="na">data-flex-grow</span><span class="o">=</span><span class="s">&#34;{{ div (mul $image.Width 100) $image.Height }}&#34;</span>
+</span></span><span class="line"><span class="cl">		<span class="na">data-flex-basis</span><span class="o">=</span><span class="s">&#34;{{ div (mul $image.Width 240) $image.Height }}px&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">{{</span> <span class="na">end</span> <span class="err">}}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2、<code>hugo.yaml</code> 以下只显示改动的地方</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nt">imageProcessing</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">content</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nt">render</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">image</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nt">extranelLink</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="效果">效果</h5>
+<p>经过我几天简单测试和使用下来，在文章内使用内链图片和外链图片，均能够生成图像库组件的交互效果。</p>
+<p>来看外链图片效果：</p>
+<p><img src="/asset/blog/593a79ef8bb8fcfeMjAyMzEyMDggMTIyMjE3.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img1"
+	
+	
+> <img src="/asset/blog/bdebad2e7a5ec61eMjAyMzEyMDggMTIyMjM2.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img2"
+	
+	
+> <img src="/asset/blog/7db5aca65803cb87MjAyMzEyMDggMTIyMjU0.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img3"
+	
+	
+></p>
+<h5 id="发现的问题">发现的问题</h5>
+<p>1、问题NQ1：</p>
+<p>如果你发现图片并没有生成组件，可以检查下markdown语法里图片是不是完全独占一行的，如果不是，把它改成独占一行再去页面查看，出来了对不对。</p>
+<p>这是因为<code>themes/hugo-theme-stack/assets/ts/gallery.ts</code>中<code>createGallery</code>函数里有这么一段代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">isNewLineImage</span> <span class="o">=</span> <span class="nx">paragraph</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s1">&#39;no-text&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isNewLineImage</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结合注释和它解析之后的HTML结构得知，它不支持内链图片生成图像组件（无论是内链图片还是外链图片），因为这会影响到内联图片的效果。</p>
+<p>这个问题在我改动之前就已经存在了，毕竟解析之后的结构和内联图片效果肯定是冲突的，很遗憾内联图片不支持图像组件的交互效果。</p>
+<hr>
+<p>2、问题NQ2：</p>
+<p>如果外链图片比较多的情况下，<code>hugo server</code>启动的时候确实会有时间性能的损耗，毕竟它要对每一张图片都进行访问。</p>
+<p><strong>如果你的外链图片访问足够快的话，不存在任何问题。</strong></p>
+<p>如果你像我一样外链图片访问可能会存在缓慢的情况下，那么在启动的时候可能会遇到超时的问题，导致启动失败，错误内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ERROR 2023/12/05 21:17:31 render of <span class="s2">&#34;page&#34;</span> failed: <span class="s2">&#34;/project/themes/hugo-theme-stack/layouts/_default/baseof.html:4:12&#34;</span>: execute of template failed: template: _default/single.html:4:12: executing <span class="s2">&#34;_default/single.html&#34;</span> at &lt;partial <span class="s2">&#34;head/head.html&#34;</span> .&gt;: error calling partial: partial <span class="s2">&#34;head/head.html&#34;</span> timed out after 30s. This is most likely due to infinite recursion. If this is just a slow template, you can try to increase the <span class="s1">&#39;timeout&#39;</span> config setting.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有三种解决办法：</p>
+<ol>
+<li>解决掉外链图片访问慢的问题。</li>
+<li>在平常写文章的时候，把<code>params.render.image.extranelLink.enabled</code>关闭，没错外链图片没有交互效果了，但你只是想写文章而已，写完以后可以再打开。</li>
+<li>不解决，它只会影响到启动的时候而已，因为访问图片的目的只是拿到图片的宽高并且加到img属性中，你大可以挑一个网络顺畅的时刻去做这件事，而且在此之后再启动时它会使用缓存，影响很小，且不会对构建以后有影响，顶多没有图片交互效果而已。</li>
+</ol>
+<hr>
+<p>总结一下：</p>
+<ul>
+<li>NQ1：内联图片不支持图片交互效果，这在我改动之前就已经存在的问题。</li>
+<li>NQ2：<code>hugo server</code>启动时会有影响，但外链图片访问足够快的情况下，不成问题。
+<ul>
+<li>平时写文章不用时可以关闭，需要用时再打开。</li>
+<li>解决掉图片访问缓慢的问题。</li>
+<li>不要忘了它在下次启动的时候会有缓存处理。</li>
+</ul>
+</li>
+</ul>
+<h4 id="更换组件">更换组件</h4>
+<p>这个我就不展开了，因为解决方案一已经能够满足我的需求了，除非你想内联图片也需要图片交互效果，并且能够彻底解决掉启动缓慢的问题。</p>
+<p>留到下次有这个需求时我再回来填坑。</p>
+<blockquote>
+<p>届时我将会采用<a class="link" href="https://github.com/fengyuanchen/viewerjs"  target="_blank" rel="noopener"
+    >fengyuanchen/viewerjs</a>的组件。</p>
+</blockquote>
+<h2 id="致谢">致谢</h2>
+<p>能看完这篇文章不容易，感谢你的耐心。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/hugo/">hugo</a>
+        
+            <a href="/tags/%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E5%99%A8/">静态站点生成器</a>
+        
+            <a href="/tags/hugo-theme-stack/">hugo-theme-stack</a>
+        
+            <a href="/tags/typescript/">TypeScript</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://unpkg.com/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://unpkg.com/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 GHBJayce
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/default-skin/default-skin.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://unpkg.com/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
