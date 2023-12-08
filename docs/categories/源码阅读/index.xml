@@ -371,7 +371,7 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/functions/safe/url/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;safeURL&lt;/a&gt; 将字符串处理成安全的URL字符串。&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/functions/urls/relurl/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;relURL&lt;/a&gt; 返回相对URL，例如&lt;code&gt;image1.jpg&lt;/code&gt;得到&lt;code&gt;/p/test/image1.jpg&lt;/code&gt;。&lt;/li&gt;
+    &gt;relURL&lt;/a&gt; 返回相对URL，例如&lt;code&gt;http://xxx.com/p/test/image1.jpg&lt;/code&gt;得到&lt;code&gt;/p/test/image1.jpg&lt;/code&gt;。&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/templates/render-hooks/#context-passed-to-render-link-and-render-image&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;.PlainText&lt;/a&gt; 获取&lt;code&gt;[](xxx &amp;quot;text&amp;quot;)&lt;/code&gt;中的text。&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/functions/safe/html/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -406,8 +406,50 @@
 &lt;/ul&gt;
 &lt;h3 id=&#34;解决方案&#34;&gt;解决方案&lt;/h3&gt;
 &lt;h4 id=&#34;在原基础上支持&#34;&gt;在原基础上支持&lt;/h4&gt;
+&lt;h5 id=&#34;效果&#34;&gt;效果&lt;/h5&gt;
+&lt;p&gt;先来看效果，经过我几天简单测试和使用下来，在文章内使用内链图片和外链图片，均能够生成图像库组件的交互效果。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghbjayce.github.io/asset/blog/593a79ef8bb8fcfeMjAyMzEyMDggMTIyMjE3.jpeg&#34;
+	width=&#34;1920&#34;
+	height=&#34;1080&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt; &lt;img src=&#34;https://ghbjayce.github.io/asset/blog/bdebad2e7a5ec61eMjAyMzEyMDggMTIyMjM2.jpeg&#34;
+	width=&#34;1920&#34;
+	height=&#34;1080&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img2&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt; &lt;img src=&#34;https://ghbjayce.github.io/asset/blog/7db5aca65803cb87MjAyMzEyMDggMTIyMjU0.jpeg&#34;
+	width=&#34;1920&#34;
+	height=&#34;1080&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img3&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h5 id=&#34;我的改动&#34;&gt;我的改动&lt;/h5&gt;
 &lt;p&gt;我在源文件的基础上，增加了&lt;code&gt;resources.GetRemote&lt;/code&gt;获取外链图片的部分，并且在&lt;code&gt;hugo.yaml&lt;/code&gt;中增加了一个&lt;code&gt;params.render.image.extranelLink.enabled&lt;/code&gt;开关进行控制，是否启用外链图片的逻辑。&lt;/p&gt;
-&lt;p&gt;直接给出我的改动：&lt;/p&gt;
 &lt;p&gt;1、&lt;code&gt;layouts/_default/_markup/render-image.html&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -471,7 +513,7 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{{- $Permalink := .Destination | relURL | safeURL -}}
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{{- $Permalink := .Destination | safeURL -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{{- $image := &amp;#34;&amp;#34; -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{{- if and (hasPrefix $Permalink &amp;#34;http&amp;#34;) (default false .Page.Site.Params.render.image.extranelLink.enabled) -}}
@@ -486,7 +528,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	  {{- warnf &amp;#34;Unable to get remote resource %q&amp;#34; $Permalink -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	{{- end -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{{- else -}}
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	{{- $image = .Page.Resources.GetMatch (printf &amp;#34;%s&amp;#34; (.Destination | safeURL)) -}}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	{{- $image = .Page.Resources.GetMatch (printf &amp;#34;%s&amp;#34; $Permalink) -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	{{- if $image -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		{{- $Permalink = $image.RelPermalink -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	{{- end -}}
@@ -554,38 +596,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;				&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;enabled&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h5 id=&#34;效果&#34;&gt;效果&lt;/h5&gt;
-&lt;p&gt;经过我几天简单测试和使用下来，在文章内使用内链图片和外链图片，均能够生成图像库组件的交互效果。&lt;/p&gt;
-&lt;p&gt;来看外链图片效果：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ghbjayce.github.io/asset/blog/593a79ef8bb8fcfeMjAyMzEyMDggMTIyMjE3.jpeg&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img1&#34;
-	
-	
-&gt; &lt;img src=&#34;https://ghbjayce.github.io/asset/blog/bdebad2e7a5ec61eMjAyMzEyMDggMTIyMjM2.jpeg&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img2&#34;
-	
-	
-&gt; &lt;img src=&#34;https://ghbjayce.github.io/asset/blog/7db5aca65803cb87MjAyMzEyMDggMTIyMjU0.jpeg&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img3&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h5 id=&#34;发现的问题&#34;&gt;发现的问题&lt;/h5&gt;
+&lt;/div&gt;&lt;h5 id=&#34;发现的问题&#34;&gt;发现的问题&lt;/h5&gt;
 &lt;p&gt;1、问题NQ1：&lt;/p&gt;
 &lt;p&gt;如果你发现图片并没有生成组件，可以检查下markdown语法里图片是不是完全独占一行的，如果不是，把它改成独占一行再去页面查看，出来了对不对。&lt;/p&gt;
 &lt;p&gt;这是因为&lt;code&gt;themes/hugo-theme-stack/assets/ts/gallery.ts&lt;/code&gt;中&lt;code&gt;createGallery&lt;/code&gt;函数里有这么一段代码：&lt;/p&gt;
@@ -618,17 +629,17 @@
 &lt;ol&gt;
 &lt;li&gt;解决掉外链图片访问慢的问题。&lt;/li&gt;
 &lt;li&gt;在平常写文章的时候，把&lt;code&gt;params.render.image.extranelLink.enabled&lt;/code&gt;关闭，没错外链图片没有交互效果了，但你只是想写文章而已，写完以后可以再打开。&lt;/li&gt;
-&lt;li&gt;不解决，它只会影响到启动的时候而已，因为访问图片的目的只是拿到图片的宽高并且加到img属性中，你大可以挑一个网络顺畅的时刻去做这件事，而且在此之后再启动时它会使用缓存，影响很小，且不会对构建以后有影响，顶多没有图片交互效果而已。&lt;/li&gt;
+&lt;li&gt;不需要解决，大可以挑一个网络顺畅的时刻去做这件事，之后再启动时它会使用缓存，启动会很快，也就首次成功启动会受影响而已。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
 &lt;p&gt;总结一下：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;NQ1：内联图片不支持图片交互效果，这在我改动之前就已经存在的问题。&lt;/li&gt;
-&lt;li&gt;NQ2：&lt;code&gt;hugo server&lt;/code&gt;启动时会有影响，但外链图片访问足够快的情况下，不成问题。
+&lt;li&gt;NQ2：&lt;code&gt;hugo server&lt;/code&gt;首次启动时会有影响，但外链图片访问足够快的情况下，不成问题，唯一需要处理的是外链图片超时的问题，解决方案如下：
 &lt;ul&gt;
-&lt;li&gt;平时写文章不用时可以关闭，需要用时再打开。&lt;/li&gt;
 &lt;li&gt;解决掉图片访问缓慢的问题。&lt;/li&gt;
-&lt;li&gt;不要忘了它在下次启动的时候会有缓存处理。&lt;/li&gt;
+&lt;li&gt;平时写文章不用时可以关闭，需要用时再打开。&lt;/li&gt;
+&lt;li&gt;挑网络顺畅的时候完成首次启动，之后的启动都会走缓存，启动会非常快。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -640,7 +651,7 @@
     &gt;fengyuanchen/viewerjs&lt;/a&gt;的组件。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;致谢&#34;&gt;致谢&lt;/h2&gt;
-&lt;p&gt;能看完这篇文章不容易，感谢你的耐心。&lt;/p&gt;
+&lt;p&gt;能看完这篇文章很不容易，为你的耐心鼓掌。&lt;/p&gt;
 </description>
         </item>
         

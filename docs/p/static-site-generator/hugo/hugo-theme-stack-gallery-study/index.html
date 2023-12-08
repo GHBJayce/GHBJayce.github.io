@@ -738,7 +738,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 <li><a class="link" href="https://gohugo.io/functions/safe/url/"  target="_blank" rel="noopener"
     >safeURL</a> 将字符串处理成安全的URL字符串。</li>
 <li><a class="link" href="https://gohugo.io/functions/urls/relurl/"  target="_blank" rel="noopener"
-    >relURL</a> 返回相对URL，例如<code>image1.jpg</code>得到<code>/p/test/image1.jpg</code>。</li>
+    >relURL</a> 返回相对URL，例如<code>http://xxx.com/p/test/image1.jpg</code>得到<code>/p/test/image1.jpg</code>。</li>
 <li><a class="link" href="https://gohugo.io/templates/render-hooks/#context-passed-to-render-link-and-render-image"  target="_blank" rel="noopener"
     >.PlainText</a> 获取<code>[](xxx &quot;text&quot;)</code>中的text。</li>
 <li><a class="link" href="https://gohugo.io/functions/safe/html/"  target="_blank" rel="noopener"
@@ -773,8 +773,50 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 </ul>
 <h3 id="解决方案">解决方案</h3>
 <h4 id="在原基础上支持">在原基础上支持</h4>
+<h5 id="效果">效果</h5>
+<p>先来看效果，经过我几天简单测试和使用下来，在文章内使用内链图片和外链图片，均能够生成图像库组件的交互效果。</p>
+<p><img src="https://ghbjayce.github.io/asset/blog/593a79ef8bb8fcfeMjAyMzEyMDggMTIyMjE3.jpeg"
+	width="1920"
+	height="1080"
+	
+	loading="lazy"
+	
+		alt="img1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+> <img src="https://ghbjayce.github.io/asset/blog/bdebad2e7a5ec61eMjAyMzEyMDggMTIyMjM2.jpeg"
+	width="1920"
+	height="1080"
+	
+	loading="lazy"
+	
+		alt="img2"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+> <img src="https://ghbjayce.github.io/asset/blog/7db5aca65803cb87MjAyMzEyMDggMTIyMjU0.jpeg"
+	width="1920"
+	height="1080"
+	
+	loading="lazy"
+	
+		alt="img3"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<h5 id="我的改动">我的改动</h5>
 <p>我在源文件的基础上，增加了<code>resources.GetRemote</code>获取外链图片的部分，并且在<code>hugo.yaml</code>中增加了一个<code>params.render.image.extranelLink.enabled</code>开关进行控制，是否启用外链图片的逻辑。</p>
-<p>直接给出我的改动：</p>
 <p>1、<code>layouts/_default/_markup/render-image.html</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -838,7 +880,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 </span><span class="lnt">58
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- $Permalink := .Destination | relURL | safeURL -}}
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- $Permalink := .Destination | safeURL -}}
 </span></span><span class="line"><span class="cl">{{- $image := &#34;&#34; -}}
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">{{- if and (hasPrefix $Permalink &#34;http&#34;) (default false .Page.Site.Params.render.image.extranelLink.enabled) -}}
@@ -853,7 +895,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 </span></span><span class="line"><span class="cl">	  {{- warnf &#34;Unable to get remote resource %q&#34; $Permalink -}}
 </span></span><span class="line"><span class="cl">	{{- end -}}
 </span></span><span class="line"><span class="cl">{{- else -}}
-</span></span><span class="line"><span class="cl">	{{- $image = .Page.Resources.GetMatch (printf &#34;%s&#34; (.Destination | safeURL)) -}}
+</span></span><span class="line"><span class="cl">	{{- $image = .Page.Resources.GetMatch (printf &#34;%s&#34; $Permalink) -}}
 </span></span><span class="line"><span class="cl">	{{- if $image -}}
 </span></span><span class="line"><span class="cl">		{{- $Permalink = $image.RelPermalink -}}
 </span></span><span class="line"><span class="cl">	{{- end -}}
@@ -921,38 +963,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 </span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h5 id="效果">效果</h5>
-<p>经过我几天简单测试和使用下来，在文章内使用内链图片和外链图片，均能够生成图像库组件的交互效果。</p>
-<p>来看外链图片效果：</p>
-<p><img src="/asset/blog/593a79ef8bb8fcfeMjAyMzEyMDggMTIyMjE3.jpeg"
-	
-	
-	
-	loading="lazy"
-	
-		alt="img1"
-	
-	
-> <img src="/asset/blog/bdebad2e7a5ec61eMjAyMzEyMDggMTIyMjM2.jpeg"
-	
-	
-	
-	loading="lazy"
-	
-		alt="img2"
-	
-	
-> <img src="/asset/blog/7db5aca65803cb87MjAyMzEyMDggMTIyMjU0.jpeg"
-	
-	
-	
-	loading="lazy"
-	
-		alt="img3"
-	
-	
-></p>
-<h5 id="发现的问题">发现的问题</h5>
+</div><h5 id="发现的问题">发现的问题</h5>
 <p>1、问题NQ1：</p>
 <p>如果你发现图片并没有生成组件，可以检查下markdown语法里图片是不是完全独占一行的，如果不是，把它改成独占一行再去页面查看，出来了对不对。</p>
 <p>这是因为<code>themes/hugo-theme-stack/assets/ts/gallery.ts</code>中<code>createGallery</code>函数里有这么一段代码：</p>
@@ -985,17 +996,17 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 <ol>
 <li>解决掉外链图片访问慢的问题。</li>
 <li>在平常写文章的时候，把<code>params.render.image.extranelLink.enabled</code>关闭，没错外链图片没有交互效果了，但你只是想写文章而已，写完以后可以再打开。</li>
-<li>不解决，它只会影响到启动的时候而已，因为访问图片的目的只是拿到图片的宽高并且加到img属性中，你大可以挑一个网络顺畅的时刻去做这件事，而且在此之后再启动时它会使用缓存，影响很小，且不会对构建以后有影响，顶多没有图片交互效果而已。</li>
+<li>不需要解决，大可以挑一个网络顺畅的时刻去做这件事，之后再启动时它会使用缓存，启动会很快，也就首次成功启动会受影响而已。</li>
 </ol>
 <hr>
 <p>总结一下：</p>
 <ul>
 <li>NQ1：内联图片不支持图片交互效果，这在我改动之前就已经存在的问题。</li>
-<li>NQ2：<code>hugo server</code>启动时会有影响，但外链图片访问足够快的情况下，不成问题。
+<li>NQ2：<code>hugo server</code>首次启动时会有影响，但外链图片访问足够快的情况下，不成问题，唯一需要处理的是外链图片超时的问题，解决方案如下：
 <ul>
-<li>平时写文章不用时可以关闭，需要用时再打开。</li>
 <li>解决掉图片访问缓慢的问题。</li>
-<li>不要忘了它在下次启动的时候会有缓存处理。</li>
+<li>平时写文章不用时可以关闭，需要用时再打开。</li>
+<li>挑网络顺畅的时候完成首次启动，之后的启动都会走缓存，启动会非常快。</li>
 </ul>
 </li>
 </ul>
@@ -1007,7 +1018,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
     >fengyuanchen/viewerjs</a>的组件。</p>
 </blockquote>
 <h2 id="致谢">致谢</h2>
-<p>能看完这篇文章不容易，感谢你的耐心。</p>
+<p>能看完这篇文章很不容易，为你的耐心鼓掌。</p>
 
 </section>
 
