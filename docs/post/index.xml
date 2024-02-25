@@ -12,7 +12,7 @@
         <pubDate>Tue, 05 Dec 2023 11:45:25 +0800</pubDate>
         
         <guid>https://ghbjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/</guid>
-        <description>&lt;img src="https://ghbjayce.github.io/asset/blog/95b65eb883dd0529MjAyMzEyMDUgMTUyMzI1.png" alt="Featured image of post Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png" alt="Featured image of post Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;p&gt;为了方便文章描述，文中词汇的含义、未提及的场景如下：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;内链图片：和站点同一个域名下的图片。&lt;/li&gt;
@@ -20,7 +20,7 @@
 &lt;li&gt;内联图片：文字和图片处于同一行。&lt;/li&gt;
 &lt;li&gt;图像组件：将图片处理成在页面中可以进行交互的组件。&lt;/li&gt;
 &lt;li&gt;图片交互效果：经过图像组件处理以后，在页面进行交互的效果。&lt;/li&gt;
-&lt;li&gt;文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考&lt;a class=&#34;link&#34; href=&#34;https://github.com/GHBJayce/ghbjayce.github.io&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;li&gt;文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考&lt;a class=&#34;link&#34; href=&#34;https://github.com/ghjayce/ghjayce.github.io&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;我的项目结构&lt;/a&gt;。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;文字非常多，图片很少，大部分是干货和细节，请耐心阅读。&lt;/p&gt;
@@ -408,7 +408,7 @@
 &lt;h4 id=&#34;在原基础上支持&#34;&gt;在原基础上支持&lt;/h4&gt;
 &lt;h5 id=&#34;效果&#34;&gt;效果&lt;/h5&gt;
 &lt;p&gt;先来看效果，经过我几天简单测试和使用下来，在文章内使用内链图片和外链图片，均能够生成图像库组件的交互效果。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ghbjayce.github.io/asset/blog/593a79ef8bb8fcfeMjAyMzEyMDggMTIyMjE3.jpeg&#34;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/HnUsY5Hf9lLX1nmKPLazMjAyNDAyMjVfMTU1MzI4.jpeg&#34;
 	width=&#34;1920&#34;
 	height=&#34;1080&#34;
 	
@@ -421,7 +421,7 @@
 		data-flex-grow=&#34;177&#34;
 		data-flex-basis=&#34;426px&#34;
 	
-&gt; &lt;img src=&#34;https://ghbjayce.github.io/asset/blog/bdebad2e7a5ec61eMjAyMzEyMDggMTIyMjM2.jpeg&#34;
+&gt; &lt;img src=&#34;https://ghjayce.github.io/asset/blog/WZDBSq3tYO5AFPNAtH48MjAyNDAyMjVfMTU1MzU4.jpeg&#34;
 	width=&#34;1920&#34;
 	height=&#34;1080&#34;
 	
@@ -434,7 +434,7 @@
 		data-flex-grow=&#34;177&#34;
 		data-flex-basis=&#34;426px&#34;
 	
-&gt; &lt;img src=&#34;https://ghbjayce.github.io/asset/blog/7db5aca65803cb87MjAyMzEyMDggMTIyMjU0.jpeg&#34;
+&gt; &lt;img src=&#34;https://ghjayce.github.io/asset/blog/U1FCVUf9hsdEiUyVyzSIMjAyNDAyMjVfMTU1NDI5.jpeg&#34;
 	width=&#34;1920&#34;
 	height=&#34;1080&#34;
 	
@@ -1279,7 +1279,7 @@ $$d_i = (d_0 \pm i){\quad}mod{\quad}m$$
 &lt;li&gt;如何在计算机中存储数据？&lt;/li&gt;
 &lt;li&gt;解决问题的算法是什么？&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/graph/graph-application.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/mGzlbAiL2SvMpGZTAb4EMjAyNDAyMjVfMTU1MDA4.png&#34;
 	width=&#34;551&#34;
 	height=&#34;271&#34;
 	
@@ -1318,7 +1318,7 @@ $$图1$$&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/graph/graph-term.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/qRDDXvhQRi7OFJ0NMY9uMjAyNDAyMjVfMTU1MDU0.png&#34;
 	width=&#34;821&#34;
 	height=&#34;1021&#34;
 	
@@ -1731,7 +1731,7 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;应用&#34;&gt;应用&lt;/h2&gt;
 &lt;p&gt;1、一棵完全二叉树中有65个结点，请算出完全二叉树的深度。&lt;/p&gt;
-&lt;p&gt;根据&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/book/080901/02142/chapter4/#%E6%80%A7%E8%B4%A8%E7%89%B9%E5%BE%81&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;p&gt;根据&lt;a class=&#34;link&#34; href=&#34;https://ghjayce.github.io/p/book/080901/02142/chapter4/#%E6%80%A7%E8%B4%A8%E7%89%B9%E5%BE%81&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;二叉树的性质4&lt;/a&gt;我们知道计算深度对应的公式是：$⌊log_2n⌋+1$。&lt;/p&gt;
 &lt;p&gt;将数据代入公式可以得到$⌊log_265⌋+1$，使用换底公式，把底数2换成10，就是$\frac{log_{10}65}{log_{10}2}$。&lt;/p&gt;
 &lt;p&gt;我们用计算器算一下，精确结果是：&lt;code&gt;6.022367813028454&lt;/code&gt;，向下取整就是6，代入公式。&lt;/p&gt;
@@ -1779,7 +1779,7 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;数学知识
 &lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/subject/math/sequence/logarithm/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://ghjayce.github.io/p/subject/math/sequence/logarithm/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;对数&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
@@ -1872,7 +1872,7 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;h3 id=&#34;概念&#34;&gt;概念&lt;/h3&gt;
 &lt;p&gt;树Tree是一种树形结构，它是由n(n≥0)个结点组成的有限集合。&lt;/p&gt;
 &lt;p&gt;特征：树形结构结点之间具有一对多的关系，一个结点可以有一个或多个直接后继。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/tree/tree.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/spkdu2ZEy2QZwqcpUbdHMjAyNDAyMjVfMTU0MDQx.png&#34;
 	width=&#34;701&#34;
 	height=&#34;629&#34;
 	
@@ -2025,7 +2025,7 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;li&gt;左子树为空。&lt;/li&gt;
 &lt;li&gt;由一个根结点和两棵互不相交的左子树和右子树组成，子树之间是有次序关系的，且均是一棵二叉树。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/tree/binary-tree/binary-tree.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/hlscD7f58TUm3T55ZxEIMjAyNDAyMjVfMTU0MjIy.png&#34;
 	width=&#34;808&#34;
 	height=&#34;721&#34;
 	
@@ -2066,7 +2066,7 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;性质4：&lt;strong&gt;含有n个结点的完全二叉树的深度为$⌊log_2n⌋+1$&lt;/strong&gt;。
 &lt;ul&gt;
-&lt;li&gt;其中&lt;code&gt;⌊x⌋&lt;/code&gt;表示不大于x的最大整数，即向下取整函数，指⌊$log_2n$⌋，$log_2n$是对数，&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/subject/math/sequence/logarithm/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;li&gt;其中&lt;code&gt;⌊x⌋&lt;/code&gt;表示不大于x的最大整数，即向下取整函数，指⌊$log_2n$⌋，$log_2n$是对数，&lt;a class=&#34;link&#34; href=&#34;https://ghjayce.github.io/p/subject/math/sequence/logarithm/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;什么是对数？&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;例如上图b)，共有10个结点，即⌊log&lt;sub&gt;2&lt;/sub&gt;10⌋+1，对数结果是&lt;code&gt;3.32..&lt;/code&gt;向下取整后是3，最终深度是4。&lt;/li&gt;
 &lt;/ul&gt;
@@ -2110,7 +2110,7 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/tree/binary-tree/binary-tree-sequence-store.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/n4LTWDMnPdgKdymM20F9MjAyNDAyMjVfMTU0MzUw.png&#34;
 	width=&#34;961&#34;
 	height=&#34;959&#34;
 	
@@ -2127,7 +2127,7 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;p&gt;非完全二叉树的顺序存储虽然可以用转换完全二叉树，以完全二叉树的顺序存储进行处理，这样只要是一棵二叉树（不管是哪种类型）都能够用同一种运算方式进行处理，&lt;strong&gt;但这种方法最大的缺点是造成了空间的浪费&lt;/strong&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;链式存储&#34;&gt;链式存储&lt;/h4&gt;
 &lt;p&gt;二叉树最常用的是链式存储结构，其中又分为二叉链表和三叉链表。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/tree/binary-tree/binary-tree-link-store.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/Ro3LJ2kEYGY7ZsaykKa3MjAyNDAyMjVfMTU0NDM4.png&#34;
 	width=&#34;1016&#34;
 	height=&#34;791&#34;
 	
@@ -2481,7 +2481,7 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;p&gt;待补充&amp;hellip;&lt;/p&gt;
 &lt;h2 id=&#34;树和森林&#34;&gt;树和森林&lt;/h2&gt;
 &lt;h3 id=&#34;树的存储结构&#34;&gt;树的存储结构&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/tree/tree-store-structure.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/jH0sxIct2yzmRztDnKApMjAyNDAyMjVfMTU0NjE5.png&#34;
 	width=&#34;1261&#34;
 	height=&#34;1841&#34;
 	
@@ -2829,7 +2829,7 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/tree/huffman-tree/build-huffman-tree-process.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/4OiUp1uzsdo6MZlK1djyMjAyNDAyMjVfMTU0NzIz.png&#34;
 	width=&#34;666&#34;
 	height=&#34;511&#34;
 	
@@ -3023,7 +3023,7 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/tree/huffman-tree/build-huffman-tree-code-process.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/iIZT70Z6hkDVPzfarTAvMjAyNDAyMjVfMTU0ODM4.png&#34;
 	width=&#34;822&#34;
 	height=&#34;1100&#34;
 	
@@ -3252,8 +3252,8 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;h3 id=&#34;顺序栈&#34;&gt;顺序栈&lt;/h3&gt;
 &lt;h4 id=&#34;定义&#34;&gt;定义&lt;/h4&gt;
 &lt;blockquote&gt;
-&lt;p&gt;顺序栈相关代码放在了&lt;a class=&#34;link&#34; href=&#34;https://github.com/GHBJayce/code-example/tree/main/code/c/data-structure/list/stack/sequence/1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;GHBJayce/code-example - sequence stack&lt;/a&gt;中，感兴趣可以clone到本地查看运行结果。&lt;/p&gt;
+&lt;p&gt;顺序栈相关代码放在了&lt;a class=&#34;link&#34; href=&#34;https://github.com/ghjayce/code-example/tree/main/code/c/data-structure/list/stack/sequence/1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ghjayce/code-example - sequence stack&lt;/a&gt;中，感兴趣可以clone到本地查看运行结果。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -3442,8 +3442,8 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;h3 id=&#34;链栈&#34;&gt;链栈&lt;/h3&gt;
 &lt;h4 id=&#34;定义-1&#34;&gt;定义&lt;/h4&gt;
 &lt;blockquote&gt;
-&lt;p&gt;链栈相关代码放在了&lt;a class=&#34;link&#34; href=&#34;https://github.com/GHBJayce/code-example/tree/5dcbf53aebbc1141bff179a4e7571c43956b31ef/code/c/data-structure/list/stack/link/1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;GHBJayce/code-example - link stack&lt;/a&gt;中，感兴趣可以clone到本地查看运行结果。&lt;/p&gt;
+&lt;p&gt;链栈相关代码放在了&lt;a class=&#34;link&#34; href=&#34;https://github.com/ghjayce/code-example/tree/5dcbf53aebbc1141bff179a4e7571c43956b31ef/code/c/data-structure/list/stack/link/1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ghjayce/code-example - link stack&lt;/a&gt;中，感兴趣可以clone到本地查看运行结果。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -3759,7 +3759,7 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;li&gt;d)为出队列20、30、40、50后的队列，&lt;code&gt;SQ.rear&lt;/code&gt;为4，&lt;code&gt;SQ.front&lt;/code&gt;为4。&lt;/li&gt;
 &lt;li&gt;e)为入队列60后，&lt;code&gt;SQ.rear&lt;/code&gt;为5，&lt;code&gt;SQ.front&lt;/code&gt;为4。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/list/queue/sequence-queue-fake-overflow.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/qMvUcsAjIUeMbD8OwgsqMjAyNDAyMjVfMTUzNzM0.png&#34;
 	width=&#34;1150&#34;
 	height=&#34;261&#34;
 	
@@ -3784,7 +3784,7 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;li&gt;为队列另设一个标志，也就是多加一个变量用作区分。&lt;/li&gt;
 &lt;li&gt;队列少用一个元素空间，当只剩最后一个空间时就认为队列满，也就是&lt;code&gt;CQ.rear&lt;/code&gt;差一步就要追上&lt;code&gt;CQ.front&lt;/code&gt;，如图b)，书中采用了该解决方法。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/list/queue/cycle-queue.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/2BGTtRqzHEArsVspXmzUMjAyNDAyMjVfMTUzODM4.png&#34;
 	width=&#34;689&#34;
 	height=&#34;647&#34;
 	
@@ -3803,8 +3803,8 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4 id=&#34;定义-3&#34;&gt;定义&lt;/h4&gt;
 &lt;blockquote&gt;
-&lt;p&gt;循环队列相关代码放在了&lt;a class=&#34;link&#34; href=&#34;https://github.com/GHBJayce/code-example/tree/efc87b84c0232d1747226820a36fd4e8460466c2/code/c/data-structure/list/queue/cycle/1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;GHBJayce/code-example - cycle queue&lt;/a&gt;中，感兴趣可以clone到本地查看运行结果。&lt;/p&gt;
+&lt;p&gt;循环队列相关代码放在了&lt;a class=&#34;link&#34; href=&#34;https://github.com/ghjayce/code-example/tree/efc87b84c0232d1747226820a36fd4e8460466c2/code/c/data-structure/list/queue/cycle/1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ghjayce/code-example - cycle queue&lt;/a&gt;中，感兴趣可以clone到本地查看运行结果。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -3983,8 +3983,8 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
 &lt;p&gt;链接的实现需要动态申请内存空间，所以不会出现队列满的情况。&lt;/p&gt;
 &lt;h4 id=&#34;定义-4&#34;&gt;定义&lt;/h4&gt;
 &lt;blockquote&gt;
-&lt;p&gt;链队列相关代码放在了&lt;a class=&#34;link&#34; href=&#34;https://github.com/GHBJayce/code-example/tree/efc87b84c0232d1747226820a36fd4e8460466c2/code/c/data-structure/list/queue/link/1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;GHBJayce/code-example - link queue&lt;/a&gt;中，感兴趣可以clone到本地查看运行结果。&lt;/p&gt;
+&lt;p&gt;链队列相关代码放在了&lt;a class=&#34;link&#34; href=&#34;https://github.com/ghjayce/code-example/tree/efc87b84c0232d1747226820a36fd4e8460466c2/code/c/data-structure/list/queue/link/1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ghjayce/code-example - link queue&lt;/a&gt;中，感兴趣可以clone到本地查看运行结果。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -4726,8 +4726,8 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;运算&#34;&gt;运算&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;以下相关运算的代码已经整理好，放在了&lt;a class=&#34;link&#34; href=&#34;https://github.com/GHBJayce/code-example/blob/4b3a95b8d059b5d3c8af1674769d20d9e5a45d69/code/c/data-structure/list/sequence-list/1/readme.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;GHBJayce/code-example - sequence list&lt;/a&gt;中，感兴趣的话可以clone到本地查看运行结果。&lt;/p&gt;
+&lt;p&gt;以下相关运算的代码已经整理好，放在了&lt;a class=&#34;link&#34; href=&#34;https://github.com/ghjayce/code-example/blob/4b3a95b8d059b5d3c8af1674769d20d9e5a45d69/code/c/data-structure/list/sequence-list/1/readme.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ghjayce/code-example - sequence list&lt;/a&gt;中，感兴趣的话可以clone到本地查看运行结果。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4 id=&#34;插入&#34;&gt;插入&lt;/h4&gt;
 &lt;p&gt;算法：&lt;/p&gt;
@@ -4812,10 +4812,10 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;比较和移动次数的计算方式为：&lt;code&gt;n - no + 1&lt;/code&gt;。&lt;/li&gt;
 &lt;li&gt;可插入的位置有：&lt;code&gt;n + 1&lt;/code&gt;个。&lt;/li&gt;
-&lt;li&gt;这是个&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;li&gt;这是个&lt;a class=&#34;link&#34; href=&#34;https://ghjayce.github.io/p/subject/math/sequence/arithmetic/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;等差数列&lt;/a&gt;。
 &lt;ul&gt;
-&lt;li&gt;使用&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/#%e6%b1%82%e5%92%8c&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;li&gt;使用&lt;a class=&#34;link&#34; href=&#34;https://ghjayce.github.io/p/subject/math/sequence/arithmetic/#%e6%b1%82%e5%92%8c&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;高斯求和&lt;/a&gt;公式可以得出总的移动次数为：$\frac{(n + 1) \times n}{2}$。&lt;/li&gt;
 &lt;li&gt;因此平均移动次数：$\frac{总移动次数}{可插入位置}$也就是$\frac{\frac{(n + 1) \times n}{2}}{n + 1}$约为$\frac{n}{2}$。&lt;/li&gt;
 &lt;/ul&gt;
@@ -4881,10 +4881,10 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;移动次数的计算方式：&lt;code&gt;n - no&lt;/code&gt;。&lt;/li&gt;
 &lt;li&gt;可删除的位置有：&lt;code&gt;n&lt;/code&gt;个。&lt;/li&gt;
-&lt;li&gt;同样是&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;li&gt;同样是&lt;a class=&#34;link&#34; href=&#34;https://ghjayce.github.io/p/subject/math/sequence/arithmetic/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;等差数列&lt;/a&gt;。
 &lt;ul&gt;
-&lt;li&gt;使用&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/#%e6%b1%82%e5%92%8c&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;li&gt;使用&lt;a class=&#34;link&#34; href=&#34;https://ghjayce.github.io/p/subject/math/sequence/arithmetic/#%e6%b1%82%e5%92%8c&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;高斯求和&lt;/a&gt;公式得出总的移动次数：$\frac{(0 + n - 1) \times n}{2}$。&lt;/li&gt;
 &lt;li&gt;平均移动次数：$\frac{总移动次数}{可删除的位置}$也就是$\frac{\frac{(0 + n - 1) \times n}{2}}{n}$约为$\frac{n-1}{2}$。&lt;/li&gt;
 &lt;/ul&gt;
@@ -4975,7 +4975,7 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/list/link-list/single-link-list.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/P4uZrja3M85o6utKpTl2MjAyNDAyMjVfMTUzNTI4.png&#34;
 	width=&#34;835&#34;
 	height=&#34;960&#34;
 	
@@ -5047,8 +5047,8 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;运算-1&#34;&gt;运算&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;以下相关运算的代码已经整理好，放在了&lt;a class=&#34;link&#34; href=&#34;https://github.com/GHBJayce/code-example/blob/4b3a95b8d059b5d3c8af1674769d20d9e5a45d69/code/c/data-structure/list/link-list/1/readme.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;GHBJayce/code-example - link list&lt;/a&gt;中，感兴趣的话可以clone到本地查看运行结果。&lt;/p&gt;
+&lt;p&gt;以下相关运算的代码已经整理好，放在了&lt;a class=&#34;link&#34; href=&#34;https://github.com/ghjayce/code-example/blob/4b3a95b8d059b5d3c8af1674769d20d9e5a45d69/code/c/data-structure/list/link-list/1/readme.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ghjayce/code-example - link list&lt;/a&gt;中，感兴趣的话可以clone到本地查看运行结果。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4 id=&#34;初始化&#34;&gt;初始化&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -5528,7 +5528,7 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;其他链表&#34;&gt;其他链表&lt;/h3&gt;
 &lt;h4 id=&#34;循环链表&#34;&gt;循环链表&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/GHBJayce/Assets/v1.0.0/computer/data-structure/list/link-list/cycle-link-list.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/1y1u7e76cpUEnFJm4rUzMjAyNDAyMjVfMTUzMjI5.png&#34;
 	width=&#34;834&#34;
 	height=&#34;1029&#34;
 	
@@ -5733,10 +5733,10 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
 &lt;li&gt;数学知识
 &lt;ol&gt;
 &lt;li&gt;乘法分配率&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/subject/math/sequence/logarithm/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://ghjayce.github.io/p/subject/math/sequence/logarithm/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;对数&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;等差数列&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/#%e6%b1%82%e5%92%8c&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://ghjayce.github.io/p/subject/math/sequence/arithmetic/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;等差数列&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://ghjayce.github.io/p/subject/math/sequence/arithmetic/#%e6%b1%82%e5%92%8c&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;高斯求和&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
@@ -5879,7 +5879,7 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;func1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;hello GHBJayce&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;hello ghjayce&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -5900,7 +5900,7 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;func2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;hello GHBJayce&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;hello ghjayce&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
@@ -5962,7 +5962,7 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;hello GHBJayce&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;hello ghjayce&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
@@ -5997,7 +5997,7 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;hello GHBJayce&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;hello ghjayce&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
@@ -6019,7 +6019,7 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;hello GHBJayce&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;hello ghjayce&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -6127,7 +6127,7 @@ $$S(n)=O(g(n))$$
         <pubDate>Tue, 20 Jun 2023 23:46:50 +0800</pubDate>
         
         <guid>https://ghbjayce.github.io/p/static-site-generator/hugo/quick-start/</guid>
-        <description>&lt;img src="https://ghbjayce.github.io/asset/blog/279a4b3470a817f6MjAyMzEyMDUgMTUzMjI0.png" alt="Featured image of post hugo快速上手搭建一个静态博客" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/hYbelawEIwhaejxWE2RNMjAyNDAyMjVfMTU1NTA2.png" alt="Featured image of post hugo快速上手搭建一个静态博客" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;开头废话有点多，&lt;a class=&#34;link&#34; href=&#34;#%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8&#34; &gt;点我进入正题&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -6197,7 +6197,7 @@ $$S(n)=O(g(n))$$
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;由于我已经有&lt;code&gt;git&lt;/code&gt;项目&lt;code&gt;ghbjayce.github.io&lt;/code&gt;，里面没有任何东西，所以这里我使用了&lt;code&gt;hugo new site GHBJayce --force&lt;/code&gt;，既不影响&lt;code&gt;hugo&lt;/code&gt;的生成又不影响&lt;code&gt;git&lt;/code&gt;的项目。&lt;/p&gt;
+&lt;p&gt;由于我已经有&lt;code&gt;git&lt;/code&gt;项目&lt;code&gt;ghjayce.github.io&lt;/code&gt;，里面没有任何东西，所以这里我使用了&lt;code&gt;hugo new site ghjayce --force&lt;/code&gt;，既不影响&lt;code&gt;hugo&lt;/code&gt;的生成又不影响&lt;code&gt;git&lt;/code&gt;的项目。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;执行完以后，你会得到以下的目录结构：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;

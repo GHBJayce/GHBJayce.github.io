@@ -12,7 +12,7 @@
         <pubDate>Tue, 05 Dec 2023 11:45:25 +0800</pubDate>
         
         <guid>https://ghbjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/</guid>
-        <description>&lt;img src="https://ghbjayce.github.io/asset/blog/95b65eb883dd0529MjAyMzEyMDUgMTUyMzI1.png" alt="Featured image of post Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png" alt="Featured image of post Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;p&gt;为了方便文章描述，文中词汇的含义、未提及的场景如下：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;内链图片：和站点同一个域名下的图片。&lt;/li&gt;
@@ -20,7 +20,7 @@
 &lt;li&gt;内联图片：文字和图片处于同一行。&lt;/li&gt;
 &lt;li&gt;图像组件：将图片处理成在页面中可以进行交互的组件。&lt;/li&gt;
 &lt;li&gt;图片交互效果：经过图像组件处理以后，在页面进行交互的效果。&lt;/li&gt;
-&lt;li&gt;文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考&lt;a class=&#34;link&#34; href=&#34;https://github.com/GHBJayce/ghbjayce.github.io&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;li&gt;文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考&lt;a class=&#34;link&#34; href=&#34;https://github.com/ghjayce/ghjayce.github.io&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;我的项目结构&lt;/a&gt;。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;文字非常多，图片很少，大部分是干货和细节，请耐心阅读。&lt;/p&gt;
@@ -408,7 +408,7 @@
 &lt;h4 id=&#34;在原基础上支持&#34;&gt;在原基础上支持&lt;/h4&gt;
 &lt;h5 id=&#34;效果&#34;&gt;效果&lt;/h5&gt;
 &lt;p&gt;先来看效果，经过我几天简单测试和使用下来，在文章内使用内链图片和外链图片，均能够生成图像库组件的交互效果。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ghbjayce.github.io/asset/blog/593a79ef8bb8fcfeMjAyMzEyMDggMTIyMjE3.jpeg&#34;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/HnUsY5Hf9lLX1nmKPLazMjAyNDAyMjVfMTU1MzI4.jpeg&#34;
 	width=&#34;1920&#34;
 	height=&#34;1080&#34;
 	
@@ -421,7 +421,7 @@
 		data-flex-grow=&#34;177&#34;
 		data-flex-basis=&#34;426px&#34;
 	
-&gt; &lt;img src=&#34;https://ghbjayce.github.io/asset/blog/bdebad2e7a5ec61eMjAyMzEyMDggMTIyMjM2.jpeg&#34;
+&gt; &lt;img src=&#34;https://ghjayce.github.io/asset/blog/WZDBSq3tYO5AFPNAtH48MjAyNDAyMjVfMTU1MzU4.jpeg&#34;
 	width=&#34;1920&#34;
 	height=&#34;1080&#34;
 	
@@ -434,7 +434,7 @@
 		data-flex-grow=&#34;177&#34;
 		data-flex-basis=&#34;426px&#34;
 	
-&gt; &lt;img src=&#34;https://ghbjayce.github.io/asset/blog/7db5aca65803cb87MjAyMzEyMDggMTIyMjU0.jpeg&#34;
+&gt; &lt;img src=&#34;https://ghjayce.github.io/asset/blog/U1FCVUf9hsdEiUyVyzSIMjAyNDAyMjVfMTU1NDI5.jpeg&#34;
 	width=&#34;1920&#34;
 	height=&#34;1080&#34;
 	
@@ -660,7 +660,7 @@
         <pubDate>Tue, 20 Jun 2023 23:46:50 +0800</pubDate>
         
         <guid>https://ghbjayce.github.io/p/static-site-generator/hugo/quick-start/</guid>
-        <description>&lt;img src="https://ghbjayce.github.io/asset/blog/279a4b3470a817f6MjAyMzEyMDUgMTUzMjI0.png" alt="Featured image of post hugo快速上手搭建一个静态博客" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/hYbelawEIwhaejxWE2RNMjAyNDAyMjVfMTU1NTA2.png" alt="Featured image of post hugo快速上手搭建一个静态博客" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;开头废话有点多，&lt;a class=&#34;link&#34; href=&#34;#%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8&#34; &gt;点我进入正题&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -730,7 +730,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;由于我已经有&lt;code&gt;git&lt;/code&gt;项目&lt;code&gt;ghbjayce.github.io&lt;/code&gt;，里面没有任何东西，所以这里我使用了&lt;code&gt;hugo new site GHBJayce --force&lt;/code&gt;，既不影响&lt;code&gt;hugo&lt;/code&gt;的生成又不影响&lt;code&gt;git&lt;/code&gt;的项目。&lt;/p&gt;
+&lt;p&gt;由于我已经有&lt;code&gt;git&lt;/code&gt;项目&lt;code&gt;ghjayce.github.io&lt;/code&gt;，里面没有任何东西，所以这里我使用了&lt;code&gt;hugo new site ghjayce --force&lt;/code&gt;，既不影响&lt;code&gt;hugo&lt;/code&gt;的生成又不影响&lt;code&gt;git&lt;/code&gt;的项目。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;执行完以后，你会得到以下的目录结构：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;

@@ -32,7 +32,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 {{- $Permalink := .Destination | relURL | safeURL -}} {{- $image := &amp;#34;&amp;#34; -}} {{- if hasPrefix $Permalink &amp;#34;http&amp;#34; -}} {{- $image = resources.GetRemote $Permalink -}} {{- else -}} {{- $image = .'>
 <meta property='og:url' content='https://ghbjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/'>
 <meta property='og:site_name' content='GHBJayce'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Hugo' /><meta property='article:tag' content='静态站点生成器' /><meta property='article:tag' content='hugo-theme-stack' /><meta property='article:tag' content='TypeScript' /><meta property='article:published_time' content='2023-12-05T11:45:25&#43;08:00'/><meta property='article:modified_time' content='2023-12-05T11:45:25&#43;08:00'/><meta property='og:image' content='https://ghbjayce.github.io/asset/blog/95b65eb883dd0529MjAyMzEyMDUgMTUyMzI1.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Hugo' /><meta property='article:tag' content='静态站点生成器' /><meta property='article:tag' content='hugo-theme-stack' /><meta property='article:tag' content='TypeScript' /><meta property='article:published_time' content='2023-12-05T11:45:25&#43;08:00'/><meta property='article:modified_time' content='2023-12-05T11:45:25&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png' />
 <meta name="twitter:title" content="Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？">
 <meta name="twitter:description" content="阅读说明 为了方便文章描述，文中词汇的含义、未提及的场景如下：
 内链图片：和站点同一个域名下的图片。 外链图片：和站点非同一个域名下的图片，通常以http开头的链接。 内联图片：文字和图片处于同一行。 图像组件：将图片处理成在页面中可以进行交互的组件。 图片交互效果：经过图像组件处理以后，在页面进行交互的效果。 文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考我的项目结构。 文字非常多，图片很少，大部分是干货和细节，请耐心阅读。
@@ -46,7 +46,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 那么就跟着作者的提示，着手捣鼓一下：
 layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的钩子之一。 resource.GetRemote相关语法文档。 初步解决方案 就如我在讨论中提到的，我在layouts/_default/_markup/render-image.html钩子模板做了以下的修改：
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 {{- $Permalink := .Destination | relURL | safeURL -}} {{- $image := &amp;#34;&amp;#34; -}} {{- if hasPrefix $Permalink &amp;#34;http&amp;#34; -}} {{- $image = resources.GetRemote $Permalink -}} {{- else -}} {{- $image = ."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://ghbjayce.github.io/asset/blog/95b65eb883dd0529MjAyMzEyMDUgMTUyMzI1.png' />
+    <meta name="twitter:image" content='https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png' />
     <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
 
     </head>
@@ -308,7 +308,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
         <div class="article-image">
             <a href="/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/">
                 
-                    <img src="https://ghbjayce.github.io/asset/blog/95b65eb883dd0529MjAyMzEyMDUgMTUyMzI1.png" loading="lazy" alt="Featured image of post Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？" />
+                    <img src="https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png" loading="lazy" alt="Featured image of post Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？" />
                 
             </a>
         </div>
@@ -387,7 +387,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 <li>内联图片：文字和图片处于同一行。</li>
 <li>图像组件：将图片处理成在页面中可以进行交互的组件。</li>
 <li>图片交互效果：经过图像组件处理以后，在页面进行交互的效果。</li>
-<li>文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考<a class="link" href="https://github.com/GHBJayce/ghbjayce.github.io"  target="_blank" rel="noopener"
+<li>文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考<a class="link" href="https://github.com/ghjayce/ghjayce.github.io"  target="_blank" rel="noopener"
     >我的项目结构</a>。</li>
 </ul>
 <p>文字非常多，图片很少，大部分是干货和细节，请耐心阅读。</p>
@@ -775,7 +775,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 <h4 id="在原基础上支持">在原基础上支持</h4>
 <h5 id="效果">效果</h5>
 <p>先来看效果，经过我几天简单测试和使用下来，在文章内使用内链图片和外链图片，均能够生成图像库组件的交互效果。</p>
-<p><img src="https://ghbjayce.github.io/asset/blog/593a79ef8bb8fcfeMjAyMzEyMDggMTIyMjE3.jpeg"
+<p><img src="https://ghjayce.github.io/asset/blog/HnUsY5Hf9lLX1nmKPLazMjAyNDAyMjVfMTU1MzI4.jpeg"
 	width="1920"
 	height="1080"
 	
@@ -788,7 +788,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 		data-flex-grow="177"
 		data-flex-basis="426px"
 	
-> <img src="https://ghbjayce.github.io/asset/blog/bdebad2e7a5ec61eMjAyMzEyMDggMTIyMjM2.jpeg"
+> <img src="https://ghjayce.github.io/asset/blog/WZDBSq3tYO5AFPNAtH48MjAyNDAyMjVfMTU1MzU4.jpeg"
 	width="1920"
 	height="1080"
 	
@@ -801,7 +801,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 		data-flex-grow="177"
 		data-flex-basis="426px"
 	
-> <img src="https://ghbjayce.github.io/asset/blog/7db5aca65803cb87MjAyMzEyMDggMTIyMjU0.jpeg"
+> <img src="https://ghjayce.github.io/asset/blog/U1FCVUf9hsdEiUyVyzSIMjAyNDAyMjVfMTU1NDI5.jpeg"
 	width="1920"
 	height="1080"
 	
@@ -1093,7 +1093,9 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
     <section class="copyright">
         &copy; 
         
-        2023 GHBJayce
+            2023 - 
+        
+        2024 GHBJayce
     </section>
     
     <section class="powerby">
