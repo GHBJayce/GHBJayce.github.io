@@ -886,13 +886,17 @@ $$d_i = (d_0 \pm i){\quad}mod{\quad}m$$
 &lt;li&gt;解决问题的算法是什么？&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/mGzlbAiL2SvMpGZTAb4EMjAyNDAyMjVfMTU1MDA4.png&#34;
-	
-	
+	width=&#34;551&#34;
+	height=&#34;271&#34;
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;用图描述通信网络的问题&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;203&#34;
+		data-flex-basis=&#34;487px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;$$图1$$&lt;/p&gt;
@@ -921,13 +925,17 @@ $$d_i = (d_0 \pm i){\quad}mod{\quad}m$$
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/qRDDXvhQRi7OFJ0NMY9uMjAyNDAyMjVfMTU1MDU0.png&#34;
-	
-	
+	width=&#34;821&#34;
+	height=&#34;1021&#34;
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;用图描述通信网络的问题&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;80&#34;
+		data-flex-basis=&#34;192px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;$$图2$$&lt;/p&gt;
@@ -1346,13 +1354,17 @@ $$图5$$
 &lt;p&gt;树Tree是一种树形结构，它是由n(n≥0)个结点组成的有限集合。&lt;/p&gt;
 &lt;p&gt;特征：树形结构结点之间具有一对多的关系，一个结点可以有一个或多个直接后继。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/spkdu2ZEy2QZwqcpUbdHMjAyNDAyMjVfMTU0MDQx.png&#34;
-	
-	
+	width=&#34;701&#34;
+	height=&#34;629&#34;
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;什么是树？&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;111&#34;
+		data-flex-basis=&#34;267px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -1495,13 +1507,17 @@ $$图5$$
 &lt;li&gt;由一个根结点和两棵互不相交的左子树和右子树组成，子树之间是有次序关系的，且均是一棵二叉树。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/hlscD7f58TUm3T55ZxEIMjAyNDAyMjVfMTU0MjIy.png&#34;
-	
-	
+	width=&#34;808&#34;
+	height=&#34;721&#34;
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;二叉树&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;112&#34;
+		data-flex-basis=&#34;268px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;$$图4.2$$&lt;/p&gt;
@@ -1576,26 +1592,34 @@ $$图5$$
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/n4LTWDMnPdgKdymM20F9MjAyNDAyMjVfMTU0MzUw.png&#34;
-	
-	
+	width=&#34;961&#34;
+	height=&#34;959&#34;
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;完全二叉树的顺序存储&#34;
 	
 	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
 &gt;&lt;/p&gt;
 &lt;p&gt;非完全二叉树的顺序存储虽然可以用转换完全二叉树，以完全二叉树的顺序存储进行处理，这样只要是一棵二叉树（不管是哪种类型）都能够用同一种运算方式进行处理，&lt;strong&gt;但这种方法最大的缺点是造成了空间的浪费&lt;/strong&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;链式存储&#34;&gt;链式存储&lt;/h4&gt;
 &lt;p&gt;二叉树最常用的是链式存储结构，其中又分为二叉链表和三叉链表。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/Ro3LJ2kEYGY7ZsaykKa3MjAyNDAyMjVfMTU0NDM4.png&#34;
-	
-	
+	width=&#34;1016&#34;
+	height=&#34;791&#34;
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;二叉树的链式存储&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;128&#34;
+		data-flex-basis=&#34;308px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;其中：&lt;/p&gt;
@@ -1939,13 +1963,17 @@ $$图5$$
 &lt;h2 id=&#34;树和森林&#34;&gt;树和森林&lt;/h2&gt;
 &lt;h3 id=&#34;树的存储结构&#34;&gt;树的存储结构&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/jH0sxIct2yzmRztDnKApMjAyNDAyMjVfMTU0NjE5.png&#34;
-	
-	
+	width=&#34;1261&#34;
+	height=&#34;1841&#34;
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;树的存储结构示例图&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;68&#34;
+		data-flex-basis=&#34;164px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;$$图4.5$$&lt;/p&gt;
@@ -2283,13 +2311,17 @@ $$图5$$
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/4OiUp1uzsdo6MZlK1djyMjAyNDAyMjVfMTU0NzIz.png&#34;
-	
-	
+	width=&#34;666&#34;
+	height=&#34;511&#34;
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;哈夫曼树构建过程&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;130&#34;
+		data-flex-basis=&#34;312px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;从中得出规律：&lt;/p&gt;
@@ -2473,13 +2505,17 @@ $$图5$$
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/iIZT70Z6hkDVPzfarTAvMjAyNDAyMjVfMTU0ODM4.png&#34;
-	
-	
+	width=&#34;822&#34;
+	height=&#34;1100&#34;
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;哈夫曼树编码构建过程&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;74&#34;
+		data-flex-basis=&#34;179px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;经过哈夫曼树编码后，如上图f)，字符对应的编码分别是：&lt;/p&gt;
@@ -3206,13 +3242,17 @@ $$图5$$
 &lt;li&gt;e)为入队列60后，&lt;code&gt;SQ.rear&lt;/code&gt;为5，&lt;code&gt;SQ.front&lt;/code&gt;为4。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/qMvUcsAjIUeMbD8OwgsqMjAyNDAyMjVfMTUzNzM0.png&#34;
-	
-	
+	width=&#34;1150&#34;
+	height=&#34;261&#34;
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;顺序队列的假溢出问题&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;440&#34;
+		data-flex-basis=&#34;1057px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;如果在e)的状态下，要做入队列的操作，&lt;code&gt;SQ.rear&lt;/code&gt;将会超出数组下标的范围，也就是新元素没有办法入队列，但是1-4的位置明明是空的，数组的实际空间并没有被占满，这就是&lt;strong&gt;假溢出&lt;/strong&gt;现象。&lt;/p&gt;
@@ -3227,13 +3267,17 @@ $$图5$$
 &lt;li&gt;队列少用一个元素空间，当只剩最后一个空间时就认为队列满，也就是&lt;code&gt;CQ.rear&lt;/code&gt;差一步就要追上&lt;code&gt;CQ.front&lt;/code&gt;，如图b)，书中采用了该解决方法。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/2BGTtRqzHEArsVspXmzUMjAyNDAyMjVfMTUzODM4.png&#34;
-	
-	
+	width=&#34;689&#34;
+	height=&#34;647&#34;
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;循环队列、队列满和队列空示意图&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;106&#34;
+		data-flex-basis=&#34;255px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -4149,13 +4193,17 @@ $$loc[i, j] = loc[0, 0] + (n * i + j) * k$$
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/P4uZrja3M85o6utKpTl2MjAyNDAyMjVfMTUzNTI4.png&#34;
-	
-	
+	width=&#34;835&#34;
+	height=&#34;960&#34;
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;单链表、带头结点的单链表&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;86&#34;
+		data-flex-basis=&#34;208px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;用c语言描述-1&#34;&gt;用C语言描述&lt;/h3&gt;
@@ -4698,13 +4746,17 @@ $$loc[i, j] = loc[0, 0] + (n * i + j) * k$$
 &lt;h3 id=&#34;其他链表&#34;&gt;其他链表&lt;/h3&gt;
 &lt;h4 id=&#34;循环链表&#34;&gt;循环链表&lt;/h4&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/1y1u7e76cpUEnFJm4rUzMjAyNDAyMjVfMTUzMjI5.png&#34;
-	
-	
+	width=&#34;834&#34;
+	height=&#34;1029&#34;
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;带头结点的单链表、带尾结点的循环链表&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;81&#34;
+		data-flex-basis=&#34;194px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;带尾结点访问首结点的表示方式：&lt;code&gt;rear-&amp;gt;next-&amp;gt;next&lt;/code&gt;，运算与单链表类似，不再赘述。&lt;/p&gt;

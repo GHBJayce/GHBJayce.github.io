@@ -1061,13 +1061,17 @@
 <li>e)为入队列60后，<code>SQ.rear</code>为5，<code>SQ.front</code>为4。</li>
 </ul>
 <p><img src="https://ghjayce.github.io/asset/blog/qMvUcsAjIUeMbD8OwgsqMjAyNDAyMjVfMTUzNzM0.png"
-	
-	
+	width="1150"
+	height="261"
 	
 	loading="lazy"
 	
 		alt="顺序队列的假溢出问题"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="440"
+		data-flex-basis="1057px"
 	
 ></p>
 <p>如果在e)的状态下，要做入队列的操作，<code>SQ.rear</code>将会超出数组下标的范围，也就是新元素没有办法入队列，但是1-4的位置明明是空的，数组的实际空间并没有被占满，这就是<strong>假溢出</strong>现象。</p>
@@ -1082,13 +1086,17 @@
 <li>队列少用一个元素空间，当只剩最后一个空间时就认为队列满，也就是<code>CQ.rear</code>差一步就要追上<code>CQ.front</code>，如图b)，书中采用了该解决方法。</li>
 </ol>
 <p><img src="https://ghjayce.github.io/asset/blog/2BGTtRqzHEArsVspXmzUMjAyNDAyMjVfMTUzODM4.png"
-	
-	
+	width="689"
+	height="647"
 	
 	loading="lazy"
 	
 		alt="循环队列、队列满和队列空示意图"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="106"
+		data-flex-basis="255px"
 	
 ></p>
 <blockquote>
