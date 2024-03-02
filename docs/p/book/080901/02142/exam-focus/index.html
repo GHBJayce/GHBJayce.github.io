@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 下面是我从历年试题和书本中整理出来的重点。Enjoy it!
+如果这篇文章对你有帮助，也请你将这篇文章分享给有需要的人。
+第一章 概论 数据结构是计算机组织数据和存储数据的方式。 数据结构是指一组相互之间存在一种或多种特定关系的数据的组织方式和它们在计算机内的存储方式，以及定义在该组数据上的一组操作。 1976年瑞士计算机科学家尼克劳斯·维尔特（Niklaus Wirth）曾提出一个著名的公式：算法 &#43; 数据结构 = 程序。 数据由若干个数据元素组成，数据元素由若干个数据项组成。 逻辑结构、存储结构、运算
+数据的逻辑结构是指数据元素之间的逻辑关系。逻辑关系是指数据元素之间的关联方式或邻接关系。 四类基本的逻辑结构：集合、线性结构、树形结构、图结构。 集合结点之间没有邻接关系；线性结构结点之间一对一的关系；树形结构结点之间一对多的关系；图结构结点之间多对多的关系。 与数据元素本身的形式、内容、相对位置、个数无关的是数据的逻辑结构。 数据的逻辑结构在计算机中的实现称为数据的存储结构（或物理结构）。 存储结构一般有四种形式：顺序存储、链式存储、索引存储、散列存储。 运算是指在某种逻辑结构上施加的操作，即对逻辑结构的加工。这种加工以数据的逻辑结构为对象。 运算的实现是指该运算的算法；算法指的是求解给定问题所需的处理步骤及其执行顺序。 时间复杂度、空间复杂度
+算法时间复杂度指的是算法在给定输入下的计算量。 算法的空间复杂度指的是算法中除了输入数据占用的存储空间之外所需的附加存储空间的大小，即所需的存储量。 在估算算法空间复杂度时，一般只需要分析辅助变量所占用的空间。 常数阶 $O(1)$，对数阶 $O(log_{2}n)$，线性阶 $O(n)$，线性对数阶 $O(nlog_{2}n)$，多项式阶有：平方阶 $O(n^2)$、立方阶 $O(n^3)$、K次方阶 $O(n^k)$，指数阶 $O(2^n)$。 第二章 线性表 顺序表'>
+<title>《数据结构导论》考试重点</title>
+
+<link rel='canonical' href='https://ghbjayce.github.io/p/book/080901/02142/exam-focus/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='《数据结构导论》考试重点'>
+<meta property='og:description' content='目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 下面是我从历年试题和书本中整理出来的重点。Enjoy it!
+如果这篇文章对你有帮助，也请你将这篇文章分享给有需要的人。
+第一章 概论 数据结构是计算机组织数据和存储数据的方式。 数据结构是指一组相互之间存在一种或多种特定关系的数据的组织方式和它们在计算机内的存储方式，以及定义在该组数据上的一组操作。 1976年瑞士计算机科学家尼克劳斯·维尔特（Niklaus Wirth）曾提出一个著名的公式：算法 &#43; 数据结构 = 程序。 数据由若干个数据元素组成，数据元素由若干个数据项组成。 逻辑结构、存储结构、运算
+数据的逻辑结构是指数据元素之间的逻辑关系。逻辑关系是指数据元素之间的关联方式或邻接关系。 四类基本的逻辑结构：集合、线性结构、树形结构、图结构。 集合结点之间没有邻接关系；线性结构结点之间一对一的关系；树形结构结点之间一对多的关系；图结构结点之间多对多的关系。 与数据元素本身的形式、内容、相对位置、个数无关的是数据的逻辑结构。 数据的逻辑结构在计算机中的实现称为数据的存储结构（或物理结构）。 存储结构一般有四种形式：顺序存储、链式存储、索引存储、散列存储。 运算是指在某种逻辑结构上施加的操作，即对逻辑结构的加工。这种加工以数据的逻辑结构为对象。 运算的实现是指该运算的算法；算法指的是求解给定问题所需的处理步骤及其执行顺序。 时间复杂度、空间复杂度
+算法时间复杂度指的是算法在给定输入下的计算量。 算法的空间复杂度指的是算法中除了输入数据占用的存储空间之外所需的附加存储空间的大小，即所需的存储量。 在估算算法空间复杂度时，一般只需要分析辅助变量所占用的空间。 常数阶 $O(1)$，对数阶 $O(log_{2}n)$，线性阶 $O(n)$，线性对数阶 $O(nlog_{2}n)$，多项式阶有：平方阶 $O(n^2)$、立方阶 $O(n^3)$、K次方阶 $O(n^k)$，指数阶 $O(2^n)$。 第二章 线性表 顺序表'>
+<meta property='og:url' content='https://ghbjayce.github.io/p/book/080901/02142/exam-focus/'>
+<meta property='og:site_name' content='GHBJayce'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='数据结构导论' /><meta property='article:tag' content='计算机科学与技术' /><meta property='article:tag' content='笔记' /><meta property='article:published_time' content='2023-10-22T09:27:30&#43;08:00'/><meta property='article:modified_time' content='2023-10-22T09:27:30&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png' />
+<meta name="twitter:title" content="《数据结构导论》考试重点">
+<meta name="twitter:description" content="目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 下面是我从历年试题和书本中整理出来的重点。Enjoy it!
+如果这篇文章对你有帮助，也请你将这篇文章分享给有需要的人。
+第一章 概论 数据结构是计算机组织数据和存储数据的方式。 数据结构是指一组相互之间存在一种或多种特定关系的数据的组织方式和它们在计算机内的存储方式，以及定义在该组数据上的一组操作。 1976年瑞士计算机科学家尼克劳斯·维尔特（Niklaus Wirth）曾提出一个著名的公式：算法 &#43; 数据结构 = 程序。 数据由若干个数据元素组成，数据元素由若干个数据项组成。 逻辑结构、存储结构、运算
+数据的逻辑结构是指数据元素之间的逻辑关系。逻辑关系是指数据元素之间的关联方式或邻接关系。 四类基本的逻辑结构：集合、线性结构、树形结构、图结构。 集合结点之间没有邻接关系；线性结构结点之间一对一的关系；树形结构结点之间一对多的关系；图结构结点之间多对多的关系。 与数据元素本身的形式、内容、相对位置、个数无关的是数据的逻辑结构。 数据的逻辑结构在计算机中的实现称为数据的存储结构（或物理结构）。 存储结构一般有四种形式：顺序存储、链式存储、索引存储、散列存储。 运算是指在某种逻辑结构上施加的操作，即对逻辑结构的加工。这种加工以数据的逻辑结构为对象。 运算的实现是指该运算的算法；算法指的是求解给定问题所需的处理步骤及其执行顺序。 时间复杂度、空间复杂度
+算法时间复杂度指的是算法在给定输入下的计算量。 算法的空间复杂度指的是算法中除了输入数据占用的存储空间之外所需的附加存储空间的大小，即所需的存储量。 在估算算法空间复杂度时，一般只需要分析辅助变量所占用的空间。 常数阶 $O(1)$，对数阶 $O(log_{2}n)$，线性阶 $O(n)$，线性对数阶 $O(nlog_{2}n)$，多项式阶有：平方阶 $O(n^2)$、立方阶 $O(n^3)$、K次方阶 $O(n^k)$，指数阶 $O(2^n)$。 第二章 线性表 顺序表"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png' />
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/17669653" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">😆</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GHBJayce</a></h1>
+            <h2 class="site-description">十年饮冰，难凉热血。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GHBJayce'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archive/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#目录">目录</a></li>
+    <li><a href="#第一章-概论">第一章 概论</a></li>
+    <li><a href="#第二章-线性表">第二章 线性表</a></li>
+    <li><a href="#第三章-栈队列和数组">第三章 栈、队列和数组</a></li>
+    <li><a href="#第四章-树和二叉树">第四章 树和二叉树</a></li>
+    <li><a href="#第五章-图">第五章 图</a></li>
+    <li><a href="#第六章-查找">第六章 查找</a></li>
+    <li><a href="#第七章-排序">第七章 排序</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/book/080901/02142/exam-focus/">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" alt="Featured image of post 《数据结构导论》考试重点" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E4%B9%A6%E7%B1%8D/" >
+                书籍
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/book/080901/02142/exam-focus/">《数据结构导论》考试重点</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-10-22</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="目录">目录</h2>
+<ul>
+<li><a class="link" href="../chapter1" >第一章 概论</a> <small>P21 ~ 34（13页）</small></li>
+<li><a class="link" href="../chapter2" >第二章 线性表</a> <small>P35 ~ 58（23页）</small></li>
+<li><a class="link" href="../chapter3" >第三章 栈、队列和数组</a> <small>P59 ~ 92（33页）</small></li>
+<li><a class="link" href="../chapter4" >第四章 树和二叉树</a> <small>P93 ~ 128（35页）</small></li>
+<li><a class="link" href="../chapter5" >第五章 图</a> <small>P129 ~ 160（31页）</small></li>
+<li><a class="link" href="../chapter6" >第六章 查找</a> <small>P161 ~ 182（21页）</small></li>
+<li><a class="link" href="../chapter7" >第七章 排序</a> <small>P183 ~ 204（27页）</small></li>
+<li><a class="link" href="../exam-focus" ><strong>考试重点</strong></a></li>
+</ul>
+<p>下面是我从历年试题和书本中整理出来的重点。Enjoy it!</p>
+<blockquote>
+<p>如果这篇文章对你有帮助，也请你将这篇文章分享给有需要的人。</p>
+</blockquote>
+<h2 id="第一章-概论">第一章 概论</h2>
+<ul>
+<li>数据结构是<strong>计算机组织数据</strong>和<strong>存储数据的方式</strong>。</li>
+<li>数据结构是指一组<strong>相互之间存在一种或多种特定关系的数据的组织方式</strong>和<strong>它们在计算机内的存储方式</strong>，以及定义在该组数据上的一组<strong>操作</strong>。</li>
+<li>1976年瑞士计算机科学家尼克劳斯·维尔特（Niklaus Wirth）曾提出一个著名的公式：<strong>算法 + 数据结构 = 程序</strong>。</li>
+<li>数据由若干个数据元素组成，数据元素由若干个数据项组成。</li>
+</ul>
+<p>逻辑结构、存储结构、运算</p>
+<ul>
+<li>数据的逻辑结构是指数据元素之间的逻辑关系。逻辑关系是指数据元素之间的关联方式或邻接关系。</li>
+<li>四类基本的逻辑结构：<strong>集合</strong>、<strong>线性结构</strong>、<strong>树形结构</strong>、<strong>图结构</strong>。</li>
+<li>集合结点之间没有邻接关系；线性结构结点之间一对一的关系；树形结构结点之间一对多的关系；图结构结点之间多对多的关系。</li>
+<li>与数据元素本身的形式、内容、相对位置、个数无关的是数据的<strong>逻辑结构</strong>。</li>
+<li>数据的逻辑结构在计算机中的实现称为数据的<strong>存储结构</strong>（或物理结构）。</li>
+<li>存储结构一般有四种形式：<strong>顺序存储</strong>、<strong>链式存储</strong>、<strong>索引存储</strong>、<strong>散列存储</strong>。</li>
+<li><strong>运算</strong>是指在某种逻辑结构上施加的<strong>操作</strong>，即对逻辑结构的加工。这种加工以数据的逻辑结构为对象。</li>
+<li>运算的实现是指该运算的算法；算法指的是求解给定问题所需的<strong>处理步骤</strong>及其<strong>执行顺序</strong>。</li>
+</ul>
+<p>时间复杂度、空间复杂度</p>
+<ul>
+<li>算法时间复杂度指的是<strong>算法在给定输入下的计算量</strong>。</li>
+<li>算法的空间复杂度指的是<strong>算法中除了输入数据占用的存储空间之外所需的附加存储空间的大小，即所需的存储量</strong>。</li>
+<li>在估算算法空间复杂度时，一般只需要分析<strong>辅助变量</strong>所占用的空间。</li>
+<li>常数阶 $O(1)$，对数阶 $O(log_{2}n)$，线性阶 $O(n)$，线性对数阶 $O(nlog_{2}n)$，多项式阶有：平方阶 $O(n^2)$、立方阶 $O(n^3)$、K次方阶 $O(n^k)$，指数阶 $O(2^n)$。</li>
+</ul>
+<h2 id="第二章-线性表">第二章 线性表</h2>
+<p>顺序表</p>
+<ul>
+<li>顺序表插入新元素，需要移动元素的个数为 $n-i+1$（i为下标从1开始就需要+1，否则不需要）。</li>
+<li>顺序表删除元素，需要移动元素的个数为 $n-i$（i为下标，从1开始）。</li>
+<li>顺序表插入算法的平均移动次数约为 $\frac{n}{2}$，算法时间复杂度为 $O(n)$。</li>
+<li>顺序表删除算法的平均移动次数约为 $\frac{n-1}{2}$（下标从0开始），算法时间复杂度为 $O(n)$。</li>
+<li>单链表和双向循环链表插入操作顺序不可以颠倒。</li>
+<li>双向循环链表删除操作顺序可以颠倒。</li>
+<li>用顺序存储实现的线性表称为顺序表，一般使用<strong>数组</strong>来表示。</li>
+</ul>
+<p>链表</p>
+<ul>
+<li>在单链表中，指针p所指的结点为最后一个结点的条件是<code>p-&gt;next == NULL</code>。</li>
+</ul>
+<h2 id="第三章-栈队列和数组">第三章 栈、队列和数组</h2>
+<ul>
+<li>栈和队列可看作是特殊的线性表，运算受限的线性表。</li>
+<li><strong>函数的嵌套调用</strong>和<strong>程序递归的处理</strong>都是用<strong>栈</strong>来实现的。<strong>操作系统中进程调度</strong>、<strong>网络管理中的打印服务</strong>等都是用<strong>队列</strong>来实现的。</li>
+<li>术语：
+<ul>
+<li><strong>进栈</strong>：指插入运算。<strong>出栈</strong>：指删除运算。<strong>栈顶</strong>：允许进栈和出栈的一端。<strong>栈底</strong>：栈顶的另一端。</li>
+<li><strong>空栈</strong>：不含任何数据元素的栈。<strong>栈顶元素</strong>：处于栈顶位置的数据元素。</li>
+<li><strong>上溢：栈的容量已经满了，此时再进行进栈就会发生上溢</strong>。<strong>下溢：空栈做出栈就会产生下溢，因为栈中没有任何数据元素</strong>。</li>
+</ul>
+</li>
+</ul>
+<p>栈、双栈的运算</p>
+<ul>
+<li>顺序栈使用数组实现，栈顶top默认为下标0，判断栈空的核心<code>stack-&gt;top == 0</code>，判断栈满的核心<code>stack-&gt;top == maxSize -1</code>，进栈操作的核心<code>stack-&gt;top++; stack-&gt;data[stack-&gt;top] = x;</code>，出栈操作的核心<code>stack-&gt;top--;</code>。</li>
+<li>双栈判断上溢的条件为：$top+1=top2$。</li>
+</ul>
+<p>队列的基本概念</p>
+<ul>
+<li>栈是<strong>后进先出（Last In First Out）</strong>，队列是<strong>先进先出（First In First out）</strong>。</li>
+<li><strong>入队列</strong>：在队列尾部进行插入运算；<strong>出队列</strong>：在队列首部进行删除运算。</li>
+<li>链队列是一个带有头结点的单链表组成，队列首部的指针指向头结点，头指针指向首结点，队列尾部的指针指向尾结点，队列空的时候，队列首部和尾部的指针均指向头结点。</li>
+</ul>
+<p>队列、循环队列的运算</p>
+<ul>
+<li>顺序队列入队列操作的核心<code>SQ.rear = SQ.rear + 1; SQ.data[SQ.rear] = x;</code>，出队列操作的核心<code>SQ.front = SQ.front + 1</code>。</li>
+<li>循环队列解决了<strong>假溢出</strong>问题，队首和队尾都指向下标0的位置，少使用一个元素空间以解决无法区分空和满的情况。</li>
+<li>循环队列入队列操作的核心<code>CQ.rear = (CQ.rear + 1) % maxSize; CQ.data[CQ.rear] = x;</code>，出队列操作的核心<code>CQ.front = (CQ.front + 1) % maxSize;</code>，队列满的条件<code>(CQ.rear + 1) % maxSize == CQ.front;</code>，队列空的条件<code>CQ.rear == CQ.front;</code>。</li>
+</ul>
+<p>数组、矩阵</p>
+<ul>
+<li>计算数组元素的存储地址公式 $(n * i + j) \times k$，其中m是行数量，n是列数量，i是在m行的下标，j是在n列的下标，k是每个元素占用的存储大小。</li>
+<li>可将 $n^2$ 个元素压缩存储到含有 $\frac{n(n + 1)}{2}$  个元素的一维数组中。</li>
+<li>假设m行n列的矩阵有t个非零元素，当$t&laquo;m*n$时，则称矩阵为<strong>稀疏矩阵</strong>；三元组表示法：<code>((i, j, v), (i, j, v), ...)</code>，其中i是行，j是列，v是非零元素的值。</li>
+</ul>
+<h2 id="第四章-树和二叉树">第四章 树和二叉树</h2>
+<ul>
+<li>术语：
+<ul>
+<li><strong>结点的度</strong>：某一个结点有多少个直接孩子。<strong>树的度</strong>：结点的度的最大值，也就是所有结点里直接孩子最多的那个。</li>
+<li><strong>结点的层次</strong>：把一棵树比作一个层级金字塔，从根结点为1，每下一层+1，数到结点所在的层级。<strong>树的高度/深度</strong>：结点的层次的最大值，也就是树一共有多少层。</li>
+</ul>
+</li>
+</ul>
+<p>二叉树的基本概念</p>
+<ul>
+<li>一棵树的结点个数最少为<strong>0</strong>；二叉树第 i（i≥1）层上至多有 $2^{i-1}$ 个结点；深度为 k（k≥1）的二叉树至多有 $2^{k}-1$ 个结点。</li>
+<li>对任何一棵二叉树，若度数为0的结点个数为$n_0$，度数为2的结点个数为$n_2$，则 $n_0=n_2+1$。</li>
+<li>含有n个结点的完全二叉树的深度为 $⌊log_2n⌋+1$。</li>
+<li>对于完全二叉树，根结点为1对结点进行编号，$i&gt;1$ 时（i是指被编号的那个结点），结点双亲的编号为 $⌊\frac{i}{2}⌋$。</li>
+<li>二叉树不是完全二叉树，满二叉树一定是完全二叉树，完全二叉树不一定是满二叉树。</li>
+<li>二叉树的<strong>先序遍历次序为根左右</strong>，<strong>中序遍历次序为左根右</strong>，<strong>后序遍历次序为左右根</strong>，<strong>层次遍历次序为每层从左往右</strong>。</li>
+</ul>
+<p>存储结构</p>
+<ul>
+<li><strong>具有n个结点的二叉树（链表结构）中，有 $2n$ 个指针域，其中只有 $n-1$ 个用来指向结点的左、右孩子，其余的 $n + 1$ 个指针域为NULL</strong>。</li>
+<li>树的存储结构分别有：<strong>孩子链表表示法</strong>、<strong>孩子兄弟链表表示法</strong>、<strong>双亲表示法</strong>。<strong>孩子兄弟链表的结构形式与二叉链表完全相同</strong>。</li>
+</ul>
+<p>树和二叉树</p>
+<ul>
+<li>树转换成二叉树：
+<ol>
+<li>加线，所有兄弟结点之间加一条线，彼此连接起来。</li>
+<li>抹线，除了结点的第一个左孩子，其他孩子与结点的连线全部抹掉。</li>
+<li>旋转，以根节点为轴心，对树进行顺时针的适当旋转。</li>
+</ol>
+</li>
+<li>森林转换成二叉树：
+<ol>
+<li>将森林中的每棵树转换成二叉树。</li>
+<li>加线，转换以后的二叉树，从第二棵二叉树开始，将其根节点作为前一棵二叉树根结点的右子树，以此类推。</li>
+</ol>
+</li>
+<li>二叉树转换成森林：
+<ol>
+<li>抹线，断开根结点与右孩子的连线，此时得到两棵二叉树。</li>
+<li>抹线再加线，二叉树根节点的左子树的右子树们均断开连接，改成均与根节点之间连接，如果根节点有右子树，重复步骤1的操作。</li>
+<li>剩下的二叉树重复按以上步骤进行处理。</li>
+</ol>
+</li>
+</ul>
+<p>判断树和哈夫曼树</p>
+<ul>
+<li>一棵<strong>判定树</strong>描述了一种<strong>分类</strong>方法；用于描述分类过程的二叉树称为<strong>判定树</strong>。</li>
+<li>有n个叶子结点的哈夫曼树，其结点的总数为 $2n-1$。</li>
+</ul>
+<h2 id="第五章-图">第五章 图</h2>
+<ul>
+<li>术语：
+<ul>
+<li><strong>顶点</strong>：即图中的圆圈。<strong>边</strong>：即图中圆圈之间的连线，也称为顶点的偶对。<strong>权</strong>：即连线旁边的数值，也称为<strong>边的权</strong>。</li>
+<li><strong>带权图</strong>：每条边都带有权的图。<strong>有向图</strong>：顶点的偶对是有序的。<strong>无向图</strong>：顶点的偶对是无序的。</li>
+<li><strong>弧</strong>：有向图的边又称为弧。<strong>弧头</strong>：表示弧的终点，即弧有箭头的一端。<strong>弧尾</strong>：表示弧的始点/起点。</li>
+<li><strong>有向完全图</strong>：任何两个顶点之间都有弧的有向图。<strong>无向完全图</strong>：任何两个顶点之间都有边的无向图。</li>
+<li><strong>顶点的度</strong>：与该顶点相关联的边的数目。</li>
+<li><strong>入度</strong>：把以顶点v为终点的弧的数目称为v的入度，记为ID(v)。</li>
+<li><strong>出度</strong>：把以顶点v为始点的弧的数目称为v的出度，记为OD(v)。</li>
+<li><strong>路径</strong>：从一个顶点x到另一个顶点y之间的路线。<strong>路径长度</strong>：路径上边/弧的数目。</li>
+<li><strong>简单路径</strong>：序列中顶点不重复出现的路径。<strong>回路</strong>：第一个顶点和最后一个顶点相同的路径，也称为<strong>环</strong>。<strong>简单回路</strong>：除了第一个顶点和最后一个顶点外，其余顶点不重复的回路。</li>
+<li><strong>连通</strong>：顶点x到顶点y有路径，则称顶点x和顶点y是连通的。</li>
+<li><strong>连通图</strong>：图中任意两个顶点都是连通的。<strong>连通分量</strong>：无向图中的极大（最大）连通子图。</li>
+<li><strong>强连通</strong>相关术语含义与连通一样，只是强连通用于描述有向图，不做赘述。</li>
+</ul>
+</li>
+<li>有序偶对用尖括号&lt;&gt;括起来，无序偶对用圆括号()括起来。</li>
+<li>无向图中一个顶点的度是指图中<strong>与该顶点相邻接的顶点数</strong>。</li>
+<li>一个具有n个顶点的有向完全图的弧的数量为：$P_{n}^{2}=n(n-1)$；一个具有n个顶点的无向完全图的边的数量为：$C_{n}^{2}=\frac{n(n-1)}{2}$。</li>
+</ul>
+<p>存储结构</p>
+<ul>
+<li>邻接表是<strong>顺序存储</strong>与<strong>链式存储</strong>相结合的存储方法。</li>
+<li>无向图的邻接矩阵是一个<strong>对称矩阵</strong>，有向图的邻接矩阵是一个<strong>稀疏矩阵</strong>。</li>
+<li>在含n个顶点和e条边的无向图的邻接矩阵中，零元素的个数为$n^{2}-2e$；而有向图的邻接矩阵中，零元素个数为$n^{2}-e$。</li>
+</ul>
+<p>遍历</p>
+<ul>
+<li>图的遍历方法有两种：<strong>深度优先搜索DFS</strong>、<strong>广度优先搜索BFS</strong>。</li>
+<li>图的遍历操作类似于树的遍历操作；深度搜索的顶点的访问序列不是唯一的。</li>
+<li><strong>深度优先搜索</strong>类似于<strong>树的先序遍历</strong>；<strong>广度优先搜索</strong>类似于<strong>树的层次遍历</strong>。</li>
+<li>以邻接表为存储结构，深度优先搜索算法的时间复杂度是$O(n+e)$，其中n为图的顶点数，e为图的边数。</li>
+<li>以邻接矩阵作为存储结构，深度优先搜索算法的时间复杂度是$O(n^2)$，其中n为图的顶点数。</li>
+</ul>
+<p>应用</p>
+<ul>
+<li>一个图的最小生成树是图所有生成树中<strong>权总和最小</strong>的生成树；最小生成树有两种算法：<strong>普里姆Prim算法</strong>、<strong>克鲁斯卡尔Kruskal算法</strong>。</li>
+<li>克鲁斯卡尔Kruskal方法的思想，初始时将每个顶点看成一个单独的连通分量，找所有连通分量之间的权值最小的一条边，将该边添加到两个连通分量中，并合并成一个新的单独的连通分量，重复这个过程，直到所有顶点最终形成一个连通分量。</li>
+<li>最短路径算法可以采用<strong>迪杰斯特拉Dijkstra算法</strong>，思想是按照最短路径长度<strong>递增</strong>的方法产生从一点到其他顶点的最短路径。</li>
+<li>完成拓扑排序的前提条件是AOV网中<strong>不允许出现回路</strong>。</li>
+<li>以邻接表作为存储结构，拓扑排序算法的时间复杂度为$O(n+e)$，n是图的顶点个数，e是图的弧的数目。</li>
+</ul>
+<h2 id="第六章-查找">第六章 查找</h2>
+<ul>
+<li>对于一种数据结构，<strong>查找表</strong>的<strong>逻辑结构</strong>是<strong>集合</strong>。</li>
+<li>顺序表为(b1, b2, b3)，查找b1，b2，b3的概率分别为0.2、0.2、0.6，则顺序查找法的平均查找长度为$(0.2\times3)+(0.2\times2)+(0.6\times1)=1.6$。</li>
+</ul>
+<p>顺序表</p>
+<ul>
+<li>向一个长度为n的顺序表中第i($1{\leq}i{\leq}n$)个元素之前插入一个元素时，需向后移动$n-i+1$个元素。</li>
+<li>从一个长度为n的顺序表中删除第i个元素($1{\leq}i{\leq}n$)时，需向前移动$n-i$个元素。</li>
+<li>在长度为n的带有岗哨的顺序表中，进行顺序查找，查找不成功时，与关键字比较次数为$n+1$。</li>
+<li>采用顺序查找方法查找长度为n的顺序表时，平均查找长度为$\frac{(n+1)}{2}$。</li>
+</ul>
+<p>二叉排序树</p>
+<ul>
+<li><strong>中序遍历</strong>一棵<strong>二叉排序树</strong>可得到一个键值的<strong>升序</strong>序列。</li>
+<li>二叉排序树的平均查找长度介于 $O(n)$ 和 $O(log_2n)$ 之间。</li>
+</ul>
+<p>散列表、散列法、解决冲突方法</p>
+<ul>
+<li>散列法：<strong>数字分析法</strong>、<strong>除留取余法</strong>、<strong>平方取中法</strong>、<strong>基数转换法</strong>。</li>
+<li>除留取余法$H(key)=key{\quad}mod{\quad}p(p{\leq}n)$，p通常选小于散列表长度n的素数，如果p是偶数，得到的散列值总是偶数，如果是奇数则总是奇数。</li>
+<li>解决冲突方法：<strong>线性探测法</strong>、<strong>二次探测法</strong>、<strong>链地址法</strong>、<strong>多重散列法</strong>、<strong>公共溢出区法</strong>。</li>
+<li>非同义词之间对同一个散列地址的争夺现象称为<strong>堆积</strong>。</li>
+<li><strong>线性探测法容易产生堆积</strong>。<strong>二次探测法缺点不容易探测到整个散列表的所有空间</strong>。</li>
+<li><strong>链地址法实际上也可能存在堆积，退化成链表</strong>（书上未提及，仅个人观点）。</li>
+<li><strong>多重散列法优点不容易产生堆积，缺点计算量大</strong>。</li>
+<li><strong>公共溢出区法，在发生冲突的情况下，将同义词存入溢出表，基本表就不可能发生堆积</strong>（书上原话）。</li>
+<li>要完全避免散列所产生的“堆积”现象，通常采用<strong>链地址法</strong>解决冲突（书中课后题的答案，按书中教的来）。</li>
+<li>用线性探测法解决冲突，可能要探测多个散列地址，这些位置上的键值<strong>不一定都是同义词</strong>。</li>
+</ul>
+<h2 id="第七章-排序">第七章 排序</h2>
+<ul>
+<li>稳定性是排序方法本身的特性，与数据无关。</li>
+<li>当待排序序列已基本有序时，插入排序和交换排序比较有效（性能高）。当待排记录数量较大时，选择排序比较有效（性能高）。</li>
+</ul>
+<p>插入排序</p>
+<ul>
+<li>插入排序方法有<strong>直接插入排序</strong>、<strong>折半插入排序</strong>、<strong>表插入排序</strong>、<strong>希尔排序</strong>。</li>
+<li><strong>直接插入排序类似图书馆整理图书的过程，时间复杂度为$O(n^2)$，空间复杂度为$O(1)$，是稳定的</strong>，不适宜n较大的序列。</li>
+</ul>
+<p>交换排序</p>
+<ul>
+<li>交换排序方法有<strong>冒泡排序</strong>、<strong>快速排序</strong>。</li>
+<li>冒泡排序<strong>时间复杂度为$O(n^2)$，空间复杂度$O(1)$，是稳定的</strong>。</li>
+<li><strong>快速排序</strong>实质上是对<strong>冒泡排序</strong>的一种改进。快速排序<strong>时间复杂度为$O(nlog_2n)$</strong>，最坏情况下时间复杂度近似$O(n^2)$，空间复杂度取决于实现的算法，<strong>是不稳定的</strong>，对数量n较小算法效果不明显，数量较大效果明显。</li>
+</ul>
+<p>选择排序</p>
+<ul>
+<li>选择排序方法有<strong>直接选择排序</strong>、<strong>堆排序</strong>。</li>
+<li>直接选择排序<strong>时间复杂度为$O(n^2)$，空间复杂度$O(1)$，是不稳定的</strong>，不适宜n较大的序列。</li>
+<li>堆排序<strong>平均和最坏情况下时间复杂度都是$O(nlog_2n)$，空间复杂度为$O(1)$，是不稳定的</strong>，不适宜待排序记录较少时使用，记录数很多效果明显。</li>
+</ul>
+<p>归并排序</p>
+<ul>
+<li>归并排序方法有<strong>有序序列的合并</strong>、<strong>二路归并排序</strong>。</li>
+<li>有序序列的合并算法时间复杂度为$O(n-h+1)$。</li>
+<li>二路归并排序<strong>时间复杂度为$O(nlog_2n)$，空间复杂度$O(n)$，是稳定的</strong>。</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/">数据结构导论</a>
+        
+            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/">计算机科学与技术</a>
+        
+            <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://unpkg.com/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://unpkg.com/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/book/080901/02142/chapter7/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/chapter7" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">第七章 排序 - 《数据结构导论》笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/book/080901/02142/chapter6/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/chapter6" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">第六章 查找 - 《数据结构导论》笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/book/080901/02142/chapter5/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/chapter5" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">第五章 图 - 《数据结构导论》笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/book/080901/02142/chapter4/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/chapter4" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">第四章 树和二叉树 - 《数据结构导论》笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/book/080901/02142/chapter3/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/chapter3" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">第三章 栈、队列和数组 - 《数据结构导论》笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2024 GHBJayce
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/default-skin/default-skin.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://unpkg.com/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

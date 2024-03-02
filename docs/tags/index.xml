@@ -6,8 +6,40 @@
         <description>Recent content in Tags on GHBJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 05 Dec 2023 11:45:25 +0800</lastBuildDate><atom:link href="https://ghbjayce.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>hugo</title>
+        <lastBuildDate>Mon, 26 Feb 2024 10:01:00 +0800</lastBuildDate><atom:link href="https://ghbjayce.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Hyperf</title>
+        <link>https://ghbjayce.github.io/tags/hyperf/</link>
+        <pubDate>Mon, 26 Feb 2024 10:01:00 +0800</pubDate>
+        
+        <guid>https://ghbjayce.github.io/tags/hyperf/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>PHP</title>
+        <link>https://ghbjayce.github.io/tags/php/</link>
+        <pubDate>Mon, 26 Feb 2024 10:01:00 +0800</pubDate>
+        
+        <guid>https://ghbjayce.github.io/tags/php/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>枚举</title>
+        <link>https://ghbjayce.github.io/tags/%E6%9E%9A%E4%B8%BE/</link>
+        <pubDate>Mon, 26 Feb 2024 10:01:00 +0800</pubDate>
+        
+        <guid>https://ghbjayce.github.io/tags/%E6%9E%9A%E4%B8%BE/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>异常</title>
+        <link>https://ghbjayce.github.io/tags/%E5%BC%82%E5%B8%B8/</link>
+        <pubDate>Mon, 26 Feb 2024 10:01:00 +0800</pubDate>
+        
+        <guid>https://ghbjayce.github.io/tags/%E5%BC%82%E5%B8%B8/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Hugo</title>
         <link>https://ghbjayce.github.io/tags/hugo/</link>
         <pubDate>Tue, 05 Dec 2023 11:45:25 +0800</pubDate>
         
@@ -41,7 +73,7 @@
         <item>
         <title>笔记</title>
         <link>https://ghbjayce.github.io/tags/%E7%AC%94%E8%AE%B0/</link>
-        <pubDate>Fri, 20 Oct 2023 09:27:30 +0800</pubDate>
+        <pubDate>Sun, 22 Oct 2023 09:27:30 +0800</pubDate>
         
         <guid>https://ghbjayce.github.io/tags/%E7%AC%94%E8%AE%B0/</guid>
         <description></description>
@@ -49,7 +81,7 @@
         <item>
         <title>计算机科学与技术</title>
         <link>https://ghbjayce.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/</link>
-        <pubDate>Fri, 20 Oct 2023 09:27:30 +0800</pubDate>
+        <pubDate>Sun, 22 Oct 2023 09:27:30 +0800</pubDate>
         
         <guid>https://ghbjayce.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/</guid>
         <description></description>
@@ -57,7 +89,7 @@
         <item>
         <title>数据结构导论</title>
         <link>https://ghbjayce.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/</link>
-        <pubDate>Fri, 20 Oct 2023 09:27:30 +0800</pubDate>
+        <pubDate>Sun, 22 Oct 2023 09:27:30 +0800</pubDate>
         
         <guid>https://ghbjayce.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/</guid>
         <description></description>
@@ -95,7 +127,7 @@
         <description></description>
         </item>
         <item>
-        <title>android</title>
+        <title>Android</title>
         <link>https://ghbjayce.github.io/tags/android/</link>
         <pubDate>Wed, 30 Aug 2023 13:26:26 +0800</pubDate>
         
@@ -103,7 +135,7 @@
         <description></description>
         </item>
         <item>
-        <title>git</title>
+        <title>Git</title>
         <link>https://ghbjayce.github.io/tags/git/</link>
         <pubDate>Wed, 30 Aug 2023 13:26:26 +0800</pubDate>
         
@@ -111,7 +143,7 @@
         <description></description>
         </item>
         <item>
-        <title>termux</title>
+        <title>Termux</title>
         <link>https://ghbjayce.github.io/tags/termux/</link>
         <pubDate>Wed, 30 Aug 2023 13:26:26 +0800</pubDate>
         

@@ -6,21 +6,273 @@
         <description>Recent content in 笔记 on GHBJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Fri, 20 Oct 2023 09:27:30 +0800</lastBuildDate><atom:link href="https://ghbjayce.github.io/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 22 Oct 2023 09:27:30 +0800</lastBuildDate><atom:link href="https://ghbjayce.github.io/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>《数据结构导论》考试重点</title>
+        <link>https://ghbjayce.github.io/p/book/080901/02142/exam-focus/</link>
+        <pubDate>Sun, 22 Oct 2023 09:27:30 +0800</pubDate>
+        
+        <guid>https://ghbjayce.github.io/p/book/080901/02142/exam-focus/</guid>
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 《数据结构导论》考试重点" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt; &lt;small&gt;P35 ~ 58（23页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt; &lt;small&gt;P59 ~ 92（33页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt; &lt;small&gt;P93 ~ 128（35页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;第五章 图&lt;/a&gt; &lt;small&gt;P129 ~ 160（31页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;第六章 查找&lt;/a&gt; &lt;small&gt;P161 ~ 182（21页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;第七章 排序&lt;/a&gt; &lt;small&gt;P183 ~ 204（27页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../exam-focus&#34; &gt;&lt;strong&gt;考试重点&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面是我从历年试题和书本中整理出来的重点。Enjoy it!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果这篇文章对你有帮助，也请你将这篇文章分享给有需要的人。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;第一章-概论&#34;&gt;第一章 概论&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;数据结构是&lt;strong&gt;计算机组织数据&lt;/strong&gt;和&lt;strong&gt;存储数据的方式&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;数据结构是指一组&lt;strong&gt;相互之间存在一种或多种特定关系的数据的组织方式&lt;/strong&gt;和&lt;strong&gt;它们在计算机内的存储方式&lt;/strong&gt;，以及定义在该组数据上的一组&lt;strong&gt;操作&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;1976年瑞士计算机科学家尼克劳斯·维尔特（Niklaus Wirth）曾提出一个著名的公式：&lt;strong&gt;算法 + 数据结构 = 程序&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;数据由若干个数据元素组成，数据元素由若干个数据项组成。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;逻辑结构、存储结构、运算&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据的逻辑结构是指数据元素之间的逻辑关系。逻辑关系是指数据元素之间的关联方式或邻接关系。&lt;/li&gt;
+&lt;li&gt;四类基本的逻辑结构：&lt;strong&gt;集合&lt;/strong&gt;、&lt;strong&gt;线性结构&lt;/strong&gt;、&lt;strong&gt;树形结构&lt;/strong&gt;、&lt;strong&gt;图结构&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;集合结点之间没有邻接关系；线性结构结点之间一对一的关系；树形结构结点之间一对多的关系；图结构结点之间多对多的关系。&lt;/li&gt;
+&lt;li&gt;与数据元素本身的形式、内容、相对位置、个数无关的是数据的&lt;strong&gt;逻辑结构&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;数据的逻辑结构在计算机中的实现称为数据的&lt;strong&gt;存储结构&lt;/strong&gt;（或物理结构）。&lt;/li&gt;
+&lt;li&gt;存储结构一般有四种形式：&lt;strong&gt;顺序存储&lt;/strong&gt;、&lt;strong&gt;链式存储&lt;/strong&gt;、&lt;strong&gt;索引存储&lt;/strong&gt;、&lt;strong&gt;散列存储&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;运算&lt;/strong&gt;是指在某种逻辑结构上施加的&lt;strong&gt;操作&lt;/strong&gt;，即对逻辑结构的加工。这种加工以数据的逻辑结构为对象。&lt;/li&gt;
+&lt;li&gt;运算的实现是指该运算的算法；算法指的是求解给定问题所需的&lt;strong&gt;处理步骤&lt;/strong&gt;及其&lt;strong&gt;执行顺序&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;时间复杂度、空间复杂度&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;算法时间复杂度指的是&lt;strong&gt;算法在给定输入下的计算量&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;算法的空间复杂度指的是&lt;strong&gt;算法中除了输入数据占用的存储空间之外所需的附加存储空间的大小，即所需的存储量&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;在估算算法空间复杂度时，一般只需要分析&lt;strong&gt;辅助变量&lt;/strong&gt;所占用的空间。&lt;/li&gt;
+&lt;li&gt;常数阶 $O(1)$，对数阶 $O(log_{2}n)$，线性阶 $O(n)$，线性对数阶 $O(nlog_{2}n)$，多项式阶有：平方阶 $O(n^2)$、立方阶 $O(n^3)$、K次方阶 $O(n^k)$，指数阶 $O(2^n)$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;第二章-线性表&#34;&gt;第二章 线性表&lt;/h2&gt;
+&lt;p&gt;顺序表&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;顺序表插入新元素，需要移动元素的个数为 $n-i+1$（i为下标从1开始就需要+1，否则不需要）。&lt;/li&gt;
+&lt;li&gt;顺序表删除元素，需要移动元素的个数为 $n-i$（i为下标，从1开始）。&lt;/li&gt;
+&lt;li&gt;顺序表插入算法的平均移动次数约为 $\frac{n}{2}$，算法时间复杂度为 $O(n)$。&lt;/li&gt;
+&lt;li&gt;顺序表删除算法的平均移动次数约为 $\frac{n-1}{2}$（下标从0开始），算法时间复杂度为 $O(n)$。&lt;/li&gt;
+&lt;li&gt;单链表和双向循环链表插入操作顺序不可以颠倒。&lt;/li&gt;
+&lt;li&gt;双向循环链表删除操作顺序可以颠倒。&lt;/li&gt;
+&lt;li&gt;用顺序存储实现的线性表称为顺序表，一般使用&lt;strong&gt;数组&lt;/strong&gt;来表示。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;链表&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在单链表中，指针p所指的结点为最后一个结点的条件是&lt;code&gt;p-&amp;gt;next == NULL&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;第三章-栈队列和数组&#34;&gt;第三章 栈、队列和数组&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;栈和队列可看作是特殊的线性表，运算受限的线性表。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;函数的嵌套调用&lt;/strong&gt;和&lt;strong&gt;程序递归的处理&lt;/strong&gt;都是用&lt;strong&gt;栈&lt;/strong&gt;来实现的。&lt;strong&gt;操作系统中进程调度&lt;/strong&gt;、&lt;strong&gt;网络管理中的打印服务&lt;/strong&gt;等都是用&lt;strong&gt;队列&lt;/strong&gt;来实现的。&lt;/li&gt;
+&lt;li&gt;术语：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;进栈&lt;/strong&gt;：指插入运算。&lt;strong&gt;出栈&lt;/strong&gt;：指删除运算。&lt;strong&gt;栈顶&lt;/strong&gt;：允许进栈和出栈的一端。&lt;strong&gt;栈底&lt;/strong&gt;：栈顶的另一端。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;空栈&lt;/strong&gt;：不含任何数据元素的栈。&lt;strong&gt;栈顶元素&lt;/strong&gt;：处于栈顶位置的数据元素。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;上溢：栈的容量已经满了，此时再进行进栈就会发生上溢&lt;/strong&gt;。&lt;strong&gt;下溢：空栈做出栈就会产生下溢，因为栈中没有任何数据元素&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;栈、双栈的运算&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;顺序栈使用数组实现，栈顶top默认为下标0，判断栈空的核心&lt;code&gt;stack-&amp;gt;top == 0&lt;/code&gt;，判断栈满的核心&lt;code&gt;stack-&amp;gt;top == maxSize -1&lt;/code&gt;，进栈操作的核心&lt;code&gt;stack-&amp;gt;top++; stack-&amp;gt;data[stack-&amp;gt;top] = x;&lt;/code&gt;，出栈操作的核心&lt;code&gt;stack-&amp;gt;top--;&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;双栈判断上溢的条件为：$top+1=top2$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;队列的基本概念&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;栈是&lt;strong&gt;后进先出（Last In First Out）&lt;/strong&gt;，队列是&lt;strong&gt;先进先出（First In First out）&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;入队列&lt;/strong&gt;：在队列尾部进行插入运算；&lt;strong&gt;出队列&lt;/strong&gt;：在队列首部进行删除运算。&lt;/li&gt;
+&lt;li&gt;链队列是一个带有头结点的单链表组成，队列首部的指针指向头结点，头指针指向首结点，队列尾部的指针指向尾结点，队列空的时候，队列首部和尾部的指针均指向头结点。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;队列、循环队列的运算&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;顺序队列入队列操作的核心&lt;code&gt;SQ.rear = SQ.rear + 1; SQ.data[SQ.rear] = x;&lt;/code&gt;，出队列操作的核心&lt;code&gt;SQ.front = SQ.front + 1&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;循环队列解决了&lt;strong&gt;假溢出&lt;/strong&gt;问题，队首和队尾都指向下标0的位置，少使用一个元素空间以解决无法区分空和满的情况。&lt;/li&gt;
+&lt;li&gt;循环队列入队列操作的核心&lt;code&gt;CQ.rear = (CQ.rear + 1) % maxSize; CQ.data[CQ.rear] = x;&lt;/code&gt;，出队列操作的核心&lt;code&gt;CQ.front = (CQ.front + 1) % maxSize;&lt;/code&gt;，队列满的条件&lt;code&gt;(CQ.rear + 1) % maxSize == CQ.front;&lt;/code&gt;，队列空的条件&lt;code&gt;CQ.rear == CQ.front;&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;数组、矩阵&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;计算数组元素的存储地址公式 $(n * i + j) \times k$，其中m是行数量，n是列数量，i是在m行的下标，j是在n列的下标，k是每个元素占用的存储大小。&lt;/li&gt;
+&lt;li&gt;可将 $n^2$ 个元素压缩存储到含有 $\frac{n(n + 1)}{2}$  个元素的一维数组中。&lt;/li&gt;
+&lt;li&gt;假设m行n列的矩阵有t个非零元素，当$t&amp;laquo;m*n$时，则称矩阵为&lt;strong&gt;稀疏矩阵&lt;/strong&gt;；三元组表示法：&lt;code&gt;((i, j, v), (i, j, v), ...)&lt;/code&gt;，其中i是行，j是列，v是非零元素的值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;第四章-树和二叉树&#34;&gt;第四章 树和二叉树&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;术语：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;结点的度&lt;/strong&gt;：某一个结点有多少个直接孩子。&lt;strong&gt;树的度&lt;/strong&gt;：结点的度的最大值，也就是所有结点里直接孩子最多的那个。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;结点的层次&lt;/strong&gt;：把一棵树比作一个层级金字塔，从根结点为1，每下一层+1，数到结点所在的层级。&lt;strong&gt;树的高度/深度&lt;/strong&gt;：结点的层次的最大值，也就是树一共有多少层。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;二叉树的基本概念&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一棵树的结点个数最少为&lt;strong&gt;0&lt;/strong&gt;；二叉树第 i（i≥1）层上至多有 $2^{i-1}$ 个结点；深度为 k（k≥1）的二叉树至多有 $2^{k}-1$ 个结点。&lt;/li&gt;
+&lt;li&gt;对任何一棵二叉树，若度数为0的结点个数为$n_0$，度数为2的结点个数为$n_2$，则 $n_0=n_2+1$。&lt;/li&gt;
+&lt;li&gt;含有n个结点的完全二叉树的深度为 $⌊log_2n⌋+1$。&lt;/li&gt;
+&lt;li&gt;对于完全二叉树，根结点为1对结点进行编号，$i&amp;gt;1$ 时（i是指被编号的那个结点），结点双亲的编号为 $⌊\frac{i}{2}⌋$。&lt;/li&gt;
+&lt;li&gt;二叉树不是完全二叉树，满二叉树一定是完全二叉树，完全二叉树不一定是满二叉树。&lt;/li&gt;
+&lt;li&gt;二叉树的&lt;strong&gt;先序遍历次序为根左右&lt;/strong&gt;，&lt;strong&gt;中序遍历次序为左根右&lt;/strong&gt;，&lt;strong&gt;后序遍历次序为左右根&lt;/strong&gt;，&lt;strong&gt;层次遍历次序为每层从左往右&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;存储结构&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;具有n个结点的二叉树（链表结构）中，有 $2n$ 个指针域，其中只有 $n-1$ 个用来指向结点的左、右孩子，其余的 $n + 1$ 个指针域为NULL&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;树的存储结构分别有：&lt;strong&gt;孩子链表表示法&lt;/strong&gt;、&lt;strong&gt;孩子兄弟链表表示法&lt;/strong&gt;、&lt;strong&gt;双亲表示法&lt;/strong&gt;。&lt;strong&gt;孩子兄弟链表的结构形式与二叉链表完全相同&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;树和二叉树&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;树转换成二叉树：
+&lt;ol&gt;
+&lt;li&gt;加线，所有兄弟结点之间加一条线，彼此连接起来。&lt;/li&gt;
+&lt;li&gt;抹线，除了结点的第一个左孩子，其他孩子与结点的连线全部抹掉。&lt;/li&gt;
+&lt;li&gt;旋转，以根节点为轴心，对树进行顺时针的适当旋转。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;森林转换成二叉树：
+&lt;ol&gt;
+&lt;li&gt;将森林中的每棵树转换成二叉树。&lt;/li&gt;
+&lt;li&gt;加线，转换以后的二叉树，从第二棵二叉树开始，将其根节点作为前一棵二叉树根结点的右子树，以此类推。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;二叉树转换成森林：
+&lt;ol&gt;
+&lt;li&gt;抹线，断开根结点与右孩子的连线，此时得到两棵二叉树。&lt;/li&gt;
+&lt;li&gt;抹线再加线，二叉树根节点的左子树的右子树们均断开连接，改成均与根节点之间连接，如果根节点有右子树，重复步骤1的操作。&lt;/li&gt;
+&lt;li&gt;剩下的二叉树重复按以上步骤进行处理。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;判断树和哈夫曼树&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一棵&lt;strong&gt;判定树&lt;/strong&gt;描述了一种&lt;strong&gt;分类&lt;/strong&gt;方法；用于描述分类过程的二叉树称为&lt;strong&gt;判定树&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;有n个叶子结点的哈夫曼树，其结点的总数为 $2n-1$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;第五章-图&#34;&gt;第五章 图&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;术语：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;顶点&lt;/strong&gt;：即图中的圆圈。&lt;strong&gt;边&lt;/strong&gt;：即图中圆圈之间的连线，也称为顶点的偶对。&lt;strong&gt;权&lt;/strong&gt;：即连线旁边的数值，也称为&lt;strong&gt;边的权&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;带权图&lt;/strong&gt;：每条边都带有权的图。&lt;strong&gt;有向图&lt;/strong&gt;：顶点的偶对是有序的。&lt;strong&gt;无向图&lt;/strong&gt;：顶点的偶对是无序的。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;弧&lt;/strong&gt;：有向图的边又称为弧。&lt;strong&gt;弧头&lt;/strong&gt;：表示弧的终点，即弧有箭头的一端。&lt;strong&gt;弧尾&lt;/strong&gt;：表示弧的始点/起点。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;有向完全图&lt;/strong&gt;：任何两个顶点之间都有弧的有向图。&lt;strong&gt;无向完全图&lt;/strong&gt;：任何两个顶点之间都有边的无向图。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;顶点的度&lt;/strong&gt;：与该顶点相关联的边的数目。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;入度&lt;/strong&gt;：把以顶点v为终点的弧的数目称为v的入度，记为ID(v)。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;出度&lt;/strong&gt;：把以顶点v为始点的弧的数目称为v的出度，记为OD(v)。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;路径&lt;/strong&gt;：从一个顶点x到另一个顶点y之间的路线。&lt;strong&gt;路径长度&lt;/strong&gt;：路径上边/弧的数目。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;简单路径&lt;/strong&gt;：序列中顶点不重复出现的路径。&lt;strong&gt;回路&lt;/strong&gt;：第一个顶点和最后一个顶点相同的路径，也称为&lt;strong&gt;环&lt;/strong&gt;。&lt;strong&gt;简单回路&lt;/strong&gt;：除了第一个顶点和最后一个顶点外，其余顶点不重复的回路。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;连通&lt;/strong&gt;：顶点x到顶点y有路径，则称顶点x和顶点y是连通的。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;连通图&lt;/strong&gt;：图中任意两个顶点都是连通的。&lt;strong&gt;连通分量&lt;/strong&gt;：无向图中的极大（最大）连通子图。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;强连通&lt;/strong&gt;相关术语含义与连通一样，只是强连通用于描述有向图，不做赘述。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;有序偶对用尖括号&amp;lt;&amp;gt;括起来，无序偶对用圆括号()括起来。&lt;/li&gt;
+&lt;li&gt;无向图中一个顶点的度是指图中&lt;strong&gt;与该顶点相邻接的顶点数&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;一个具有n个顶点的有向完全图的弧的数量为：$P_{n}^{2}=n(n-1)$；一个具有n个顶点的无向完全图的边的数量为：$C_{n}^{2}=\frac{n(n-1)}{2}$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;存储结构&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;邻接表是&lt;strong&gt;顺序存储&lt;/strong&gt;与&lt;strong&gt;链式存储&lt;/strong&gt;相结合的存储方法。&lt;/li&gt;
+&lt;li&gt;无向图的邻接矩阵是一个&lt;strong&gt;对称矩阵&lt;/strong&gt;，有向图的邻接矩阵是一个&lt;strong&gt;稀疏矩阵&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;在含n个顶点和e条边的无向图的邻接矩阵中，零元素的个数为$n^{2}-2e$；而有向图的邻接矩阵中，零元素个数为$n^{2}-e$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;遍历&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;图的遍历方法有两种：&lt;strong&gt;深度优先搜索DFS&lt;/strong&gt;、&lt;strong&gt;广度优先搜索BFS&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;图的遍历操作类似于树的遍历操作；深度搜索的顶点的访问序列不是唯一的。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;深度优先搜索&lt;/strong&gt;类似于&lt;strong&gt;树的先序遍历&lt;/strong&gt;；&lt;strong&gt;广度优先搜索&lt;/strong&gt;类似于&lt;strong&gt;树的层次遍历&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;以邻接表为存储结构，深度优先搜索算法的时间复杂度是$O(n+e)$，其中n为图的顶点数，e为图的边数。&lt;/li&gt;
+&lt;li&gt;以邻接矩阵作为存储结构，深度优先搜索算法的时间复杂度是$O(n^2)$，其中n为图的顶点数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;应用&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个图的最小生成树是图所有生成树中&lt;strong&gt;权总和最小&lt;/strong&gt;的生成树；最小生成树有两种算法：&lt;strong&gt;普里姆Prim算法&lt;/strong&gt;、&lt;strong&gt;克鲁斯卡尔Kruskal算法&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;克鲁斯卡尔Kruskal方法的思想，初始时将每个顶点看成一个单独的连通分量，找所有连通分量之间的权值最小的一条边，将该边添加到两个连通分量中，并合并成一个新的单独的连通分量，重复这个过程，直到所有顶点最终形成一个连通分量。&lt;/li&gt;
+&lt;li&gt;最短路径算法可以采用&lt;strong&gt;迪杰斯特拉Dijkstra算法&lt;/strong&gt;，思想是按照最短路径长度&lt;strong&gt;递增&lt;/strong&gt;的方法产生从一点到其他顶点的最短路径。&lt;/li&gt;
+&lt;li&gt;完成拓扑排序的前提条件是AOV网中&lt;strong&gt;不允许出现回路&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;以邻接表作为存储结构，拓扑排序算法的时间复杂度为$O(n+e)$，n是图的顶点个数，e是图的弧的数目。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;第六章-查找&#34;&gt;第六章 查找&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;对于一种数据结构，&lt;strong&gt;查找表&lt;/strong&gt;的&lt;strong&gt;逻辑结构&lt;/strong&gt;是&lt;strong&gt;集合&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;顺序表为(b1, b2, b3)，查找b1，b2，b3的概率分别为0.2、0.2、0.6，则顺序查找法的平均查找长度为$(0.2\times3)+(0.2\times2)+(0.6\times1)=1.6$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;顺序表&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;向一个长度为n的顺序表中第i($1{\leq}i{\leq}n$)个元素之前插入一个元素时，需向后移动$n-i+1$个元素。&lt;/li&gt;
+&lt;li&gt;从一个长度为n的顺序表中删除第i个元素($1{\leq}i{\leq}n$)时，需向前移动$n-i$个元素。&lt;/li&gt;
+&lt;li&gt;在长度为n的带有岗哨的顺序表中，进行顺序查找，查找不成功时，与关键字比较次数为$n+1$。&lt;/li&gt;
+&lt;li&gt;采用顺序查找方法查找长度为n的顺序表时，平均查找长度为$\frac{(n+1)}{2}$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;二叉排序树&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;中序遍历&lt;/strong&gt;一棵&lt;strong&gt;二叉排序树&lt;/strong&gt;可得到一个键值的&lt;strong&gt;升序&lt;/strong&gt;序列。&lt;/li&gt;
+&lt;li&gt;二叉排序树的平均查找长度介于 $O(n)$ 和 $O(log_2n)$ 之间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;散列表、散列法、解决冲突方法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;散列法：&lt;strong&gt;数字分析法&lt;/strong&gt;、&lt;strong&gt;除留取余法&lt;/strong&gt;、&lt;strong&gt;平方取中法&lt;/strong&gt;、&lt;strong&gt;基数转换法&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;除留取余法$H(key)=key{\quad}mod{\quad}p(p{\leq}n)$，p通常选小于散列表长度n的素数，如果p是偶数，得到的散列值总是偶数，如果是奇数则总是奇数。&lt;/li&gt;
+&lt;li&gt;解决冲突方法：&lt;strong&gt;线性探测法&lt;/strong&gt;、&lt;strong&gt;二次探测法&lt;/strong&gt;、&lt;strong&gt;链地址法&lt;/strong&gt;、&lt;strong&gt;多重散列法&lt;/strong&gt;、&lt;strong&gt;公共溢出区法&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;非同义词之间对同一个散列地址的争夺现象称为&lt;strong&gt;堆积&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;线性探测法容易产生堆积&lt;/strong&gt;。&lt;strong&gt;二次探测法缺点不容易探测到整个散列表的所有空间&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;链地址法实际上也可能存在堆积，退化成链表&lt;/strong&gt;（书上未提及，仅个人观点）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多重散列法优点不容易产生堆积，缺点计算量大&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;公共溢出区法，在发生冲突的情况下，将同义词存入溢出表，基本表就不可能发生堆积&lt;/strong&gt;（书上原话）。&lt;/li&gt;
+&lt;li&gt;要完全避免散列所产生的“堆积”现象，通常采用&lt;strong&gt;链地址法&lt;/strong&gt;解决冲突（书中课后题的答案，按书中教的来）。&lt;/li&gt;
+&lt;li&gt;用线性探测法解决冲突，可能要探测多个散列地址，这些位置上的键值&lt;strong&gt;不一定都是同义词&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;第七章-排序&#34;&gt;第七章 排序&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;稳定性是排序方法本身的特性，与数据无关。&lt;/li&gt;
+&lt;li&gt;当待排序序列已基本有序时，插入排序和交换排序比较有效（性能高）。当待排记录数量较大时，选择排序比较有效（性能高）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;插入排序&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;插入排序方法有&lt;strong&gt;直接插入排序&lt;/strong&gt;、&lt;strong&gt;折半插入排序&lt;/strong&gt;、&lt;strong&gt;表插入排序&lt;/strong&gt;、&lt;strong&gt;希尔排序&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;直接插入排序类似图书馆整理图书的过程，时间复杂度为$O(n^2)$，空间复杂度为$O(1)$，是稳定的&lt;/strong&gt;，不适宜n较大的序列。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;交换排序&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;交换排序方法有&lt;strong&gt;冒泡排序&lt;/strong&gt;、&lt;strong&gt;快速排序&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;冒泡排序&lt;strong&gt;时间复杂度为$O(n^2)$，空间复杂度$O(1)$，是稳定的&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;快速排序&lt;/strong&gt;实质上是对&lt;strong&gt;冒泡排序&lt;/strong&gt;的一种改进。快速排序&lt;strong&gt;时间复杂度为$O(nlog_2n)$&lt;/strong&gt;，最坏情况下时间复杂度近似$O(n^2)$，空间复杂度取决于实现的算法，&lt;strong&gt;是不稳定的&lt;/strong&gt;，对数量n较小算法效果不明显，数量较大效果明显。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;选择排序&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;选择排序方法有&lt;strong&gt;直接选择排序&lt;/strong&gt;、&lt;strong&gt;堆排序&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;直接选择排序&lt;strong&gt;时间复杂度为$O(n^2)$，空间复杂度$O(1)$，是不稳定的&lt;/strong&gt;，不适宜n较大的序列。&lt;/li&gt;
+&lt;li&gt;堆排序&lt;strong&gt;平均和最坏情况下时间复杂度都是$O(nlog_2n)$，空间复杂度为$O(1)$，是不稳定的&lt;/strong&gt;，不适宜待排序记录较少时使用，记录数很多效果明显。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;归并排序&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;归并排序方法有&lt;strong&gt;有序序列的合并&lt;/strong&gt;、&lt;strong&gt;二路归并排序&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;有序序列的合并算法时间复杂度为$O(n-h+1)$。&lt;/li&gt;
+&lt;li&gt;二路归并排序&lt;strong&gt;时间复杂度为$O(nlog_2n)$，空间复杂度$O(n)$，是稳定的&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>第七章 排序 - 《数据结构导论》笔记</title>
         <link>https://ghbjayce.github.io/p/book/080901/02142/chapter7/</link>
         <pubDate>Fri, 20 Oct 2023 09:27:30 +0800</pubDate>
         
         <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter7/</guid>
-        <description>&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第七章 排序 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;第五章 图&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;第六章 查找&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;&lt;strong&gt;第七章 排序&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt; &lt;small&gt;P35 ~ 58（23页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt; &lt;small&gt;P59 ~ 92（33页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt; &lt;small&gt;P93 ~ 128（35页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;第五章 图&lt;/a&gt; &lt;small&gt;P129 ~ 160（31页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;第六章 查找&lt;/a&gt; &lt;small&gt;P161 ~ 182（21页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;&lt;strong&gt;第七章 排序&lt;/strong&gt;&lt;/a&gt; &lt;small&gt;P183 ~ 204（27页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../exam-focus&#34; &gt;考试重点&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;概要&#34;&gt;概要&lt;/h2&gt;
 &lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
@@ -240,15 +492,16 @@
         <pubDate>Thu, 19 Oct 2023 12:23:25 +0800</pubDate>
         
         <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter6/</guid>
-        <description>&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第六章 查找 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;第五章 图&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;&lt;strong&gt;第六章 查找&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;第七章 排序&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt; &lt;small&gt;P35 ~ 58（23页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt; &lt;small&gt;P59 ~ 92（33页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt; &lt;small&gt;P93 ~ 128（35页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;第五章 图&lt;/a&gt; &lt;small&gt;P129 ~ 160（31页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;&lt;strong&gt;第六章 查找&lt;/strong&gt;&lt;/a&gt; &lt;small&gt;P161 ~ 182（21页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;第七章 排序&lt;/a&gt; &lt;small&gt;P183 ~ 204（27页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../exam-focus&#34; &gt;考试重点&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;概要&#34;&gt;概要&lt;/h2&gt;
 &lt;p&gt;分析查找运算的时间性能可以将“查找成功时的平均查找长度”作为评价查找算法时间性能的度量。&lt;/p&gt;
@@ -603,15 +856,16 @@ $$d_i = (d_0 \pm i){\quad}mod{\quad}m$$
         <pubDate>Mon, 16 Oct 2023 10:31:20 +0800</pubDate>
         
         <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter5/</guid>
-        <description>&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第五章 图 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;&lt;strong&gt;第五章 图&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;第六章 查找&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;第七章 排序&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt; &lt;small&gt;P35 ~ 58（23页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt; &lt;small&gt;P59 ~ 92（33页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt; &lt;small&gt;P93 ~ 128（35页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;&lt;strong&gt;第五章 图&lt;/strong&gt;&lt;/a&gt; &lt;small&gt;P129 ~ 160（31页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;第六章 查找&lt;/a&gt; &lt;small&gt;P161 ~ 182（21页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;第七章 排序&lt;/a&gt; &lt;small&gt;P183 ~ 204（27页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../exam-focus&#34; &gt;考试重点&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;p&gt;为了方便文章表述，以下内容有一些调整：&lt;/p&gt;
@@ -632,20 +886,16 @@ $$d_i = (d_0 \pm i){\quad}mod{\quad}m$$
 &lt;li&gt;解决问题的算法是什么？&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/mGzlbAiL2SvMpGZTAb4EMjAyNDAyMjVfMTU1MDA4.png&#34;
-	width=&#34;551&#34;
-	height=&#34;271&#34;
+	
+	
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;用图描述通信网络的问题&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;203&#34;
-		data-flex-basis=&#34;487px&#34;
-	
-&gt;
-$$图1$$&lt;/p&gt;
+&gt;&lt;/p&gt;
+&lt;p&gt;$$图1$$&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;顶点：即上图的圆圈。
 &lt;ul&gt;
@@ -671,20 +921,16 @@ $$图1$$&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/qRDDXvhQRi7OFJ0NMY9uMjAyNDAyMjVfMTU1MDU0.png&#34;
-	width=&#34;821&#34;
-	height=&#34;1021&#34;
+	
+	
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;用图描述通信网络的问题&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;80&#34;
-		data-flex-basis=&#34;192px&#34;
-	
-&gt;
-$$图2$$&lt;/p&gt;
+&gt;&lt;/p&gt;
+&lt;p&gt;$$图2$$&lt;/p&gt;
 &lt;p&gt;图Graph由两个集合V和E组成，记为$G=(V, E)$，其中：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;V是顶点的有穷非空集合，一般表示为：V = {v0, v1, v2}。&lt;/li&gt;
@@ -990,15 +1236,16 @@ $$图5$$
         <pubDate>Tue, 26 Sep 2023 09:47:20 +0800</pubDate>
         
         <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter4/</guid>
-        <description>&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第四章 树和二叉树 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;&lt;strong&gt;第四章 树和二叉树&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;第五章 图&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;第六章 查找&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;第七章 排序&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt; &lt;small&gt;P35 ~ 58（23页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt; &lt;small&gt;P59 ~ 92（33页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;&lt;strong&gt;第四章 树和二叉树&lt;/strong&gt;&lt;/a&gt; &lt;small&gt;P93 ~ 128（35页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;第五章 图&lt;/a&gt; &lt;small&gt;P129 ~ 160（31页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;第六章 查找&lt;/a&gt; &lt;small&gt;P161 ~ 182（21页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;第七章 排序&lt;/a&gt; &lt;small&gt;P183 ~ 204（27页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../exam-focus&#34; &gt;考试重点&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;h3 id=&#34;涉及知识点&#34;&gt;涉及知识点&lt;/h3&gt;
@@ -1099,17 +1346,13 @@ $$图5$$
 &lt;p&gt;树Tree是一种树形结构，它是由n(n≥0)个结点组成的有限集合。&lt;/p&gt;
 &lt;p&gt;特征：树形结构结点之间具有一对多的关系，一个结点可以有一个或多个直接后继。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/spkdu2ZEy2QZwqcpUbdHMjAyNDAyMjVfMTU0MDQx.png&#34;
-	width=&#34;701&#34;
-	height=&#34;629&#34;
+	
+	
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;什么是树？&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;111&#34;
-		data-flex-basis=&#34;267px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -1252,17 +1495,13 @@ $$图5$$
 &lt;li&gt;由一个根结点和两棵互不相交的左子树和右子树组成，子树之间是有次序关系的，且均是一棵二叉树。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/hlscD7f58TUm3T55ZxEIMjAyNDAyMjVfMTU0MjIy.png&#34;
-	width=&#34;808&#34;
-	height=&#34;721&#34;
+	
+	
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;二叉树&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;112&#34;
-		data-flex-basis=&#34;268px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;$$图4.2$$&lt;/p&gt;
@@ -1337,34 +1576,26 @@ $$图5$$
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/n4LTWDMnPdgKdymM20F9MjAyNDAyMjVfMTU0MzUw.png&#34;
-	width=&#34;961&#34;
-	height=&#34;959&#34;
+	
+	
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;完全二叉树的顺序存储&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;100&#34;
-		data-flex-basis=&#34;240px&#34;
-	
 &gt;&lt;/p&gt;
 &lt;p&gt;非完全二叉树的顺序存储虽然可以用转换完全二叉树，以完全二叉树的顺序存储进行处理，这样只要是一棵二叉树（不管是哪种类型）都能够用同一种运算方式进行处理，&lt;strong&gt;但这种方法最大的缺点是造成了空间的浪费&lt;/strong&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;链式存储&#34;&gt;链式存储&lt;/h4&gt;
 &lt;p&gt;二叉树最常用的是链式存储结构，其中又分为二叉链表和三叉链表。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/Ro3LJ2kEYGY7ZsaykKa3MjAyNDAyMjVfMTU0NDM4.png&#34;
-	width=&#34;1016&#34;
-	height=&#34;791&#34;
+	
+	
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;二叉树的链式存储&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;128&#34;
-		data-flex-basis=&#34;308px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;其中：&lt;/p&gt;
@@ -1708,17 +1939,13 @@ $$图5$$
 &lt;h2 id=&#34;树和森林&#34;&gt;树和森林&lt;/h2&gt;
 &lt;h3 id=&#34;树的存储结构&#34;&gt;树的存储结构&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/jH0sxIct2yzmRztDnKApMjAyNDAyMjVfMTU0NjE5.png&#34;
-	width=&#34;1261&#34;
-	height=&#34;1841&#34;
+	
+	
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;树的存储结构示例图&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;68&#34;
-		data-flex-basis=&#34;164px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;$$图4.5$$&lt;/p&gt;
@@ -2056,17 +2283,13 @@ $$图5$$
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/4OiUp1uzsdo6MZlK1djyMjAyNDAyMjVfMTU0NzIz.png&#34;
-	width=&#34;666&#34;
-	height=&#34;511&#34;
+	
+	
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;哈夫曼树构建过程&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;130&#34;
-		data-flex-basis=&#34;312px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;从中得出规律：&lt;/p&gt;
@@ -2250,17 +2473,13 @@ $$图5$$
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/iIZT70Z6hkDVPzfarTAvMjAyNDAyMjVfMTU0ODM4.png&#34;
-	width=&#34;822&#34;
-	height=&#34;1100&#34;
+	
+	
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;哈夫曼树编码构建过程&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;74&#34;
-		data-flex-basis=&#34;179px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;经过哈夫曼树编码后，如上图f)，字符对应的编码分别是：&lt;/p&gt;
@@ -2328,15 +2547,16 @@ $$图5$$
         <pubDate>Mon, 18 Sep 2023 12:24:10 +0800</pubDate>
         
         <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter3/</guid>
-        <description>&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第三章 栈、队列和数组 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;&lt;strong&gt;第三章 栈、队列和数组&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;第五章 图&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;第六章 查找&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;第七章 排序&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt; &lt;small&gt;P35 ~ 58（23页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;&lt;strong&gt;第三章 栈、队列和数组&lt;/strong&gt;&lt;/a&gt; &lt;small&gt;P59 ~ 92（33页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt; &lt;small&gt;P93 ~ 128（35页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;第五章 图&lt;/a&gt; &lt;small&gt;P129 ~ 160（31页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;第六章 查找&lt;/a&gt; &lt;small&gt;P161 ~ 182（21页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;第七章 排序&lt;/a&gt; &lt;small&gt;P183 ~ 204（27页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../exam-focus&#34; &gt;考试重点&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;ol&gt;
@@ -2986,17 +3206,13 @@ $$图5$$
 &lt;li&gt;e)为入队列60后，&lt;code&gt;SQ.rear&lt;/code&gt;为5，&lt;code&gt;SQ.front&lt;/code&gt;为4。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/qMvUcsAjIUeMbD8OwgsqMjAyNDAyMjVfMTUzNzM0.png&#34;
-	width=&#34;1150&#34;
-	height=&#34;261&#34;
+	
+	
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;顺序队列的假溢出问题&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;440&#34;
-		data-flex-basis=&#34;1057px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;如果在e)的状态下，要做入队列的操作，&lt;code&gt;SQ.rear&lt;/code&gt;将会超出数组下标的范围，也就是新元素没有办法入队列，但是1-4的位置明明是空的，数组的实际空间并没有被占满，这就是&lt;strong&gt;假溢出&lt;/strong&gt;现象。&lt;/p&gt;
@@ -3011,17 +3227,13 @@ $$图5$$
 &lt;li&gt;队列少用一个元素空间，当只剩最后一个空间时就认为队列满，也就是&lt;code&gt;CQ.rear&lt;/code&gt;差一步就要追上&lt;code&gt;CQ.front&lt;/code&gt;，如图b)，书中采用了该解决方法。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/2BGTtRqzHEArsVspXmzUMjAyNDAyMjVfMTUzODM4.png&#34;
-	width=&#34;689&#34;
-	height=&#34;647&#34;
+	
+	
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;循环队列、队列满和队列空示意图&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;106&#34;
-		data-flex-basis=&#34;255px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -3485,15 +3697,16 @@ $$loc[i, j] = loc[0, 0] + (n * i + j) * k$$
         <pubDate>Tue, 29 Aug 2023 14:46:12 +0800</pubDate>
         
         <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter2/</guid>
-        <description>&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第二章 线性表 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;&lt;strong&gt;第二章 线性表&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;第五章 图&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;第六章 查找&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;第七章 排序&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;&lt;strong&gt;第二章 线性表&lt;/strong&gt;&lt;/a&gt; &lt;small&gt;P35 ~ 58（23页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt; &lt;small&gt;P59 ~ 92（33页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt; &lt;small&gt;P93 ~ 128（35页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;第五章 图&lt;/a&gt; &lt;small&gt;P129 ~ 160（31页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;第六章 查找&lt;/a&gt; &lt;small&gt;P161 ~ 182（21页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;第七章 排序&lt;/a&gt; &lt;small&gt;P183 ~ 204（27页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../exam-focus&#34; &gt;考试重点&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;概要&#34;&gt;概要&lt;/h2&gt;
 &lt;ol&gt;
@@ -3936,17 +4149,13 @@ $$loc[i, j] = loc[0, 0] + (n * i + j) * k$$
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/P4uZrja3M85o6utKpTl2MjAyNDAyMjVfMTUzNTI4.png&#34;
-	width=&#34;835&#34;
-	height=&#34;960&#34;
+	
+	
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;单链表、带头结点的单链表&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;86&#34;
-		data-flex-basis=&#34;208px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;用c语言描述-1&#34;&gt;用C语言描述&lt;/h3&gt;
@@ -4489,20 +4698,16 @@ $$loc[i, j] = loc[0, 0] + (n * i + j) * k$$
 &lt;h3 id=&#34;其他链表&#34;&gt;其他链表&lt;/h3&gt;
 &lt;h4 id=&#34;循环链表&#34;&gt;循环链表&lt;/h4&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/1y1u7e76cpUEnFJm4rUzMjAyNDAyMjVfMTUzMjI5.png&#34;
-	width=&#34;834&#34;
-	height=&#34;1029&#34;
+	
+	
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;带头结点的单链表、带尾结点的循环链表&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;81&#34;
-		data-flex-basis=&#34;194px&#34;
-	
-&gt;
-带尾结点访问首结点的表示方式：&lt;code&gt;rear-&amp;gt;next-&amp;gt;next&lt;/code&gt;，运算与单链表类似，不再赘述。&lt;/p&gt;
+&gt;&lt;/p&gt;
+&lt;p&gt;带尾结点访问首结点的表示方式：&lt;code&gt;rear-&amp;gt;next-&amp;gt;next&lt;/code&gt;，运算与单链表类似，不再赘述。&lt;/p&gt;
 &lt;h4 id=&#34;双向循环链表&#34;&gt;双向循环链表&lt;/h4&gt;
 &lt;p&gt;用类C语言来描述：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -4667,15 +4872,16 @@ $$loc[i, j] = loc[0, 0] + (n * i + j) * k$$
         <pubDate>Sun, 20 Aug 2023 16:36:20 +0800</pubDate>
         
         <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter1/</guid>
-        <description>&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第一章 概论 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;&lt;strong&gt;第一章 概论&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;第五章 图&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;第六章 查找&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;第七章 排序&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;&lt;strong&gt;第一章 概论&lt;/strong&gt;&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter2&#34; &gt;第二章 线性表&lt;/a&gt; &lt;small&gt;P35 ~ 58（23页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter3&#34; &gt;第三章 栈、队列和数组&lt;/a&gt; &lt;small&gt;P59 ~ 92（33页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter4&#34; &gt;第四章 树和二叉树&lt;/a&gt; &lt;small&gt;P93 ~ 128（35页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter5&#34; &gt;第五章 图&lt;/a&gt; &lt;small&gt;P129 ~ 160（31页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter6&#34; &gt;第六章 查找&lt;/a&gt; &lt;small&gt;P161 ~ 182（21页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter7&#34; &gt;第七章 排序&lt;/a&gt; &lt;small&gt;P183 ~ 204（27页）&lt;/small&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../exam-focus&#34; &gt;考试重点&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;ol&gt;

@@ -195,7 +195,7 @@ params:
     render:
         image:
             extranelLink:
-                enabled: true
+                enabled: false
 
 ### Custom menu
 ### See https://docs.stack.jimmycai.com/configuration/custom-menu.html

@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='目录 第一章 概论 第二章 线性表 第三章 栈、队列和数组 第四章 树和二叉树 第五章 图 第六章 查找 第七章 排序 阅读说明 本书 书名：《数据结构导论》 出版：外语教学与研究出版社 版本：2012年版 全书以类C语言来描述相关内容，例如：存储结构、算法等。 本文涉及知识点 数学知识 乘法分配率 对数 等差数列、高斯求和 概要 数据、数据元素和数据项 基本概念 三者的关系 数据的逻辑结构和存储结构 四种基本的逻辑结构和特点 集合 线性结构 树形结构 图结构 两种基本的存储结构 顺序存储 链式存储 逻辑结构与存储结构的关系 运算与逻辑结构的关系 算法分析 描述方法 评价因素 时间复杂度的分析方法 空间复杂度的分析方法 数据、数据元素和数据项 概念和联系 数据项：在数据表中指的是一个个的字段，又称字段或域，数据的最小标识单位。 数据元素：在数据表中相当于一行记录，又称结点，由若干个数据项组成。 数据：被计算机处理、存储的对象，由若干个数据元素组成。 数据的逻辑结构和存储结构 概念 数据结构：包含数据的逻辑结构、存储结构和基本运算。 逻辑结构：整个数据元素之间的逻辑关系。 逻辑关系：指单个数据元素之间的关联方式或邻接关系，也就是单个数据元素之间的组织形式。 存储结构：也称物理结构，数据的逻辑结构在计算机中的实现称为数据的存储结构。 简单点说：为了保存数据的逻辑结构到计算机中而实现的存储结构。 逻辑结构 四类基本的逻辑结构：
-集合：任意两个结点之间都没有邻接关系，组织形式松散，就像抽奖箱里的乒乓球。 结点之间除了同属一个集合，并没有别的关系。 线性结构：结点之间一个个依次相邻接排列，形成一条“链”，就像一条绳子上的多个绳结。 结点之间是一对一的相互关系。 树形结构：上层结点有多个下层结点，下层结点只有一个上层结点，具有分支、层次特性，就像一颗树。 结点之间是一对多的相互关系。 图结构：最为复杂的结构，任意两个结点都可以相邻接，就像地铁线路图、人与人之间的社交网络。 结点之间是多对多的相互关系。 存储结构 存储结构一般包括两个部分：'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 阅读说明 本书 书名：《数据结构导论》 出版：外语教学与研究出版社 版本：2012年版 全书以类C语言来描述相关内容，例如：存储结构、算法等。 本文涉及知识点 数学知识 乘法分配率 对数 等差数列、高斯求和 概要 数据、数据元素和数据项 基本概念 三者的关系 数据的逻辑结构和存储结构 四种基本的逻辑结构和特点 集合 线性结构 树形结构 图结构 两种基本的存储结构 顺序存储 链式存储 逻辑结构与存储结构的关系 运算与逻辑结构的关系 算法分析 描述方法 评价因素 时间复杂度的分析方法 空间复杂度的分析方法 数据、数据元素和数据项 概念和联系 数据项：在数据表中指的是一个个的字段，又称字段或域，数据的最小标识单位。 数据元素：在数据表中相当于一行记录，又称结点，由若干个数据项组成。 数据：被计算机处理、存储的对象，由若干个数据元素组成。 数据的逻辑结构和存储结构 概念 数据结构：包含数据的逻辑结构、存储结构和基本运算。 逻辑结构：整个数据元素之间的逻辑关系。 逻辑关系：指单个数据元素之间的关联方式或邻接关系，也就是单个数据元素之间的组织形式。 存储结构：也称物理结构，数据的逻辑结构在计算机中的实现称为数据的存储结构。 简单点说：为了保存数据的逻辑结构到计算机中而实现的存储结构。 逻辑结构 四类基本的逻辑结构：'>
 <title>第一章 概论 - 《数据结构导论》笔记</title>
 
 <link rel='canonical' href='https://ghbjayce.github.io/p/book/080901/02142/chapter1/'>
 
 <link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='第一章 概论 - 《数据结构导论》笔记'>
-<meta property='og:description' content='目录 第一章 概论 第二章 线性表 第三章 栈、队列和数组 第四章 树和二叉树 第五章 图 第六章 查找 第七章 排序 阅读说明 本书 书名：《数据结构导论》 出版：外语教学与研究出版社 版本：2012年版 全书以类C语言来描述相关内容，例如：存储结构、算法等。 本文涉及知识点 数学知识 乘法分配率 对数 等差数列、高斯求和 概要 数据、数据元素和数据项 基本概念 三者的关系 数据的逻辑结构和存储结构 四种基本的逻辑结构和特点 集合 线性结构 树形结构 图结构 两种基本的存储结构 顺序存储 链式存储 逻辑结构与存储结构的关系 运算与逻辑结构的关系 算法分析 描述方法 评价因素 时间复杂度的分析方法 空间复杂度的分析方法 数据、数据元素和数据项 概念和联系 数据项：在数据表中指的是一个个的字段，又称字段或域，数据的最小标识单位。 数据元素：在数据表中相当于一行记录，又称结点，由若干个数据项组成。 数据：被计算机处理、存储的对象，由若干个数据元素组成。 数据的逻辑结构和存储结构 概念 数据结构：包含数据的逻辑结构、存储结构和基本运算。 逻辑结构：整个数据元素之间的逻辑关系。 逻辑关系：指单个数据元素之间的关联方式或邻接关系，也就是单个数据元素之间的组织形式。 存储结构：也称物理结构，数据的逻辑结构在计算机中的实现称为数据的存储结构。 简单点说：为了保存数据的逻辑结构到计算机中而实现的存储结构。 逻辑结构 四类基本的逻辑结构：
-集合：任意两个结点之间都没有邻接关系，组织形式松散，就像抽奖箱里的乒乓球。 结点之间除了同属一个集合，并没有别的关系。 线性结构：结点之间一个个依次相邻接排列，形成一条“链”，就像一条绳子上的多个绳结。 结点之间是一对一的相互关系。 树形结构：上层结点有多个下层结点，下层结点只有一个上层结点，具有分支、层次特性，就像一颗树。 结点之间是一对多的相互关系。 图结构：最为复杂的结构，任意两个结点都可以相邻接，就像地铁线路图、人与人之间的社交网络。 结点之间是多对多的相互关系。 存储结构 存储结构一般包括两个部分：'>
+<meta property='og:description' content='目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 阅读说明 本书 书名：《数据结构导论》 出版：外语教学与研究出版社 版本：2012年版 全书以类C语言来描述相关内容，例如：存储结构、算法等。 本文涉及知识点 数学知识 乘法分配率 对数 等差数列、高斯求和 概要 数据、数据元素和数据项 基本概念 三者的关系 数据的逻辑结构和存储结构 四种基本的逻辑结构和特点 集合 线性结构 树形结构 图结构 两种基本的存储结构 顺序存储 链式存储 逻辑结构与存储结构的关系 运算与逻辑结构的关系 算法分析 描述方法 评价因素 时间复杂度的分析方法 空间复杂度的分析方法 数据、数据元素和数据项 概念和联系 数据项：在数据表中指的是一个个的字段，又称字段或域，数据的最小标识单位。 数据元素：在数据表中相当于一行记录，又称结点，由若干个数据项组成。 数据：被计算机处理、存储的对象，由若干个数据元素组成。 数据的逻辑结构和存储结构 概念 数据结构：包含数据的逻辑结构、存储结构和基本运算。 逻辑结构：整个数据元素之间的逻辑关系。 逻辑关系：指单个数据元素之间的关联方式或邻接关系，也就是单个数据元素之间的组织形式。 存储结构：也称物理结构，数据的逻辑结构在计算机中的实现称为数据的存储结构。 简单点说：为了保存数据的逻辑结构到计算机中而实现的存储结构。 逻辑结构 四类基本的逻辑结构：'>
 <meta property='og:url' content='https://ghbjayce.github.io/p/book/080901/02142/chapter1/'>
 <meta property='og:site_name' content='GHBJayce'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='数据结构导论' /><meta property='article:tag' content='计算机科学与技术' /><meta property='article:tag' content='笔记' /><meta property='article:published_time' content='2023-08-20T16:36:20&#43;08:00'/><meta property='article:modified_time' content='2023-08-20T16:36:20&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='数据结构导论' /><meta property='article:tag' content='计算机科学与技术' /><meta property='article:tag' content='笔记' /><meta property='article:published_time' content='2023-08-20T16:36:20&#43;08:00'/><meta property='article:modified_time' content='2023-08-20T16:36:20&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png' />
 <meta name="twitter:title" content="第一章 概论 - 《数据结构导论》笔记">
-<meta name="twitter:description" content="目录 第一章 概论 第二章 线性表 第三章 栈、队列和数组 第四章 树和二叉树 第五章 图 第六章 查找 第七章 排序 阅读说明 本书 书名：《数据结构导论》 出版：外语教学与研究出版社 版本：2012年版 全书以类C语言来描述相关内容，例如：存储结构、算法等。 本文涉及知识点 数学知识 乘法分配率 对数 等差数列、高斯求和 概要 数据、数据元素和数据项 基本概念 三者的关系 数据的逻辑结构和存储结构 四种基本的逻辑结构和特点 集合 线性结构 树形结构 图结构 两种基本的存储结构 顺序存储 链式存储 逻辑结构与存储结构的关系 运算与逻辑结构的关系 算法分析 描述方法 评价因素 时间复杂度的分析方法 空间复杂度的分析方法 数据、数据元素和数据项 概念和联系 数据项：在数据表中指的是一个个的字段，又称字段或域，数据的最小标识单位。 数据元素：在数据表中相当于一行记录，又称结点，由若干个数据项组成。 数据：被计算机处理、存储的对象，由若干个数据元素组成。 数据的逻辑结构和存储结构 概念 数据结构：包含数据的逻辑结构、存储结构和基本运算。 逻辑结构：整个数据元素之间的逻辑关系。 逻辑关系：指单个数据元素之间的关联方式或邻接关系，也就是单个数据元素之间的组织形式。 存储结构：也称物理结构，数据的逻辑结构在计算机中的实现称为数据的存储结构。 简单点说：为了保存数据的逻辑结构到计算机中而实现的存储结构。 逻辑结构 四类基本的逻辑结构：
-集合：任意两个结点之间都没有邻接关系，组织形式松散，就像抽奖箱里的乒乓球。 结点之间除了同属一个集合，并没有别的关系。 线性结构：结点之间一个个依次相邻接排列，形成一条“链”，就像一条绳子上的多个绳结。 结点之间是一对一的相互关系。 树形结构：上层结点有多个下层结点，下层结点只有一个上层结点，具有分支、层次特性，就像一颗树。 结点之间是一对多的相互关系。 图结构：最为复杂的结构，任意两个结点都可以相邻接，就像地铁线路图、人与人之间的社交网络。 结点之间是多对多的相互关系。 存储结构 存储结构一般包括两个部分：">
+<meta name="twitter:description" content="目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 阅读说明 本书 书名：《数据结构导论》 出版：外语教学与研究出版社 版本：2012年版 全书以类C语言来描述相关内容，例如：存储结构、算法等。 本文涉及知识点 数学知识 乘法分配率 对数 等差数列、高斯求和 概要 数据、数据元素和数据项 基本概念 三者的关系 数据的逻辑结构和存储结构 四种基本的逻辑结构和特点 集合 线性结构 树形结构 图结构 两种基本的存储结构 顺序存储 链式存储 逻辑结构与存储结构的关系 运算与逻辑结构的关系 算法分析 描述方法 评价因素 时间复杂度的分析方法 空间复杂度的分析方法 数据、数据元素和数据项 概念和联系 数据项：在数据表中指的是一个个的字段，又称字段或域，数据的最小标识单位。 数据元素：在数据表中相当于一行记录，又称结点，由若干个数据项组成。 数据：被计算机处理、存储的对象，由若干个数据元素组成。 数据的逻辑结构和存储结构 概念 数据结构：包含数据的逻辑结构、存储结构和基本运算。 逻辑结构：整个数据元素之间的逻辑关系。 逻辑关系：指单个数据元素之间的关联方式或邻接关系，也就是单个数据元素之间的组织形式。 存储结构：也称物理结构，数据的逻辑结构在计算机中的实现称为数据的存储结构。 简单点说：为了保存数据的逻辑结构到计算机中而实现的存储结构。 逻辑结构 四类基本的逻辑结构："><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png' />
     <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
 
     </head>
@@ -277,8 +275,16 @@
 
 
             <main class="main full-width">
-    <article class="main-article">
+    <article class="has-image main-article">
     <header class="article-header">
+        <div class="article-image">
+            <a href="/p/book/080901/02142/chapter1/">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" alt="Featured image of post 第一章 概论 - 《数据结构导论》笔记" />
+                
+            </a>
+        </div>
+    
 
     <div class="article-details">
     
@@ -347,13 +353,14 @@
     
     <h2 id="目录">目录</h2>
 <ul>
-<li><a class="link" href="../chapter1" ><strong>第一章 概论</strong></a></li>
-<li><a class="link" href="../chapter2" >第二章 线性表</a></li>
-<li><a class="link" href="../chapter3" >第三章 栈、队列和数组</a></li>
-<li><a class="link" href="../chapter4" >第四章 树和二叉树</a></li>
-<li><a class="link" href="../chapter5" >第五章 图</a></li>
-<li><a class="link" href="../chapter6" >第六章 查找</a></li>
-<li><a class="link" href="../chapter7" >第七章 排序</a></li>
+<li><a class="link" href="../chapter1" ><strong>第一章 概论</strong></a> <small>P21 ~ 34（13页）</small></li>
+<li><a class="link" href="../chapter2" >第二章 线性表</a> <small>P35 ~ 58（23页）</small></li>
+<li><a class="link" href="../chapter3" >第三章 栈、队列和数组</a> <small>P59 ~ 92（33页）</small></li>
+<li><a class="link" href="../chapter4" >第四章 树和二叉树</a> <small>P93 ~ 128（35页）</small></li>
+<li><a class="link" href="../chapter5" >第五章 图</a> <small>P129 ~ 160（31页）</small></li>
+<li><a class="link" href="../chapter6" >第六章 查找</a> <small>P161 ~ 182（21页）</small></li>
+<li><a class="link" href="../chapter7" >第七章 排序</a> <small>P183 ~ 204（27页）</small></li>
+<li><a class="link" href="../exam-focus" >考试重点</a></li>
 </ul>
 <h2 id="阅读说明">阅读说明</h2>
 <ol>
@@ -826,9 +833,34 @@ $$S(n)=O(g(n))$$
         <div class="flex article-list--tile">
             
                 
-<article class="">
+<article class="has-image">
+    <a href="/p/book/080901/02142/exam-focus/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/exam-focus" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">《数据结构导论》考试重点</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/book/080901/02142/chapter7/">
         
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/chapter7" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
         
 
         <div class="article-details">
@@ -839,9 +871,15 @@ $$S(n)=O(g(n))$$
 
             
                 
-<article class="">
+<article class="has-image">
     <a href="/p/book/080901/02142/chapter6/">
         
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/chapter6" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
         
 
         <div class="article-details">
@@ -852,9 +890,15 @@ $$S(n)=O(g(n))$$
 
             
                 
-<article class="">
+<article class="has-image">
     <a href="/p/book/080901/02142/chapter5/">
         
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/chapter5" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
         
 
         <div class="article-details">
@@ -865,26 +909,19 @@ $$S(n)=O(g(n))$$
 
             
                 
-<article class="">
+<article class="has-image">
     <a href="/p/book/080901/02142/chapter4/">
         
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/chapter4" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
         
 
         <div class="article-details">
             <h2 class="article-title">第四章 树和二叉树 - 《数据结构导论》笔记</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/book/080901/02142/chapter3/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">第三章 栈、队列和数组 - 《数据结构导论》笔记</h2>
         </div>
     </a>
 </article>

@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='阅读说明 环境说明 php v8.2.8 hyperf/constants v3.1.0 前言 Hyperf 枚举类文档中，主要分为了两个部分：
+枚举，主要是通过错误码获取到错误内容的作用。 异常，则是对抛异常的使用带来了便利，仅传入错误码，就能从枚举类中获得错误内容。 本文主要分析枚举类获取错误内容的源码实现过程。
+代码示例 hyperf/constants的使用如下。
+枚举类 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 &amp;lt;?php declare(strict_types=1); namespace App\Constants; use Hyperf\Constants\AbstractConstants; use Hyperf\Constants\Annotation\Constants; #[Constants] class ErrorCode extends AbstractConstants { /** * @Message(&amp;#34;Server Error！&amp;#34;) */ const SERVER_ERROR = 500; /** * @Message(&amp;#34;系统参数错误&amp;#34;) */ const SYSTEM_INVALID = 700; } 错误内容通过注释的方式定义，与错误码紧挨着，这样的实现有两个好处：'>
+<title>hyperf constants源码分析</title>
+
+<link rel='canonical' href='https://ghbjayce.github.io/p/language/php/hyperf/hyperf-constants/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='hyperf constants源码分析'>
+<meta property='og:description' content='阅读说明 环境说明 php v8.2.8 hyperf/constants v3.1.0 前言 Hyperf 枚举类文档中，主要分为了两个部分：
+枚举，主要是通过错误码获取到错误内容的作用。 异常，则是对抛异常的使用带来了便利，仅传入错误码，就能从枚举类中获得错误内容。 本文主要分析枚举类获取错误内容的源码实现过程。
+代码示例 hyperf/constants的使用如下。
+枚举类 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 &amp;lt;?php declare(strict_types=1); namespace App\Constants; use Hyperf\Constants\AbstractConstants; use Hyperf\Constants\Annotation\Constants; #[Constants] class ErrorCode extends AbstractConstants { /** * @Message(&amp;#34;Server Error！&amp;#34;) */ const SERVER_ERROR = 500; /** * @Message(&amp;#34;系统参数错误&amp;#34;) */ const SYSTEM_INVALID = 700; } 错误内容通过注释的方式定义，与错误码紧挨着，这样的实现有两个好处：'>
+<meta property='og:url' content='https://ghbjayce.github.io/p/language/php/hyperf/hyperf-constants/'>
+<meta property='og:site_name' content='GHBJayce'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='PHP' /><meta property='article:tag' content='Hyperf' /><meta property='article:tag' content='枚举' /><meta property='article:tag' content='异常' /><meta property='article:published_time' content='2024-02-26T10:01:00&#43;08:00'/><meta property='article:modified_time' content='2024-02-26T10:01:00&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg' />
+<meta name="twitter:title" content="hyperf constants源码分析">
+<meta name="twitter:description" content="阅读说明 环境说明 php v8.2.8 hyperf/constants v3.1.0 前言 Hyperf 枚举类文档中，主要分为了两个部分：
+枚举，主要是通过错误码获取到错误内容的作用。 异常，则是对抛异常的使用带来了便利，仅传入错误码，就能从枚举类中获得错误内容。 本文主要分析枚举类获取错误内容的源码实现过程。
+代码示例 hyperf/constants的使用如下。
+枚举类 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 &amp;lt;?php declare(strict_types=1); namespace App\Constants; use Hyperf\Constants\AbstractConstants; use Hyperf\Constants\Annotation\Constants; #[Constants] class ErrorCode extends AbstractConstants { /** * @Message(&amp;#34;Server Error！&amp;#34;) */ const SERVER_ERROR = 500; /** * @Message(&amp;#34;系统参数错误&amp;#34;) */ const SYSTEM_INVALID = 700; } 错误内容通过注释的方式定义，与错误码紧挨着，这样的实现有两个好处："><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg' />
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/17669653" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">😆</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GHBJayce</a></h1>
+            <h2 class="site-description">十年饮冰，难凉热血。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GHBJayce'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archive/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#阅读说明">阅读说明</a>
+      <ol>
+        <li><a href="#环境说明">环境说明</a></li>
+      </ol>
+    </li>
+    <li><a href="#前言">前言</a>
+      <ol>
+        <li><a href="#代码示例">代码示例</a>
+          <ol>
+            <li><a href="#枚举类">枚举类</a></li>
+            <li><a href="#异常类">异常类</a></li>
+            <li><a href="#抛异常">抛异常</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#分析">分析</a>
+      <ol>
+        <li><a href="#疑问">疑问</a></li>
+        <li><a href="#获取错误内容">获取错误内容</a></li>
+        <li><a href="#获取时机">获取时机</a></li>
+      </ol>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/language/php/hyperf/hyperf-constants/">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg" loading="lazy" alt="Featured image of post hyperf constants源码分析" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" >
+                源码分析
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/language/php/hyperf/hyperf-constants/">hyperf constants源码分析</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-02-26</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 5 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="阅读说明">阅读说明</h2>
+<h3 id="环境说明">环境说明</h3>
+<ul>
+<li>php v8.2.8</li>
+<li>hyperf/constants v3.1.0</li>
+</ul>
+<h2 id="前言">前言</h2>
+<p><a class="link" href="https://hyperf.wiki/3.1/#/zh-cn/constants"  target="_blank" rel="noopener"
+    >Hyperf 枚举类</a>文档中，主要分为了两个部分：</p>
+<ul>
+<li>枚举，主要是通过错误码获取到错误内容的作用。</li>
+<li>异常，则是对抛异常的使用带来了便利，仅传入错误码，就能从枚举类中获得错误内容。</li>
+</ul>
+<p><strong>本文主要分析枚举类获取错误内容的源码实现过程。</strong></p>
+<h3 id="代码示例">代码示例</h3>
+<p><a class="link" href="https://github.com/hyperf/constants"  target="_blank" rel="noopener"
+    >hyperf/constants</a>的使用如下。</p>
+<h4 id="枚举类">枚举类</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nx">App\Constants</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Hyperf\Constants\AbstractConstants</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Hyperf\Constants\Annotation\Constants</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#[Constants]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">ErrorCode</span> <span class="k">extends</span> <span class="nx">AbstractConstants</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @Message(&#34;Server Error！&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="sd">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="no">SERVER_ERROR</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @Message(&#34;系统参数错误&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="sd">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="no">SYSTEM_INVALID</span> <span class="o">=</span> <span class="mi">700</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>错误内容通过注释的方式定义，与错误码紧挨着，这样的实现有两个好处：</p>
+<ul>
+<li>阅读方便，文件简洁。</li>
+<li>书写便捷，省工作量。</li>
+</ul>
+<p>为什么？看看传统的实现方式你就知道了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ErrorCode</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="no">SERVER_ERROR</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="no">PARAMS_INVALID</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="nv">$messages</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">self</span><span class="o">::</span><span class="na">SERVER_ERROR</span> <span class="o">=&gt;</span> <span class="s1">&#39;Server Error&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">self</span><span class="o">::</span><span class="na">PARAMS_INVALID</span> <span class="o">=&gt;</span> <span class="s1">&#39;参数非法&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$message</span> <span class="o">=</span> <span class="nx">ErrorCode</span><span class="o">::</span><span class="na">messages</span><span class="p">[</span><span class="nx">ErrorCode</span><span class="o">::</span><span class="na">SERVER_ERROR</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;未知错误&#39;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当错误码定义足够多的情况下，就会显得臃肿和繁琐。</p>
+<p>（如果你选择把错误码拆到多个文件，每个文件内容不超过一个屏幕画面的话，当我没说😂）</p>
+<h4 id="异常类">异常类</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nx">App\Exception</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">App\Constants\ErrorCode</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Hyperf\Server\Exception\ServerException</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Throwable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BusinessException</span> <span class="k">extends</span> <span class="nx">ServerException</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$code</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$message</span> <span class="o">=</span> <span class="k">null</span><span class="p">,</span> <span class="nx">Throwable</span> <span class="nv">$previous</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">is_null</span><span class="p">(</span><span class="nv">$message</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$message</span> <span class="o">=</span> <span class="nx">ErrorCode</span><span class="o">::</span><span class="na">getMessage</span><span class="p">(</span><span class="nv">$code</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="nv">$code</span><span class="p">,</span> <span class="nv">$previous</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="抛异常">抛异常</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nx">App\Controller</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">App\Constants\ErrorCode</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">App\Exception\BusinessException</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">IndexController</span> <span class="k">extends</span> <span class="nx">AbstractController</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="nx">BusinessException</span><span class="p">(</span><span class="nx">ErrorCode</span><span class="o">::</span><span class="na">SERVER_ERROR</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="分析">分析</h2>
+<p>根据使用方式，先来猜测一下。</p>
+<p>如果要获取类文件中的注释，那必定会用到反射类：<a class="link" href="https://www.php.net/manual/zh/class.reflectionclass.php"  target="_blank" rel="noopener"
+    >ReflectionClass</a>或者是<a class="link" href="https://www.php.net/manual/zh/class.reflectionclassconstant.php"  target="_blank" rel="noopener"
+    >ReflectionClassConstant</a>，然后再通过正则取出想要的内容。</p>
+<h3 id="疑问">疑问</h3>
+<ul>
+<li>KQ1：怎么获取到注释里的错误内容的？</li>
+<li>KQ2：在什么时候进行获取的？</li>
+<li>Q3：难道每次获取错误内容都要反射一次？那会对性能有影响啊？</li>
+<li>Q4：都PHP8了为什么不用<a class="link" href="https://www.php.net/manual/zh/language.attributes.php"  target="_blank" rel="noopener"
+    >注解</a>的写法？例如：<code>#[Message(&quot;Server Error！&quot;)]</code></li>
+</ul>
+<p>废话不多说，马上开始逐个分析问题。</p>
+<h3 id="获取错误内容">获取错误内容</h3>
+<p>先从获取错误内容的代码入手：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">ErrorCode</span><span class="o">::</span><span class="na">getMessage</span><span class="p">(</span><span class="nv">$code</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再看下<a class="link" href="#%e6%9e%9a%e4%b8%be%e7%b1%bb" >枚举类</a>，是继承了<code>Hyperf\Constants\AbstractConstants</code>的抽象类。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nx">Hyperf\Constants</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * @method static string getMessage(int|string $code, array $translate = null)
+</span></span></span><span class="line"><span class="cl"><span class="sd"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">abstract</span> <span class="k">class</span> <span class="nc">AbstractConstants</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">use</span> <span class="nx">ConstantsTrait</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>用了一个<code>Hyperf\Constants\ConstantsTrait</code>的trait，继续点进去。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nx">Hyperf\Constants</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Hyperf\Constants\Exception\ConstantsException</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Psr\Container\ContainerExceptionInterface</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Psr\Container\NotFoundExceptionInterface</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * @method static string getMessage(int|string $code, array $translate = null)
+</span></span></span><span class="line"><span class="cl"><span class="sd"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">trait</span> <span class="nx">ConstantsTrait</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">use</span> <span class="nx">GetterTrait</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @throws ConstantsException
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @throws ContainerExceptionInterface
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @throws NotFoundExceptionInterface
+</span></span></span><span class="line"><span class="cl"><span class="sd">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="fm">__callStatic</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$name</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$arguments</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span><span class="o">|</span><span class="k">array</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">static</span><span class="o">::</span><span class="na">getValue</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>是一个<a class="link" href="https://www.php.net/manual/zh/language.oop5.overloading.php#object.callstatic"  target="_blank" rel="noopener"
+    >__callStatic</a>魔术方法，再点进<code>Hyperf\Constants\GetterTrait</code>这个 trait。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * This file is part of Hyperf.
+</span></span></span><span class="line"><span class="cl"><span class="sd"> *
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * @link     https://www.hyperf.io
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * @document https://hyperf.wiki
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * @contact  group@hyperf.io
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+</span></span></span><span class="line"><span class="cl"><span class="sd"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nx">Hyperf\Constants</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Hyperf\Constants\Exception\ConstantsException</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Hyperf\Context\ApplicationContext</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Hyperf\Contract\TranslatorInterface</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Psr\Container\ContainerExceptionInterface</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Psr\Container\NotFoundExceptionInterface</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="k">function</span> <span class="nf">array_shift</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="k">function</span> <span class="nf">is_array</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="k">function</span> <span class="nf">sprintf</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="k">function</span> <span class="nf">strtolower</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="k">function</span> <span class="nf">substr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">trait</span> <span class="nx">GetterTrait</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @throws ConstantsException
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @throws ContainerExceptionInterface
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @throws NotFoundExceptionInterface
+</span></span></span><span class="line"><span class="cl"><span class="sd">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getValue</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$name</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$arguments</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span><span class="o">|</span><span class="k">array</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nx">str_starts_with</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="s1">&#39;get&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="nx">ConstantsException</span><span class="p">(</span><span class="s2">&#34;The function </span><span class="si">{</span><span class="nv">$name</span><span class="si">}</span><span class="s2"> is not defined!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$arguments</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="nx">ConstantsException</span><span class="p">(</span><span class="s1">&#39;The Code is required&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$code</span> <span class="o">=</span> <span class="nx">array_shift</span><span class="p">(</span><span class="nv">$arguments</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$name</span> <span class="o">=</span> <span class="nx">strtolower</span><span class="p">(</span><span class="nx">substr</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$message</span> <span class="o">=</span> <span class="nx">ConstantsCollector</span><span class="o">::</span><span class="na">getValue</span><span class="p">(</span><span class="k">static</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$code</span><span class="p">,</span> <span class="nv">$name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$result</span> <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">translate</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// If the result of translate doesn&#39;t exist, the result is equal with message, so we will skip it.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span> <span class="o">&amp;&amp;</span> <span class="nv">$result</span> <span class="o">!==</span> <span class="nv">$message</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nv">$result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$arguments</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nx">sprintf</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="o">...</span><span class="p">(</span><span class="k">array</span><span class="p">)</span> <span class="nv">$arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nv">$message</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @throws ContainerExceptionInterface
+</span></span></span><span class="line"><span class="cl"><span class="sd">     * @throws NotFoundExceptionInterface
+</span></span></span><span class="line"><span class="cl"><span class="sd">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">translate</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$key</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$arguments</span><span class="p">)</span><span class="o">:</span> <span class="k">array</span><span class="o">|</span><span class="nx">string</span><span class="o">|</span><span class="k">null</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nx">ApplicationContext</span><span class="o">::</span><span class="na">hasContainer</span><span class="p">()</span> <span class="o">||</span> <span class="o">!</span> <span class="nx">ApplicationContext</span><span class="o">::</span><span class="na">getContainer</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">has</span><span class="p">(</span><span class="nx">TranslatorInterface</span><span class="o">::</span><span class="na">class</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$replace</span> <span class="o">=</span> <span class="nx">array_shift</span><span class="p">(</span><span class="nv">$arguments</span><span class="p">)</span> <span class="o">??</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nx">is_array</span><span class="p">(</span><span class="nv">$replace</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$translator</span> <span class="o">=</span> <span class="nx">ApplicationContext</span><span class="o">::</span><span class="na">getContainer</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nx">TranslatorInterface</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nv">$translator</span><span class="o">-&gt;</span><span class="na">trans</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$replace</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>到这里可以得知：<code>ErrorCode::getMessage($code);</code> 的调用，最终是<code>Hyperf\Constants\GetterTrait::getValue()</code> 在处理。</strong></p>
+<blockquote>
+<p>第一感觉有点绕啊，跳来跳去最后才见到了庐山真面目。</p>
+<p>为什么要这样设计呢？那么多层trait，不如直接写一个getMessage方法方便？挖坑#1002。</p>
+</blockquote>
+<p>但是这样实现有一个好处，比如可以通过<code>ErrorCode::getTest($code);</code>获取到自定义注释的错误内容，这是文档中没有介绍到的，挖到一点宝藏用法，但是毕竟属于没公布的内容，在业务中使用还得谨慎一些。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * @Message(&#34;Server Error！&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * @Test(&#34;服务错误&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="sd"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="no">SERVER_ERROR</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>回到主线任务，从实现中可以看出，错误内容的获取关键代码是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$message</span> <span class="o">=</span> <span class="nx">ConstantsCollector</span><span class="o">::</span><span class="na">getValue</span><span class="p">(</span><span class="k">static</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$code</span><span class="p">,</span> <span class="nv">$name</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>它是一个<a class="link" href="https://hyperf.wiki/3.1/#/zh-cn/annotation?id=%e8%87%aa%e5%ae%9a%e4%b9%89%e6%b3%a8%e8%a7%a3%e6%94%b6%e9%9b%86%e5%99%a8"  target="_blank" rel="noopener"
+    >自定义的收集器</a>，在<code>Hyperf\Constants\ConfigProvider</code>中可以看到：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nx">Hyperf\Constants</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ConfigProvider</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;annotations&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s1">&#39;scan&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="s1">&#39;collectors&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                        <span class="nx">ConstantsCollector</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">                <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>进去<code>Hyperf\Constants\ConstantsCollector</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nx">Hyperf\Constants</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Hyperf\Di\MetadataCollector</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ConstantsCollector</span> <span class="k">extends</span> <span class="nx">MetadataCollector</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="k">static</span> <span class="k">array</span> <span class="nv">$container</span> <span class="o">=</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getValue</span><span class="p">(</span><span class="nv">$className</span><span class="p">,</span> <span class="nv">$code</span><span class="p">,</span> <span class="nv">$key</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">static</span><span class="o">::</span><span class="nv">$container</span><span class="p">[</span><span class="nv">$className</span><span class="p">][</span><span class="nv">$code</span><span class="p">][</span><span class="nv">$key</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>错误内容是从一个数组类型的静态变量（这里称为容器）中获取的，并且容器中存储不止一个枚举类的数据。</p>
+<blockquote>
+<p>swoole静态变量的生命周期是多久？和传统PHP有什么区别？挖坑#1000。</p>
+</blockquote>
+<p>把容器的数据结构打印出来看看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nx">ConstantsCollector</span><span class="o">::</span><span class="na">list</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;App\Constants\ErrorCode&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">500</span> <span class="o">=&gt;</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Server Error！&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s1">&#39;test&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;服务错误&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">700</span> <span class="o">=&gt;</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;系统参数错误&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">];</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也就是<code>ErrorCode::getMessage($code);</code>获取错误内容实际是从<code>Hyperf\Constants\ConstantsCollector::$container</code>静态变量里取出来的。</p>
+<p>KQ2和Q3的问题回答了一半，那容器里的数据是怎么来的？也就是调用收集器的地方。</p>
+<blockquote>
+<p>hyperf注解和收集器的工作原理是怎样的？挖坑#1001。</p>
+</blockquote>
+<h3 id="获取时机">获取时机</h3>
+<p>在对hyperf的配置加载、注解和收集器的机制了解完以后（挖坑#1003），我们知道，hyperf会在启动的时候对<code>annotations.scan.paths</code>配置的目录进行扫描，配置结构如下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="s1">&#39;scan&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;paths&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">BASE_PATH</span> <span class="o">.</span> <span class="s1">&#39;/app&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">BASE_PATH</span> <span class="o">.</span> <span class="s1">&#39;/src&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后会把所有后缀是<code>.php</code>的类文件，进行<code>ReflectionClass</code>反射处理。</p>
+<p>并通过<a class="link" href="https://www.php.net/manual/zh/language.attributes.reflection.php"  target="_blank" rel="noopener"
+    >getAttributes()</a>逐个检查类文件中的<code>class</code>、<code>method</code>和<code>properties</code>是否存在注解，存在就会通过<a class="link" href="https://www.php.net/manual/zh/reflectionattribute.newinstance.php"  target="_blank" rel="noopener"
+    >newInstance()</a>实例化这个注解类，然后执行注解类中的<code>collectClass()</code> / <code>collectProperty()</code> / <code>collectMethod()</code>方法，最后会将所有<code>collector</code>给序列化<code>serialize</code>然后存放到<code>./runtime/container/scan.cache</code>中以便下次启动时加速。</p>
+<p>回到主线任务，也就是说，在启动的时候会扫描到<a class="link" href="#%e6%9e%9a%e4%b8%be%e7%b1%bb" >枚举类文件</a>，发现使用到了<code>#[Constants]</code>注解，对应<code>Hyperf\Constants\Annotation\Constants</code>会被实例化，看下这个文件的代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nx">Hyperf\Constants\Annotation</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Attribute</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Hyperf\Constants\AnnotationReader</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Hyperf\Constants\ConstantsCollector</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Hyperf\Di\Annotation\AbstractAnnotation</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">ReflectionClass</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#[Attribute(Attribute::TARGET_CLASS)]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">Constants</span> <span class="k">extends</span> <span class="nx">AbstractAnnotation</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">collectClass</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$className</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnnotationReader</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$ref</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ReflectionClass</span><span class="p">(</span><span class="nv">$className</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$classConstants</span> <span class="o">=</span> <span class="nv">$ref</span><span class="o">-&gt;</span><span class="na">getReflectionConstants</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$reader</span><span class="o">-&gt;</span><span class="na">getAnnotations</span><span class="p">(</span><span class="nv">$classConstants</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nx">ConstantsCollector</span><span class="o">::</span><span class="na">set</span><span class="p">(</span><span class="nv">$className</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>collectClass()</code>就会被执行，来分析一下这段代码。</p>
+<p>这里的<code>$className</code>正是<code>App\Constants\ErrorCode</code>枚举类，可以看到用了<code>ReflectionClass</code>反射该文件来获取所有的常量。</p>
+<blockquote>
+<p>这里为什么不用<code>Hyperf\Di\ReflectionManager::reflectClass</code>复用的方式来获取反射呢？毕竟composer都已经依赖<code>hyperf/di</code>包了🤔。</p>
+<p>哈哈，找到了一个优化点，想提交PR的心正在蠢蠢欲动🤣。</p>
+</blockquote>
+<p>进去<code>Hyperf\Constants\AnnotationReader::getAnnotations()</code>方法得到了证实，代码太多我就不放出来，它是通过<a class="link" href="https://www.php.net/manual/zh/reflectionclassconstant.getdoccomment.php"  target="_blank" rel="noopener"
+    >getDocComment()</a>和正则拿到了注释中的错误内容。</p>
+<p><code>$data</code>结构参考如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="mi">500</span> <span class="o">=&gt;</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Server Error！&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;test&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;服务错误&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="mi">700</span> <span class="o">=&gt;</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;系统参数错误&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">],</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后将数据存到了<code>Hyperf\Constants\ConstantsCollector::container</code>静态变量中，梳理完毕。</p>
+<p>整个过程简单点说就是，在hyperf启动时，枚举类文件会被扫描，由注解类将收集到的数据存放到收集器中，扫描逻辑将所有收集器的数据缓存到本地文件中，下次再启动时就不需要重复扫描，直接使用本地缓存文件。</p>
+<p>至此，KQ1、KQ2、Q3都得到了回答。</p>
+<p>等等，是不是还有Q4没有回答？</p>
+<p>嘿嘿，偷个懒，留个课后作业给你思考一下。</p>
+<h2 id="总结">总结</h2>
+<ul>
+<li>枚举类中的错误内容是通过<code>ReflectionClass</code>反射，对每个常量<code>getReflectionConstants()</code>的注释内容<code>getDocComment()</code>用正则的方式取出来。</li>
+<li>获取错误内容并不是在<code>ErrorCode::getMessage($code)</code>调用的时候进行反射实时去取，而是会在hyperf启动的时候，由<code>Hyperf\Constants\Annotation\Constants</code>注解将文件中所有常量的错误内容收集起来后，以文件类名为key，存放到<code>Hyperf\Constants\ConstantsCollector::container</code>静态变量中，并且最后会将收集到的数据缓存到<code>./runtime/container/scan.cache</code>中，这样下次就不需要再重复这个过程。</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/php/">PHP</a>
+        
+            <a href="/tags/hyperf/">Hyperf</a>
+        
+            <a href="/tags/%E6%9E%9A%E4%B8%BE/">枚举</a>
+        
+            <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://unpkg.com/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://unpkg.com/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2024 GHBJayce
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/default-skin/default-skin.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://unpkg.com/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

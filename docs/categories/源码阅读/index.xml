@@ -409,43 +409,31 @@
 &lt;h5 id=&#34;效果&#34;&gt;效果&lt;/h5&gt;
 &lt;p&gt;先来看效果，经过我几天简单测试和使用下来，在文章内使用内链图片和外链图片，均能够生成图像库组件的交互效果。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/HnUsY5Hf9lLX1nmKPLazMjAyNDAyMjVfMTU1MzI4.jpeg&#34;
-	width=&#34;1920&#34;
-	height=&#34;1080&#34;
+	
+	
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;img1&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;177&#34;
-		data-flex-basis=&#34;426px&#34;
-	
 &gt; &lt;img src=&#34;https://ghjayce.github.io/asset/blog/WZDBSq3tYO5AFPNAtH48MjAyNDAyMjVfMTU1MzU4.jpeg&#34;
-	width=&#34;1920&#34;
-	height=&#34;1080&#34;
+	
+	
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;img2&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;177&#34;
-		data-flex-basis=&#34;426px&#34;
-	
 &gt; &lt;img src=&#34;https://ghjayce.github.io/asset/blog/U1FCVUf9hsdEiUyVyzSIMjAyNDAyMjVfMTU1NDI5.jpeg&#34;
-	width=&#34;1920&#34;
-	height=&#34;1080&#34;
+	
+	
 	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;img3&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;177&#34;
-		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h5 id=&#34;我的改动&#34;&gt;我的改动&lt;/h5&gt;

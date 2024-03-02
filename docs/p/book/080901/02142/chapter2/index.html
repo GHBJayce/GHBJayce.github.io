@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='目录 第一章 概论 第二章 线性表 第三章 栈、队列和数组 第四章 树和二叉树 第五章 图 第六章 查找 第七章 排序 概要 线性表 概念 特征 基本运算的功能描述 初始化 求表长 读取元素 定位 插入 删除 线性表的顺序存储结构——顺序表 概念 用C语言描述 运算实现的关键步骤和算法 容量 表长 插入 删除 定位 应用 实现简单算法 算法实现的分析 线性表的链式存储结构——单链表 特点和结构 基本概念 头指针 头结点 首结点 尾结点 空链表 用C语言描述 运算实现的关键步骤和算法 插入 删除 定位 综合应用 设计算法解决应用问题 顺序表和链表的优缺点、适用场景 循环链表和双向循环链表 特点和结构 用C语言描述 基本运算 插入 删除 线性表 概念 线性表Linear List是一种线性结构，它是由n（n ≥ 0）个数据元素组成的有穷序列，其中：
-数据元素又称为结点。 这里的n代表线性表的总结点个数，又称为表长。 当表长为0时，也就是线性表没有任何结点，称为空表，用 () 或 Ø 表示。 线性表通常表示成：(A1, A2, A3, .'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 概要 线性表 概念 特征 基本运算的功能描述 初始化 求表长 读取元素 定位 插入 删除 线性表的顺序存储结构——顺序表 概念 用C语言描述 运算实现的关键步骤和算法 容量 表长 插入 删除 定位 应用 实现简单算法 算法实现的分析 线性表的链式存储结构——单链表 特点和结构 基本概念 头指针 头结点 首结点 尾结点 空链表 用C语言描述 运算实现的关键步骤和算法 插入 删除 定位 综合应用 设计算法解决应用问题 顺序表和链表的优缺点、适用场景 循环链表和双向循环链表 特点和结构 用C语言描述 基本运算 插入 删除 线性表 概念 线性表Linear List是一种线性结构，它是由n（n ≥ 0）个数据元素组成的有穷序列，其中：'>
 <title>第二章 线性表 - 《数据结构导论》笔记</title>
 
 <link rel='canonical' href='https://ghbjayce.github.io/p/book/080901/02142/chapter2/'>
 
 <link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='第二章 线性表 - 《数据结构导论》笔记'>
-<meta property='og:description' content='目录 第一章 概论 第二章 线性表 第三章 栈、队列和数组 第四章 树和二叉树 第五章 图 第六章 查找 第七章 排序 概要 线性表 概念 特征 基本运算的功能描述 初始化 求表长 读取元素 定位 插入 删除 线性表的顺序存储结构——顺序表 概念 用C语言描述 运算实现的关键步骤和算法 容量 表长 插入 删除 定位 应用 实现简单算法 算法实现的分析 线性表的链式存储结构——单链表 特点和结构 基本概念 头指针 头结点 首结点 尾结点 空链表 用C语言描述 运算实现的关键步骤和算法 插入 删除 定位 综合应用 设计算法解决应用问题 顺序表和链表的优缺点、适用场景 循环链表和双向循环链表 特点和结构 用C语言描述 基本运算 插入 删除 线性表 概念 线性表Linear List是一种线性结构，它是由n（n ≥ 0）个数据元素组成的有穷序列，其中：
-数据元素又称为结点。 这里的n代表线性表的总结点个数，又称为表长。 当表长为0时，也就是线性表没有任何结点，称为空表，用 () 或 Ø 表示。 线性表通常表示成：(A1, A2, A3, .'>
+<meta property='og:description' content='目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 概要 线性表 概念 特征 基本运算的功能描述 初始化 求表长 读取元素 定位 插入 删除 线性表的顺序存储结构——顺序表 概念 用C语言描述 运算实现的关键步骤和算法 容量 表长 插入 删除 定位 应用 实现简单算法 算法实现的分析 线性表的链式存储结构——单链表 特点和结构 基本概念 头指针 头结点 首结点 尾结点 空链表 用C语言描述 运算实现的关键步骤和算法 插入 删除 定位 综合应用 设计算法解决应用问题 顺序表和链表的优缺点、适用场景 循环链表和双向循环链表 特点和结构 用C语言描述 基本运算 插入 删除 线性表 概念 线性表Linear List是一种线性结构，它是由n（n ≥ 0）个数据元素组成的有穷序列，其中：'>
 <meta property='og:url' content='https://ghbjayce.github.io/p/book/080901/02142/chapter2/'>
 <meta property='og:site_name' content='GHBJayce'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='数据结构导论' /><meta property='article:tag' content='计算机科学与技术' /><meta property='article:tag' content='笔记' /><meta property='article:published_time' content='2023-08-29T14:46:12&#43;08:00'/><meta property='article:modified_time' content='2023-08-29T14:46:12&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='数据结构导论' /><meta property='article:tag' content='计算机科学与技术' /><meta property='article:tag' content='笔记' /><meta property='article:published_time' content='2023-08-29T14:46:12&#43;08:00'/><meta property='article:modified_time' content='2023-08-29T14:46:12&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png' />
 <meta name="twitter:title" content="第二章 线性表 - 《数据结构导论》笔记">
-<meta name="twitter:description" content="目录 第一章 概论 第二章 线性表 第三章 栈、队列和数组 第四章 树和二叉树 第五章 图 第六章 查找 第七章 排序 概要 线性表 概念 特征 基本运算的功能描述 初始化 求表长 读取元素 定位 插入 删除 线性表的顺序存储结构——顺序表 概念 用C语言描述 运算实现的关键步骤和算法 容量 表长 插入 删除 定位 应用 实现简单算法 算法实现的分析 线性表的链式存储结构——单链表 特点和结构 基本概念 头指针 头结点 首结点 尾结点 空链表 用C语言描述 运算实现的关键步骤和算法 插入 删除 定位 综合应用 设计算法解决应用问题 顺序表和链表的优缺点、适用场景 循环链表和双向循环链表 特点和结构 用C语言描述 基本运算 插入 删除 线性表 概念 线性表Linear List是一种线性结构，它是由n（n ≥ 0）个数据元素组成的有穷序列，其中：
-数据元素又称为结点。 这里的n代表线性表的总结点个数，又称为表长。 当表长为0时，也就是线性表没有任何结点，称为空表，用 () 或 Ø 表示。 线性表通常表示成：(A1, A2, A3, .">
+<meta name="twitter:description" content="目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 概要 线性表 概念 特征 基本运算的功能描述 初始化 求表长 读取元素 定位 插入 删除 线性表的顺序存储结构——顺序表 概念 用C语言描述 运算实现的关键步骤和算法 容量 表长 插入 删除 定位 应用 实现简单算法 算法实现的分析 线性表的链式存储结构——单链表 特点和结构 基本概念 头指针 头结点 首结点 尾结点 空链表 用C语言描述 运算实现的关键步骤和算法 插入 删除 定位 综合应用 设计算法解决应用问题 顺序表和链表的优缺点、适用场景 循环链表和双向循环链表 特点和结构 用C语言描述 基本运算 插入 删除 线性表 概念 线性表Linear List是一种线性结构，它是由n（n ≥ 0）个数据元素组成的有穷序列，其中："><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png' />
     <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
 
     </head>
@@ -290,8 +288,16 @@
 
 
             <main class="main full-width">
-    <article class="main-article">
+    <article class="has-image main-article">
     <header class="article-header">
+        <div class="article-image">
+            <a href="/p/book/080901/02142/chapter2/">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" alt="Featured image of post 第二章 线性表 - 《数据结构导论》笔记" />
+                
+            </a>
+        </div>
+    
 
     <div class="article-details">
     
@@ -360,13 +366,14 @@
     
     <h2 id="目录">目录</h2>
 <ul>
-<li><a class="link" href="../chapter1" >第一章 概论</a></li>
-<li><a class="link" href="../chapter2" ><strong>第二章 线性表</strong></a></li>
-<li><a class="link" href="../chapter3" >第三章 栈、队列和数组</a></li>
-<li><a class="link" href="../chapter4" >第四章 树和二叉树</a></li>
-<li><a class="link" href="../chapter5" >第五章 图</a></li>
-<li><a class="link" href="../chapter6" >第六章 查找</a></li>
-<li><a class="link" href="../chapter7" >第七章 排序</a></li>
+<li><a class="link" href="../chapter1" >第一章 概论</a> <small>P21 ~ 34（13页）</small></li>
+<li><a class="link" href="../chapter2" ><strong>第二章 线性表</strong></a> <small>P35 ~ 58（23页）</small></li>
+<li><a class="link" href="../chapter3" >第三章 栈、队列和数组</a> <small>P59 ~ 92（33页）</small></li>
+<li><a class="link" href="../chapter4" >第四章 树和二叉树</a> <small>P93 ~ 128（35页）</small></li>
+<li><a class="link" href="../chapter5" >第五章 图</a> <small>P129 ~ 160（31页）</small></li>
+<li><a class="link" href="../chapter6" >第六章 查找</a> <small>P161 ~ 182（21页）</small></li>
+<li><a class="link" href="../chapter7" >第七章 排序</a> <small>P183 ~ 204（27页）</small></li>
+<li><a class="link" href="../exam-focus" >考试重点</a></li>
 </ul>
 <h2 id="概要">概要</h2>
 <ol>
@@ -809,17 +816,13 @@
 </li>
 </ul>
 <p><img src="https://ghjayce.github.io/asset/blog/P4uZrja3M85o6utKpTl2MjAyNDAyMjVfMTUzNTI4.png"
-	width="835"
-	height="960"
+	
+	
 	
 	loading="lazy"
 	
 		alt="单链表、带头结点的单链表"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="86"
-		data-flex-basis="208px"
 	
 ></p>
 <h3 id="用c语言描述-1">用C语言描述</h3>
@@ -1362,20 +1365,16 @@
 <h3 id="其他链表">其他链表</h3>
 <h4 id="循环链表">循环链表</h4>
 <p><img src="https://ghjayce.github.io/asset/blog/1y1u7e76cpUEnFJm4rUzMjAyNDAyMjVfMTUzMjI5.png"
-	width="834"
-	height="1029"
+	
+	
 	
 	loading="lazy"
 	
 		alt="带头结点的单链表、带尾结点的循环链表"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="81"
-		data-flex-basis="194px"
-	
->
-带尾结点访问首结点的表示方式：<code>rear-&gt;next-&gt;next</code>，运算与单链表类似，不再赘述。</p>
+></p>
+<p>带尾结点访问首结点的表示方式：<code>rear-&gt;next-&gt;next</code>，运算与单链表类似，不再赘述。</p>
 <h4 id="双向循环链表">双向循环链表</h4>
 <p>用类C语言来描述：</p>
 <div class="highlight"><div class="chroma">
@@ -1601,9 +1600,34 @@
         <div class="flex article-list--tile">
             
                 
-<article class="">
+<article class="has-image">
+    <a href="/p/book/080901/02142/exam-focus/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/exam-focus" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">《数据结构导论》考试重点</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/book/080901/02142/chapter7/">
         
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/chapter7" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
         
 
         <div class="article-details">
@@ -1614,9 +1638,15 @@
 
             
                 
-<article class="">
+<article class="has-image">
     <a href="/p/book/080901/02142/chapter6/">
         
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/chapter6" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
         
 
         <div class="article-details">
@@ -1627,9 +1657,15 @@
 
             
                 
-<article class="">
+<article class="has-image">
     <a href="/p/book/080901/02142/chapter5/">
         
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/chapter5" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
         
 
         <div class="article-details">
@@ -1640,26 +1676,19 @@
 
             
                 
-<article class="">
+<article class="has-image">
     <a href="/p/book/080901/02142/chapter4/">
         
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/chapter4" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
         
 
         <div class="article-details">
             <h2 class="article-title">第四章 树和二叉树 - 《数据结构导论》笔记</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/book/080901/02142/chapter3/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">第三章 栈、队列和数组 - 《数据结构导论》笔记</h2>
         </div>
     </a>
 </article>
