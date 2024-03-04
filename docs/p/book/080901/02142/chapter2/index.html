@@ -4,12 +4,12 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 概要 线性表 概念 特征 基本运算的功能描述 初始化 求表长 读取元素 定位 插入 删除 线性表的顺序存储结构——顺序表 概念 用C语言描述 运算实现的关键步骤和算法 容量 表长 插入 删除 定位 应用 实现简单算法 算法实现的分析 线性表的链式存储结构——单链表 特点和结构 基本概念 头指针 头结点 首结点 尾结点 空链表 用C语言描述 运算实现的关键步骤和算法 插入 删除 定位 综合应用 设计算法解决应用问题 顺序表和链表的优缺点、适用场景 循环链表和双向循环链表 特点和结构 用C语言描述 基本运算 插入 删除 线性表 概念 线性表Linear List是一种线性结构，它是由n（n ≥ 0）个数据元素组成的有穷序列，其中：'>
 <title>第二章 线性表 - 《数据结构导论》笔记</title>
 
-<link rel='canonical' href='https://ghbjayce.github.io/p/book/080901/02142/chapter2/'>
+<link rel='canonical' href='https://ghjayce.github.io/p/book/080901/02142/chapter2/'>
 
 <link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='第二章 线性表 - 《数据结构导论》笔记'>
 <meta property='og:description' content='目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 概要 线性表 概念 特征 基本运算的功能描述 初始化 求表长 读取元素 定位 插入 删除 线性表的顺序存储结构——顺序表 概念 用C语言描述 运算实现的关键步骤和算法 容量 表长 插入 删除 定位 应用 实现简单算法 算法实现的分析 线性表的链式存储结构——单链表 特点和结构 基本概念 头指针 头结点 首结点 尾结点 空链表 用C语言描述 运算实现的关键步骤和算法 插入 删除 定位 综合应用 设计算法解决应用问题 顺序表和链表的优缺点、适用场景 循环链表和双向循环链表 特点和结构 用C语言描述 基本运算 插入 删除 线性表 概念 线性表Linear List是一种线性结构，它是由n（n ≥ 0）个数据元素组成的有穷序列，其中：'>
-<meta property='og:url' content='https://ghbjayce.github.io/p/book/080901/02142/chapter2/'>
-<meta property='og:site_name' content='GHBJayce'>
+<meta property='og:url' content='https://ghjayce.github.io/p/book/080901/02142/chapter2/'>
+<meta property='og:site_name' content='GHJayce'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='数据结构导论' /><meta property='article:tag' content='计算机科学与技术' /><meta property='article:tag' content='笔记' /><meta property='article:published_time' content='2023-08-29T14:46:12&#43;08:00'/><meta property='article:modified_time' content='2023-08-29T14:46:12&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png' />
 <meta name="twitter:title" content="第二章 线性表 - 《数据结构导论》笔记">
 <meta name="twitter:description" content="目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 概要 线性表 概念 特征 基本运算的功能描述 初始化 求表长 读取元素 定位 插入 删除 线性表的顺序存储结构——顺序表 概念 用C语言描述 运算实现的关键步骤和算法 容量 表长 插入 删除 定位 应用 实现简单算法 算法实现的分析 线性表的链式存储结构——单链表 特点和结构 基本概念 头指针 头结点 首结点 尾结点 空链表 用C语言描述 运算实现的关键步骤和算法 插入 删除 定位 综合应用 设计算法解决应用问题 顺序表和链表的优缺点、适用场景 循环链表和双向循环链表 特点和结构 用C语言描述 基本运算 插入 删除 线性表 概念 线性表Linear List是一种线性结构，它是由n（n ≥ 0）个数据元素组成的有穷序列，其中："><meta name="twitter:card" content="summary_large_image">
@@ -66,14 +66,14 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">GHBJayce</a></h1>
+            <h1 class="site-name"><a href="/">GHJayce</a></h1>
             <h2 class="site-description">十年饮冰，难凉热血。</h2>
         </div>
     </header><ol class="social-menu">
             
                 <li>
                     <a 
-                        href='https://github.com/GHBJayce'
+                        href='https://github.com/GHJayce'
                         target="_blank"
                         title="GitHub"
                         rel="me"
@@ -1717,7 +1717,7 @@
         
             2023 - 
         
-        2024 GHBJayce
+        2024 GHJayce
     </section>
     
     <section class="powerby">

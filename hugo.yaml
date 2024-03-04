@@ -1,8 +1,8 @@
-baseurl: https://ghbjayce.github.io/
+baseurl: https://ghjayce.github.io/
 languageCode: zh-cn
 theme: hugo-theme-stack
 paginate: 10
-title: GHBJayce的博客
+title: GHJayce的博客
 enableEmoji: true
 publishDir: docs
 
@@ -14,7 +14,7 @@ languages:
     #     weight: 1
     zh-cn:
         languageName: 中文
-        title: GHBJayce
+        title: GHJayce
         params:
             description: 演示说明
         weight: 2
@@ -206,7 +206,7 @@ menu:
     social:
         - identifier: github
           name: GitHub
-          url: https://github.com/GHBJayce
+          url: https://github.com/GHJayce
           params:
               icon: brand-github
 

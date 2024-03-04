@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Posts on GHBJayce</title>
-        <link>https://ghbjayce.github.io/post/</link>
-        <description>Recent content in Posts on GHBJayce</description>
+        <title>Posts on GHJayce</title>
+        <link>https://ghjayce.github.io/post/</link>
+        <description>Recent content in Posts on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 26 Feb 2024 10:01:00 +0800</lastBuildDate><atom:link href="https://ghbjayce.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 26 Feb 2024 10:01:00 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>hyperf constants实现机制</title>
-        <link>https://ghbjayce.github.io/p/language/php/hyperf/hyperf-constants/</link>
+        <link>https://ghjayce.github.io/p/language/php/hyperf/hyperf-constants/</link>
         <pubDate>Mon, 26 Feb 2024 10:01:00 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/language/php/hyperf/hyperf-constants/</guid>
+        <guid>https://ghjayce.github.io/p/language/php/hyperf/hyperf-constants/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg" alt="Featured image of post hyperf constants实现机制" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;h3 id=&#34;环境说明&#34;&gt;环境说明&lt;/h3&gt;
 &lt;ul&gt;
@@ -778,10 +778,10 @@
         </item>
         <item>
         <title>Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？</title>
-        <link>https://ghbjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/</link>
+        <link>https://ghjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/</link>
         <pubDate>Tue, 05 Dec 2023 11:45:25 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/</guid>
+        <guid>https://ghjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png" alt="Featured image of post Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;p&gt;为了方便文章描述，文中词汇的含义、未提及的场景如下：&lt;/p&gt;
 &lt;ul&gt;
@@ -1426,10 +1426,10 @@
         </item>
         <item>
         <title>《数据结构导论》考试重点</title>
-        <link>https://ghbjayce.github.io/p/book/080901/02142/exam-focus/</link>
+        <link>https://ghjayce.github.io/p/book/080901/02142/exam-focus/</link>
         <pubDate>Sun, 22 Oct 2023 09:27:30 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/book/080901/02142/exam-focus/</guid>
+        <guid>https://ghjayce.github.io/p/book/080901/02142/exam-focus/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 《数据结构导论》考试重点" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -1677,10 +1677,10 @@
         </item>
         <item>
         <title>第七章 排序 - 《数据结构导论》笔记</title>
-        <link>https://ghbjayce.github.io/p/book/080901/02142/chapter7/</link>
+        <link>https://ghjayce.github.io/p/book/080901/02142/chapter7/</link>
         <pubDate>Fri, 20 Oct 2023 09:27:30 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter7/</guid>
+        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter7/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第七章 排序 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -1906,10 +1906,10 @@
         </item>
         <item>
         <title>第六章 查找 - 《数据结构导论》笔记</title>
-        <link>https://ghbjayce.github.io/p/book/080901/02142/chapter6/</link>
+        <link>https://ghjayce.github.io/p/book/080901/02142/chapter6/</link>
         <pubDate>Thu, 19 Oct 2023 12:23:25 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter6/</guid>
+        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter6/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第六章 查找 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -2270,10 +2270,10 @@ $$d_i = (d_0 \pm i){\quad}mod{\quad}m$$
         </item>
         <item>
         <title>第五章 图 - 《数据结构导论》笔记</title>
-        <link>https://ghbjayce.github.io/p/book/080901/02142/chapter5/</link>
+        <link>https://ghjayce.github.io/p/book/080901/02142/chapter5/</link>
         <pubDate>Mon, 16 Oct 2023 10:31:20 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter5/</guid>
+        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter5/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第五章 图 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -2658,10 +2658,10 @@ $$图5$$
         </item>
         <item>
         <title>什么是对数？</title>
-        <link>https://ghbjayce.github.io/p/subject/math/sequence/logarithm/</link>
+        <link>https://ghjayce.github.io/p/subject/math/sequence/logarithm/</link>
         <pubDate>Thu, 28 Sep 2023 14:47:45 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/subject/math/sequence/logarithm/</guid>
+        <guid>https://ghjayce.github.io/p/subject/math/sequence/logarithm/</guid>
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;比如现在来看一组幂运算（也叫求幂）：&lt;/p&gt;
 &lt;ul&gt;
@@ -2784,10 +2784,10 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
         </item>
         <item>
         <title>第四章 树和二叉树 - 《数据结构导论》笔记</title>
-        <link>https://ghbjayce.github.io/p/book/080901/02142/chapter4/</link>
+        <link>https://ghjayce.github.io/p/book/080901/02142/chapter4/</link>
         <pubDate>Tue, 26 Sep 2023 09:47:20 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter4/</guid>
+        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter4/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第四章 树和二叉树 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -4123,10 +4123,10 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
         </item>
         <item>
         <title>第三章 栈、队列和数组 - 《数据结构导论》笔记</title>
-        <link>https://ghbjayce.github.io/p/book/080901/02142/chapter3/</link>
+        <link>https://ghjayce.github.io/p/book/080901/02142/chapter3/</link>
         <pubDate>Mon, 18 Sep 2023 12:24:10 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter3/</guid>
+        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter3/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第三章 栈、队列和数组 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -5281,10 +5281,10 @@ $$loc[i, j] = loc[0, 0] + (n * i + j) * k$$
         </item>
         <item>
         <title>什么是等差数列？</title>
-        <link>https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/</link>
+        <link>https://ghjayce.github.io/p/subject/math/sequence/arithmetic/</link>
         <pubDate>Thu, 07 Sep 2023 19:05:42 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/subject/math/sequence/arithmetic/</guid>
+        <guid>https://ghjayce.github.io/p/subject/math/sequence/arithmetic/</guid>
         <description>&lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;数列：按特定规律排列的一组数字的集合。&lt;/li&gt;
@@ -5364,10 +5364,10 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
         </item>
         <item>
         <title>在android上安装git环境</title>
-        <link>https://ghbjayce.github.io/p/system/android/env/install-git/</link>
+        <link>https://ghjayce.github.io/p/system/android/env/install-git/</link>
         <pubDate>Wed, 30 Aug 2023 13:26:26 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/system/android/env/install-git/</guid>
+        <guid>https://ghjayce.github.io/p/system/android/env/install-git/</guid>
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;一开始打算在手机上安装git，想到的是安装app，于是各种找，找到了有如：&lt;/p&gt;
 &lt;ol&gt;
@@ -5547,10 +5547,10 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
         </item>
         <item>
         <title>第二章 线性表 - 《数据结构导论》笔记</title>
-        <link>https://ghbjayce.github.io/p/book/080901/02142/chapter2/</link>
+        <link>https://ghjayce.github.io/p/book/080901/02142/chapter2/</link>
         <pubDate>Tue, 29 Aug 2023 14:46:12 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter2/</guid>
+        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter2/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第二章 线性表 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -6730,10 +6730,10 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
         </item>
         <item>
         <title>第一章 概论 - 《数据结构导论》笔记</title>
-        <link>https://ghbjayce.github.io/p/book/080901/02142/chapter1/</link>
+        <link>https://ghjayce.github.io/p/book/080901/02142/chapter1/</link>
         <pubDate>Sun, 20 Aug 2023 16:36:20 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/book/080901/02142/chapter1/</guid>
+        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter1/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第一章 概论 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;&lt;strong&gt;第一章 概论&lt;/strong&gt;&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -7151,10 +7151,10 @@ $$S(n)=O(g(n))$$
         </item>
         <item>
         <title>hugo快速上手搭建一个静态博客</title>
-        <link>https://ghbjayce.github.io/p/static-site-generator/hugo/quick-start/</link>
+        <link>https://ghjayce.github.io/p/static-site-generator/hugo/quick-start/</link>
         <pubDate>Tue, 20 Jun 2023 23:46:50 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/static-site-generator/hugo/quick-start/</guid>
+        <guid>https://ghjayce.github.io/p/static-site-generator/hugo/quick-start/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/hYbelawEIwhaejxWE2RNMjAyNDAyMjVfMTU1NTA2.png" alt="Featured image of post hugo快速上手搭建一个静态博客" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;开头废话有点多，&lt;a class=&#34;link&#34; href=&#34;#%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8&#34; &gt;点我进入正题&lt;/a&gt;&lt;/p&gt;

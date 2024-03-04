@@ -4,12 +4,12 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 阅读说明 本文涉及到的代码描述均为C语言。 概要 栈 概念 特征 用C语言描述 顺序栈 链栈 基本运算 初始化 栈空 栈满 进栈 出栈 取栈顶元素 应用 解决简单问题 队列 概念 特征 用C语言描述 顺序队列 循环队列 基本运算 初始化 队列空 队列满 入队列 出队列 取队列首元素 应用 解决简单问题 数组 一维和二维数组 逻辑结构 存储结构 存储位置计算 矩阵的压缩存储 特殊矩阵 对称矩阵 三角矩阵 上三角矩阵 下三角矩阵 稀疏矩阵 三元组表示法 简单的综合运用 栈 概念 栈Stack可以看作是特殊的线性表，特殊性在于基本运算是线性表运算的子集，是一种运算受限的线性表。而受限是指插入和删除运算限定在表的某一端进行。'>
 <title>第三章 栈、队列和数组 - 《数据结构导论》笔记</title>
 
-<link rel='canonical' href='https://ghbjayce.github.io/p/book/080901/02142/chapter3/'>
+<link rel='canonical' href='https://ghjayce.github.io/p/book/080901/02142/chapter3/'>
 
 <link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='第三章 栈、队列和数组 - 《数据结构导论》笔记'>
 <meta property='og:description' content='目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 阅读说明 本文涉及到的代码描述均为C语言。 概要 栈 概念 特征 用C语言描述 顺序栈 链栈 基本运算 初始化 栈空 栈满 进栈 出栈 取栈顶元素 应用 解决简单问题 队列 概念 特征 用C语言描述 顺序队列 循环队列 基本运算 初始化 队列空 队列满 入队列 出队列 取队列首元素 应用 解决简单问题 数组 一维和二维数组 逻辑结构 存储结构 存储位置计算 矩阵的压缩存储 特殊矩阵 对称矩阵 三角矩阵 上三角矩阵 下三角矩阵 稀疏矩阵 三元组表示法 简单的综合运用 栈 概念 栈Stack可以看作是特殊的线性表，特殊性在于基本运算是线性表运算的子集，是一种运算受限的线性表。而受限是指插入和删除运算限定在表的某一端进行。'>
-<meta property='og:url' content='https://ghbjayce.github.io/p/book/080901/02142/chapter3/'>
-<meta property='og:site_name' content='GHBJayce'>
+<meta property='og:url' content='https://ghjayce.github.io/p/book/080901/02142/chapter3/'>
+<meta property='og:site_name' content='GHJayce'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='数据结构导论' /><meta property='article:tag' content='计算机科学与技术' /><meta property='article:tag' content='笔记' /><meta property='article:published_time' content='2023-09-18T12:24:10&#43;08:00'/><meta property='article:modified_time' content='2023-09-18T12:24:10&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png' />
 <meta name="twitter:title" content="第三章 栈、队列和数组 - 《数据结构导论》笔记">
 <meta name="twitter:description" content="目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 阅读说明 本文涉及到的代码描述均为C语言。 概要 栈 概念 特征 用C语言描述 顺序栈 链栈 基本运算 初始化 栈空 栈满 进栈 出栈 取栈顶元素 应用 解决简单问题 队列 概念 特征 用C语言描述 顺序队列 循环队列 基本运算 初始化 队列空 队列满 入队列 出队列 取队列首元素 应用 解决简单问题 数组 一维和二维数组 逻辑结构 存储结构 存储位置计算 矩阵的压缩存储 特殊矩阵 对称矩阵 三角矩阵 上三角矩阵 下三角矩阵 稀疏矩阵 三元组表示法 简单的综合运用 栈 概念 栈Stack可以看作是特殊的线性表，特殊性在于基本运算是线性表运算的子集，是一种运算受限的线性表。而受限是指插入和删除运算限定在表的某一端进行。"><meta name="twitter:card" content="summary_large_image">
@@ -66,14 +66,14 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">GHBJayce</a></h1>
+            <h1 class="site-name"><a href="/">GHJayce</a></h1>
             <h2 class="site-description">十年饮冰，难凉热血。</h2>
         </div>
     </header><ol class="social-menu">
             
                 <li>
                     <a 
-                        href='https://github.com/GHBJayce'
+                        href='https://github.com/GHJayce'
                         target="_blank"
                         title="GitHub"
                         rel="me"
@@ -1730,7 +1730,7 @@ $$loc[i, j] = loc[0, 0] + (n * i + j) * k$$
         
             2023 - 
         
-        2024 GHBJayce
+        2024 GHJayce
     </section>
     
     <section class="powerby">

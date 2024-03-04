@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Hugo on GHBJayce</title>
-        <link>https://ghbjayce.github.io/tags/hugo/</link>
-        <description>Recent content in Hugo on GHBJayce</description>
+        <title>Hugo on GHJayce</title>
+        <link>https://ghjayce.github.io/tags/hugo/</link>
+        <description>Recent content in Hugo on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 05 Dec 2023 11:45:25 +0800</lastBuildDate><atom:link href="https://ghbjayce.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 05 Dec 2023 11:45:25 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？</title>
-        <link>https://ghbjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/</link>
+        <link>https://ghjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/</link>
         <pubDate>Tue, 05 Dec 2023 11:45:25 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/</guid>
+        <guid>https://ghjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png" alt="Featured image of post Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;p&gt;为了方便文章描述，文中词汇的含义、未提及的场景如下：&lt;/p&gt;
 &lt;ul&gt;
@@ -656,10 +656,10 @@
         </item>
         <item>
         <title>hugo快速上手搭建一个静态博客</title>
-        <link>https://ghbjayce.github.io/p/static-site-generator/hugo/quick-start/</link>
+        <link>https://ghjayce.github.io/p/static-site-generator/hugo/quick-start/</link>
         <pubDate>Tue, 20 Jun 2023 23:46:50 +0800</pubDate>
         
-        <guid>https://ghbjayce.github.io/p/static-site-generator/hugo/quick-start/</guid>
+        <guid>https://ghjayce.github.io/p/static-site-generator/hugo/quick-start/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/hYbelawEIwhaejxWE2RNMjAyNDAyMjVfMTU1NTA2.png" alt="Featured image of post hugo快速上手搭建一个静态博客" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;开头废话有点多，&lt;a class=&#34;link&#34; href=&#34;#%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8&#34; &gt;点我进入正题&lt;/a&gt;&lt;/p&gt;

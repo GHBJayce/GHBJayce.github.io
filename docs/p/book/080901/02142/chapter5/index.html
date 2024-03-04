@@ -11,7 +11,7 @@
 V是顶点的有穷非空集合，一般表示为：V = {v0, v1, v2}。 E是边的集合，一般表示为：E = {&amp;lt;v0, v1&amp;gt;, &amp;lt;v1, v2&amp;gt;}。 有向图：顶点的偶对是有序的。 有序偶对用尖括号括起来，例：&amp;lt;v0, v1&amp;gt;，含义是从顶点v0到顶点v1有一条边。 如图2a)是一个有向图，可以看到边是带有箭头的，即有方向的。 无向图：顶点的偶对是无序的。 无序偶对用圆括号括起来，例：(v0, v1)，含义与有向图一样。 如图2b)是一个无向图。 弧：有向图的边又称为弧（无向图可没有这种说法，大概用于区分的作用）。 弧头：表示弧的终点，即弧有箭头的一端。 例：&amp;lt;v0, v1&amp;gt;，图2a)的v0和v1的弧，v1就是弧头的一端。 弧尾：表示弧的始点/起点。 例：&amp;lt;v0, v1&amp;gt;，图2a)的v0和v1的弧，v0就是弧尾的一端。 无向图中(v0, v1)和(v1, v0)是同一条边，但对于有向图来说，&amp;lt;v0, v1&amp;gt;和&amp;lt;v1, v0&amp;gt;可是两条不同的弧。'>
 <title>第五章 图 - 《数据结构导论》笔记</title>
 
-<link rel='canonical' href='https://ghbjayce.github.io/p/book/080901/02142/chapter5/'>
+<link rel='canonical' href='https://ghjayce.github.io/p/book/080901/02142/chapter5/'>
 
 <link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='第五章 图 - 《数据结构导论》笔记'>
 <meta property='og:description' content='目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 阅读说明 为了方便文章表述，以下内容有一些调整：
@@ -22,8 +22,8 @@ V是顶点的有穷非空集合，一般表示为：V = {v0, v1, v2}。 E是边�
 顶点：即上图的圆圈。 如图1a)，v0、v1、v2等。 在上面的例子圆圈代表一个城市。 边：即上图圆圈之间的连线，也称为顶点的偶对。 如图1a)，v0和v1之间的连线。 权：即连线旁边的数值，也称为边的权。 如图1a)，v0和v1的权为50。 在实际应用中，权可以表示一个顶点到另一个顶点的距离、代价或耗费等。 带权图：每条边都带有权的图。 如图1a)。 $$图2$$
 图Graph由两个集合V和E组成，记为$G=(V, E)$，其中：
 V是顶点的有穷非空集合，一般表示为：V = {v0, v1, v2}。 E是边的集合，一般表示为：E = {&amp;lt;v0, v1&amp;gt;, &amp;lt;v1, v2&amp;gt;}。 有向图：顶点的偶对是有序的。 有序偶对用尖括号括起来，例：&amp;lt;v0, v1&amp;gt;，含义是从顶点v0到顶点v1有一条边。 如图2a)是一个有向图，可以看到边是带有箭头的，即有方向的。 无向图：顶点的偶对是无序的。 无序偶对用圆括号括起来，例：(v0, v1)，含义与有向图一样。 如图2b)是一个无向图。 弧：有向图的边又称为弧（无向图可没有这种说法，大概用于区分的作用）。 弧头：表示弧的终点，即弧有箭头的一端。 例：&amp;lt;v0, v1&amp;gt;，图2a)的v0和v1的弧，v1就是弧头的一端。 弧尾：表示弧的始点/起点。 例：&amp;lt;v0, v1&amp;gt;，图2a)的v0和v1的弧，v0就是弧尾的一端。 无向图中(v0, v1)和(v1, v0)是同一条边，但对于有向图来说，&amp;lt;v0, v1&amp;gt;和&amp;lt;v1, v0&amp;gt;可是两条不同的弧。'>
-<meta property='og:url' content='https://ghbjayce.github.io/p/book/080901/02142/chapter5/'>
-<meta property='og:site_name' content='GHBJayce'>
+<meta property='og:url' content='https://ghjayce.github.io/p/book/080901/02142/chapter5/'>
+<meta property='og:site_name' content='GHJayce'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='数据结构导论' /><meta property='article:tag' content='计算机科学与技术' /><meta property='article:tag' content='笔记' /><meta property='article:published_time' content='2023-10-16T10:31:20&#43;08:00'/><meta property='article:modified_time' content='2023-10-16T10:31:20&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png' />
 <meta name="twitter:title" content="第五章 图 - 《数据结构导论》笔记">
 <meta name="twitter:description" content="目录 第一章 概论 P21 ~ 34（13页） 第二章 线性表 P35 ~ 58（23页） 第三章 栈、队列和数组 P59 ~ 92（33页） 第四章 树和二叉树 P93 ~ 128（35页） 第五章 图 P129 ~ 160（31页） 第六章 查找 P161 ~ 182（21页） 第七章 排序 P183 ~ 204（27页） 考试重点 阅读说明 为了方便文章表述，以下内容有一些调整：
@@ -87,14 +87,14 @@ V是顶点的有穷非空集合，一般表示为：V = {v0, v1, v2}。 E是边�
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">GHBJayce</a></h1>
+            <h1 class="site-name"><a href="/">GHJayce</a></h1>
             <h2 class="site-description">十年饮冰，难凉热血。</h2>
         </div>
     </header><ol class="social-menu">
             
                 <li>
                     <a 
-                        href='https://github.com/GHBJayce'
+                        href='https://github.com/GHJayce'
                         target="_blank"
                         title="GitHub"
                         rel="me"
@@ -914,7 +914,7 @@ $$图5$$
         
             2023 - 
         
-        2024 GHBJayce
+        2024 GHJayce
     </section>
     
     <section class="powerby">
