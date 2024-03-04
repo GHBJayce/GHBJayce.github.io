@@ -32,7 +32,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 {{- $Permalink := .Destination | relURL | safeURL -}} {{- $image := &amp;#34;&amp;#34; -}} {{- if hasPrefix $Permalink &amp;#34;http&amp;#34; -}} {{- $image = resources.GetRemote $Permalink -}} {{- else -}} {{- $image = .'>
 <meta property='og:url' content='https://ghbjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/'>
 <meta property='og:site_name' content='GHBJayce'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Hugo' /><meta property='article:tag' content='静态站点生成器' /><meta property='article:tag' content='hugo-theme-stack' /><meta property='article:tag' content='TypeScript' /><meta property='article:published_time' content='2023-12-05T11:45:25&#43;08:00'/><meta property='article:modified_time' content='2023-12-05T11:45:25&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Hugo' /><meta property='article:tag' content='静态站点生成器' /><meta property='article:tag' content='hugo-theme-stack' /><meta property='article:tag' content='TypeScript' /><meta property='article:tag' content='源码阅读' /><meta property='article:published_time' content='2023-12-05T11:45:25&#43;08:00'/><meta property='article:modified_time' content='2023-12-05T11:45:25&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png' />
 <meta name="twitter:title" content="Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？">
 <meta name="twitter:description" content="阅读说明 为了方便文章描述，文中词汇的含义、未提及的场景如下：
 内链图片：和站点同一个域名下的图片。 外链图片：和站点非同一个域名下的图片，通常以http开头的链接。 内联图片：文字和图片处于同一行。 图像组件：将图片处理成在页面中可以进行交互的组件。 图片交互效果：经过图像组件处理以后，在页面进行交互的效果。 文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考我的项目结构。 文字非常多，图片很少，大部分是干货和细节，请耐心阅读。
@@ -318,8 +318,8 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
     
     <header class="article-category">
         
-            <a href="/categories/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/" >
-                源码阅读
+            <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/" >
+                程序设计语言
             </a>
         
     </header>
@@ -1035,6 +1035,8 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
         
             <a href="/tags/typescript/">TypeScript</a>
         
+            <a href="/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/">源码阅读</a>
+        
     </section>
 
 
@@ -1088,6 +1090,25 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/language/php/hyperf/hyperf-constants/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg" loading="lazy" data-key="language/php/hyperf/hyperf-constants" data-hash="https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">hyperf constants实现机制</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="has-image">

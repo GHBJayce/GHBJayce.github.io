@@ -7,12 +7,12 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <lastBuildDate>Mon, 26 Feb 2024 10:01:00 +0800</lastBuildDate><atom:link href="https://ghbjayce.github.io/tags/%E5%BC%82%E5%B8%B8/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>hyperf constants源码分析</title>
+        <title>hyperf constants实现机制</title>
         <link>https://ghbjayce.github.io/p/language/php/hyperf/hyperf-constants/</link>
         <pubDate>Mon, 26 Feb 2024 10:01:00 +0800</pubDate>
         
         <guid>https://ghbjayce.github.io/p/language/php/hyperf/hyperf-constants/</guid>
-        <description>&lt;img src="https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg" alt="Featured image of post hyperf constants源码分析" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg" alt="Featured image of post hyperf constants实现机制" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;h3 id=&#34;环境说明&#34;&gt;环境说明&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;php v8.2.8&lt;/li&gt;
@@ -772,7 +772,7 @@
 &lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;枚举类中的错误内容是通过&lt;code&gt;ReflectionClass&lt;/code&gt;反射，对每个常量&lt;code&gt;getReflectionConstants()&lt;/code&gt;的注释内容&lt;code&gt;getDocComment()&lt;/code&gt;用正则的方式取出来。&lt;/li&gt;
-&lt;li&gt;获取错误内容并不是在&lt;code&gt;ErrorCode::getMessage($code)&lt;/code&gt;调用的时候进行反射实时去取，而是会在hyperf启动的时候，由&lt;code&gt;Hyperf\Constants\Annotation\Constants&lt;/code&gt;注解将文件中所有常量的错误内容收集起来后，以文件类名为key，存放到&lt;code&gt;Hyperf\Constants\ConstantsCollector::container&lt;/code&gt;静态变量中，并且最后会将收集到的数据缓存到&lt;code&gt;./runtime/container/scan.cache&lt;/code&gt;中，这样下次就不需要再重复这个过程。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ErrorCode::getMessage($code)&lt;/code&gt;实际是从&lt;code&gt;Hyperf\Constants\ConstantsCollector::container&lt;/code&gt;取出错误内容，数据来源则是在hyperf启动的时候，由&lt;code&gt;Hyperf\Constants\Annotation\Constants&lt;/code&gt;注解将文件中所有常量的错误内容收集起来后，以文件类名为key，存放到&lt;code&gt;container&lt;/code&gt;静态变量中，并且最后会将收集到的数据缓存到&lt;code&gt;./runtime/container/scan.cache&lt;/code&gt;中，这样下次就不需要再重复这个收集过程。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         </item>
