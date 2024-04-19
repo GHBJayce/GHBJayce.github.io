@@ -1362,7 +1362,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h4 id=&#34;二使用指针访问对象的成员&#34;&gt;二、使用指针访问对象的成员&lt;/h4&gt;
-&lt;p&gt;除了使用&lt;code&gt;.&lt;/code&gt;的方式，还可以使用指针或引用的方式来访问类成员，&lt;strong&gt;如果通过指针或引用访问，将&lt;code&gt;.&lt;/code&gt;换成&lt;code&gt;-&amp;gt;&lt;/code&gt;&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;除了使用&lt;code&gt;.&lt;/code&gt;的方式，还可以使用指针或引用的方式来访问类成员，&lt;strong&gt;如果通过指针，将&lt;code&gt;.&lt;/code&gt;换成&lt;code&gt;-&amp;gt;&lt;/code&gt;&lt;/strong&gt;。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -6802,7 +6802,7 @@
 &lt;li&gt;&lt;strong&gt;系统设计&lt;/strong&gt;分为&lt;strong&gt;总体设计&lt;/strong&gt;和&lt;strong&gt;详细设计&lt;/strong&gt;两个阶段。（P127; T1）&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;衡量系统可靠性的指标&lt;/strong&gt;是&lt;strong&gt;平均维护时间&lt;/strong&gt;和&lt;strong&gt;平均故障间隔时间&lt;/strong&gt;。（P128; T2）&lt;/li&gt;
 &lt;li&gt;系统设计遵循&lt;strong&gt;一致性&lt;/strong&gt;原则主要是为了&lt;strong&gt;子系统之间、多系统之间的联系与合作&lt;/strong&gt;。（P128; X1）&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;模块间的调用可分为3类&lt;/strong&gt;，即&lt;strong&gt;直接调用&lt;/strong&gt;、&lt;strong&gt;循环调用&lt;/strong&gt;和&lt;strong&gt;直接调用&lt;/strong&gt;。（P131; T1）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模块间的调用可分为3类&lt;/strong&gt;，即&lt;strong&gt;判断调用&lt;/strong&gt;、&lt;strong&gt;循环调用&lt;/strong&gt;和&lt;strong&gt;直接调用&lt;/strong&gt;。（P131; T1）&lt;/li&gt;
 &lt;li&gt;将数据键盘输入、条码扫描器输入和扫描仪输入组合到一个模块中，此模块的内聚方式是&lt;strong&gt;逻辑内聚&lt;/strong&gt;。（P132; X1）&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;从数据流图得到初始模块结构图&lt;/strong&gt;的&lt;strong&gt;常用策略有两种&lt;/strong&gt;，分别是&lt;strong&gt;以事务为中心的设计策略&lt;/strong&gt;和&lt;strong&gt;以变换为中心的设计策略&lt;/strong&gt;。（P133; T1）&lt;/li&gt;
 &lt;li&gt;将&lt;strong&gt;低层数据流图转换成模块结构图&lt;/strong&gt;时，将&lt;strong&gt;输入模块放在左侧&lt;/strong&gt;，&lt;strong&gt;变换模块放在中间&lt;/strong&gt;，&lt;strong&gt;输出模块放在右侧&lt;/strong&gt;。（P134; T1）&lt;/li&gt;
@@ -13047,6 +13047,311 @@ $$S(n)=O(g(n))$$
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://haokan.baidu.com/v?vid=9346000793839061664&amp;amp;collection_id=9980245270058884401&amp;amp;&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;小学速算技巧15讲：简便计算，认知乘法分配率&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>02323《操作系统概论》笔记</title>
+        <link>https://ghjayce.github.io/p/book/080901/02323/summary/</link>
+        <pubDate>Thu, 22 Mar 2018 11:22:40 +0800</pubDate>
+        
+        <guid>https://ghjayce.github.io/p/book/080901/02323/summary/</guid>
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/nae2CLNy3GD4lakpo2aBMjAxODAzMjJfMTEyMjQw.png" alt="Featured image of post 02323《操作系统概论》笔记" /&gt;&lt;p&gt;文章内容为个人的学习笔记，绝大部分内容摘抄自书本中的知识点，目录也是如此。仅供各位学习参考，另外备注书本是2017年版。&lt;/p&gt;
+&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
+&lt;p&gt;较早前记的笔记，内容并不全，请选择性浏览&lt;/p&gt;
+&lt;h2 id=&#34;操作系统简介&#34;&gt;操作系统简介&lt;/h2&gt;
+&lt;h3 id=&#34;操作系统的作用&#34;&gt;操作系统的作用&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;为用户使用的应用程序的运行提供了环境，并且为应用程序的开发提供了平台，使应用程序的开发变得简单、高效。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;用户与硬件之间的接口&#34;&gt;用户与硬件之间的接口&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;操作系统提供了计算机用户与计算机硬件之间的接口，分别是&lt;strong&gt;硬件接口&lt;/strong&gt;和&lt;strong&gt;软件接口&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;软件接口：如C语言的函数 print&lt;/li&gt;
+&lt;li&gt;硬件接口：如usb接口、串口、并口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;资源的管理者&#34;&gt;资源的管理者&lt;/h4&gt;
+&lt;h5 id=&#34;处理机管理&#34;&gt;处理机管理&lt;/h5&gt;
+&lt;p&gt;程序的执行必须依靠处理机，任意时刻处理机都只能执行一个程序流；
+要使处理机执行多个程序流，就必须由操作系统的处理机调度程序来管理处理机的分配，让多个程序共享处理机；
+从宏观角度来看，使得多个程序能“同时”顺利进行。&lt;/p&gt;
+&lt;h5 id=&#34;内存管理&#34;&gt;内存管理&lt;/h5&gt;
+&lt;p&gt;如何为多个应用程序分配内存，并使应用程序的地址空间互不干扰，并在程序执行完毕后，回收所占用的内存，释放内存空间，并且完成逻辑地址到物理地址的转换，是操作系统内存管理程序的要完成的功能。&lt;/p&gt;
+&lt;h5 id=&#34;设备管理&#34;&gt;设备管理&lt;/h5&gt;
+&lt;p&gt;设备管理的任务是要接受用户的I/O请求，为用户分配I/O设备，管理I/O缓存和驱动等功能。&lt;/p&gt;
+&lt;h5 id=&#34;文件管理&#34;&gt;文件管理&lt;/h5&gt;
+&lt;p&gt;计算机把大量需要长时间存储的数据信息以文件的方式存放在外存设备中（如硬盘、USB、光盘、磁带）。
+操作系统的文件管理程序，任务是要管理外存设备的空间分配、回收，文件的存取、共享、组织和保护等功能。&lt;/p&gt;
+&lt;h3 id=&#34;操作系统的发展&#34;&gt;操作系统的发展&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;s=&amp;gt;start: 无操作系统
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;o1=&amp;gt;operation: 单道批处理系统
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;o2=&amp;gt;operation: 多道批处理系统
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;s(right)-&amp;gt;o1(right)-&amp;gt;o2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;单道批处理系统&#34;&gt;单道批处理系统&lt;/h4&gt;
+&lt;p&gt;特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;自动性
+自动将作业从外存装入内存运行，当作业运行完毕后，自动撤销已运行完毕的作业，依次从外存装入下一个作业。&lt;/li&gt;
+&lt;li&gt;顺序性
+存放在外存的作业，会按顺序的依次装入内存运行，先进入内存的作业先运行完毕。&lt;/li&gt;
+&lt;li&gt;单道性
+任何时刻内存只能有一道作业，操作系统每次只能装入一个作业到内存运行，直到作业正常或异常结束，才会装入下一个作业到内存。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点：
+作业独占CPU、内存，CPU资源严重浪费，不能充分利用。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;与无操作系统相比，单道批处理系统减少了长时间等待人工操作的时间&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;多道批处理系统&#34;&gt;多道批处理系统&lt;/h4&gt;
+&lt;p&gt;特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;调度性
+从作业队列中选择要装入到内存运行的单个作业或多个作业&lt;/li&gt;
+&lt;li&gt;无序性
+同时驻留在内存的作业，获得CPU的顺序和执行的进度无法预知，先进入内存的作业，不一定先被调度，也不一定先执行完。&lt;/li&gt;
+&lt;li&gt;多道性
+在内存中可同时驻留多道程序&lt;/li&gt;
+&lt;li&gt;复杂性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;平均周转时间长
+周转时长指的是从作业交到系统开始到作业完成为止的时间&lt;/li&gt;
+&lt;li&gt;缺乏交互能力
+在作业运行结束得到输出结果之前，用户无法观察和控制作业的运行。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;与单道批处理系统相比，提高了资源的利用率，系统的吞吐量。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;分时系统&#34;&gt;分时系统&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;分时系统是多道批处理系统的自然延伸。允许多个终端用户同时使用计算机。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;多路性
+一台主机上同时连接多台联机终端。&lt;/li&gt;
+&lt;li&gt;独立性
+终端用户操作彼此独立，互不干扰。&lt;/li&gt;
+&lt;li&gt;及时性
+用户请求在很短的时间内能得到响应。&lt;/li&gt;
+&lt;li&gt;交互性
+用户可以通过终端与系统进行广泛的人机对话。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;优点：为用户提供了人机交互的方便性，使多个用户通过不同的终端共享主机。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;实时系统&#34;&gt;实时系统&lt;/h4&gt;
+&lt;p&gt;实时系统主要用于实时控制和实时信息处理领域。&lt;/p&gt;
+&lt;p&gt;特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;多路性&lt;/li&gt;
+&lt;li&gt;独立性&lt;/li&gt;
+&lt;li&gt;及时性&lt;/li&gt;
+&lt;li&gt;交互性&lt;/li&gt;
+&lt;li&gt;可靠性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;主流操作系统&#34;&gt;主流操作系统&lt;/h4&gt;
+&lt;h5 id=&#34;主机操作系统&#34;&gt;主机操作系统&lt;/h5&gt;
+&lt;p&gt;主机操作系统是运行在大型主机上的操作系统，主要提供三种服务：&lt;strong&gt;批处理&lt;/strong&gt;、&lt;strong&gt;事务处理&lt;/strong&gt;和&lt;strong&gt;分时处理&lt;/strong&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;批处理
+批处理系统处理不需要交互式用户干预的周期性作业。
+如：保险公司的索赔处理或者连锁商店的销售报告，通常以批处理的方式完成。&lt;/li&gt;
+&lt;li&gt;事务处理
+事务处理系统负责大量的小请求。
+如：银行的支票处理或航班预订。业务量小，但是需要很高的处理速度。&lt;/li&gt;
+&lt;li&gt;分时处理
+分时系统允许多个远程用户同时在计算机上工作，执行命令或处理作业。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;服务器操作系统&#34;&gt;服务器操作系统&lt;/h5&gt;
+&lt;p&gt;服务器操作系统是运行在网络服务器上的操作系统，可以通过网络同时为众多用户服务。服务器可提供&lt;strong&gt;打印服务&lt;/strong&gt;、&lt;strong&gt;文件服务&lt;/strong&gt;、&lt;strong&gt;Web服务&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;典型的服务器操作系统有：&lt;strong&gt;Linux&lt;/strong&gt;、&lt;strong&gt;Windows Server 200X&lt;/strong&gt;、&lt;strong&gt;Solaris&lt;/strong&gt;、&lt;strong&gt;FreeBSD&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5 id=&#34;微机操作系统&#34;&gt;微机操作系统&lt;/h5&gt;
+&lt;p&gt;也称个人机操作系统，现代微机操作系统都支持多道程序处理，就是通常所说的支持多任务。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;常见的微机操作系统有：&lt;strong&gt;Windows系列&lt;/strong&gt;、&lt;strong&gt;Linux的不同发行版&lt;/strong&gt;、&lt;strong&gt;Macintosh&lt;/strong&gt;、&lt;strong&gt;Chrome OS&lt;/strong&gt;等&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5 id=&#34;嵌入式操作系统&#34;&gt;嵌入式操作系统&lt;/h5&gt;
+&lt;p&gt;嵌入式系统的概念出现在20世纪70年代，&lt;strong&gt;是宿主于非计算机设备中的计算机系统。&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其特征是：&lt;strong&gt;小巧&lt;/strong&gt;、&lt;strong&gt;实时性&lt;/strong&gt;、&lt;strong&gt;可装卸&lt;/strong&gt;、&lt;strong&gt;代码固化&lt;/strong&gt;、&lt;strong&gt;弱交互性&lt;/strong&gt;、&lt;strong&gt;强稳定性&lt;/strong&gt;、&lt;strong&gt;接口统一&lt;/strong&gt;、&lt;strong&gt;低能耗&lt;/strong&gt;
+应用领域：&lt;strong&gt;掌上电脑&lt;/strong&gt;、&lt;strong&gt;智能手机&lt;/strong&gt;、&lt;strong&gt;数码相机&lt;/strong&gt;、&lt;strong&gt;自动售货机&lt;/strong&gt;、&lt;strong&gt;自动取款机&lt;/strong&gt;、&lt;strong&gt;工业控制设备&lt;/strong&gt;、&lt;strong&gt;军工装备&lt;/strong&gt;、&lt;strong&gt;游戏机&lt;/strong&gt;、&lt;strong&gt;医疗设备&lt;/strong&gt;、&lt;strong&gt;网络设备&lt;/strong&gt;等&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;现代操作系统的特点特征&#34;&gt;现代操作系统的特点特征&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;小节只需要达到“&lt;strong&gt;领会&lt;/strong&gt;”层面&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;现代操作系统都支持&lt;strong&gt;多任务&lt;/strong&gt;，具有&lt;strong&gt;并发&lt;/strong&gt;、&lt;strong&gt;共享&lt;/strong&gt;、&lt;strong&gt;虚拟&lt;/strong&gt;和&lt;strong&gt;异步性&lt;/strong&gt;特征。&lt;/p&gt;
+&lt;h4 id=&#34;并发&#34;&gt;并发&lt;/h4&gt;
+&lt;p&gt;并发指两个或多个事件在同一时间&lt;strong&gt;间隔&lt;/strong&gt;内发生。注意，是&lt;strong&gt;同一时间间隔&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;并行指的是&lt;strong&gt;多个事件同时发生&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如：在一台单CPU单核的电脑中，一边听音乐，一边玩扫雷，扫雷程序在工作的同时音乐程序也在工作。但是，在单CPU单核系统中，任意时刻只能有一个程序流在CPU上执行，之所以用户感觉到两个程序似乎在同时工作，互不干扰，&lt;strong&gt;是因为操作系统使两个程序在CPU上快速地轮流交替执行&lt;/strong&gt;，实现了“&lt;strong&gt;并发&lt;/strong&gt;”的功能。&lt;/p&gt;
+&lt;h4 id=&#34;共享&#34;&gt;共享&lt;/h4&gt;
+&lt;p&gt;共享是指系统中的资源可供内存中多个并发执行的进程共同使用。资源共享有两种方式，&lt;strong&gt;互斥共享&lt;/strong&gt;和&lt;strong&gt;同时共享&lt;/strong&gt;。
+&lt;strong&gt;互斥共享&lt;/strong&gt;是指任意时刻，一种资源只能被一个进程访问。
+当一个进程访问资源时，其他进程必须等待，直到资源被进程访问完毕，释放访问权。
+如：打印机不采取互斥访问，可能会有多个进程的输出内容都打印在同一张纸上。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;并发与共享的关系是相互依赖的。
+如果系统不支持并发，资源的使用都是独占的，不需要共享资源。
+如果不能实现有效的资源共享，并发就不能得到很好的支持&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;虚拟&#34;&gt;虚拟&lt;/h4&gt;
+&lt;p&gt;虚拟是指通过某种技术把一个物理实体变成若干逻辑上的对应物。
+物理实体是实际存在的，而虚拟仅仅是用户感觉到的。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如虚拟打印机、虚拟内存和虚拟CPU等。
+操作系统通过某种技术把少量的物理资源变成较物理资源多的逻辑资源。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;异步性&#34;&gt;异步性&lt;/h4&gt;
+&lt;p&gt;进程以不可预知的速度向前推进。内存中的每个程序何时执行，何时暂停，以怎样的速度向前推进，程序需要花费多少时间才能完成，都是不可预知的。
+系统中什么时候会出现需要特殊处理的事件？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如键盘中断，突然打不了字；鼠标中断等也是随机、不可预知的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;操作系统的功能&#34;&gt;操作系统的功能&lt;/h3&gt;
+&lt;p&gt;分别有&lt;strong&gt;存储器管理&lt;/strong&gt;、&lt;strong&gt;进程管理&lt;/strong&gt;、&lt;strong&gt;设备管理&lt;/strong&gt;、&lt;strong&gt;文件管理&lt;/strong&gt;等功能，以及操作系统提供的&lt;strong&gt;用户接口&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;内存管理-1&#34;&gt;内存管理&lt;/h3&gt;
+&lt;p&gt;内存管理应具有&lt;strong&gt;内存分配&lt;/strong&gt;、&lt;strong&gt;内存保护&lt;/strong&gt;、&lt;strong&gt;地址映射&lt;/strong&gt;、&lt;strong&gt;内存扩充&lt;/strong&gt;功能。&lt;/p&gt;
+&lt;h2 id=&#34;进程管理&#34;&gt;进程管理&lt;/h2&gt;
+&lt;h3 id=&#34;进程的描述&#34;&gt;进程的描述&lt;/h3&gt;
+&lt;p&gt;摘取**《现代操作系统》&lt;strong&gt;作者&lt;/strong&gt;Andrew S. Tanenbaum&lt;strong&gt;对&lt;/strong&gt;进程和程序的关系**给出的一段非常生动形象的比喻。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一位计算机科学家正在为她的女儿烘制生日蛋糕。他有制作蛋糕的食谱，以及做蛋糕的各种原料，如面粉、鸡蛋、糖和香草汁等。做蛋糕的食谱好比是程序，计算机科学家好比是处理器CPU，而做蛋糕的各种原料就是输入数据。进程就是计算机科学家阅读食谱利用原料烘制蛋糕的过程。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;程序的并发执行&#34;&gt;程序的并发执行&lt;/h4&gt;
+&lt;p&gt;为了说明引入进程的原因，首先介绍程序的并发执行及其特点；为了更好的理解程序的并发执行，先介绍程序的顺序执行，并进行特性对比。&lt;/p&gt;
+&lt;h5 id=&#34;程序的顺序执行&#34;&gt;程序的顺序执行&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;顺序性&lt;/li&gt;
+&lt;li&gt;封闭性&lt;/li&gt;
+&lt;li&gt;可再现性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;程序的并发执行-1&#34;&gt;程序的并发执行&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;间断性&lt;/li&gt;
+&lt;li&gt;失去封闭性&lt;/li&gt;
+&lt;li&gt;不可再现性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;进程的概念&#34;&gt;进程的概念&lt;/h4&gt;
+&lt;p&gt;并发的程序，它们相互共享系统资源。用程序已不能描述程序的并发，所以引入了进程的概念。&lt;/p&gt;
+&lt;h5 id=&#34;进程的定义&#34;&gt;进程的定义&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定义1
+进程是允许并发执行的程序在某个数据集合上的运行过程。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;定义2
+进程是由&lt;strong&gt;正文段&lt;/strong&gt;、&lt;strong&gt;用户数据段&lt;/strong&gt;和&lt;strong&gt;进程控制块&lt;/strong&gt;共同组成的执行环境。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;正文段：存放被执行的机器指令。
+用户数据段：存放进程在执行时直接进行操作的用户数据。
+进程控制块：存放程序的运行环境。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5 id=&#34;进程的特征&#34;&gt;进程的特征&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;并发性&lt;/li&gt;
+&lt;li&gt;动态性&lt;/li&gt;
+&lt;li&gt;独立性&lt;/li&gt;
+&lt;li&gt;异步性&lt;/li&gt;
+&lt;li&gt;结构特征
+进程实体包括&lt;strong&gt;用户正文段&lt;/strong&gt;、&lt;strong&gt;用户数据段&lt;/strong&gt;和&lt;strong&gt;进程控制块&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;进程与程序的比较&#34;&gt;进程与程序的比较&lt;/h5&gt;
+&lt;h6 id=&#34;进程与程序的区别&#34;&gt;进程与程序的区别&lt;/h6&gt;
+&lt;p&gt;程序&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;程序是静态的&lt;/li&gt;
+&lt;li&gt;永久性（相对进程而言），存储在介质上的二进制代码&lt;/li&gt;
+&lt;li&gt;存在实体不同，&lt;strong&gt;程序是指令的集合&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;进程&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;进程是动态的&lt;/li&gt;
+&lt;li&gt;暂时性，进程因程序的执行而被创建，由程序的执行结束而被撤销&lt;/li&gt;
+&lt;li&gt;存在实体不同，进程的实体包含&lt;strong&gt;正文段&lt;/strong&gt;、&lt;strong&gt;用户数据段&lt;/strong&gt;和&lt;strong&gt;进程控制块&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;进程控制块&#34;&gt;进程控制块&lt;/h4&gt;
+&lt;p&gt;定义：进程控制块是进程实体的一部分，是操作系统最重要的数据结构，它记录了操作系统所需要的、用于描述进程情况及控制进程运行所需的全部信息。&lt;/p&gt;
+&lt;h5 id=&#34;进程控制块中的信息&#34;&gt;进程控制块中的信息&lt;/h5&gt;
+&lt;h6 id=&#34;进程标识符信息&#34;&gt;进程标识符信息&lt;/h6&gt;
+&lt;h6 id=&#34;处理机状态信息&#34;&gt;处理机状态信息&lt;/h6&gt;
+&lt;h6 id=&#34;指令计数器&#34;&gt;指令计数器&lt;/h6&gt;
+&lt;h6 id=&#34;程序状态字psw&#34;&gt;程序状态字PSW&lt;/h6&gt;
+&lt;h6 id=&#34;用户栈指针&#34;&gt;用户栈指针&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;进程调度信息&lt;/li&gt;
+&lt;li&gt;进程控制信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;进程控制块这种数据结构在操作系统中有什么作用？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以Linux进程控制块结构变量说明：进程控制块中有&lt;strong&gt;prio&lt;/strong&gt;字段，用来存放进程的优先权，在操作系统决定为多个可执行的进程分配资源时，会利用这个字段比较进程的优先权，将资源分配给&lt;strong&gt;prio&lt;/strong&gt;字段值最大或最小的进程。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;进程的状态&#34;&gt;进程的状态&lt;/h4&gt;
+&lt;h5 id=&#34;进程的3种基本状态&#34;&gt;进程的3种基本状态&lt;/h5&gt;
+&lt;h6 id=&#34;就绪态&#34;&gt;就绪态&lt;/h6&gt;
+&lt;p&gt;进程一旦获得CPU就可以投入运行的状态。在多任务系统中，可以有多个处理就绪状态的进程，这些进程被组织成一个或多个就绪进程队列。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Linux 2.4把所有就绪进程组织成一个先进先出的就绪队列。
+Linux 2.6.11根据进程的优先权不同将就绪队列组织成多个不同的就绪队列；优先权相同的进程放在同一个就绪队列中，每个不同的优先权对应不同的就绪队列。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h6 id=&#34;执行态&#34;&gt;执行态&lt;/h6&gt;
+&lt;p&gt;执行态是进程获得CPU正在运行的状态。系统中执行态的进程数量受CPU数量的限制。&lt;strong&gt;单CPU系统中，任意时刻只能有一个进程处于执行态&lt;/strong&gt;。
+也就是说，&lt;strong&gt;有N个CPU的系统中，任意时刻系统中最多有N个进程处于执行态。&lt;/strong&gt;&lt;/p&gt;
+&lt;h6 id=&#34;阻塞态&#34;&gt;阻塞态&lt;/h6&gt;
+&lt;p&gt;阻塞态是进程由于等待资源或者事件的发生而暂停执行的状态，系统不会为处于阻塞态的进程分配CPU。&lt;strong&gt;在获得其等待的资源或者事件发生之后，就会转变为就绪态&lt;/strong&gt;。
+系统会根据不同阻塞原因的进程分别组织成不同的阻塞队列。
+例如：因等待打印机而阻塞的进程排列成一个打印阻塞队列，等待输入数据的进程排列成等待输入数据的队列。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/QEoqUnw9e0tEaXEPPfHEMjAxODA0MDRfMDMwNzAw.jpeg&#34;
+	width=&#34;367&#34;
+	height=&#34;269&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;阻塞队列&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;136&#34;
+		data-flex-basis=&#34;327px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h5 id=&#34;进程状态的转换&#34;&gt;进程状态的转换&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/M2Pi4Tnz4mGjnlDOkAloMjAxODA0MDRfMDUwOTAw.jpeg&#34;
+	width=&#34;2104&#34;
+	height=&#34;1456&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;进程状态转换&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;144&#34;
+		data-flex-basis=&#34;346px&#34;
+	
+&gt;&lt;/p&gt;
 </description>
         </item>
         

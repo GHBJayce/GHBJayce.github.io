@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Photoshop on GHJayce</title>
+        <link>https://ghjayce.github.io/tags/photoshop/</link>
+        <description>Recent content in Photoshop on GHJayce</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Thu, 31 May 2018 11:03:31 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/photoshop/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>3秒钟制作一个复杂的Guilloche图形</title>
+        <link>https://ghjayce.github.io/p/visuals/graph/guilloche/</link>
+        <pubDate>Thu, 31 May 2018 11:03:31 +0800</pubDate>
+        
+        <guid>https://ghjayce.github.io/p/visuals/graph/guilloche/</guid>
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/4voHlngN1tpz7QP16wP2MjAxODA1MzFfMTEwMzMx.jpeg" alt="Featured image of post 3秒钟制作一个复杂的Guilloche图形" /&gt;&lt;p&gt;Guilloche图形欣赏：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/ZKr6o0fw8Hm8fZDSb9OuMjAxODA1MzFfMTEwMzMx.png&#34;
+	width=&#34;660&#34;
+	height=&#34;415&#34;
+	
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;159&#34;
+		data-flex-basis=&#34;381px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;最终我做的几个图形：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/OA6IQUUkkg4hqDQEuliOMjAxODA1MzFfMTA1OTAw.jpeg&#34;
+	width=&#34;1158&#34;
+	height=&#34;833&#34;
+	
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;139&#34;
+		data-flex-basis=&#34;333px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;制作方法&#34;&gt;制作方法&lt;/h2&gt;
+&lt;h3 id=&#34;旋转复制法&#34;&gt;旋转复制法&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;画布大小建议大一点，这样做出来的图形会清晰很多。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我的画布大小是 &lt;strong&gt;1920*1080&lt;/strong&gt; 分辨率：&lt;strong&gt;72&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;制作效果参考上面的第二个图形步骤，其他图形的制作类似。&lt;/p&gt;
+&lt;h4 id=&#34;step-1&#34;&gt;Step 1&lt;/h4&gt;
+&lt;p&gt;画一个正圆和一个正五边形&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/PHl7TpzQk5KJnKKFvMTWMjAxODA1MzFfMTEwMTAw.jpeg&#34;
+	width=&#34;1918&#34;
+	height=&#34;955&#34;
+	
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;200&#34;
+		data-flex-basis=&#34;482px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/H0kiZ20E2oiDrNQ9Co8VMjAxODA1MzFfMTEwMTAw.jpeg&#34;
+	width=&#34;1923&#34;
+	height=&#34;824&#34;
+	
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;233&#34;
+		data-flex-basis=&#34;560px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;step-2&#34;&gt;Step 2&lt;/h4&gt;
+&lt;p&gt;栅格化刚才画的两个图层&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/8Q4rPk0huQ4zqC2sj8KSMjAxODA1MzFfMTEwMjAw.jpeg&#34;
+	width=&#34;1926&#34;
+	height=&#34;982&#34;
+	
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;196&#34;
+		data-flex-basis=&#34;470px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;step-3&#34;&gt;Step 3&lt;/h4&gt;
+&lt;p&gt;按住&lt;code&gt;Shift&lt;/code&gt;选择正圆和正五边形图层，接着按&lt;code&gt;Ctrl + Alt + E&lt;/code&gt;合并成一个新的图层。隐藏正圆和正五边形图层。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/oUWdHyy20WOdEH7VZTMXMjAxODA1MzFfMTEwMjAw.jpeg&#34;
+	width=&#34;1574&#34;
+	height=&#34;761&#34;
+	
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;206&#34;
+		data-flex-basis=&#34;496px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;step-4&#34;&gt;Step 4&lt;/h4&gt;
+&lt;p&gt;复制多一个图层。按&lt;code&gt;Ctrl + T&lt;/code&gt;自由变换，在角度一栏随意填上角度值。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/t0UYPtmM4Ivgoa3fUowmMjAxODA1MzFfMTEwMjAw.jpeg&#34;
+	width=&#34;1925&#34;
+	height=&#34;919&#34;
+	
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;209&#34;
+		data-flex-basis=&#34;502px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;step-5&#34;&gt;Step 5&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;关键操作&lt;/strong&gt;：按&lt;code&gt;Ctrl + Shift + Alt + T&lt;/code&gt;组合键，多按几次形成一个圈为止。就能得到下图。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/2rJdKE3J3CFKfZdq8YwGMjAxODA1MzFfMTEwMzAw.jpeg&#34;
+	width=&#34;1369&#34;
+	height=&#34;733&#34;
+	
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;186&#34;
+		data-flex-basis=&#34;448px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;最终的图形会有很多个图层，要保留成一个图层可以合并成单独一个，快捷键是：&lt;code&gt;Ctrl + E&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/103452648&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Illustrator绘制Guilloche钱币底纹图形&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

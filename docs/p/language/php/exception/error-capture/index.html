@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='内容大纲 php的报错类型都有哪些 常见的报错原因 报错的特性 本文部分信息源自以下文章，如有内容不正确的地方请指出。
+PHP常见报错解析 PHP错误异常处理详解 错误异常 错误信息的格式： {错误类型}: {错误原因} in {错误文件} on {错误行数}
+错误类型列表 Parse error 栗子：
+1 2 3 &amp;lt;?php qweqwe echo 1; 运行结果：
+1 Parse error: syntax error, unexpected end of file in D:\XAMPP\htdocs\index.php on line 2 要看懂这个错误，首先要明白其中的一些关键词语：
+Parse error（解析错误） syntax error（语法错误） unexpected（意外的意思） end of file（文件结尾） 通过挑出的关键词语，再去看栗子中的错误，我想大家就能知道它所要传达的意思。
+Parse error，一般伴随着syntax error的错误原因，说明程序不符合PHP的语法，它是级别最高的错误。
+常见语句的末尾没有加;号
+在通过系统语法检测的过程中，如果遇到语法错误，整个脚本将不会执行，直接抛出错误。并且这个错误不能被捕获。
+一般语法错误会带一个解析器的代号，例如：T_STRING、T_VARIABLE，通过它可以更直接的了解到错误的原因。解析器的代号
+Fatal error 栗子：
+1 2 3 4 5 6 &amp;lt;?php echo 1; func(); $aa &#43;= 1; include &amp;#39;abc.'>
+<title>PHP报错解析和如何捕获错误信息</title>
+
+<link rel='canonical' href='https://ghjayce.github.io/p/language/php/exception/error-capture/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='PHP报错解析和如何捕获错误信息'>
+<meta property='og:description' content='内容大纲 php的报错类型都有哪些 常见的报错原因 报错的特性 本文部分信息源自以下文章，如有内容不正确的地方请指出。
+PHP常见报错解析 PHP错误异常处理详解 错误异常 错误信息的格式： {错误类型}: {错误原因} in {错误文件} on {错误行数}
+错误类型列表 Parse error 栗子：
+1 2 3 &amp;lt;?php qweqwe echo 1; 运行结果：
+1 Parse error: syntax error, unexpected end of file in D:\XAMPP\htdocs\index.php on line 2 要看懂这个错误，首先要明白其中的一些关键词语：
+Parse error（解析错误） syntax error（语法错误） unexpected（意外的意思） end of file（文件结尾） 通过挑出的关键词语，再去看栗子中的错误，我想大家就能知道它所要传达的意思。
+Parse error，一般伴随着syntax error的错误原因，说明程序不符合PHP的语法，它是级别最高的错误。
+常见语句的末尾没有加;号
+在通过系统语法检测的过程中，如果遇到语法错误，整个脚本将不会执行，直接抛出错误。并且这个错误不能被捕获。
+一般语法错误会带一个解析器的代号，例如：T_STRING、T_VARIABLE，通过它可以更直接的了解到错误的原因。解析器的代号
+Fatal error 栗子：
+1 2 3 4 5 6 &amp;lt;?php echo 1; func(); $aa &#43;= 1; include &amp;#39;abc.'>
+<meta property='og:url' content='https://ghjayce.github.io/p/language/php/exception/error-capture/'>
+<meta property='og:site_name' content='GHJayce'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='PHP' /><meta property='article:tag' content='异常' /><meta property='article:published_time' content='2017-11-16T16:38:34&#43;08:00'/><meta property='article:modified_time' content='2017-11-16T16:38:34&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/mwZTYxkP4GSsgLbC5aXaMjAxNzExMTZfMTYzODM0.jpeg' />
+<meta name="twitter:title" content="PHP报错解析和如何捕获错误信息">
+<meta name="twitter:description" content="内容大纲 php的报错类型都有哪些 常见的报错原因 报错的特性 本文部分信息源自以下文章，如有内容不正确的地方请指出。
+PHP常见报错解析 PHP错误异常处理详解 错误异常 错误信息的格式： {错误类型}: {错误原因} in {错误文件} on {错误行数}
+错误类型列表 Parse error 栗子：
+1 2 3 &amp;lt;?php qweqwe echo 1; 运行结果：
+1 Parse error: syntax error, unexpected end of file in D:\XAMPP\htdocs\index.php on line 2 要看懂这个错误，首先要明白其中的一些关键词语：
+Parse error（解析错误） syntax error（语法错误） unexpected（意外的意思） end of file（文件结尾） 通过挑出的关键词语，再去看栗子中的错误，我想大家就能知道它所要传达的意思。
+Parse error，一般伴随着syntax error的错误原因，说明程序不符合PHP的语法，它是级别最高的错误。
+常见语句的末尾没有加;号
+在通过系统语法检测的过程中，如果遇到语法错误，整个脚本将不会执行，直接抛出错误。并且这个错误不能被捕获。
+一般语法错误会带一个解析器的代号，例如：T_STRING、T_VARIABLE，通过它可以更直接的了解到错误的原因。解析器的代号
+Fatal error 栗子：
+1 2 3 4 5 6 &amp;lt;?php echo 1; func(); $aa &#43;= 1; include &amp;#39;abc."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ghjayce.github.io/asset/blog/mwZTYxkP4GSsgLbC5aXaMjAxNzExMTZfMTYzODM0.jpeg' />
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/17669653" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">😆</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GHJayce</a></h1>
+            <h2 class="site-description">十年饮冰，难凉热血。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GHJayce'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archive/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#内容大纲">内容大纲</a></li>
+    <li><a href="#错误异常">错误异常</a>
+      <ol>
+        <li><a href="#错误类型列表">错误类型列表</a>
+          <ol>
+            <li><a href="#parse-error">Parse error</a></li>
+            <li><a href="#fatal-error">Fatal error</a></li>
+            <li><a href="#warning">Warning</a></li>
+            <li><a href="#notice">Notice</a></li>
+          </ol>
+        </li>
+        <li><a href="#捕获错误自定义报错信息">捕获错误，自定义报错信息</a>
+          <ol>
+            <li><a href="#相关函数">相关函数</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/language/php/exception/error-capture/">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/mwZTYxkP4GSsgLbC5aXaMjAxNzExMTZfMTYzODM0.jpeg" loading="lazy" alt="Featured image of post PHP报错解析和如何捕获错误信息" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/" >
+                程序设计语言
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/language/php/exception/error-capture/">PHP报错解析和如何捕获错误信息</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2017-11-16</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="内容大纲">内容大纲</h2>
+<ul>
+<li>php的报错类型都有哪些</li>
+<li>常见的报错原因</li>
+<li>报错的特性</li>
+</ul>
+<p>本文部分信息源自以下文章，如有内容不正确的地方请指出。</p>
+<ul>
+<li><a class="link" href="https://www.cnblogs.com/shark1100913/p/5329544.html"  target="_blank" rel="noopener"
+    >PHP常见报错解析</a></li>
+<li><a class="link" href="http://blog.csdn.net/hguisu/article/details/7464977"  target="_blank" rel="noopener"
+    >PHP错误异常处理详解</a></li>
+</ul>
+<h2 id="错误异常">错误异常</h2>
+<p>错误信息的格式：
+<strong>{错误类型}</strong>: <strong>{错误原因}</strong> in <strong>{错误文件}</strong> on <strong>{错误行数}</strong></p>
+<h3 id="错误类型列表">错误类型列表</h3>
+<h4 id="parse-error">Parse error</h4>
+<p>栗子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nx">qweqwe</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="mi">1</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行结果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">Parse</span> <span class="nx">error</span><span class="o">:</span> <span class="nx">syntax</span> <span class="nx">error</span><span class="p">,</span> <span class="nx">unexpected</span> <span class="nx">end</span> <span class="nx">of</span> <span class="nx">file</span> <span class="nx">in</span> <span class="nx">D</span><span class="o">:</span><span class="nx">\XAMPP\htdocs\index</span><span class="o">.</span><span class="nx">php</span> <span class="nx">on</span> <span class="nx">line</span> <span class="mi">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>要看懂这个错误，首先要明白其中的一些关键词语：</p>
+<ul>
+<li><strong>Parse error</strong>（解析错误）</li>
+<li><strong>syntax error</strong>（语法错误）</li>
+<li><strong>unexpected</strong>（意外的意思）</li>
+<li><strong>end of file</strong>（文件结尾）</li>
+</ul>
+<p>通过挑出的关键词语，再去看栗子中的错误，我想大家就能知道它所要传达的意思。</p>
+<p><strong>Parse error</strong>，一般伴随着<strong>syntax error</strong>的错误原因，说明程序不符合PHP的语法，<strong>它是级别最高的错误</strong>。</p>
+<blockquote>
+<p>常见语句的末尾没有加<code>;</code>号</p>
+</blockquote>
+<p>在通过系统语法检测的过程中，<strong>如果遇到语法错误，整个脚本将不会执行</strong>，直接抛出错误。<strong>并且这个错误不能被捕获</strong>。</p>
+<p>一般语法错误会带一个解析器的代号，例如：<strong>T_STRING</strong>、<strong>T_VARIABLE</strong>，通过它可以更直接的了解到错误的原因。<a class="link" href="http://www.php.net/manual/zh/tokens.php"  target="_blank" rel="noopener"
+    >解析器的代号</a></p>
+<h4 id="fatal-error">Fatal error</h4>
+<p>栗子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">func</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$aa</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">include</span> <span class="s1">&#39;abc.cc&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="mi">2</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行结果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">Fatal</span> <span class="nx">error</span><span class="o">:</span> <span class="nx">Call</span> <span class="nx">to</span> <span class="nx">undefined</span> <span class="k">function</span> <span class="nf">func</span><span class="p">()</span> <span class="nx">in</span> <span class="nx">D</span><span class="o">:</span><span class="nx">\XAMPP\htdocs\index</span><span class="o">.</span><span class="nx">php</span> <span class="nx">on</span> <span class="nx">line</span> <span class="mi">3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Fatal error</strong>（致命错误），<strong>级别仅次于Parse error错误，这个错误能够被捕获，但是捕获的函数必须是在错误的前面</strong>。</p>
+<p>常见报错原因：</p>
+<ul>
+<li>调用未定义的函数</li>
+<li>require一个不存在的文件</li>
+<li>死循环导致程序超时等</li>
+</ul>
+<p>在通过程序语法检测后，<strong>程序执行到发生错误的行时，脚本会终止运行</strong>。
+也就是说，<code>echo 1;</code>能正常输出，而因为找不到func()这个函数，所有就会从第二行就开始停止运行。</p>
+<h4 id="warning">Warning</h4>
+<p>栗子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$aa</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">include</span> <span class="s1">&#39;abc.cc&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="mi">2</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行结果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Notice</span><span class="o">:</span> <span class="nx">Undefined</span> <span class="nx">variable</span><span class="o">:</span> <span class="nx">aa</span> <span class="nx">in</span> <span class="nx">D</span><span class="o">:</span><span class="nx">\XAMPP\htdocs\php_share\exception_handle\index</span><span class="o">.</span><span class="nx">php</span> <span class="nx">on</span> <span class="nx">line</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Warning</span><span class="o">:</span> <span class="k">include</span><span class="p">(</span><span class="nx">abc</span><span class="o">.</span><span class="nx">cc</span><span class="p">)</span><span class="o">:</span> <span class="nx">failed</span> <span class="nx">to</span> <span class="nx">open</span> <span class="nx">stream</span><span class="o">:</span> <span class="nx">No</span> <span class="nx">such</span> <span class="nx">file</span> <span class="k">or</span> <span class="nx">directory</span> <span class="nx">in</span> <span class="nx">D</span><span class="o">:</span><span class="nx">\XAMPP\htdocs\php_share\exception_handle\index</span><span class="o">.</span><span class="nx">php</span> <span class="nx">on</span> <span class="nx">line</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Warning</span><span class="o">:</span> <span class="k">include</span><span class="p">()</span><span class="o">:</span> <span class="nx">Failed</span> <span class="nx">opening</span> <span class="s1">&#39;abc.cc&#39;</span> <span class="k">for</span> <span class="nx">inclusion</span> <span class="p">(</span><span class="nx">include_path</span><span class="o">=</span><span class="s1">&#39;D:\XAMPP\php\PEAR&#39;</span><span class="p">)</span> <span class="nx">in</span> <span class="nx">D</span><span class="o">:</span><span class="nx">\XAMPP\htdocs\php_share\exception_handle\index</span><span class="o">.</span><span class="nx">php</span> <span class="nx">on</span> <span class="nx">line</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>常见发生警告原因：</p>
+<ul>
+<li>include一个不存在的文件</li>
+<li>调用函数没传参数，而参数没有默认值的情况下</li>
+</ul>
+<p><strong>Warning</strong>（警告），<strong>程序不会因为脚本发生警告而终止运行</strong>，虽然可以用<code>@</code>符号屏蔽警告信息，<strong>但是不推荐这么做</strong>。<strong>警告能够被捕获</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="o">@</span><span class="k">include</span> <span class="s1">&#39;abc.cc&#39;</span><span class="p">;</span> <span class="c1">// 屏蔽错误，不推荐
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="notice">Notice</h4>
+<p>栗子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$a</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="mi">2</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行结果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="m">1</span>
+</span></span><span class="line"><span class="cl">Notice: Undefined variable: aa in D:<span class="se">\X</span>AMPP<span class="se">\h</span>tdocs<span class="se">\p</span>hp_share<span class="se">\e</span>xception_handle<span class="se">\i</span>ndex.php on line <span class="m">3</span>
+</span></span><span class="line"><span class="cl"><span class="m">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>常见发生通知原因：</p>
+<ul>
+<li>变量或者数组下标未定义的情况</li>
+</ul>
+<p><strong>Notice</strong>（通知），<strong>级别最低</strong>。和警告一样（可以加<code>@</code>抑制符，<strong>不推荐</strong>），<strong>程序不会因为脚本发生通知而终止运行，能够被捕获</strong>。</p>
+<hr>
+<h3 id="捕获错误自定义报错信息">捕获错误，自定义报错信息</h3>
+<h4 id="相关函数">相关函数</h4>
+<p><a class="link" href="http://php.net/manual/zh/ref.errorfunc.php"  target="_blank" rel="noopener"
+    >PHP官方手册 错误处理 函数</a></p>
+<h5 id="set_error_handler">set_error_handler</h5>
+<p>一般用于捕获：</p>
+<ul>
+<li>E_NOTICE</li>
+<li>E_USER_ERROR</li>
+<li>E_USER_WARNING</li>
+<li>E_USER_NOTICE</li>
+</ul>
+<blockquote>
+<p>不能捕获：</p>
+</blockquote>
+<ul>
+<li>E_ERROR</li>
+<li>E_PARSE</li>
+<li>E_CORE_ERROR</li>
+<li>E_CORE_WARNING</li>
+<li>E_COMPILE_ERROR</li>
+<li>E_COMPILE_WARNING</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/php/">PHP</a>
+        
+            <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://unpkg.com/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://unpkg.com/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/language/php/hyperf/hyperf-constants/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg" loading="lazy" data-key="language/php/hyperf/hyperf-constants" data-hash="https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">hyperf constants实现机制</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/language/php/laravel/homestead-install/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/acN7lrfIQy4GU6zANY9bMjAxODEwMDZfMjA0MDQx.jpeg" loading="lazy" data-key="language/php/laravel/homestead-install" data-hash="https://ghjayce.github.io/asset/blog/acN7lrfIQy4GU6zANY9bMjAxODEwMDZfMjA0MDQx.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Homestead环境搭建</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png" loading="lazy" data-key="static-site-generator/hugo/hugo-theme-stack-gallery-study" data-hash="https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/language/javascript/key-code/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/hhu3ZhdElGKvdDDmPImUMjAxNzExMDhfMDkwNTEz.jpeg" loading="lazy" data-key="language/javascript/key-code" data-hash="https://ghjayce.github.io/asset/blog/hhu3ZhdElGKvdDDmPImUMjAxNzExMDhfMDkwNTEz.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JS 键盘按键keyCode对应表</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2024 GHJayce
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/default-skin/default-skin.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://unpkg.com/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

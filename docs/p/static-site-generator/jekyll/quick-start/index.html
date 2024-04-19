@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='文章为过程记录
+另外，以下命令行相关的全局变量配置，需要自己去设置。例如：ruby、python
+相关链接：Jekyll教程——精心收藏
+参考教程：Julian Thilo写的不错的安装教程 一定要看
+官方教程
+环境 windows7 x64 ruby 2.4.2p198 x64 python 2.7.13rc1 下载安装ruby相关 Ruby是Jekyll编写的编程语言。您需要安装Ruby和相应的DevKit
+虽然我已经有ruby的环境，但是也记录一下
+下载地址
+按需所取，我选的如下
+安装Ruby DevKit 将下载好的ruby devkit选择C:\RubyDevKit\解压存档
+运行命令行工具（cmd），依次执行下面的代码
+1 2 3 cd C:\RubyDevKit # step1 ruby dk.rb init # step2 ruby dk.rb install # step3 安装Ruby Gem Jekyll本身就是Ruby Gem的形式，它是一个易于安装的软件包。
+紧接着执行
+1 gem install jekyll # step4 安装rouge 无论您使用的是Markdown还是HTML，Jekyll都可以让您轻松地将精美的代码块插入到您的网页中。
+语法高亮，快速和无痛
+1 gem install rouge # step5 然后，在你的中_config.yml，将Rouge设置为你的语法高亮部分：
+1 highlighter: rouge 安装python相关 如果你想使用Pygments，这是一个默认的Jekyll依赖，在Windows上的语法突出显示，你需要安装Python，PIP，最后是pygments.rb的Python基础。
+教程文章说要装2.7的版本，3的版本可能无法正常工作。
+安装pip Pip是一个安装和管理Python包的工具，类似于Ruby Gems。'>
+<title>本地快速搭建Jekyll及相关依赖</title>
+
+<link rel='canonical' href='https://ghjayce.github.io/p/static-site-generator/jekyll/quick-start/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='本地快速搭建Jekyll及相关依赖'>
+<meta property='og:description' content='文章为过程记录
+另外，以下命令行相关的全局变量配置，需要自己去设置。例如：ruby、python
+相关链接：Jekyll教程——精心收藏
+参考教程：Julian Thilo写的不错的安装教程 一定要看
+官方教程
+环境 windows7 x64 ruby 2.4.2p198 x64 python 2.7.13rc1 下载安装ruby相关 Ruby是Jekyll编写的编程语言。您需要安装Ruby和相应的DevKit
+虽然我已经有ruby的环境，但是也记录一下
+下载地址
+按需所取，我选的如下
+安装Ruby DevKit 将下载好的ruby devkit选择C:\RubyDevKit\解压存档
+运行命令行工具（cmd），依次执行下面的代码
+1 2 3 cd C:\RubyDevKit # step1 ruby dk.rb init # step2 ruby dk.rb install # step3 安装Ruby Gem Jekyll本身就是Ruby Gem的形式，它是一个易于安装的软件包。
+紧接着执行
+1 gem install jekyll # step4 安装rouge 无论您使用的是Markdown还是HTML，Jekyll都可以让您轻松地将精美的代码块插入到您的网页中。
+语法高亮，快速和无痛
+1 gem install rouge # step5 然后，在你的中_config.yml，将Rouge设置为你的语法高亮部分：
+1 highlighter: rouge 安装python相关 如果你想使用Pygments，这是一个默认的Jekyll依赖，在Windows上的语法突出显示，你需要安装Python，PIP，最后是pygments.rb的Python基础。
+教程文章说要装2.7的版本，3的版本可能无法正常工作。
+安装pip Pip是一个安装和管理Python包的工具，类似于Ruby Gems。'>
+<meta property='og:url' content='https://ghjayce.github.io/p/static-site-generator/jekyll/quick-start/'>
+<meta property='og:site_name' content='GHJayce'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Jekyll' /><meta property='article:tag' content='静态站点生成器' /><meta property='article:tag' content='教程' /><meta property='article:published_time' content='2018-01-02T03:39:35&#43;08:00'/><meta property='article:modified_time' content='2018-01-02T03:39:35&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/l2X2IUWhKLBkgz5kr7qOMjAxODAxMDJfMDMzOTM1.jpeg' />
+<meta name="twitter:title" content="本地快速搭建Jekyll及相关依赖">
+<meta name="twitter:description" content="文章为过程记录
+另外，以下命令行相关的全局变量配置，需要自己去设置。例如：ruby、python
+相关链接：Jekyll教程——精心收藏
+参考教程：Julian Thilo写的不错的安装教程 一定要看
+官方教程
+环境 windows7 x64 ruby 2.4.2p198 x64 python 2.7.13rc1 下载安装ruby相关 Ruby是Jekyll编写的编程语言。您需要安装Ruby和相应的DevKit
+虽然我已经有ruby的环境，但是也记录一下
+下载地址
+按需所取，我选的如下
+安装Ruby DevKit 将下载好的ruby devkit选择C:\RubyDevKit\解压存档
+运行命令行工具（cmd），依次执行下面的代码
+1 2 3 cd C:\RubyDevKit # step1 ruby dk.rb init # step2 ruby dk.rb install # step3 安装Ruby Gem Jekyll本身就是Ruby Gem的形式，它是一个易于安装的软件包。
+紧接着执行
+1 gem install jekyll # step4 安装rouge 无论您使用的是Markdown还是HTML，Jekyll都可以让您轻松地将精美的代码块插入到您的网页中。
+语法高亮，快速和无痛
+1 gem install rouge # step5 然后，在你的中_config.yml，将Rouge设置为你的语法高亮部分：
+1 highlighter: rouge 安装python相关 如果你想使用Pygments，这是一个默认的Jekyll依赖，在Windows上的语法突出显示，你需要安装Python，PIP，最后是pygments.rb的Python基础。
+教程文章说要装2.7的版本，3的版本可能无法正常工作。
+安装pip Pip是一个安装和管理Python包的工具，类似于Ruby Gems。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ghjayce.github.io/asset/blog/l2X2IUWhKLBkgz5kr7qOMjAxODAxMDJfMDMzOTM1.jpeg' />
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/17669653" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">😆</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GHJayce</a></h1>
+            <h2 class="site-description">十年饮冰，难凉热血。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GHJayce'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archive/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#环境">环境</a></li>
+    <li><a href="#下载安装ruby相关">下载安装ruby相关</a>
+      <ol>
+        <li><a href="#安装ruby-devkit">安装Ruby DevKit</a></li>
+        <li><a href="#安装ruby-gem">安装Ruby Gem</a></li>
+        <li><a href="#安装rouge">安装rouge</a></li>
+      </ol>
+    </li>
+    <li><a href="#安装python相关">安装python相关</a>
+      <ol>
+        <li><a href="#安装pip">安装pip</a></li>
+      </ol>
+    </li>
+    <li><a href="#jekyll-watch">jekyll watch</a></li>
+    <li><a href="#创建一个项目并运行它">创建一个项目，并运行它</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/static-site-generator/jekyll/quick-start/">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/l2X2IUWhKLBkgz5kr7qOMjAxODAxMDJfMDMzOTM1.jpeg" loading="lazy" alt="Featured image of post 本地快速搭建Jekyll及相关依赖" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%B7%A5%E5%85%B7/" >
+                工具
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/static-site-generator/jekyll/quick-start/">本地快速搭建Jekyll及相关依赖</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2018-01-02</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 1 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>文章为过程记录</p>
+<blockquote>
+<p>另外，以下命令行相关的全局变量配置，需要自己去设置。例如：ruby、python</p>
+</blockquote>
+<p>相关链接：<a class="link" href="https://www.cnblogs.com/paxster/p/3917639.html"  target="_blank" rel="noopener"
+    >Jekyll教程——精心收藏</a></p>
+<p>参考教程：<a class="link" href="http://jekyll-windows.juthilo.com/"  target="_blank" rel="noopener"
+    >Julian Thilo写的不错的安装教程</a> <strong>一定要看</strong></p>
+<p><a class="link" href="https://jekyllrb.com/docs/home/"  target="_blank" rel="noopener"
+    >官方教程</a></p>
+<h2 id="环境">环境</h2>
+<ul>
+<li>windows7 x64</li>
+<li>ruby 2.4.2p198 x64</li>
+<li>python 2.7.13rc1</li>
+</ul>
+<h2 id="下载安装ruby相关">下载安装ruby相关</h2>
+<blockquote>
+<p>Ruby是Jekyll编写的编程语言。您需要安装Ruby和相应的DevKit</p>
+</blockquote>
+<p>虽然我已经有ruby的环境，但是也记录一下</p>
+<p><a class="link" href="https://rubyinstaller.org/downloads/"  target="_blank" rel="noopener"
+    >下载地址</a></p>
+<p>按需所取，我选的如下</p>
+<p><img src="https://ghjayce.github.io/asset/blog/FNrhe5HA34CW3D49A87DMjAxODAxMDJfMDAwMDAw.jpeg"
+	width="1098"
+	height="827"
+	
+	loading="lazy"
+	
+		alt="图片描述"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="132"
+		data-flex-basis="318px"
+	
+></p>
+<h3 id="安装ruby-devkit">安装Ruby DevKit</h3>
+<p>将下载好的<code>ruby devkit</code>选择<code>C:\RubyDevKit\</code>解压存档</p>
+<p>运行命令行工具（cmd），依次执行下面的代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd C:\RubyDevKit    # step1
+</span></span><span class="line"><span class="cl">ruby dk.rb init     # step2
+</span></span><span class="line"><span class="cl">ruby dk.rb install  # step3
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="安装ruby-gem">安装Ruby Gem</h3>
+<blockquote>
+<p>Jekyll本身就是Ruby Gem的形式，它是一个易于安装的软件包。</p>
+</blockquote>
+<p>紧接着执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">gem install jekyll # step4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="安装rouge">安装rouge</h3>
+<blockquote>
+<p>无论您使用的是Markdown还是HTML，Jekyll都可以让您轻松地将精美的代码块插入到您的网页中。</p>
+</blockquote>
+<p>语法高亮，快速和无痛</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">gem install rouge # step5
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后，在你的中<code>_config.yml</code>，将Rouge设置为你的语法高亮部分：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">highlighter: rouge
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安装python相关">安装python相关</h2>
+<blockquote>
+<p>如果你想使用Pygments，这是一个默认的Jekyll依赖，在Windows上的语法突出显示，你需要安装Python，PIP，最后是pygments.rb的Python基础。</p>
+</blockquote>
+<p>教程文章说要装2.7的版本，3的版本可能无法正常工作。</p>
+<p><img src="https://ghjayce.github.io/asset/blog/S5xmwpkIhycfsJwzcqKlMjAxODAxMDJfMDAwMDAw.webp"
+	width="1098"
+	height="526"
+	
+	loading="lazy"
+	
+		alt="图片描述"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="208"
+		data-flex-basis="500px"
+	
+></p>
+<h3 id="安装pip">安装pip</h3>
+<blockquote>
+<p>Pip是一个安装和管理Python包的工具，类似于Ruby Gems。</p>
+</blockquote>
+<p>浏览器打开：https://bootstrap.pypa.io/get-pip.py</p>
+<p>右键保存到<code>C:\pip\</code></p>
+<p>然后打开命令行工具（cmd），并依次执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd C:\pip                       # step6
+</span></span><span class="line"><span class="cl">python get-pip.py               # step7
+</span></span><span class="line"><span class="cl">python -m pip install Pygments  # step8
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>设置Pygments作为你的语法突出显示</p>
+</blockquote>
+<p>如果尚未设置，请添加以下内容_config.yml，将Pygments设置为语法突出显示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">highlighter: pygments
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="jekyll-watch">jekyll watch</h2>
+<blockquote>
+<p>Jekyll有一个内置的自动更新功能，监视您的源文件夹的变化，然后重新建立您的网站。</p>
+</blockquote>
+<p>命令行工具（cmd），执行下面步骤</p>
+<blockquote>
+<p>在Windows上，您需要安装一个额外的工具，或者Gem，以启用此功能。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">gem install wdm # step9
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="创建一个项目并运行它">创建一个项目，并运行它</h2>
+<p>打开命令行工具（cmd），执行下面的步骤</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">gem install jekyll bundler # 先安装这个 step10
+</span></span><span class="line"><span class="cl"># 可以查看jekll版本了
+</span></span><span class="line"><span class="cl"># jekyll -v
+</span></span><span class="line"><span class="cl">cd desktop  # 一打开应该是自己的用户目录，直接可以cd到桌面 step11
+</span></span><span class="line"><span class="cl">jekyll new my_blog # step12
+</span></span><span class="line"><span class="cl">cd my_blog # step13
+</span></span><span class="line"><span class="cl">jekyll server --watch #step14
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在浏览器访问<code>http://localhost:4000/</code>搭建好的环境，并且是实时更新的！</p>
+<p><img src="https://ghjayce.github.io/asset/blog/rICprhx6nhgadT8O2e5IMjAxODAxMDJfMDAwMDAw.webp"
+	width="1098"
+	height="533"
+	
+	loading="lazy"
+	
+		alt="图片描述"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="206"
+		data-flex-basis="494px"
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/jekyll/">Jekyll</a>
+        
+            <a href="/tags/%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E5%99%A8/">静态站点生成器</a>
+        
+            <a href="/tags/%E6%95%99%E7%A8%8B/">教程</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://unpkg.com/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://unpkg.com/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/static-site-generator/hugo/quick-start/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/hYbelawEIwhaejxWE2RNMjAyNDAyMjVfMTU1NTA2.png" loading="lazy" data-key="static-site-generator/hugo/quick-start" data-hash="https://ghjayce.github.io/asset/blog/hYbelawEIwhaejxWE2RNMjAyNDAyMjVfMTU1NTA2.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">hugo快速上手搭建一个静态博客</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/tool/terminal/securecrt/forgot-password/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/oQBWE3gpg8IKTskSpyzrMjAxODAzMTdfMTIwMDUw.jpeg" loading="lazy" data-key="tool/terminal/securecrt/forgot-password" data-hash="https://ghjayce.github.io/asset/blog/oQBWE3gpg8IKTskSpyzrMjAxODAzMTdfMTIwMDUw.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用python找回在SecureCRT中的Linux登入密码</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2024 GHJayce
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/default-skin/default-skin.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://unpkg.com/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

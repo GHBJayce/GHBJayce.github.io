@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='准备工作 Yosemite10.10.3懒人版 链接: https://pan.baidu.com/s/1i5aOBOT 密码: hukg
+安装环境：
+windows10 64位 变色龙 2.3 配置图如下：
+开启ahci模式 否则无法进入安装界面。或者打免ahci的补丁。
+由于我装好的win系统用的是ide，开启ahci模式，我的win系统就不能正常进入。需要设置注册表，方法如下
+Win7下开启ACHI 单击“开始”按钮，在搜索框中键入“regedit”，按下回车键，打开“注册表编辑器”窗口。Windows7虽然在“开始”菜单默认不显示“运行”命令，但实际上可用搜索框代替这一功能（或者直接按下Windows键&#43;R键再输入）。
+在“注册表编辑器”窗口左侧标题栏定位至HKEY_LOCAL_MACHINE\SYSTEM\ CurrentControlSet\services\msahci分支，然后在右侧窗口，双击“Start”。
+在打开的“编辑DWORD值”对话框，将“数值数据”框中的值由3改为数字0，单击“确定”按钮。
+win 10 开启achi方式 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\storahci下面的StartOverride里面的0键值改为0，默认是3
+进入安装界面，-v -f跑啰嗦模式，很顺利地进入安装界面
+安装完成后进入Mac系统盘，继续跑啰嗦模式。
+问题集合 遇到第一个问题
+解决：删除 S/L/E 文件夹下面的
+AppleIntelCPUPowerManagement.kext AppleIntelCPUPowerManagementClient.kext 第二个问题：
+解决方法：
+威锋五国帖 Q：23 远景五国贴 Q：10 尝试方案：
+-v -f -x进入啰嗦模式。-x意思是不加载任何驱动 不再出现第二个问题，但是跑啰嗦代码非常非常非常的慢。并且出现新的问题 失败 中间各种爬帖，各种碰壁，各种尝试&amp;hellip;.
+最终还是让我进了苹果系统！哈哈，这种成就感真的是难以描述，很奇妙。
+下面是我爬帖按照帖子中的内容去做的尝试，其中这些文件的牵连，应该是影响到进入系统的关键，也许起作用的并不是全部，但也值得一试。
+SNB HD 3000集显，/Extra/目录下加入MacBookPro8.1 的smbios.plist 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 &amp;lt;?xml version=&amp;#34;1.'>
+<title>华硕x45vd安装黑苹果Yosemite 10.10.3记录</title>
+
+<link rel='canonical' href='https://ghjayce.github.io/p/system/hackintosh/asus/x45vd/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='华硕x45vd安装黑苹果Yosemite 10.10.3记录'>
+<meta property='og:description' content='准备工作 Yosemite10.10.3懒人版 链接: https://pan.baidu.com/s/1i5aOBOT 密码: hukg
+安装环境：
+windows10 64位 变色龙 2.3 配置图如下：
+开启ahci模式 否则无法进入安装界面。或者打免ahci的补丁。
+由于我装好的win系统用的是ide，开启ahci模式，我的win系统就不能正常进入。需要设置注册表，方法如下
+Win7下开启ACHI 单击“开始”按钮，在搜索框中键入“regedit”，按下回车键，打开“注册表编辑器”窗口。Windows7虽然在“开始”菜单默认不显示“运行”命令，但实际上可用搜索框代替这一功能（或者直接按下Windows键&#43;R键再输入）。
+在“注册表编辑器”窗口左侧标题栏定位至HKEY_LOCAL_MACHINE\SYSTEM\ CurrentControlSet\services\msahci分支，然后在右侧窗口，双击“Start”。
+在打开的“编辑DWORD值”对话框，将“数值数据”框中的值由3改为数字0，单击“确定”按钮。
+win 10 开启achi方式 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\storahci下面的StartOverride里面的0键值改为0，默认是3
+进入安装界面，-v -f跑啰嗦模式，很顺利地进入安装界面
+安装完成后进入Mac系统盘，继续跑啰嗦模式。
+问题集合 遇到第一个问题
+解决：删除 S/L/E 文件夹下面的
+AppleIntelCPUPowerManagement.kext AppleIntelCPUPowerManagementClient.kext 第二个问题：
+解决方法：
+威锋五国帖 Q：23 远景五国贴 Q：10 尝试方案：
+-v -f -x进入啰嗦模式。-x意思是不加载任何驱动 不再出现第二个问题，但是跑啰嗦代码非常非常非常的慢。并且出现新的问题 失败 中间各种爬帖，各种碰壁，各种尝试&amp;hellip;.
+最终还是让我进了苹果系统！哈哈，这种成就感真的是难以描述，很奇妙。
+下面是我爬帖按照帖子中的内容去做的尝试，其中这些文件的牵连，应该是影响到进入系统的关键，也许起作用的并不是全部，但也值得一试。
+SNB HD 3000集显，/Extra/目录下加入MacBookPro8.1 的smbios.plist 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 &amp;lt;?xml version=&amp;#34;1.'>
+<meta property='og:url' content='https://ghjayce.github.io/p/system/hackintosh/asus/x45vd/'>
+<meta property='og:site_name' content='GHJayce'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='黑苹果' /><meta property='article:tag' content='华硕' /><meta property='article:tag' content='Windows' /><meta property='article:tag' content='MacOS' /><meta property='article:published_time' content='2017-11-04T21:03:00&#43;08:00'/><meta property='article:modified_time' content='2017-11-04T21:03:00&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/dPMjucATggvoLXmJZXz5MjAxNzExMDRfMjEwMzAw.jpeg' />
+<meta name="twitter:title" content="华硕x45vd安装黑苹果Yosemite 10.10.3记录">
+<meta name="twitter:description" content="准备工作 Yosemite10.10.3懒人版 链接: https://pan.baidu.com/s/1i5aOBOT 密码: hukg
+安装环境：
+windows10 64位 变色龙 2.3 配置图如下：
+开启ahci模式 否则无法进入安装界面。或者打免ahci的补丁。
+由于我装好的win系统用的是ide，开启ahci模式，我的win系统就不能正常进入。需要设置注册表，方法如下
+Win7下开启ACHI 单击“开始”按钮，在搜索框中键入“regedit”，按下回车键，打开“注册表编辑器”窗口。Windows7虽然在“开始”菜单默认不显示“运行”命令，但实际上可用搜索框代替这一功能（或者直接按下Windows键&#43;R键再输入）。
+在“注册表编辑器”窗口左侧标题栏定位至HKEY_LOCAL_MACHINE\SYSTEM\ CurrentControlSet\services\msahci分支，然后在右侧窗口，双击“Start”。
+在打开的“编辑DWORD值”对话框，将“数值数据”框中的值由3改为数字0，单击“确定”按钮。
+win 10 开启achi方式 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\storahci下面的StartOverride里面的0键值改为0，默认是3
+进入安装界面，-v -f跑啰嗦模式，很顺利地进入安装界面
+安装完成后进入Mac系统盘，继续跑啰嗦模式。
+问题集合 遇到第一个问题
+解决：删除 S/L/E 文件夹下面的
+AppleIntelCPUPowerManagement.kext AppleIntelCPUPowerManagementClient.kext 第二个问题：
+解决方法：
+威锋五国帖 Q：23 远景五国贴 Q：10 尝试方案：
+-v -f -x进入啰嗦模式。-x意思是不加载任何驱动 不再出现第二个问题，但是跑啰嗦代码非常非常非常的慢。并且出现新的问题 失败 中间各种爬帖，各种碰壁，各种尝试&amp;hellip;.
+最终还是让我进了苹果系统！哈哈，这种成就感真的是难以描述，很奇妙。
+下面是我爬帖按照帖子中的内容去做的尝试，其中这些文件的牵连，应该是影响到进入系统的关键，也许起作用的并不是全部，但也值得一试。
+SNB HD 3000集显，/Extra/目录下加入MacBookPro8.1 的smbios.plist 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 &amp;lt;?xml version=&amp;#34;1."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ghjayce.github.io/asset/blog/dPMjucATggvoLXmJZXz5MjAxNzExMDRfMjEwMzAw.jpeg' />
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/17669653" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">😆</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GHJayce</a></h1>
+            <h2 class="site-description">十年饮冰，难凉热血。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GHJayce'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archive/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#准备工作">准备工作</a></li>
+    <li><a href="#开启ahci模式">开启ahci模式</a>
+      <ol>
+        <li><a href="#win7下开启achi">Win7下开启ACHI</a></li>
+        <li><a href="#win-10-开启achi方式">win 10 开启achi方式</a></li>
+      </ol>
+    </li>
+    <li><a href="#问题集合">问题集合</a></li>
+    <li><a href="#爬帖链接集合">爬帖链接集合</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/system/hackintosh/asus/x45vd/">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/dPMjucATggvoLXmJZXz5MjAxNzExMDRfMjEwMzAw.jpeg" loading="lazy" alt="Featured image of post 华硕x45vd安装黑苹果Yosemite 10.10.3记录" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" >
+                操作系统
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/system/hackintosh/asus/x45vd/">华硕x45vd安装黑苹果Yosemite 10.10.3记录</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2017-11-04</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 1 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="准备工作">准备工作</h2>
+<p>Yosemite10.10.3懒人版
+链接: <a class="link" href="https://pan.baidu.com/s/1i5aOBOT"  target="_blank" rel="noopener"
+    >https://pan.baidu.com/s/1i5aOBOT</a> 密码: hukg</p>
+<p>安装环境：</p>
+<ul>
+<li>windows10 64位</li>
+<li>变色龙 2.3</li>
+</ul>
+<p>配置图如下：</p>
+<p><img src="https://ghjayce.github.io/asset/blog/aAFyGS4dAC5TUaJCm8jfMjAxNzExMDRfMTk0NTMz.png"
+	width="841"
+	height="562"
+	
+	loading="lazy"
+	
+		alt="ASUS X45VD"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="149"
+		data-flex-basis="359px"
+	
+></p>
+<h2 id="开启ahci模式">开启ahci模式</h2>
+<p>否则无法进入安装界面。或者打免ahci的补丁。</p>
+<p>由于我装好的win系统用的是ide，开启ahci模式，我的win系统就不能正常进入。需要设置注册表，方法如下</p>
+<h3 id="win7下开启achi">Win7下开启ACHI</h3>
+<ul>
+<li>
+<p>单击“开始”按钮，在搜索框中键入“regedit”，按下回车键，打开“注册表编辑器”窗口。Windows7虽然在“开始”菜单默认不显示“运行”命令，但实际上可用搜索框代替这一功能（或者直接按下Windows键+R键再输入）。</p>
+</li>
+<li>
+<p>在“注册表编辑器”窗口左侧标题栏定位至HKEY_LOCAL_MACHINE\SYSTEM\ CurrentControlSet\services\msahci分支，然后在右侧窗口，双击“Start”。</p>
+</li>
+<li>
+<p>在打开的“编辑DWORD值”对话框，将“数值数据”框中的值由3改为数字0，单击“确定”按钮。</p>
+</li>
+</ul>
+<h3 id="win-10-开启achi方式">win 10 开启achi方式</h3>
+<p><code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\storahci</code>下面的<code>StartOverride</code>里面的0键值改为0，默认是3</p>
+<p>进入安装界面，<code>-v -f</code>跑啰嗦模式，很顺利地进入安装界面</p>
+<p>安装完成后进入Mac系统盘，继续跑啰嗦模式。</p>
+<h2 id="问题集合">问题集合</h2>
+<p>遇到第一个问题</p>
+<p><img src="https://ghjayce.github.io/asset/blog/ZMMaj0LwWAgQVPQn3DxxMjAxNzExMDRfMTk0OTM1.jpeg"
+	width="960"
+	height="720"
+	
+	loading="lazy"
+	
+		alt="这里写图片描述"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="133"
+		data-flex-basis="320px"
+	
+></p>
+<p>解决：删除 S/L/E 文件夹下面的</p>
+<ul>
+<li>AppleIntelCPUPowerManagement.kext</li>
+<li>AppleIntelCPUPowerManagementClient.kext</li>
+</ul>
+<p>第二个问题：</p>
+<p><img src="https://ghjayce.github.io/asset/blog/iIEzqO0dluVewMwZPOe3MjAxNzExMDRfMTk1NzMx.jpeg"
+	width="960"
+	height="720"
+	
+	loading="lazy"
+	
+		alt="这里写图片描述"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="133"
+		data-flex-basis="320px"
+	
+></p>
+<p>解决方法：</p>
+<ul>
+<li>威锋五国帖 <a class="link" href="http://bbs.feng.com/read-htm-tid-4330923.html"  target="_blank" rel="noopener"
+    >Q：23</a></li>
+<li>远景五国贴 <a class="link" href="http://bbs.pcbeta.com/forum.php?mod=viewthread&amp;tid=1280262"  target="_blank" rel="noopener"
+    >Q：10</a></li>
+</ul>
+<p>尝试方案：</p>
+<ul>
+<li><code>-v -f -x</code>进入啰嗦模式。<code>-x</code>意思是不加载任何驱动
+<ul>
+<li>不再出现第二个问题，但是跑啰嗦代码非常非常非常的慢。并且出现新的问题</li>
+<li>失败</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>中间各种爬帖，各种碰壁，各种尝试&hellip;.</p>
+<p>最终还是让我进了苹果系统！哈哈，这种成就感真的是难以描述，很奇妙。</p>
+<p><img src="https://ghjayce.github.io/asset/blog/HnG8gBcoFHSpzLnSv7ybMjAxNzExMDRfMjMzNzIz.jpeg"
+	width="4160"
+	height="3120"
+	
+	loading="lazy"
+	
+		alt="这里写图片描述"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="133"
+		data-flex-basis="320px"
+	
+></p>
+<p><img src="https://ghjayce.github.io/asset/blog/NwD35RqDlyvuPcf7cTD5MjAxNzExMDRfMjMzODAz.jpeg"
+	width="4160"
+	height="3120"
+	
+	loading="lazy"
+	
+		alt="这里写图片描述"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="133"
+		data-flex-basis="320px"
+	
+></p>
+<hr>
+<p>下面是我爬帖按照帖子中的内容去做的尝试，其中这些文件的牵连，应该是影响到进入系统的关键，也许起作用的并不是全部，但也值得一试。</p>
+<ul>
+<li>SNB HD 3000集显，/Extra/目录下加入MacBookPro8.1 的smbios.plist</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE plist PUBLIC &#34;-//Apple//DTD PLIST 1.0//EN&#34; &#34;http://www.apple.com/DTDs/PropertyList-1.0.dtd&#34;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&#34;1.0&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dict&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;key&gt;</span>SMfamily<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;string&gt;</span>MacBook Pro<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;key&gt;</span>SMproductname<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;string&gt;</span>MacBookPro8,1<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;key&gt;</span>SMboardproduct<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;string&gt;</span>Mac-94245B3640C91C81<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;key&gt;</span>SMserial<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;string&gt;</span>C02F93FQDH2G<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;key&gt;</span>SMbiosversion<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;string&gt;</span>MultiBeast.tonymacx86.com<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dict&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/plist&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>删除文件
+<ul>
+<li>删了全部<code>/System/Library/Extensions/AppleIntel****.****</code> 显卡驱动(记得备份)</li>
+<li>删了全部<code>/System/Library/Extensions/ATI****.****</code> 显卡驱动(记得备份)</li>
+<li>删了全部<code>/System/Library/Extensions/Geforce****.****</code> 显卡驱动(记得备份)</li>
+<li>删了全部<code>/System/Library/Extensions/NVDA****.****</code> 显卡驱动(记得备份)</li>
+</ul>
+</li>
+</ul>
+<p>补充文件</p>
+<ul>
+<li>org.chameleon.Boot.plist</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;key&gt;</span>Kernel Flags<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;string&gt;</span>-v -f cpus=1<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;key&gt;</span>GraphicsEnabler<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;string&gt;</span>No<span class="nt">&lt;/string&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>S/L/E 目录下加入
+<ul>
+<li>FakeSMC.kext</li>
+<li>NullCPUPowerManagement.kext</li>
+<li><strong>7系主板已经修改好的HD3000驱动</strong></li>
+</ul>
+</li>
+</ul>
+<p>所有文件
+链接: <a class="link" href="https://pan.baidu.com/s/1kVj7Wiz"  target="_blank" rel="noopener"
+    >https://pan.baidu.com/s/1kVj7Wiz</a> 密码: nxk9</p>
+<h2 id="爬帖链接集合">爬帖链接集合</h2>
+<ul>
+<li><a class="link" href="http://bbs.pcbeta.com/forum.php?mod=viewthread&amp;tid=1081866&amp;highlight="  target="_blank" rel="noopener"
+    >也是ntfs volume name问题，有图</a></li>
+<li><a class="link" href="http://bbs.feng.com/read-htm-tid-3911873-page-1.html"  target="_blank" rel="noopener"
+    >被整了一天了~NTFS volume name ***，version 3.1 问题</a></li>
+<li><a class="link" href="http://bbs.feng.com/read-htm-tid-4330923.html"  target="_blank" rel="noopener"
+    >☪☪☪新手必看，初级知识普及贴，及常见五国错误解决办法 </a></li>
+<li><a class="link" href="http://bbs.pcbeta.com/forum.php?mod=viewthread&amp;tid=1280262"  target="_blank" rel="noopener"
+    >黑苹果常见五国问题解决</a></li>
+<li><a class="link" href="http://bbs.pcbeta.com/viewthread-1451360-1-1.html"  target="_blank" rel="noopener"
+    >Missing Bluetooth Controller Transport!</a></li>
+<li><a class="link" href="http://www.memacx.com/thread-5406-1-1.html"  target="_blank" rel="noopener"
+    >求助，安装完系统后卡在missing bluetooth controller transport</a></li>
+<li><a class="link" href="http://bbs.pcbeta.com/viewthread-1256245-1-1.html?spm=0.0.0.0.KTJpEh"  target="_blank" rel="noopener"
+    >安装时卡在Resetting IOCatalogue处</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/">黑苹果</a>
+        
+            <a href="/tags/%E5%8D%8E%E7%A1%95/">华硕</a>
+        
+            <a href="/tags/windows/">Windows</a>
+        
+            <a href="/tags/macos/">MacOS</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://unpkg.com/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://unpkg.com/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/system/windows/regedit/right-click-menu/sublime-text/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/WKRr6SlzDfcw9eTWRv1EMjAxNjEyMjZfMTAzNDM0.jpeg" loading="lazy" data-key="system/windows/regedit/right-click-menu/sublime-text" data-hash="https://ghjayce.github.io/asset/blog/WKRr6SlzDfcw9eTWRv1EMjAxNjEyMjZfMTAzNDM0.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">将Sublime Text 添加到右键菜单的方法</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/system/windows/regedit/right-click-menu/custom/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/jhPbumQV8Q1Tn3JTsxQaMjAxNjEyMjVfMTAzNDM0.jpeg" loading="lazy" data-key="system/windows/regedit/right-click-menu/custom" data-hash="https://ghjayce.github.io/asset/blog/jhPbumQV8Q1Tn3JTsxQaMjAxNjEyMjVfMTAzNDM0.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">windows自定义程序到右键菜单</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/system/android/env/install-git/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">在android上安装git环境</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/system/linux/env/apache-site-more/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/qfHDW8fltBrGpL2TeHDSMjAxODA0MzBfMTA1MTAz.jpeg" loading="lazy" data-key="system/linux/env/apache-site-more" data-hash="https://ghjayce.github.io/asset/blog/qfHDW8fltBrGpL2TeHDSMjAxODA0MzBfMTA1MTAz.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">centos7 安装Apache2.4配置多站点目录</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/system/android/env/web-env-build/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/w6PuBfnL7w3BeiDpzBQvMjAxNzEyMjRfMTczMzQ1.jpeg" loading="lazy" data-key="system/android/env/web-env-build" data-hash="https://ghjayce.github.io/asset/blog/w6PuBfnL7w3BeiDpzBQvMjAxNzEyMjRfMTczMzQ1.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">虚拟机Linux Centos7搭建web环境（LNMP）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2024 GHJayce
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/default-skin/default-skin.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://unpkg.com/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

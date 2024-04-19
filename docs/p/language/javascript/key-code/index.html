@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='keydown event对象 按键 对象 数据类型 ctrl ctrlKey boolean alt altKey boolean shirt shirtKey boolean keyCode 速记 按键 对象 描述 A - Z 65 ~ 90 字母 0 - 9 48 ~ 57 字母上数字键 0 - 9 96 ~ 105 小键盘数字键 F1 - F12 112 ~ 123 功能键 字母按键 按键 键码 按键 键码 按键 键码 A 65 B 66 C 67 D 68 E 69 F 70 G 71 H 72 I 73 J 74 K 75 L 76 M 77 N 78 O 79 P 80 Q 81 R 82 S 83 T 84 U 65 V 86 W 87 X 88 Y 89 Z 90 字母上面一排数字键 按键 键码 按键 键码 按键 键码 0 48 1 49 2 50 3 51 4 52 5 53 6 54 7 55 8 56 9 57 控制键 按键 键码 按键 键码 按键 键码 tab 9 enter 13 shift 16 control 17 alt 18 pause break 19 caps lock 20 spacebar 32 page up 33 page down 34 end 35 home 36 left arrow 37 up arrow 38 right arrow 39 down arrow 40 insert 45 delete 46 windows 91 menu 93 num lock 144 scroll lock 145 esc 27 小键盘按键 按键 键码 按键 键码 按键 键码 / 111 * 106 - 109 &#43; 107 delete 110 0 96 1 97 2 98 3 99 4 100 5 101 6 102 7 103 8 104 9 105 符号 按键 键码 按键 键码 按键 键码 ;（分号） 186 = 187 , 188 -（减号） 189 .'>
+<title>JS 键盘按键keyCode对应表</title>
+
+<link rel='canonical' href='https://ghjayce.github.io/p/language/javascript/key-code/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='JS 键盘按键keyCode对应表'>
+<meta property='og:description' content='keydown event对象 按键 对象 数据类型 ctrl ctrlKey boolean alt altKey boolean shirt shirtKey boolean keyCode 速记 按键 对象 描述 A - Z 65 ~ 90 字母 0 - 9 48 ~ 57 字母上数字键 0 - 9 96 ~ 105 小键盘数字键 F1 - F12 112 ~ 123 功能键 字母按键 按键 键码 按键 键码 按键 键码 A 65 B 66 C 67 D 68 E 69 F 70 G 71 H 72 I 73 J 74 K 75 L 76 M 77 N 78 O 79 P 80 Q 81 R 82 S 83 T 84 U 65 V 86 W 87 X 88 Y 89 Z 90 字母上面一排数字键 按键 键码 按键 键码 按键 键码 0 48 1 49 2 50 3 51 4 52 5 53 6 54 7 55 8 56 9 57 控制键 按键 键码 按键 键码 按键 键码 tab 9 enter 13 shift 16 control 17 alt 18 pause break 19 caps lock 20 spacebar 32 page up 33 page down 34 end 35 home 36 left arrow 37 up arrow 38 right arrow 39 down arrow 40 insert 45 delete 46 windows 91 menu 93 num lock 144 scroll lock 145 esc 27 小键盘按键 按键 键码 按键 键码 按键 键码 / 111 * 106 - 109 &#43; 107 delete 110 0 96 1 97 2 98 3 99 4 100 5 101 6 102 7 103 8 104 9 105 符号 按键 键码 按键 键码 按键 键码 ;（分号） 186 = 187 , 188 -（减号） 189 .'>
+<meta property='og:url' content='https://ghjayce.github.io/p/language/javascript/key-code/'>
+<meta property='og:site_name' content='GHJayce'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='JavaScript' /><meta property='article:tag' content='KeyCode' /><meta property='article:tag' content='KeyboardEvent' /><meta property='article:published_time' content='2017-11-08T09:05:13&#43;08:00'/><meta property='article:modified_time' content='2017-11-08T09:05:13&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/hhu3ZhdElGKvdDDmPImUMjAxNzExMDhfMDkwNTEz.jpeg' />
+<meta name="twitter:title" content="JS 键盘按键keyCode对应表">
+<meta name="twitter:description" content="keydown event对象 按键 对象 数据类型 ctrl ctrlKey boolean alt altKey boolean shirt shirtKey boolean keyCode 速记 按键 对象 描述 A - Z 65 ~ 90 字母 0 - 9 48 ~ 57 字母上数字键 0 - 9 96 ~ 105 小键盘数字键 F1 - F12 112 ~ 123 功能键 字母按键 按键 键码 按键 键码 按键 键码 A 65 B 66 C 67 D 68 E 69 F 70 G 71 H 72 I 73 J 74 K 75 L 76 M 77 N 78 O 79 P 80 Q 81 R 82 S 83 T 84 U 65 V 86 W 87 X 88 Y 89 Z 90 字母上面一排数字键 按键 键码 按键 键码 按键 键码 0 48 1 49 2 50 3 51 4 52 5 53 6 54 7 55 8 56 9 57 控制键 按键 键码 按键 键码 按键 键码 tab 9 enter 13 shift 16 control 17 alt 18 pause break 19 caps lock 20 spacebar 32 page up 33 page down 34 end 35 home 36 left arrow 37 up arrow 38 right arrow 39 down arrow 40 insert 45 delete 46 windows 91 menu 93 num lock 144 scroll lock 145 esc 27 小键盘按键 按键 键码 按键 键码 按键 键码 / 111 * 106 - 109 &#43; 107 delete 110 0 96 1 97 2 98 3 99 4 100 5 101 6 102 7 103 8 104 9 105 符号 按键 键码 按键 键码 按键 键码 ;（分号） 186 = 187 , 188 -（减号） 189 ."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ghjayce.github.io/asset/blog/hhu3ZhdElGKvdDDmPImUMjAxNzExMDhfMDkwNTEz.jpeg' />
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/17669653" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">😆</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GHJayce</a></h1>
+            <h2 class="site-description">十年饮冰，难凉热血。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GHJayce'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archive/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#keydown-event对象">keydown event对象</a></li>
+    <li><a href="#keycode">keyCode</a>
+      <ol>
+        <li><a href="#速记">速记</a></li>
+        <li><a href="#字母按键">字母按键</a></li>
+        <li><a href="#字母上面一排数字键">字母上面一排数字键</a></li>
+        <li><a href="#控制键">控制键</a></li>
+        <li><a href="#小键盘按键">小键盘按键</a></li>
+        <li><a href="#符号">符号</a></li>
+        <li><a href="#功能键">功能键</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/language/javascript/key-code/">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/hhu3ZhdElGKvdDDmPImUMjAxNzExMDhfMDkwNTEz.jpeg" loading="lazy" alt="Featured image of post JS 键盘按键keyCode对应表" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/" >
+                程序设计语言
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/language/javascript/key-code/">JS 键盘按键keyCode对应表</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2017-11-08</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="keydown-event对象">keydown event对象</h2>
+<p><img src="https://ghjayce.github.io/asset/blog/XQ9pwkmDr2oRDf8QMnTYMjAxODAzMzFfMTEyMTAw.jpeg"
+	width="800"
+	height="395"
+	
+	loading="lazy"
+	
+		alt="js keydown event"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="202"
+		data-flex-basis="486px"
+	
+></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">对象</th>
+<th style="text-align:left">数据类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ctrl</td>
+<td style="text-align:left">ctrlKey</td>
+<td style="text-align:left">boolean</td>
+</tr>
+<tr>
+<td style="text-align:left">alt</td>
+<td style="text-align:left">altKey</td>
+<td style="text-align:left">boolean</td>
+</tr>
+<tr>
+<td style="text-align:left">shirt</td>
+<td style="text-align:left">shirtKey</td>
+<td style="text-align:left">boolean</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="keycode">keyCode</h2>
+<h3 id="速记">速记</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">对象</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">A - Z</td>
+<td style="text-align:left">65 ~ 90</td>
+<td style="text-align:left">字母</td>
+</tr>
+<tr>
+<td style="text-align:left">0 - 9</td>
+<td style="text-align:left">48 ~ 57</td>
+<td style="text-align:left">字母上数字键</td>
+</tr>
+<tr>
+<td style="text-align:left">0 - 9</td>
+<td style="text-align:left">96 ~ 105</td>
+<td style="text-align:left">小键盘数字键</td>
+</tr>
+<tr>
+<td style="text-align:left">F1 - F12</td>
+<td style="text-align:left">112 ~ 123</td>
+<td style="text-align:left">功能键</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="字母按键">字母按键</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">A</td>
+<td style="text-align:left">65</td>
+<td style="text-align:left">B</td>
+<td style="text-align:left">66</td>
+<td style="text-align:left">C</td>
+<td style="text-align:left">67</td>
+</tr>
+<tr>
+<td style="text-align:left">D</td>
+<td style="text-align:left">68</td>
+<td style="text-align:left">E</td>
+<td style="text-align:left">69</td>
+<td style="text-align:left">F</td>
+<td style="text-align:left">70</td>
+</tr>
+<tr>
+<td style="text-align:left">G</td>
+<td style="text-align:left">71</td>
+<td style="text-align:left">H</td>
+<td style="text-align:left">72</td>
+<td style="text-align:left">I</td>
+<td style="text-align:left">73</td>
+</tr>
+<tr>
+<td style="text-align:left">J</td>
+<td style="text-align:left">74</td>
+<td style="text-align:left">K</td>
+<td style="text-align:left">75</td>
+<td style="text-align:left">L</td>
+<td style="text-align:left">76</td>
+</tr>
+<tr>
+<td style="text-align:left">M</td>
+<td style="text-align:left">77</td>
+<td style="text-align:left">N</td>
+<td style="text-align:left">78</td>
+<td style="text-align:left">O</td>
+<td style="text-align:left">79</td>
+</tr>
+<tr>
+<td style="text-align:left">P</td>
+<td style="text-align:left">80</td>
+<td style="text-align:left">Q</td>
+<td style="text-align:left">81</td>
+<td style="text-align:left">R</td>
+<td style="text-align:left">82</td>
+</tr>
+<tr>
+<td style="text-align:left">S</td>
+<td style="text-align:left">83</td>
+<td style="text-align:left">T</td>
+<td style="text-align:left">84</td>
+<td style="text-align:left">U</td>
+<td style="text-align:left">65</td>
+</tr>
+<tr>
+<td style="text-align:left">V</td>
+<td style="text-align:left">86</td>
+<td style="text-align:left">W</td>
+<td style="text-align:left">87</td>
+<td style="text-align:left">X</td>
+<td style="text-align:left">88</td>
+</tr>
+<tr>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">89</td>
+<td style="text-align:left">Z</td>
+<td style="text-align:left">90</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="字母上面一排数字键">字母上面一排数字键</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">48</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">49</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">50</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">51</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">52</td>
+<td style="text-align:left">5</td>
+<td style="text-align:left">53</td>
+</tr>
+<tr>
+<td style="text-align:left">6</td>
+<td style="text-align:left">54</td>
+<td style="text-align:left">7</td>
+<td style="text-align:left">55</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">56</td>
+</tr>
+<tr>
+<td style="text-align:left">9</td>
+<td style="text-align:left">57</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="控制键">控制键</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">tab</td>
+<td style="text-align:left">9</td>
+<td style="text-align:left">enter</td>
+<td style="text-align:left">13</td>
+<td style="text-align:left">shift</td>
+<td style="text-align:left">16</td>
+</tr>
+<tr>
+<td style="text-align:left">control</td>
+<td style="text-align:left">17</td>
+<td style="text-align:left">alt</td>
+<td style="text-align:left">18</td>
+<td style="text-align:left">pause break</td>
+<td style="text-align:left">19</td>
+</tr>
+<tr>
+<td style="text-align:left">caps lock</td>
+<td style="text-align:left">20</td>
+<td style="text-align:left">spacebar</td>
+<td style="text-align:left">32</td>
+<td style="text-align:left">page up</td>
+<td style="text-align:left">33</td>
+</tr>
+<tr>
+<td style="text-align:left">page down</td>
+<td style="text-align:left">34</td>
+<td style="text-align:left">end</td>
+<td style="text-align:left">35</td>
+<td style="text-align:left">home</td>
+<td style="text-align:left">36</td>
+</tr>
+<tr>
+<td style="text-align:left">left arrow</td>
+<td style="text-align:left">37</td>
+<td style="text-align:left">up arrow</td>
+<td style="text-align:left">38</td>
+<td style="text-align:left">right arrow</td>
+<td style="text-align:left">39</td>
+</tr>
+<tr>
+<td style="text-align:left">down arrow</td>
+<td style="text-align:left">40</td>
+<td style="text-align:left">insert</td>
+<td style="text-align:left">45</td>
+<td style="text-align:left">delete</td>
+<td style="text-align:left">46</td>
+</tr>
+<tr>
+<td style="text-align:left">windows</td>
+<td style="text-align:left">91</td>
+<td style="text-align:left">menu</td>
+<td style="text-align:left">93</td>
+<td style="text-align:left">num lock</td>
+<td style="text-align:left">144</td>
+</tr>
+<tr>
+<td style="text-align:left">scroll lock</td>
+<td style="text-align:left">145</td>
+<td style="text-align:left">esc</td>
+<td style="text-align:left">27</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="小键盘按键">小键盘按键</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">/</td>
+<td style="text-align:left">111</td>
+<td style="text-align:left">*</td>
+<td style="text-align:left">106</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">109</td>
+</tr>
+<tr>
+<td style="text-align:left">+</td>
+<td style="text-align:left">107</td>
+<td style="text-align:left">delete</td>
+<td style="text-align:left">110</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">96</td>
+</tr>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">97</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">98</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">99</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">100</td>
+<td style="text-align:left">5</td>
+<td style="text-align:left">101</td>
+<td style="text-align:left">6</td>
+<td style="text-align:left">102</td>
+</tr>
+<tr>
+<td style="text-align:left">7</td>
+<td style="text-align:left">103</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">104</td>
+<td style="text-align:left">9</td>
+<td style="text-align:left">105</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="符号">符号</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>;</code>（分号）</td>
+<td style="text-align:left">186</td>
+<td style="text-align:left"><code>=</code></td>
+<td style="text-align:left">187</td>
+<td style="text-align:left"><code>,</code></td>
+<td style="text-align:left">188</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-</code>（减号）</td>
+<td style="text-align:left">189</td>
+<td style="text-align:left"><code>.</code></td>
+<td style="text-align:left">190</td>
+<td style="text-align:left"><code>/</code>（斜杠）</td>
+<td style="text-align:left">191</td>
+</tr>
+<tr>
+<td style="text-align:left">`（反单引号）</td>
+<td style="text-align:left">192</td>
+<td style="text-align:left"><code>[</code></td>
+<td style="text-align:left">219</td>
+<td style="text-align:left"><code>\</code>（反斜杠）</td>
+<td style="text-align:left">220</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>]</code></td>
+<td style="text-align:left">221</td>
+<td style="text-align:left"><code>'</code>（单引号）</td>
+<td style="text-align:left">222</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="功能键">功能键</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+<th style="text-align:left">按键</th>
+<th style="text-align:left">键码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">F1</td>
+<td style="text-align:left">112</td>
+<td style="text-align:left">F2</td>
+<td style="text-align:left">113</td>
+<td style="text-align:left">F3</td>
+<td style="text-align:left">114</td>
+</tr>
+<tr>
+<td style="text-align:left">F4</td>
+<td style="text-align:left">115</td>
+<td style="text-align:left">F5</td>
+<td style="text-align:left">116</td>
+<td style="text-align:left">F6</td>
+<td style="text-align:left">117</td>
+</tr>
+<tr>
+<td style="text-align:left">F7</td>
+<td style="text-align:left">118</td>
+<td style="text-align:left">F8</td>
+<td style="text-align:left">119</td>
+<td style="text-align:left">F9</td>
+<td style="text-align:left">120</td>
+</tr>
+<tr>
+<td style="text-align:left">F10</td>
+<td style="text-align:left">121</td>
+<td style="text-align:left">F11</td>
+<td style="text-align:left">122</td>
+<td style="text-align:left">F12</td>
+<td style="text-align:left">123</td>
+</tr>
+</tbody>
+</table></div>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/javascript/">JavaScript</a>
+        
+            <a href="/tags/keycode/">KeyCode</a>
+        
+            <a href="/tags/keyboardevent/">KeyboardEvent</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://unpkg.com/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://unpkg.com/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/language/php/hyperf/hyperf-constants/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg" loading="lazy" data-key="language/php/hyperf/hyperf-constants" data-hash="https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">hyperf constants实现机制</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png" loading="lazy" data-key="static-site-generator/hugo/hugo-theme-stack-gallery-study" data-hash="https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/language/php/laravel/homestead-install/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/acN7lrfIQy4GU6zANY9bMjAxODEwMDZfMjA0MDQx.jpeg" loading="lazy" data-key="language/php/laravel/homestead-install" data-hash="https://ghjayce.github.io/asset/blog/acN7lrfIQy4GU6zANY9bMjAxODEwMDZfMjA0MDQx.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Homestead环境搭建</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/language/php/exception/error-capture/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/mwZTYxkP4GSsgLbC5aXaMjAxNzExMTZfMTYzODM0.jpeg" loading="lazy" data-key="language/php/exception/error-capture" data-hash="https://ghjayce.github.io/asset/blog/mwZTYxkP4GSsgLbC5aXaMjAxNzExMTZfMTYzODM0.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">PHP报错解析和如何捕获错误信息</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2024 GHJayce
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/default-skin/default-skin.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://unpkg.com/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

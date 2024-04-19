@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='文章内容为个人的学习笔记，绝大部分内容摘抄自书本中的知识点，目录也是如此。仅供各位学习参考，另外备注书本是2017年版。
+阅读说明 较早前记的笔记，内容并不全，请选择性浏览
+操作系统简介 操作系统的作用 为用户使用的应用程序的运行提供了环境，并且为应用程序的开发提供了平台，使应用程序的开发变得简单、高效。
+用户与硬件之间的接口 操作系统提供了计算机用户与计算机硬件之间的接口，分别是硬件接口和软件接口。
+软件接口：如C语言的函数 print 硬件接口：如usb接口、串口、并口 资源的管理者 处理机管理 程序的执行必须依靠处理机，任意时刻处理机都只能执行一个程序流； 要使处理机执行多个程序流，就必须由操作系统的处理机调度程序来管理处理机的分配，让多个程序共享处理机； 从宏观角度来看，使得多个程序能“同时”顺利进行。
+内存管理 如何为多个应用程序分配内存，并使应用程序的地址空间互不干扰，并在程序执行完毕后，回收所占用的内存，释放内存空间，并且完成逻辑地址到物理地址的转换，是操作系统内存管理程序的要完成的功能。
+设备管理 设备管理的任务是要接受用户的I/O请求，为用户分配I/O设备，管理I/O缓存和驱动等功能。
+文件管理 计算机把大量需要长时间存储的数据信息以文件的方式存放在外存设备中（如硬盘、USB、光盘、磁带）。 操作系统的文件管理程序，任务是要管理外存设备的空间分配、回收，文件的存取、共享、组织和保护等功能。
+操作系统的发展 1 2 3 4 5 s=&amp;gt;start: 无操作系统 o1=&amp;gt;operation: 单道批处理系统 o2=&amp;gt;operation: 多道批处理系统 s(right)-&amp;gt;o1(right)-&amp;gt;o2 单道批处理系统 特点：
+自动性 自动将作业从外存装入内存运行，当作业运行完毕后，自动撤销已运行完毕的作业，依次从外存装入下一个作业。 顺序性 存放在外存的作业，会按顺序的依次装入内存运行，先进入内存的作业先运行完毕。 单道性 任何时刻内存只能有一道作业，操作系统每次只能装入一个作业到内存运行，直到作业正常或异常结束，才会装入下一个作业到内存。 缺点： 作业独占CPU、内存，CPU资源严重浪费，不能充分利用。
+与无操作系统相比，单道批处理系统减少了长时间等待人工操作的时间
+多道批处理系统 特点：
+调度性 从作业队列中选择要装入到内存运行的单个作业或多个作业 无序性 同时驻留在内存的作业，获得CPU的顺序和执行的进度无法预知，先进入内存的作业，不一定先被调度，也不一定先执行完。 多道性 在内存中可同时驻留多道程序 复杂性 缺点：
+平均周转时间长 周转时长指的是从作业交到系统开始到作业完成为止的时间 缺乏交互能力 在作业运行结束得到输出结果之前，用户无法观察和控制作业的运行。 与单道批处理系统相比，提高了资源的利用率，系统的吞吐量。
+分时系统 分时系统是多道批处理系统的自然延伸。允许多个终端用户同时使用计算机。
+特点：
+多路性 一台主机上同时连接多台联机终端。 独立性 终端用户操作彼此独立，互不干扰。 及时性 用户请求在很短的时间内能得到响应。 交互性 用户可以通过终端与系统进行广泛的人机对话。 优点：为用户提供了人机交互的方便性，使多个用户通过不同的终端共享主机。'>
+<title>02323《操作系统概论》笔记</title>
+
+<link rel='canonical' href='https://ghjayce.github.io/p/book/080901/02323/summary/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='02323《操作系统概论》笔记'>
+<meta property='og:description' content='文章内容为个人的学习笔记，绝大部分内容摘抄自书本中的知识点，目录也是如此。仅供各位学习参考，另外备注书本是2017年版。
+阅读说明 较早前记的笔记，内容并不全，请选择性浏览
+操作系统简介 操作系统的作用 为用户使用的应用程序的运行提供了环境，并且为应用程序的开发提供了平台，使应用程序的开发变得简单、高效。
+用户与硬件之间的接口 操作系统提供了计算机用户与计算机硬件之间的接口，分别是硬件接口和软件接口。
+软件接口：如C语言的函数 print 硬件接口：如usb接口、串口、并口 资源的管理者 处理机管理 程序的执行必须依靠处理机，任意时刻处理机都只能执行一个程序流； 要使处理机执行多个程序流，就必须由操作系统的处理机调度程序来管理处理机的分配，让多个程序共享处理机； 从宏观角度来看，使得多个程序能“同时”顺利进行。
+内存管理 如何为多个应用程序分配内存，并使应用程序的地址空间互不干扰，并在程序执行完毕后，回收所占用的内存，释放内存空间，并且完成逻辑地址到物理地址的转换，是操作系统内存管理程序的要完成的功能。
+设备管理 设备管理的任务是要接受用户的I/O请求，为用户分配I/O设备，管理I/O缓存和驱动等功能。
+文件管理 计算机把大量需要长时间存储的数据信息以文件的方式存放在外存设备中（如硬盘、USB、光盘、磁带）。 操作系统的文件管理程序，任务是要管理外存设备的空间分配、回收，文件的存取、共享、组织和保护等功能。
+操作系统的发展 1 2 3 4 5 s=&amp;gt;start: 无操作系统 o1=&amp;gt;operation: 单道批处理系统 o2=&amp;gt;operation: 多道批处理系统 s(right)-&amp;gt;o1(right)-&amp;gt;o2 单道批处理系统 特点：
+自动性 自动将作业从外存装入内存运行，当作业运行完毕后，自动撤销已运行完毕的作业，依次从外存装入下一个作业。 顺序性 存放在外存的作业，会按顺序的依次装入内存运行，先进入内存的作业先运行完毕。 单道性 任何时刻内存只能有一道作业，操作系统每次只能装入一个作业到内存运行，直到作业正常或异常结束，才会装入下一个作业到内存。 缺点： 作业独占CPU、内存，CPU资源严重浪费，不能充分利用。
+与无操作系统相比，单道批处理系统减少了长时间等待人工操作的时间
+多道批处理系统 特点：
+调度性 从作业队列中选择要装入到内存运行的单个作业或多个作业 无序性 同时驻留在内存的作业，获得CPU的顺序和执行的进度无法预知，先进入内存的作业，不一定先被调度，也不一定先执行完。 多道性 在内存中可同时驻留多道程序 复杂性 缺点：
+平均周转时间长 周转时长指的是从作业交到系统开始到作业完成为止的时间 缺乏交互能力 在作业运行结束得到输出结果之前，用户无法观察和控制作业的运行。 与单道批处理系统相比，提高了资源的利用率，系统的吞吐量。
+分时系统 分时系统是多道批处理系统的自然延伸。允许多个终端用户同时使用计算机。
+特点：
+多路性 一台主机上同时连接多台联机终端。 独立性 终端用户操作彼此独立，互不干扰。 及时性 用户请求在很短的时间内能得到响应。 交互性 用户可以通过终端与系统进行广泛的人机对话。 优点：为用户提供了人机交互的方便性，使多个用户通过不同的终端共享主机。'>
+<meta property='og:url' content='https://ghjayce.github.io/p/book/080901/02323/summary/'>
+<meta property='og:site_name' content='GHJayce'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='计算机科学与技术' /><meta property='article:tag' content='笔记' /><meta property='article:tag' content='信息系统开发与管理' /><meta property='article:published_time' content='2018-03-22T11:22:40&#43;08:00'/><meta property='article:modified_time' content='2018-03-22T11:22:40&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/nae2CLNy3GD4lakpo2aBMjAxODAzMjJfMTEyMjQw.png' />
+<meta name="twitter:title" content="02323《操作系统概论》笔记">
+<meta name="twitter:description" content="文章内容为个人的学习笔记，绝大部分内容摘抄自书本中的知识点，目录也是如此。仅供各位学习参考，另外备注书本是2017年版。
+阅读说明 较早前记的笔记，内容并不全，请选择性浏览
+操作系统简介 操作系统的作用 为用户使用的应用程序的运行提供了环境，并且为应用程序的开发提供了平台，使应用程序的开发变得简单、高效。
+用户与硬件之间的接口 操作系统提供了计算机用户与计算机硬件之间的接口，分别是硬件接口和软件接口。
+软件接口：如C语言的函数 print 硬件接口：如usb接口、串口、并口 资源的管理者 处理机管理 程序的执行必须依靠处理机，任意时刻处理机都只能执行一个程序流； 要使处理机执行多个程序流，就必须由操作系统的处理机调度程序来管理处理机的分配，让多个程序共享处理机； 从宏观角度来看，使得多个程序能“同时”顺利进行。
+内存管理 如何为多个应用程序分配内存，并使应用程序的地址空间互不干扰，并在程序执行完毕后，回收所占用的内存，释放内存空间，并且完成逻辑地址到物理地址的转换，是操作系统内存管理程序的要完成的功能。
+设备管理 设备管理的任务是要接受用户的I/O请求，为用户分配I/O设备，管理I/O缓存和驱动等功能。
+文件管理 计算机把大量需要长时间存储的数据信息以文件的方式存放在外存设备中（如硬盘、USB、光盘、磁带）。 操作系统的文件管理程序，任务是要管理外存设备的空间分配、回收，文件的存取、共享、组织和保护等功能。
+操作系统的发展 1 2 3 4 5 s=&amp;gt;start: 无操作系统 o1=&amp;gt;operation: 单道批处理系统 o2=&amp;gt;operation: 多道批处理系统 s(right)-&amp;gt;o1(right)-&amp;gt;o2 单道批处理系统 特点：
+自动性 自动将作业从外存装入内存运行，当作业运行完毕后，自动撤销已运行完毕的作业，依次从外存装入下一个作业。 顺序性 存放在外存的作业，会按顺序的依次装入内存运行，先进入内存的作业先运行完毕。 单道性 任何时刻内存只能有一道作业，操作系统每次只能装入一个作业到内存运行，直到作业正常或异常结束，才会装入下一个作业到内存。 缺点： 作业独占CPU、内存，CPU资源严重浪费，不能充分利用。
+与无操作系统相比，单道批处理系统减少了长时间等待人工操作的时间
+多道批处理系统 特点：
+调度性 从作业队列中选择要装入到内存运行的单个作业或多个作业 无序性 同时驻留在内存的作业，获得CPU的顺序和执行的进度无法预知，先进入内存的作业，不一定先被调度，也不一定先执行完。 多道性 在内存中可同时驻留多道程序 复杂性 缺点：
+平均周转时间长 周转时长指的是从作业交到系统开始到作业完成为止的时间 缺乏交互能力 在作业运行结束得到输出结果之前，用户无法观察和控制作业的运行。 与单道批处理系统相比，提高了资源的利用率，系统的吞吐量。
+分时系统 分时系统是多道批处理系统的自然延伸。允许多个终端用户同时使用计算机。
+特点：
+多路性 一台主机上同时连接多台联机终端。 独立性 终端用户操作彼此独立，互不干扰。 及时性 用户请求在很短的时间内能得到响应。 交互性 用户可以通过终端与系统进行广泛的人机对话。 优点：为用户提供了人机交互的方便性，使多个用户通过不同的终端共享主机。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ghjayce.github.io/asset/blog/nae2CLNy3GD4lakpo2aBMjAxODAzMjJfMTEyMjQw.png' />
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/17669653" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">😆</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GHJayce</a></h1>
+            <h2 class="site-description">十年饮冰，难凉热血。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GHJayce'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archive/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#阅读说明">阅读说明</a></li>
+    <li><a href="#操作系统简介">操作系统简介</a>
+      <ol>
+        <li><a href="#操作系统的作用">操作系统的作用</a>
+          <ol>
+            <li><a href="#用户与硬件之间的接口">用户与硬件之间的接口</a></li>
+            <li><a href="#资源的管理者">资源的管理者</a></li>
+          </ol>
+        </li>
+        <li><a href="#操作系统的发展">操作系统的发展</a>
+          <ol>
+            <li><a href="#单道批处理系统">单道批处理系统</a></li>
+            <li><a href="#多道批处理系统">多道批处理系统</a></li>
+            <li><a href="#分时系统">分时系统</a></li>
+            <li><a href="#实时系统">实时系统</a></li>
+            <li><a href="#主流操作系统">主流操作系统</a></li>
+          </ol>
+        </li>
+        <li><a href="#现代操作系统的特点特征">现代操作系统的特点特征</a>
+          <ol>
+            <li><a href="#并发">并发</a></li>
+            <li><a href="#共享">共享</a></li>
+            <li><a href="#虚拟">虚拟</a></li>
+            <li><a href="#异步性">异步性</a></li>
+          </ol>
+        </li>
+        <li><a href="#操作系统的功能">操作系统的功能</a></li>
+        <li><a href="#内存管理-1">内存管理</a></li>
+      </ol>
+    </li>
+    <li><a href="#进程管理">进程管理</a>
+      <ol>
+        <li><a href="#进程的描述">进程的描述</a>
+          <ol>
+            <li><a href="#程序的并发执行">程序的并发执行</a></li>
+            <li><a href="#进程的概念">进程的概念</a></li>
+            <li><a href="#进程控制块">进程控制块</a></li>
+            <li><a href="#进程的状态">进程的状态</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/book/080901/02323/summary/">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/nae2CLNy3GD4lakpo2aBMjAxODAzMjJfMTEyMjQw.png" loading="lazy" alt="Featured image of post 02323《操作系统概论》笔记" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E4%B9%A6%E7%B1%8D/" >
+                书籍
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/book/080901/02323/summary/">02323《操作系统概论》笔记</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2018-03-22</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 1 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>文章内容为个人的学习笔记，绝大部分内容摘抄自书本中的知识点，目录也是如此。仅供各位学习参考，另外备注书本是2017年版。</p>
+<h2 id="阅读说明">阅读说明</h2>
+<p>较早前记的笔记，内容并不全，请选择性浏览</p>
+<h2 id="操作系统简介">操作系统简介</h2>
+<h3 id="操作系统的作用">操作系统的作用</h3>
+<blockquote>
+<p>为用户使用的应用程序的运行提供了环境，并且为应用程序的开发提供了平台，使应用程序的开发变得简单、高效。</p>
+</blockquote>
+<h4 id="用户与硬件之间的接口">用户与硬件之间的接口</h4>
+<blockquote>
+<p>操作系统提供了计算机用户与计算机硬件之间的接口，分别是<strong>硬件接口</strong>和<strong>软件接口</strong>。</p>
+</blockquote>
+<ul>
+<li>软件接口：如C语言的函数 print</li>
+<li>硬件接口：如usb接口、串口、并口</li>
+</ul>
+<h4 id="资源的管理者">资源的管理者</h4>
+<h5 id="处理机管理">处理机管理</h5>
+<p>程序的执行必须依靠处理机，任意时刻处理机都只能执行一个程序流；
+要使处理机执行多个程序流，就必须由操作系统的处理机调度程序来管理处理机的分配，让多个程序共享处理机；
+从宏观角度来看，使得多个程序能“同时”顺利进行。</p>
+<h5 id="内存管理">内存管理</h5>
+<p>如何为多个应用程序分配内存，并使应用程序的地址空间互不干扰，并在程序执行完毕后，回收所占用的内存，释放内存空间，并且完成逻辑地址到物理地址的转换，是操作系统内存管理程序的要完成的功能。</p>
+<h5 id="设备管理">设备管理</h5>
+<p>设备管理的任务是要接受用户的I/O请求，为用户分配I/O设备，管理I/O缓存和驱动等功能。</p>
+<h5 id="文件管理">文件管理</h5>
+<p>计算机把大量需要长时间存储的数据信息以文件的方式存放在外存设备中（如硬盘、USB、光盘、磁带）。
+操作系统的文件管理程序，任务是要管理外存设备的空间分配、回收，文件的存取、共享、组织和保护等功能。</p>
+<h3 id="操作系统的发展">操作系统的发展</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">s=&gt;start: 无操作系统
+</span></span><span class="line"><span class="cl">o1=&gt;operation: 单道批处理系统
+</span></span><span class="line"><span class="cl">o2=&gt;operation: 多道批处理系统
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">s(right)-&gt;o1(right)-&gt;o2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="单道批处理系统">单道批处理系统</h4>
+<p>特点：</p>
+<ul>
+<li>自动性
+自动将作业从外存装入内存运行，当作业运行完毕后，自动撤销已运行完毕的作业，依次从外存装入下一个作业。</li>
+<li>顺序性
+存放在外存的作业，会按顺序的依次装入内存运行，先进入内存的作业先运行完毕。</li>
+<li>单道性
+任何时刻内存只能有一道作业，操作系统每次只能装入一个作业到内存运行，直到作业正常或异常结束，才会装入下一个作业到内存。</li>
+</ul>
+<p>缺点：
+作业独占CPU、内存，CPU资源严重浪费，不能充分利用。</p>
+<blockquote>
+<p>与无操作系统相比，单道批处理系统减少了长时间等待人工操作的时间</p>
+</blockquote>
+<h4 id="多道批处理系统">多道批处理系统</h4>
+<p>特点：</p>
+<ul>
+<li>调度性
+从作业队列中选择要装入到内存运行的单个作业或多个作业</li>
+<li>无序性
+同时驻留在内存的作业，获得CPU的顺序和执行的进度无法预知，先进入内存的作业，不一定先被调度，也不一定先执行完。</li>
+<li>多道性
+在内存中可同时驻留多道程序</li>
+<li>复杂性</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>平均周转时间长
+周转时长指的是从作业交到系统开始到作业完成为止的时间</li>
+<li>缺乏交互能力
+在作业运行结束得到输出结果之前，用户无法观察和控制作业的运行。</li>
+</ul>
+<blockquote>
+<p>与单道批处理系统相比，提高了资源的利用率，系统的吞吐量。</p>
+</blockquote>
+<h4 id="分时系统">分时系统</h4>
+<blockquote>
+<p>分时系统是多道批处理系统的自然延伸。允许多个终端用户同时使用计算机。</p>
+</blockquote>
+<p>特点：</p>
+<ul>
+<li>多路性
+一台主机上同时连接多台联机终端。</li>
+<li>独立性
+终端用户操作彼此独立，互不干扰。</li>
+<li>及时性
+用户请求在很短的时间内能得到响应。</li>
+<li>交互性
+用户可以通过终端与系统进行广泛的人机对话。</li>
+</ul>
+<blockquote>
+<p>优点：为用户提供了人机交互的方便性，使多个用户通过不同的终端共享主机。</p>
+</blockquote>
+<h4 id="实时系统">实时系统</h4>
+<p>实时系统主要用于实时控制和实时信息处理领域。</p>
+<p>特点：</p>
+<ul>
+<li>多路性</li>
+<li>独立性</li>
+<li>及时性</li>
+<li>交互性</li>
+<li>可靠性</li>
+</ul>
+<h4 id="主流操作系统">主流操作系统</h4>
+<h5 id="主机操作系统">主机操作系统</h5>
+<p>主机操作系统是运行在大型主机上的操作系统，主要提供三种服务：<strong>批处理</strong>、<strong>事务处理</strong>和<strong>分时处理</strong>。</p>
+<ul>
+<li>批处理
+批处理系统处理不需要交互式用户干预的周期性作业。
+如：保险公司的索赔处理或者连锁商店的销售报告，通常以批处理的方式完成。</li>
+<li>事务处理
+事务处理系统负责大量的小请求。
+如：银行的支票处理或航班预订。业务量小，但是需要很高的处理速度。</li>
+<li>分时处理
+分时系统允许多个远程用户同时在计算机上工作，执行命令或处理作业。</li>
+</ul>
+<h5 id="服务器操作系统">服务器操作系统</h5>
+<p>服务器操作系统是运行在网络服务器上的操作系统，可以通过网络同时为众多用户服务。服务器可提供<strong>打印服务</strong>、<strong>文件服务</strong>、<strong>Web服务</strong>。</p>
+<blockquote>
+<p>典型的服务器操作系统有：<strong>Linux</strong>、<strong>Windows Server 200X</strong>、<strong>Solaris</strong>、<strong>FreeBSD</strong></p>
+</blockquote>
+<h5 id="微机操作系统">微机操作系统</h5>
+<p>也称个人机操作系统，现代微机操作系统都支持多道程序处理，就是通常所说的支持多任务。</p>
+<blockquote>
+<p>常见的微机操作系统有：<strong>Windows系列</strong>、<strong>Linux的不同发行版</strong>、<strong>Macintosh</strong>、<strong>Chrome OS</strong>等</p>
+</blockquote>
+<h5 id="嵌入式操作系统">嵌入式操作系统</h5>
+<p>嵌入式系统的概念出现在20世纪70年代，<strong>是宿主于非计算机设备中的计算机系统。</strong></p>
+<blockquote>
+<p>其特征是：<strong>小巧</strong>、<strong>实时性</strong>、<strong>可装卸</strong>、<strong>代码固化</strong>、<strong>弱交互性</strong>、<strong>强稳定性</strong>、<strong>接口统一</strong>、<strong>低能耗</strong>
+应用领域：<strong>掌上电脑</strong>、<strong>智能手机</strong>、<strong>数码相机</strong>、<strong>自动售货机</strong>、<strong>自动取款机</strong>、<strong>工业控制设备</strong>、<strong>军工装备</strong>、<strong>游戏机</strong>、<strong>医疗设备</strong>、<strong>网络设备</strong>等</p>
+</blockquote>
+<h3 id="现代操作系统的特点特征">现代操作系统的特点特征</h3>
+<blockquote>
+<p>小节只需要达到“<strong>领会</strong>”层面</p>
+</blockquote>
+<p>现代操作系统都支持<strong>多任务</strong>，具有<strong>并发</strong>、<strong>共享</strong>、<strong>虚拟</strong>和<strong>异步性</strong>特征。</p>
+<h4 id="并发">并发</h4>
+<p>并发指两个或多个事件在同一时间<strong>间隔</strong>内发生。注意，是<strong>同一时间间隔</strong>。</p>
+<blockquote>
+<p>并行指的是<strong>多个事件同时发生</strong>。</p>
+</blockquote>
+<p>如：在一台单CPU单核的电脑中，一边听音乐，一边玩扫雷，扫雷程序在工作的同时音乐程序也在工作。但是，在单CPU单核系统中，任意时刻只能有一个程序流在CPU上执行，之所以用户感觉到两个程序似乎在同时工作，互不干扰，<strong>是因为操作系统使两个程序在CPU上快速地轮流交替执行</strong>，实现了“<strong>并发</strong>”的功能。</p>
+<h4 id="共享">共享</h4>
+<p>共享是指系统中的资源可供内存中多个并发执行的进程共同使用。资源共享有两种方式，<strong>互斥共享</strong>和<strong>同时共享</strong>。
+<strong>互斥共享</strong>是指任意时刻，一种资源只能被一个进程访问。
+当一个进程访问资源时，其他进程必须等待，直到资源被进程访问完毕，释放访问权。
+如：打印机不采取互斥访问，可能会有多个进程的输出内容都打印在同一张纸上。</p>
+<blockquote>
+<p>并发与共享的关系是相互依赖的。
+如果系统不支持并发，资源的使用都是独占的，不需要共享资源。
+如果不能实现有效的资源共享，并发就不能得到很好的支持</p>
+</blockquote>
+<h4 id="虚拟">虚拟</h4>
+<p>虚拟是指通过某种技术把一个物理实体变成若干逻辑上的对应物。
+物理实体是实际存在的，而虚拟仅仅是用户感觉到的。</p>
+<blockquote>
+<p>如虚拟打印机、虚拟内存和虚拟CPU等。
+操作系统通过某种技术把少量的物理资源变成较物理资源多的逻辑资源。</p>
+</blockquote>
+<h4 id="异步性">异步性</h4>
+<p>进程以不可预知的速度向前推进。内存中的每个程序何时执行，何时暂停，以怎样的速度向前推进，程序需要花费多少时间才能完成，都是不可预知的。
+系统中什么时候会出现需要特殊处理的事件？</p>
+<blockquote>
+<p>如键盘中断，突然打不了字；鼠标中断等也是随机、不可预知的。</p>
+</blockquote>
+<h3 id="操作系统的功能">操作系统的功能</h3>
+<p>分别有<strong>存储器管理</strong>、<strong>进程管理</strong>、<strong>设备管理</strong>、<strong>文件管理</strong>等功能，以及操作系统提供的<strong>用户接口</strong>。</p>
+<h3 id="内存管理-1">内存管理</h3>
+<p>内存管理应具有<strong>内存分配</strong>、<strong>内存保护</strong>、<strong>地址映射</strong>、<strong>内存扩充</strong>功能。</p>
+<h2 id="进程管理">进程管理</h2>
+<h3 id="进程的描述">进程的描述</h3>
+<p>摘取**《现代操作系统》<strong>作者</strong>Andrew S. Tanenbaum<strong>对</strong>进程和程序的关系**给出的一段非常生动形象的比喻。</p>
+<blockquote>
+<p>一位计算机科学家正在为她的女儿烘制生日蛋糕。他有制作蛋糕的食谱，以及做蛋糕的各种原料，如面粉、鸡蛋、糖和香草汁等。做蛋糕的食谱好比是程序，计算机科学家好比是处理器CPU，而做蛋糕的各种原料就是输入数据。进程就是计算机科学家阅读食谱利用原料烘制蛋糕的过程。</p>
+</blockquote>
+<h4 id="程序的并发执行">程序的并发执行</h4>
+<p>为了说明引入进程的原因，首先介绍程序的并发执行及其特点；为了更好的理解程序的并发执行，先介绍程序的顺序执行，并进行特性对比。</p>
+<h5 id="程序的顺序执行">程序的顺序执行</h5>
+<ul>
+<li>顺序性</li>
+<li>封闭性</li>
+<li>可再现性</li>
+</ul>
+<h5 id="程序的并发执行-1">程序的并发执行</h5>
+<ul>
+<li>间断性</li>
+<li>失去封闭性</li>
+<li>不可再现性</li>
+</ul>
+<h4 id="进程的概念">进程的概念</h4>
+<p>并发的程序，它们相互共享系统资源。用程序已不能描述程序的并发，所以引入了进程的概念。</p>
+<h5 id="进程的定义">进程的定义</h5>
+<ul>
+<li>
+<p>定义1
+进程是允许并发执行的程序在某个数据集合上的运行过程。</p>
+</li>
+<li>
+<p>定义2
+进程是由<strong>正文段</strong>、<strong>用户数据段</strong>和<strong>进程控制块</strong>共同组成的执行环境。</p>
+</li>
+</ul>
+<blockquote>
+<p>正文段：存放被执行的机器指令。
+用户数据段：存放进程在执行时直接进行操作的用户数据。
+进程控制块：存放程序的运行环境。</p>
+</blockquote>
+<h5 id="进程的特征">进程的特征</h5>
+<ul>
+<li>并发性</li>
+<li>动态性</li>
+<li>独立性</li>
+<li>异步性</li>
+<li>结构特征
+进程实体包括<strong>用户正文段</strong>、<strong>用户数据段</strong>和<strong>进程控制块</strong>。</li>
+</ul>
+<h5 id="进程与程序的比较">进程与程序的比较</h5>
+<h6 id="进程与程序的区别">进程与程序的区别</h6>
+<p>程序</p>
+<ul>
+<li>程序是静态的</li>
+<li>永久性（相对进程而言），存储在介质上的二进制代码</li>
+<li>存在实体不同，<strong>程序是指令的集合</strong></li>
+</ul>
+<p>进程</p>
+<ul>
+<li>进程是动态的</li>
+<li>暂时性，进程因程序的执行而被创建，由程序的执行结束而被撤销</li>
+<li>存在实体不同，进程的实体包含<strong>正文段</strong>、<strong>用户数据段</strong>和<strong>进程控制块</strong></li>
+</ul>
+<h4 id="进程控制块">进程控制块</h4>
+<p>定义：进程控制块是进程实体的一部分，是操作系统最重要的数据结构，它记录了操作系统所需要的、用于描述进程情况及控制进程运行所需的全部信息。</p>
+<h5 id="进程控制块中的信息">进程控制块中的信息</h5>
+<h6 id="进程标识符信息">进程标识符信息</h6>
+<h6 id="处理机状态信息">处理机状态信息</h6>
+<h6 id="指令计数器">指令计数器</h6>
+<h6 id="程序状态字psw">程序状态字PSW</h6>
+<h6 id="用户栈指针">用户栈指针</h6>
+<ul>
+<li>进程调度信息</li>
+<li>进程控制信息</li>
+</ul>
+<p>进程控制块这种数据结构在操作系统中有什么作用？</p>
+<blockquote>
+<p>以Linux进程控制块结构变量说明：进程控制块中有<strong>prio</strong>字段，用来存放进程的优先权，在操作系统决定为多个可执行的进程分配资源时，会利用这个字段比较进程的优先权，将资源分配给<strong>prio</strong>字段值最大或最小的进程。</p>
+</blockquote>
+<h4 id="进程的状态">进程的状态</h4>
+<h5 id="进程的3种基本状态">进程的3种基本状态</h5>
+<h6 id="就绪态">就绪态</h6>
+<p>进程一旦获得CPU就可以投入运行的状态。在多任务系统中，可以有多个处理就绪状态的进程，这些进程被组织成一个或多个就绪进程队列。</p>
+<blockquote>
+<p>Linux 2.4把所有就绪进程组织成一个先进先出的就绪队列。
+Linux 2.6.11根据进程的优先权不同将就绪队列组织成多个不同的就绪队列；优先权相同的进程放在同一个就绪队列中，每个不同的优先权对应不同的就绪队列。</p>
+</blockquote>
+<h6 id="执行态">执行态</h6>
+<p>执行态是进程获得CPU正在运行的状态。系统中执行态的进程数量受CPU数量的限制。<strong>单CPU系统中，任意时刻只能有一个进程处于执行态</strong>。
+也就是说，<strong>有N个CPU的系统中，任意时刻系统中最多有N个进程处于执行态。</strong></p>
+<h6 id="阻塞态">阻塞态</h6>
+<p>阻塞态是进程由于等待资源或者事件的发生而暂停执行的状态，系统不会为处于阻塞态的进程分配CPU。<strong>在获得其等待的资源或者事件发生之后，就会转变为就绪态</strong>。
+系统会根据不同阻塞原因的进程分别组织成不同的阻塞队列。
+例如：因等待打印机而阻塞的进程排列成一个打印阻塞队列，等待输入数据的进程排列成等待输入数据的队列。</p>
+<p><img src="https://ghjayce.github.io/asset/blog/QEoqUnw9e0tEaXEPPfHEMjAxODA0MDRfMDMwNzAw.jpeg"
+	width="367"
+	height="269"
+	
+	loading="lazy"
+	
+		alt="阻塞队列"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="136"
+		data-flex-basis="327px"
+	
+></p>
+<h5 id="进程状态的转换">进程状态的转换</h5>
+<p><img src="https://ghjayce.github.io/asset/blog/M2Pi4Tnz4mGjnlDOkAloMjAxODA0MDRfMDUwOTAw.jpeg"
+	width="2104"
+	height="1456"
+	
+	loading="lazy"
+	
+		alt="进程状态转换"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="144"
+		data-flex-basis="346px"
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/">计算机科学与技术</a>
+        
+            <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+        
+            <a href="/tags/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B8%8E%E7%AE%A1%E7%90%86/">信息系统开发与管理</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://unpkg.com/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://unpkg.com/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/book/080901/04757/summary/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/009YvB3LFELPlaoVaw6TMjAyNDAzMDZfMTQyNTE1.png" loading="lazy" data-key="book/080901/04757/summary" data-hash="https://ghjayce.github.io/asset/blog/009YvB3LFELPlaoVaw6TMjAyNDAzMDZfMTQyNTE1.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">04757《信息系统开发与管理》概要笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/book/080901/04737/summary/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/pUUpVODdvSxxT4BxTflbMjAyNDAzMDhfMTU0NTM2.png" loading="lazy" data-key="book/080901/04737/summary" data-hash="https://ghjayce.github.io/asset/blog/pUUpVODdvSxxT4BxTflbMjAyNDAzMDhfMTU0NTM2.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">04737《C&#43;&#43;程序设计》概要笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/book/080901/02142/exam-focus/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/exam-focus" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">《数据结构导论》考试重点</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/book/080901/02142/chapter7/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/chapter7" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">第七章 排序 - 《数据结构导论》笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/book/080901/02142/chapter6/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" loading="lazy" data-key="book/080901/02142/chapter6" data-hash="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">第六章 查找 - 《数据结构导论》笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2024 GHJayce
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/default-skin/default-skin.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://unpkg.com/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

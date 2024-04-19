@@ -863,6 +863,205 @@
 &lt;/ol&gt;
 </description>
         </item>
+        <item>
+        <title>本地快速搭建Jekyll及相关依赖</title>
+        <link>https://ghjayce.github.io/p/static-site-generator/jekyll/quick-start/</link>
+        <pubDate>Tue, 02 Jan 2018 03:39:35 +0800</pubDate>
+        
+        <guid>https://ghjayce.github.io/p/static-site-generator/jekyll/quick-start/</guid>
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/l2X2IUWhKLBkgz5kr7qOMjAxODAxMDJfMDMzOTM1.jpeg" alt="Featured image of post 本地快速搭建Jekyll及相关依赖" /&gt;&lt;p&gt;文章为过程记录&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;另外，以下命令行相关的全局变量配置，需要自己去设置。例如：ruby、python&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;相关链接：&lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/paxster/p/3917639.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Jekyll教程——精心收藏&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;参考教程：&lt;a class=&#34;link&#34; href=&#34;http://jekyll-windows.juthilo.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Julian Thilo写的不错的安装教程&lt;/a&gt; &lt;strong&gt;一定要看&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://jekyllrb.com/docs/home/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官方教程&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;环境&#34;&gt;环境&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;windows7 x64&lt;/li&gt;
+&lt;li&gt;ruby 2.4.2p198 x64&lt;/li&gt;
+&lt;li&gt;python 2.7.13rc1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;下载安装ruby相关&#34;&gt;下载安装ruby相关&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ruby是Jekyll编写的编程语言。您需要安装Ruby和相应的DevKit&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;虽然我已经有ruby的环境，但是也记录一下&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://rubyinstaller.org/downloads/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;下载地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;按需所取，我选的如下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/FNrhe5HA34CW3D49A87DMjAxODAxMDJfMDAwMDAw.jpeg&#34;
+	width=&#34;1098&#34;
+	height=&#34;827&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;图片描述&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;132&#34;
+		data-flex-basis=&#34;318px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;安装ruby-devkit&#34;&gt;安装Ruby DevKit&lt;/h3&gt;
+&lt;p&gt;将下载好的&lt;code&gt;ruby devkit&lt;/code&gt;选择&lt;code&gt;C:\RubyDevKit\&lt;/code&gt;解压存档&lt;/p&gt;
+&lt;p&gt;运行命令行工具（cmd），依次执行下面的代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cd C:\RubyDevKit    # step1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ruby dk.rb init     # step2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ruby dk.rb install  # step3
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;安装ruby-gem&#34;&gt;安装Ruby Gem&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Jekyll本身就是Ruby Gem的形式，它是一个易于安装的软件包。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;紧接着执行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gem install jekyll # step4
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;安装rouge&#34;&gt;安装rouge&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;无论您使用的是Markdown还是HTML，Jekyll都可以让您轻松地将精美的代码块插入到您的网页中。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;语法高亮，快速和无痛&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gem install rouge # step5
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后，在你的中&lt;code&gt;_config.yml&lt;/code&gt;，将Rouge设置为你的语法高亮部分：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;highlighter: rouge
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;安装python相关&#34;&gt;安装python相关&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果你想使用Pygments，这是一个默认的Jekyll依赖，在Windows上的语法突出显示，你需要安装Python，PIP，最后是pygments.rb的Python基础。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;教程文章说要装2.7的版本，3的版本可能无法正常工作。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/S5xmwpkIhycfsJwzcqKlMjAxODAxMDJfMDAwMDAw.webp&#34;
+	width=&#34;1098&#34;
+	height=&#34;526&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;图片描述&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;208&#34;
+		data-flex-basis=&#34;500px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;安装pip&#34;&gt;安装pip&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Pip是一个安装和管理Python包的工具，类似于Ruby Gems。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;浏览器打开：https://bootstrap.pypa.io/get-pip.py&lt;/p&gt;
+&lt;p&gt;右键保存到&lt;code&gt;C:\pip\&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;然后打开命令行工具（cmd），并依次执行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cd C:\pip                       # step6
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python get-pip.py               # step7
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python -m pip install Pygments  # step8
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;设置Pygments作为你的语法突出显示&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如果尚未设置，请添加以下内容_config.yml，将Pygments设置为语法突出显示。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;highlighter: pygments
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;jekyll-watch&#34;&gt;jekyll watch&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Jekyll有一个内置的自动更新功能，监视您的源文件夹的变化，然后重新建立您的网站。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;命令行工具（cmd），执行下面步骤&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在Windows上，您需要安装一个额外的工具，或者Gem，以启用此功能。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gem install wdm # step9
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;创建一个项目并运行它&#34;&gt;创建一个项目，并运行它&lt;/h2&gt;
+&lt;p&gt;打开命令行工具（cmd），执行下面的步骤&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gem install jekyll bundler # 先安装这个 step10
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 可以查看jekll版本了
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# jekyll -v
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cd desktop  # 一打开应该是自己的用户目录，直接可以cd到桌面 step11
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;jekyll new my_blog # step12
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cd my_blog # step13
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;jekyll server --watch #step14
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在浏览器访问&lt;code&gt;http://localhost:4000/&lt;/code&gt;搭建好的环境，并且是实时更新的！&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/rICprhx6nhgadT8O2e5IMjAxODAxMDJfMDAwMDAw.webp&#34;
+	width=&#34;1098&#34;
+	height=&#34;533&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;图片描述&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;206&#34;
+		data-flex-basis=&#34;494px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
         
     </channel>
 </rss>
