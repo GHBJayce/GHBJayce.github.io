@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='阅读说明 环境&amp;amp;软件版本 MacOS Big Sur v11.0.1 Homebrew v4.0.21 GNU Make v3.81 PHP v7.3.33、v7.4.33、v8.2 ICU4C v72.1、v73.2、v74.2 背景 我的Mac环境早些时候用Homebrew安装了多个php的版本，php 7.3、7.4、8.2都有，为了区分多个php版本，我在~/.bash_profile中用alias做了处理，就像这样：
+1 2 3 alias php73=&amp;#34;/usr/local/opt/php@7.3/bin/php&amp;#34; alias php74=&amp;#34;/usr/local/opt/php@7.4/bin/php&amp;#34; alias php82=&amp;#34;/usr/local/opt/php@8.2/bin/php&amp;#34; 最近要给某个php项目composer install时需要用到php7.3，结果出现了报错：
+1 2 3 4 dyld: Library not loaded: /usr/local/opt/icu4c/lib/libicui18n.72.dylib Referenced from: /usr/local/opt/php@7.3/bin/php Reason: image not found zsh: abort /usr/local/opt/php@7.3/bin/php --version 而8.2的版本执行正常，因为此时安装的icu4c的版本是73.2的。
+7.3、7.4需要的icu4c版本是72的，所以它们在执行php --verion时都出现了报错。
+有可能是因为安装php8，或者别的软件的时候，brew把icu4c的版本给升级上去造成的。
+升级就升级呗，不曾想旧的版本也没给我留着，好好好（brew好感度-1）。
+疑问 Q1：这是个关于什么问题的错误？ Q2：这个错误是谁抛出的？操作系统还是应用程序（php）？ Q3：这个路径是写死在应用程序（php）中的吗？有办法配置或修改吗？ 解答疑问 先来说说这是个什么样的错误：
+这是应用程序依赖某个动态链接库（Dynamic Link Libraries），而这个动态链接库的加载出现了问题，也就是说在路径下找不到这个文件了，其实不查资料光看报错的内容也能猜到一些。
+那错误内容都有哪些含义或者信息呢？
+dyld: Library not loaded：表明动态链接器未能加载一个或多个指定的动态库。 Referenced from：指出哪个文件（程序或动态库）引用了缺失的动态库。 Reason：提供无法加载动态库的原因，常见的原因包括： image not found：指定的动态库在文件系统中找不到。 image not loadable：找到了动态库，但由于某些原因（如格式错误、权限问题等）无法加载。 did not find：列出了缺失的动态库的具体路径或名称。 这个错误实际上是Mac操作系统报告的错误，表明动态链接器（dynamic linker，即 dyld）在尝试加载程序所需的一个或多个动态库时遇到了问题。'>
+<title>Mac系统多个php版本环境下未找到icu4c动态库的解决过程</title>
+
+<link rel='canonical' href='https://ghjayce.github.io/p/system/mac/env/php/icu4c-load-dylib/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='Mac系统多个php版本环境下未找到icu4c动态库的解决过程'>
+<meta property='og:description' content='阅读说明 环境&amp;amp;软件版本 MacOS Big Sur v11.0.1 Homebrew v4.0.21 GNU Make v3.81 PHP v7.3.33、v7.4.33、v8.2 ICU4C v72.1、v73.2、v74.2 背景 我的Mac环境早些时候用Homebrew安装了多个php的版本，php 7.3、7.4、8.2都有，为了区分多个php版本，我在~/.bash_profile中用alias做了处理，就像这样：
+1 2 3 alias php73=&amp;#34;/usr/local/opt/php@7.3/bin/php&amp;#34; alias php74=&amp;#34;/usr/local/opt/php@7.4/bin/php&amp;#34; alias php82=&amp;#34;/usr/local/opt/php@8.2/bin/php&amp;#34; 最近要给某个php项目composer install时需要用到php7.3，结果出现了报错：
+1 2 3 4 dyld: Library not loaded: /usr/local/opt/icu4c/lib/libicui18n.72.dylib Referenced from: /usr/local/opt/php@7.3/bin/php Reason: image not found zsh: abort /usr/local/opt/php@7.3/bin/php --version 而8.2的版本执行正常，因为此时安装的icu4c的版本是73.2的。
+7.3、7.4需要的icu4c版本是72的，所以它们在执行php --verion时都出现了报错。
+有可能是因为安装php8，或者别的软件的时候，brew把icu4c的版本给升级上去造成的。
+升级就升级呗，不曾想旧的版本也没给我留着，好好好（brew好感度-1）。
+疑问 Q1：这是个关于什么问题的错误？ Q2：这个错误是谁抛出的？操作系统还是应用程序（php）？ Q3：这个路径是写死在应用程序（php）中的吗？有办法配置或修改吗？ 解答疑问 先来说说这是个什么样的错误：
+这是应用程序依赖某个动态链接库（Dynamic Link Libraries），而这个动态链接库的加载出现了问题，也就是说在路径下找不到这个文件了，其实不查资料光看报错的内容也能猜到一些。
+那错误内容都有哪些含义或者信息呢？
+dyld: Library not loaded：表明动态链接器未能加载一个或多个指定的动态库。 Referenced from：指出哪个文件（程序或动态库）引用了缺失的动态库。 Reason：提供无法加载动态库的原因，常见的原因包括： image not found：指定的动态库在文件系统中找不到。 image not loadable：找到了动态库，但由于某些原因（如格式错误、权限问题等）无法加载。 did not find：列出了缺失的动态库的具体路径或名称。 这个错误实际上是Mac操作系统报告的错误，表明动态链接器（dynamic linker，即 dyld）在尝试加载程序所需的一个或多个动态库时遇到了问题。'>
+<meta property='og:url' content='https://ghjayce.github.io/p/system/mac/env/php/icu4c-load-dylib/'>
+<meta property='og:site_name' content='GHJayce'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='PHP' /><meta property='article:tag' content='Mac' /><meta property='article:tag' content='ICU4C' /><meta property='article:tag' content='动态链接库' /><meta property='article:published_time' content='2024-04-26T15:24:57&#43;08:00'/><meta property='article:modified_time' content='2024-04-26T15:24:57&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/xLrs7QpeKQhM85mLcIcqMjAyNDA0MjZfMTUzMTU1.png' />
+<meta name="twitter:title" content="Mac系统多个php版本环境下未找到icu4c动态库的解决过程">
+<meta name="twitter:description" content="阅读说明 环境&amp;amp;软件版本 MacOS Big Sur v11.0.1 Homebrew v4.0.21 GNU Make v3.81 PHP v7.3.33、v7.4.33、v8.2 ICU4C v72.1、v73.2、v74.2 背景 我的Mac环境早些时候用Homebrew安装了多个php的版本，php 7.3、7.4、8.2都有，为了区分多个php版本，我在~/.bash_profile中用alias做了处理，就像这样：
+1 2 3 alias php73=&amp;#34;/usr/local/opt/php@7.3/bin/php&amp;#34; alias php74=&amp;#34;/usr/local/opt/php@7.4/bin/php&amp;#34; alias php82=&amp;#34;/usr/local/opt/php@8.2/bin/php&amp;#34; 最近要给某个php项目composer install时需要用到php7.3，结果出现了报错：
+1 2 3 4 dyld: Library not loaded: /usr/local/opt/icu4c/lib/libicui18n.72.dylib Referenced from: /usr/local/opt/php@7.3/bin/php Reason: image not found zsh: abort /usr/local/opt/php@7.3/bin/php --version 而8.2的版本执行正常，因为此时安装的icu4c的版本是73.2的。
+7.3、7.4需要的icu4c版本是72的，所以它们在执行php --verion时都出现了报错。
+有可能是因为安装php8，或者别的软件的时候，brew把icu4c的版本给升级上去造成的。
+升级就升级呗，不曾想旧的版本也没给我留着，好好好（brew好感度-1）。
+疑问 Q1：这是个关于什么问题的错误？ Q2：这个错误是谁抛出的？操作系统还是应用程序（php）？ Q3：这个路径是写死在应用程序（php）中的吗？有办法配置或修改吗？ 解答疑问 先来说说这是个什么样的错误：
+这是应用程序依赖某个动态链接库（Dynamic Link Libraries），而这个动态链接库的加载出现了问题，也就是说在路径下找不到这个文件了，其实不查资料光看报错的内容也能猜到一些。
+那错误内容都有哪些含义或者信息呢？
+dyld: Library not loaded：表明动态链接器未能加载一个或多个指定的动态库。 Referenced from：指出哪个文件（程序或动态库）引用了缺失的动态库。 Reason：提供无法加载动态库的原因，常见的原因包括： image not found：指定的动态库在文件系统中找不到。 image not loadable：找到了动态库，但由于某些原因（如格式错误、权限问题等）无法加载。 did not find：列出了缺失的动态库的具体路径或名称。 这个错误实际上是Mac操作系统报告的错误，表明动态链接器（dynamic linker，即 dyld）在尝试加载程序所需的一个或多个动态库时遇到了问题。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ghjayce.github.io/asset/blog/xLrs7QpeKQhM85mLcIcqMjAyNDA0MjZfMTUzMTU1.png' />
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/17669653" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">😆</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GHJayce</a></h1>
+            <h2 class="site-description">十年饮冰，难凉热血。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GHJayce'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archive/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#阅读说明">阅读说明</a>
+      <ol>
+        <li><a href="#环境软件版本">环境&amp;软件版本</a></li>
+        <li><a href="#背景">背景</a></li>
+        <li><a href="#疑问">疑问</a></li>
+      </ol>
+    </li>
+    <li><a href="#解答疑问">解答疑问</a></li>
+    <li><a href="#解决方案">解决方案</a>
+      <ol>
+        <li><a href="#方案一-解铃还须系铃人homebrew">方案一 解铃还须系铃人homebrew</a>
+          <ol>
+            <li><a href="#方法一-官方的多版本-formula">方法一 官方的多版本 Formula</a></li>
+            <li><a href="#方法二-从formula的git历史版本安装">方法二 从Formula的Git历史版本安装</a></li>
+            <li><a href="#方法三-自定义本地-formula">方法三 自定义本地 Formula</a></li>
+          </ol>
+        </li>
+        <li><a href="#方案二-自己下载icu4c编译安装">方案二 自己下载icu4c编译安装</a>
+          <ol>
+            <li><a href="#方法一-dyld_library_path">方法一 DYLD_LIBRARY_PATH</a></li>
+            <li><a href="#方法二-install_name_tool">方法二 install_name_tool</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#解决过程">解决过程</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/system/mac/env/php/icu4c-load-dylib/">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/xLrs7QpeKQhM85mLcIcqMjAyNDA0MjZfMTUzMTU1.png" loading="lazy" alt="Featured image of post Mac系统多个php版本环境下未找到icu4c动态库的解决过程" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" >
+                操作系统
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/system/mac/env/php/icu4c-load-dylib/">Mac系统多个php版本环境下未找到icu4c动态库的解决过程</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-04-26</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 5 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="阅读说明">阅读说明</h2>
+<h3 id="环境软件版本">环境&amp;软件版本</h3>
+<ul>
+<li>MacOS Big Sur v11.0.1</li>
+<li>Homebrew v4.0.21</li>
+<li>GNU Make v3.81</li>
+<li>PHP v7.3.33、v7.4.33、v8.2</li>
+<li>ICU4C v72.1、v73.2、v74.2</li>
+</ul>
+<h3 id="背景">背景</h3>
+<p>我的Mac环境早些时候用Homebrew安装了多个php的版本，php 7.3、7.4、8.2都有，为了区分多个php版本，我在<code>~/.bash_profile</code>中用alias做了处理，就像这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">php73</span><span class="o">=</span><span class="s2">&#34;/usr/local/opt/php@7.3/bin/php&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">php74</span><span class="o">=</span><span class="s2">&#34;/usr/local/opt/php@7.4/bin/php&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">php82</span><span class="o">=</span><span class="s2">&#34;/usr/local/opt/php@8.2/bin/php&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最近要给某个php项目<code>composer install</code>时需要用到php7.3，结果出现了报错：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dyld: Library not loaded: /usr/local/opt/icu4c/lib/libicui18n.72.dylib
+</span></span><span class="line"><span class="cl">  Referenced from: /usr/local/opt/php@7.3/bin/php
+</span></span><span class="line"><span class="cl">  Reason: image not found
+</span></span><span class="line"><span class="cl">zsh: abort      /usr/local/opt/php@7.3/bin/php --version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>而8.2的版本执行正常，因为此时安装的icu4c的版本是73.2的。</p>
+<p>7.3、7.4需要的icu4c版本是72的，所以它们在执行<code>php --verion</code>时都出现了报错。</p>
+<blockquote>
+<p>有可能是因为安装php8，或者别的软件的时候，brew把icu4c的版本给升级上去造成的。</p>
+<p>升级就升级呗，不曾想旧的版本也没给我留着，好好好（brew好感度-1）。</p>
+</blockquote>
+<h3 id="疑问">疑问</h3>
+<ul>
+<li>Q1：这是个关于什么问题的错误？</li>
+<li>Q2：这个错误是谁抛出的？操作系统还是应用程序（php）？</li>
+<li>Q3：这个路径是写死在应用程序（php）中的吗？有办法配置或修改吗？</li>
+</ul>
+<h2 id="解答疑问">解答疑问</h2>
+<p>先来说说这是个什么样的错误：</p>
+<p>这是应用程序依赖某个动态链接库（Dynamic Link Libraries），而这个动态链接库的加载出现了问题，也就是说在路径下找不到这个文件了，其实不查资料光看报错的内容也能猜到一些。</p>
+<p>那错误内容都有哪些含义或者信息呢？</p>
+<ul>
+<li>dyld: Library not loaded：表明动态链接器未能加载一个或多个指定的动态库。</li>
+<li>Referenced from：指出哪个文件（程序或动态库）引用了缺失的动态库。</li>
+<li>Reason：提供无法加载动态库的原因，常见的原因包括：
+<ul>
+<li>image not found：指定的动态库在文件系统中找不到。</li>
+<li>image not loadable：找到了动态库，但由于某些原因（如格式错误、权限问题等）无法加载。</li>
+</ul>
+</li>
+<li>did not find：列出了缺失的动态库的具体路径或名称。</li>
+</ul>
+<p>这个错误实际上是Mac操作系统报告的错误，表明动态链接器（dynamic linker，即 dyld）在尝试加载程序所需的一个或多个动态库时遇到了问题。</p>
+<p>你可能会有疑问了，动态库的后缀不都是<code>.so</code>后缀的吗？</p>
+<p>查了一下资料是这么说的：</p>
+<p>UNIX系统动态库文件的后缀通常是<code>.so</code>，尽管Mac系统是基于UNIX的，但<code>.so</code>文件在Mac系统上不如<code>.dylib</code>常见。如果你发现有<code>.so</code>文件，那可能是从UNIX或Linux移植过来的应用程序中携带的。</p>
+<p><code>.dylib</code>是Mac系统中最常用的动态链接库后缀，并且从macOS 10.4（Tiger）开始，<code>.dylib</code>取代了旧的<code>.so</code>后缀，成为系统的默认格式。</p>
+<h2 id="解决方案">解决方案</h2>
+<p>解决也是很简单，只要让程序找到动态库文件不就行了。</p>
+<blockquote>
+<p>我自己用的是方案二的方法二解决的，详细可看<a class="link" href="#%e8%a7%a3%e5%86%b3%e8%bf%87%e7%a8%8b" >解决过程</a>。</p>
+</blockquote>
+<h3 id="方案一-解铃还须系铃人homebrew">方案一 解铃还须系铃人homebrew</h3>
+<h4 id="方法一-官方的多版本-formula">方法一 官方的多版本 Formula</h4>
+<p>Homebrew允许安装某些软件的特定版本，如果官方提供了这些版本的Formula。可以使用以下命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew search icu4c
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果找到了需要的版本，执行安装即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew install icu4c@72
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这方法我试了，没有旧版本，只有icu4c的最新版</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">==</span>&gt; Formulae
+</span></span><span class="line"><span class="cl">icu4c ✔
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>手贱的我试了<code>brew reinstall icu4c</code>。</p>
+<p>结果给我安装了最新版icu4c 74.2，这下好了php82也不能用了。。</p>
+<h4 id="方法二-从formula的git历史版本安装">方法二 从Formula的Git历史版本安装</h4>
+<p>如果官方提供了多个版本的Formula，但需要的版本不在列表中，可以通过查看Formula的Git提交历史来找到对应版本的Formula，并检出（checkout）到那个特定的提交。</p>
+<p>以下操作步骤：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. 进入Homebrew的Formula目录：</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> <span class="k">$(</span>brew --prefix<span class="k">)</span>/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 使用`git log`查看`icu4c.rb`的提交记录：</span>
+</span></span><span class="line"><span class="cl">git log --follow icu4c.rb
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 检出到您需要的特定版本对应的提交：</span>
+</span></span><span class="line"><span class="cl">git checkout -b icu4c-desired-version &lt;commit-hash&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. 重新安装 ICU4C</span>
+</span></span><span class="line"><span class="cl">brew reinstall ./icu4c.rb
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 5. 如果需要，使用`brew switch`切换到该版本：</span>
+</span></span><span class="line"><span class="cl">brew switch icu4c &lt;desired-version&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个方法我没有试完，因为操作的过程很卡，有想尝试的朋友可以试一下。</p>
+<h4 id="方法三-自定义本地-formula">方法三 自定义本地 Formula</h4>
+<p>如果需要的版本不在Homebrew的官方仓库中，可以创建一个自定义的Formula文件。</p>
+<p>相关步骤：</p>
+<ol>
+<li>创建一个自定义的Formula文件，例如 <code>icu4c@72.rb</code>。</li>
+<li>编写Formula文件，指定软件的描述、URL、版本号、SHA256签名等信息。可以参考现有的Formula文件来编写。</li>
+<li>安装自定义的Formula：<code>brew install /path/to/icu4c@72.rb</code></li>
+<li>如果需要，创建软链接以解决依赖问题。</li>
+</ol>
+<p>同样，没试过。</p>
+<h3 id="方案二-自己下载icu4c编译安装">方案二 自己下载icu4c编译安装</h3>
+<p><a class="link" href="https://github.com/unicode-org/icu/releases?page=3"  target="_blank" rel="noopener"
+    >unicode-org/icu下载地址</a></p>
+<p>编译安装过程：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tar -zxvf ./icu4c-72_1-src.tgz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> icu/source
+</span></span><span class="line"><span class="cl">./configure --prefix<span class="o">=</span>/usr/local/Cellar/icu4c/72.1
+</span></span><span class="line"><span class="cl">make <span class="o">&amp;&amp;</span> make install
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>将动态库文件拷贝到指定目录下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /usr/local/Cellar/icu4c/72.1/lib
+</span></span><span class="line"><span class="cl">cp ./libicui18n.72.dylib /usr/local/opt/icu4c/lib/libicui18n.72.dylib
+</span></span><span class="line"><span class="cl">cp ./libicuuc.72.1.dylib /usr/local/opt/icu4c/lib/libicuuc.72.dylib
+</span></span><span class="line"><span class="cl">cp ./libicudata.72.1.dylib /usr/local/opt/icu4c/lib/libicudata.72.dylib
+</span></span><span class="line"><span class="cl">cp ./libicuio.72.1.dylib /usr/local/opt/icu4c/lib/libicuio.72.dylib
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>检查一下效果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php73 --version
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行结果：</span>
+</span></span><span class="line"><span class="cl">dyld: Library not loaded: libicuuc.72.dylib
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Referenced from: /usr/local/Cellar/icu4c/74.2/lib/libicui18n.72.dylib
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reason: image not found
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">zsh: abort /usr/local/opt/php@7.3/bin/php --version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="方法一-dyld_library_path">方法一 DYLD_LIBRARY_PATH</h4>
+<p>还是没找到路径对吧，最简单的处理方法是，设置<code>DYLD_LIBRARY_PATH</code>环境变量，动态链接器搜索动态库文件时，如果在其他位置都没找到的情况下，会在你设定变量的目录下寻找动态库。</p>
+<p>设置在<code>.bash_profile</code>、<code>.bashrc</code>或<code>.zshrc</code>都可以（<strong>以下命令可直接照抄</strong>）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;export DYLD_LIBRARY_PATH=&#34;/usr/local/opt/icu4c/lib/&#34;&#39;</span> &gt;&gt; ~/.bash_profile
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> ~/.bash_profile
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>动态链接器搜索的位置一般有：</p>
+<ul>
+<li>可执行文件所在的目录。</li>
+<li>系统默认的库目录，如 <code>/usr/lib</code> 和 <code>/usr/local/lib</code>。</li>
+<li>由环境变量 <code>DYLD_LIBRARY_PATH</code> 或 <code>LD_LIBRARY_PATH</code> 指定的目录（在 Linux 中是 <code>LD_LIBRARY_PATH</code>）。</li>
+</ul>
+</blockquote>
+<h4 id="方法二-install_name_tool">方法二 install_name_tool</h4>
+<p>相对麻烦的做法，直接修改动态库文件所在的目录。</p>
+<p>根据错误内容，看下<code>libicui18n.72.dylib</code>、<code>libicuuc.72.dylib</code>、<code>libicuio.72.dylib</code>依赖的所有动态库。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">otool -L /usr/local/Cellar/icu4c/74.2/lib/libicui18n.72.dylib
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行结果：</span>
+</span></span><span class="line"><span class="cl">libicuio.73.dylib:
+</span></span><span class="line"><span class="cl">	libicuio.73.dylib <span class="o">(</span>compatibility version 73.0.0, current version 73.2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	libicuuc.73.dylib <span class="o">(</span>compatibility version 73.0.0, current version 73.2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	libicudata.73.dylib <span class="o">(</span>compatibility version 73.0.0, current version 73.2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	libicui18n.73.dylib <span class="o">(</span>compatibility version 73.0.0, current version 73.2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	/usr/lib/libSystem.B.dylib <span class="o">(</span>compatibility version 1.0.0, current version 1292.100.5<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	/usr/lib/libc++.1.dylib <span class="o">(</span>compatibility version 1.0.0, current version 905.6.0<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>将如上的依赖库<code>libicuuc.73.dylib</code>、<code>libicudata.73.dylib</code>、<code>libicui18n.73.dylib</code>加上一个<code>@loader_path</code>特殊前缀，使用<code>install_name_tool</code>命令进行修改（回答了Q3的问题）。</p>
+<p>因为其他文件操作也一样，所以这里直接贴完整的操作过程（<strong>照抄作业即可</strong>）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">install_name_tool -change libicuuc.72.dylib @loader_path/libicuuc.72.dylib ./libicui18n.72.dylib
+</span></span><span class="line"><span class="cl">install_name_tool -change libicudata.72.dylib @loader_path/libicudata.72.dylib ./libicui18n.72.dylib
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">install_name_tool -change libicudata.72.dylib @loader_path/libicudata.72.dylib ./libicuuc.72.dylib
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">install_name_tool -change libicudata.72.dylib @loader_path/libicudata.72.dylib ./libicuio.72.dylib
+</span></span><span class="line"><span class="cl">install_name_tool -change libicuuc.72.dylib @loader_path/libicuuc.72.dylib ./libicuio.72.dylib
+</span></span><span class="line"><span class="cl">install_name_tool -change libicui18n.72.dylib @loader_path/libicui18n.72.dylib ./libicuio.72.dylib
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再来检查一下效果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php73 --version
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行结果：</span>
+</span></span><span class="line"><span class="cl">PHP 7.3.33 <span class="o">(</span>cli<span class="o">)</span> <span class="o">(</span>built: Jun  <span class="m">8</span> <span class="m">2023</span> 15:56:42<span class="o">)</span> <span class="o">(</span> NTS <span class="o">)</span>
+</span></span><span class="line"><span class="cl">Copyright <span class="o">(</span>c<span class="o">)</span> 1997-2018 The PHP Group
+</span></span><span class="line"><span class="cl">Zend Engine v3.3.33, Copyright <span class="o">(</span>c<span class="o">)</span> 1998-2018 Zend Technologies
+</span></span><span class="line"><span class="cl">    with Zend OPcache v7.3.33, Copyright <span class="o">(</span>c<span class="o">)</span> 1999-2018, by Zend Technologies
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="命令说明">命令说明</h5>
+<p><code>otool</code>是macOS系统上的一个命令行工具，它用于显示和操作对象文件（包括静态库和动态库）。并提供了多种功能，可以帮助你检查和修改 Mach-O 对象文件的头部信息、数据段、符号表等。</p>
+<ul>
+<li><code>-L</code>选项用于显示Mach-O文件（如动态库<code>.dylib</code>或可执行文件）所依赖的所有动态库。</li>
+</ul>
+<p><code>install_name_tool</code>是macOS上的一个命令行工具，用于修改Mach-O可执行文件和动态链接库（dynamic libraries，即<code>.dylib</code>文件）中的安装名称（install names）。这些安装名称是动态库或框架的标识符，用于运行时查找和加载依赖项。</p>
+<ul>
+<li><code>-change</code> 选项用于更改动态库的安装名称。
+<ul>
+<li>这在以下情况下非常有用：
+<ul>
+<li>当你想要更新一个动态库的路径，但是可执行文件或另一个动态库中的安装名称仍然指向旧路径时。</li>
+<li>当你将一个应用程序或库移动到一个新位置，需要更新所有引用该库的路径时。</li>
+</ul>
+</li>
+<li>基本语法：<code>install_name_tool -change old_name new_name file</code>
+<ul>
+<li><code>old_name</code>：当前的安装名称，即你想要更改的旧路径或名称。</li>
+<li><code>new_name</code>：新的安装名称，即你想要设置的新路径或名称。</li>
+<li><code>file</code>：包含要更改的安装名称的 Mach-O 文件（可执行文件或动态库）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><code>@loader_path</code> 是一个特殊的前缀，用于指定相对于动态链接器加载程序的路径。当你在动态库中引用其他动态库时，可以使用 <code>@loader_path</code> 来告诉动态链接器在加载当前动态库的相同路径下查找依赖的动态库。</p>
+<h2 id="解决过程">解决过程</h2>
+<p>说的容易做起来难，以下是自己在一知半解的情况下的折腾过程，最后也是解决了问题：</p>
+<blockquote>
+<p>本来是当时解决完事后打的草稿，后面打算改一下，看了下还挺有趣，不改了，浅浅记录一下。</p>
+</blockquote>
+<p>因为会用到<code>install_name_tool</code>对动态链接库进行修改，使用ln的方式会改到原文件，所以拷贝备份到目标目录，直接在备份文件上进行修改。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /usr/local/Cellar/icu4c/72.1/lib
+</span></span><span class="line"><span class="cl">cp ./libicui18n.72.1.dylib /usr/local/opt/icu4c/lib/libicui18n.72.dylib
+</span></span><span class="line"><span class="cl">cp ./libicuuc.72.1.dylib /usr/local/opt/icu4c/lib/libicuuc.72.dylib
+</span></span><span class="line"><span class="cl">cp ./libicudata.72.1.dylib /usr/local/opt/icu4c/lib/libicudata.72.dylib
+</span></span><span class="line"><span class="cl">cp ./libicuio.72.1.dylib /usr/local/opt/icu4c/lib/libicuio.72.dylib
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行观察下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php73 --version
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行结果：</span>
+</span></span><span class="line"><span class="cl">dyld: Library not loaded: libicuuc.72.dylib
+</span></span><span class="line"><span class="cl">  Referenced from: /usr/local/Cellar/icu4c/74.2/lib/libicui18n.72.dylib
+</span></span><span class="line"><span class="cl">  Reason: image not found
+</span></span><span class="line"><span class="cl">zsh: abort      /usr/local/opt/php@7.3/bin/php --version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现还是报错，balabala 先爬帖，看有没有别的解决方法。</p>
+<p>发现<code>DYLD_LIBRARY_PATH</code>可以解决问题，但我不想用这种方式。</p>
+<p>然后继续折腾，折腾的麻了，想放弃直接<code>brew reinstall php@7.3</code>重装得了，结果跑了几次都raw.githubusercontent.com连接超时，重试了几次，连上了，直到遇到：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew reinstall php@7.3
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行结果：</span>
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Installing dependencies <span class="k">for</span> httpd: openssl@3, brotli, libnghttp2 and <span class="nv">pcre2</span>
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; Installing httpd dependency: openssl@3
+</span></span><span class="line"><span class="cl">Warning: A newer Command Line Tools release is available.
+</span></span><span class="line"><span class="cl">Update them from Software Update in System Preferences.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">If that doesn<span class="err">&#39;</span>t show you any updates, run:
+</span></span><span class="line"><span class="cl">  sudo rm -rf /Library/Developer/CommandLineTools
+</span></span><span class="line"><span class="cl">  sudo xcode-select --install
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Alternatively, manually download them from:
+</span></span><span class="line"><span class="cl">  https://developer.apple.com/download/all/.
+</span></span><span class="line"><span class="cl">You should download the Command Line Tools <span class="k">for</span> Xcode 13.2.1.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; perl ./Configure --prefix<span class="o">=</span>/usr/local/Cellar/openssl@3/3.1.1 --openssldir<span class="o">=</span>/usr/local/etc/openssl@3 --libdir<span class="o">=</span>/usr/local/Cellar/openss
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; <span class="nv">make</span>
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; make install <span class="nv">MANDIR</span><span class="o">=</span>/usr/local/Cellar/openssl@3/3.1.1/share/man <span class="nv">MANSUFFIX</span><span class="o">=</span><span class="nv">ssl</span>
+</span></span><span class="line"><span class="cl"><span class="o">==</span>&gt; make <span class="nb">test</span>
+</span></span><span class="line"><span class="cl">Error: Empty installation
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再重试几次，好家伙，还是一样，直接劝退了。</p>
+<p>回头继续折腾修改动态库路径的这个方向。</p>
+<p>冷静思考下，网上的文章都说cp完那些动态库就可以了，怎么到了我的环境就不行？</p>
+<p>好像也不是不行，是行的，我逐个cp动态库以后再执行<code>php73 --version</code>能够看到错误内容有发生变化，那不就说明这个操作是有效的吗？那只要仔细看最后一个错误内容，说不定就能发现点什么</p>
+<p>对比了一下两次的结果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php73 --version
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行结果：</span>
+</span></span><span class="line"><span class="cl">dyld: Library not loaded: /usr/local/opt/icu4c/lib/libicuio.72.dylib
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Referenced from: /usr/local/opt/php@7.3/bin/php
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reason: image not found
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">zsh: abort /usr/local/opt/php@7.3/bin/php --version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>四个文件都cp完再以后再执行的错误内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php73 --version
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行结果：</span>
+</span></span><span class="line"><span class="cl">dyld: Library not loaded: libicuuc.72.dylib
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Referenced from: /usr/local/Cellar/icu4c/74.2/lib/libicui18n.72.dylib
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reason: image not found
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">zsh: abort /usr/local/opt/php@7.3/bin/php --version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>乍眼一看又是<code>libicui18n</code>，好像又回到了第一个错误一样，仔细观察可以发现两次的Referenced from不同，Library not loaded的内容也不同。</p>
+<p>但是有什么关联呢？一时想不明白，先去卫生间小解一下（日常想到头破憋尿鳖的不行才去）。</p>
+<p>回来的路上灵光一现，既然可以<code>otool -L /usr/local/opt/php@7.3/bin/php</code>，同理，同样也可以<code>otool -L /usr/local/Cellar/icu4c/74.2/lib/libicui18n.72.dylib</code></p>
+<p>赶紧快步走回去试一下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /usr/local/opt/icu4c/lib
+</span></span><span class="line"><span class="cl">otool -L ./libicui18n.72.dylib
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行结果：</span>
+</span></span><span class="line"><span class="cl">./libicui18n.72.dylib:
+</span></span><span class="line"><span class="cl">	libicui18n.72.dylib <span class="o">(</span>compatibility version 72.0.0, current version 72.1.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	libicuuc.72.dylib <span class="o">(</span>compatibility version 72.0.0, current version 72.1.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	libicudata.72.dylib <span class="o">(</span>compatibility version 72.0.0, current version 72.1.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	/usr/lib/libSystem.B.dylib <span class="o">(</span>compatibility version 1.0.0, current version 1292.100.5<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	/usr/lib/libc++.1.dylib <span class="o">(</span>compatibility version 1.0.0, current version 905.6.0<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对比icui18n.74.dylib，观察有什么不同</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">otool -L /usr/local/Cellar/icu4c/74.2/lib/libicui18n.74.2.dylib
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行结果：</span>
+</span></span><span class="line"><span class="cl">/usr/local/Cellar/icu4c/74.2/lib/libicui18n.74.2.dylib:
+</span></span><span class="line"><span class="cl">	/usr/local/opt/icu4c/lib/libicui18n.74.dylib <span class="o">(</span>compatibility version 74.0.0, current version 74.2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	@loader_path/libicuuc.74.dylib <span class="o">(</span>compatibility version 74.0.0, current version 74.2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	@loader_path/libicudata.74.dylib <span class="o">(</span>compatibility version 74.0.0, current version 74.2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	/usr/lib/libSystem.B.dylib <span class="o">(</span>compatibility version 1.0.0, current version 1292.100.5<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	/usr/lib/libc++.1.dylib <span class="o">(</span>compatibility version 1.0.0, current version 905.6.0<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以明显看到，74中的相关依赖是多了<code>@loader_path</code>，而72中没有。</p>
+<p>大胆猜测一下，说不定正是因为i18n依赖了别的库，而库的地址，就是因为少了@loader_path所以才会有最后一个错误的提示，这样是不是就能说得通了？</p>
+<p>马上着手改一下试试</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /usr/local/opt/icu4c/lib
+</span></span><span class="line"><span class="cl">install_name_tool -change libicuuc.72.dylib @loader_path/libicuuc.72.dylib ./libicui18n.72.dylib
+</span></span><span class="line"><span class="cl">otool -L ./libicui18n.72.dylib
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行结果：</span>
+</span></span><span class="line"><span class="cl">./libicui18n.72.dylib:
+</span></span><span class="line"><span class="cl">	libicui18n.72.dylib <span class="o">(</span>compatibility version 72.0.0, current version 72.1.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	@loader_path/libicuuc.72.dylib <span class="o">(</span>compatibility version 72.0.0, current version 72.1.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	libicudata.72.dylib <span class="o">(</span>compatibility version 72.0.0, current version 72.1.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	/usr/lib/libSystem.B.dylib <span class="o">(</span>compatibility version 1.0.0, current version 1292.100.5<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	/usr/lib/libc++.1.dylib <span class="o">(</span>compatibility version 1.0.0, current version 905.6.0<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再来执行php看下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php73 --version
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行结果：</span>
+</span></span><span class="line"><span class="cl">dyld: Library not loaded: libicudata.72.dylib
+</span></span><span class="line"><span class="cl">  Referenced from: /usr/local/Cellar/icu4c/74.2/lib/libicui18n.72.dylib
+</span></span><span class="line"><span class="cl">  Reason: image not found
+</span></span><span class="line"><span class="cl">zsh: abort      /usr/local/opt/php@7.3/bin/php --version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>很好，错误内容有新的变化了，不再是<code>libicuuc.72.dylib</code>了，而<code>libicudata.72.dylib</code>正是下一个要依赖的动态库，说明修改起作用了，继续改</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">install_name_tool -change libicudata.72.dylib @loader_path/libicudata.72.dylib ./libicui18n.72.dylib
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再执行php观察返回结果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php73 --version
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行结果：</span>
+</span></span><span class="line"><span class="cl">dyld: Library not loaded: libicudata.72.dylib
+</span></span><span class="line"><span class="cl">  Referenced from: /usr/local/Cellar/icu4c/74.2/lib/libicuuc.72.dylib
+</span></span><span class="line"><span class="cl">  Reason: image not found
+</span></span><span class="line"><span class="cl">zsh: abort      /usr/local/opt/php@7.3/bin/php --version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>很好，这次Referenced from是<code>libicuuc.72.dylib</code>了，说明改对了，接下来就是重复这个过程，直到把icu4c所有动态库的依赖地址都改掉，再来看下结果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php73 --version
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行结果：</span>
+</span></span><span class="line"><span class="cl">PHP 7.3.33 <span class="o">(</span>cli<span class="o">)</span> <span class="o">(</span>built: Jun  <span class="m">8</span> <span class="m">2023</span> 15:56:42<span class="o">)</span> <span class="o">(</span> NTS <span class="o">)</span>
+</span></span><span class="line"><span class="cl">Copyright <span class="o">(</span>c<span class="o">)</span> 1997-2018 The PHP Group
+</span></span><span class="line"><span class="cl">Zend Engine v3.3.33, Copyright <span class="o">(</span>c<span class="o">)</span> 1998-2018 Zend Technologies
+</span></span><span class="line"><span class="cl">    with Zend OPcache v7.3.33, Copyright <span class="o">(</span>c<span class="o">)</span> 1999-2018, by Zend Technologies
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>至此，问题终于解决了，总算没白费磕了那么多时间，又可以写一篇文章了😎。</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a class="link" href="https://cloud.tencent.com/developer/article/2052357"  target="_blank" rel="noopener"
+    >macOS 开发中动态库问题剖析-腾讯云开发者社区-腾讯云</a></li>
+<li><a class="link" href="https://www.cnblogs.com/iifeng/p/17714722.html"  target="_blank" rel="noopener"
+    >php 执行报错 icu4c错误 - 蓝静空 - 博客园</a></li>
+<li><a class="link" href="https://www.cnblogs.com/benbenhan/articles/16888353.html"  target="_blank" rel="noopener"
+    >解决mac下:dyld: Library not loaded: /usr/local/opt/icu4c/lib/libicui18n.64.dylib - 笨笨韩 - 博客园</a></li>
+<li><a class="link" href="https://www.oracle.com/technetwork/articles/servers-storage-dev/import-enterprise-studio-ide-1689617.html"  target="_blank" rel="noopener"
+    >Importing Enterprise Application Projects into Oracle Developer Studio IDE</a></li>
+<li><a class="link" href="https://www.jianshu.com/p/6625fd5c72b9"  target="_blank" rel="noopener"
+    >MacOS 遇到 dyld: Library not loaded: xxx.dylib 的解决方案 - 简书</a></li>
+<li><a class="link" href="https://blog.csdn.net/chechengxue/article/details/135708333"  target="_blank" rel="noopener"
+    >MAC 升级 Homebrew 导致icu4c库依赖版本问题_failed to download resource &ldquo;icu4c.rb-CSDN博客</a></li>
+<li><a class="link" href="https://blog.csdn.net/jmdxin/article/details/114970739"  target="_blank" rel="noopener"
+    >解决mac下:dyld: Library not loaded: /usr/local/opt/icu4c/lib/libicui18n.64.dylib_dyld[72382]: library not loaded: libicui18n.64.dyl-CSDN博客</a></li>
+<li><a class="link" href="https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/DynamicLibraryUsageGuidelines.html#//apple_ref/doc/uid/TP40001928-SW10"  target="_blank" rel="noopener"
+    >Dynamic Library Usage Guidelines</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/php/">PHP</a>
+        
+            <a href="/tags/mac/">Mac</a>
+        
+            <a href="/tags/icu4c/">ICU4C</a>
+        
+            <a href="/tags/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93/">动态链接库</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://unpkg.com/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://unpkg.com/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/system/android/env/install-git/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">在android上安装git环境</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/system/linux/env/apache-site-more/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/qfHDW8fltBrGpL2TeHDSMjAxODA0MzBfMTA1MTAz.jpeg" loading="lazy" data-key="system/linux/env/apache-site-more" data-hash="https://ghjayce.github.io/asset/blog/qfHDW8fltBrGpL2TeHDSMjAxODA0MzBfMTA1MTAz.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">centos7 安装Apache2.4配置多站点目录</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/system/android/env/web-env-build/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/w6PuBfnL7w3BeiDpzBQvMjAxNzEyMjRfMTczMzQ1.jpeg" loading="lazy" data-key="system/android/env/web-env-build" data-hash="https://ghjayce.github.io/asset/blog/w6PuBfnL7w3BeiDpzBQvMjAxNzEyMjRfMTczMzQ1.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">虚拟机Linux Centos7搭建web环境（LNMP）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/system/hackintosh/asus/x45vd/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/dPMjucATggvoLXmJZXz5MjAxNzExMDRfMjEwMzAw.jpeg" loading="lazy" data-key="system/hackintosh/asus/x45vd" data-hash="https://ghjayce.github.io/asset/blog/dPMjucATggvoLXmJZXz5MjAxNzExMDRfMjEwMzAw.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">华硕x45vd安装黑苹果Yosemite 10.10.3记录</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/system/windows/regedit/right-click-menu/sublime-text/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/WKRr6SlzDfcw9eTWRv1EMjAxNjEyMjZfMTAzNDM0.jpeg" loading="lazy" data-key="system/windows/regedit/right-click-menu/sublime-text" data-hash="https://ghjayce.github.io/asset/blog/WKRr6SlzDfcw9eTWRv1EMjAxNjEyMjZfMTAzNDM0.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">将Sublime Text 添加到右键菜单的方法</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2024 GHJayce
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/default-skin/default-skin.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://unpkg.com/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
