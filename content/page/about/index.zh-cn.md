@@ -18,14 +18,14 @@ Shell
 
 PHP
 - [Weapons](https://github.com/GHJayce/Weapons) PHP武器库，封装日常使用到的函数、方法。
-- [RightClickMenu](https://github.com/GHJayce/RightClickMenu) 生成Windows右键菜单的注册文件，PHP写的工具，用于练习设计模式。[查看](https://ghbjayce.github.io/RightClickMenu/)
+- [RightClickMenu](https://github.com/GHJayce/RightClickMenu) 生成Windows右键菜单的注册文件，PHP写的工具，用于练习设计模式。[查看](https://ghjayce.github.io/RightClickMenu/)
 
 Python
 - [UpdateBackHelper](https://github.com/GHJayce/UpdateBackHelper) python工具，更新备份助手，一键拉取项目最新文件与服务器文件。
 - [excel-to-csv](https://github.com/GHJayce/excel-to-csv) excel文档转换成csv格式的python工具，支持xlsx、xls格式。
 
 JS & JQ
-- [j-weapons](https://github.com/GHJayce/j-weapons) J武器。一个开箱即用的JS函数库。[查看](https://ghbjayce.github.io/j-weapons/)
+- [j-weapons](https://github.com/GHJayce/j-weapons) J武器。一个开箱即用的JS函数库。[查看](https://ghjayce.github.io/j-weapons/)
 - [dictation](https://github.com/GHJayce/dictation) 这是一个自动听写词语（中文或英文）的轻应用
 - [editor.md](https://github.com/GHJayce/editor.md) Editor.md markdown编辑器加入了一些新特性
 
@@ -33,8 +33,8 @@ Vue
 - [right-click-menu-front](https://github.com/GHJayce/right-click-menu-front) RightClickMenu的前端项目
 
 HTML5 & HTML Game
-- [FlexTool](https://github.com/GHJayce/FlexTool) 一个html5弹性盒子的工具，能够直观的看到弹性盒子的特性。[前往体验](https://ghbjayce.github.io/FlexTool/)
-- [飞岩走壁](https://github.com/GHJayce/flying-rock-game) 模仿着做的第一款网页小游戏，[前往体验](https://ghbjayce.github.io/flying-rock-game)
+- [FlexTool](https://github.com/GHJayce/FlexTool) 一个html5弹性盒子的工具，能够直观的看到弹性盒子的特性。[前往体验](https://ghjayce.github.io/FlexTool/)
+- [飞岩走壁](https://github.com/GHJayce/flying-rock-game) 模仿着做的第一款网页小游戏，[前往体验](https://ghjayce.github.io/flying-rock-game)
 
 ### 开源贡献
 - [xiaolincoder/CS-Base](https://github.com/xiaolincoder/CS-Base/commits?author=GHJayce)
