@@ -348,7 +348,7 @@ dyld: Library not loaded：表明动态链接器未能加载一个或多个指�
 
 
                 <time class="article-time--reading">
-                    阅读时长: 5 分钟
+                    阅读时长: 6 分钟
                 </time>
             </div>
         
@@ -580,7 +580,7 @@ dyld: Library not loaded：表明动态链接器未能加载一个或多个指�
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="方法一-dyld_library_path">方法一 DYLD_LIBRARY_PATH</h4>
-<p>还是没找到路径对吧，最简单的处理方法是，设置<code>DYLD_LIBRARY_PATH</code>环境变量，动态链接器搜索动态库文件时，如果在其他位置都没找到的情况下，会在你设定变量的目录下寻找动态库。</p>
+<p>还是报错，还是没找到路径对吧，最简单的处理方法是，设置<code>DYLD_LIBRARY_PATH</code>环境变量，动态链接器搜索动态库文件时，如果在其他位置都没找到的情况下，会在你设定变量的目录下寻找动态库。</p>
 <p>设置在<code>.bash_profile</code>、<code>.bashrc</code>或<code>.zshrc</code>都可以（<strong>以下命令可直接照抄</strong>）：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -590,6 +590,25 @@ dyld: Library not loaded：表明动态链接器未能加载一个或多个指�
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;export DYLD_LIBRARY_PATH=&#34;/usr/local/opt/icu4c/lib/&#34;&#39;</span> &gt;&gt; ~/.bash_profile
 </span></span><span class="line"><span class="cl"><span class="nb">source</span> ~/.bash_profile
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>来检查一下效果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php73 --version
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行结果：</span>
+</span></span><span class="line"><span class="cl">PHP 7.3.33 <span class="o">(</span>cli<span class="o">)</span> <span class="o">(</span>built: Jun  <span class="m">8</span> <span class="m">2023</span> 15:56:42<span class="o">)</span> <span class="o">(</span> NTS <span class="o">)</span>
+</span></span><span class="line"><span class="cl">Copyright <span class="o">(</span>c<span class="o">)</span> 1997-2018 The PHP Group
+</span></span><span class="line"><span class="cl">Zend Engine v3.3.33, Copyright <span class="o">(</span>c<span class="o">)</span> 1998-2018 Zend Technologies
+</span></span><span class="line"><span class="cl">    with Zend OPcache v7.3.33, Copyright <span class="o">(</span>c<span class="o">)</span> 1999-2018, by Zend Technologies
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
@@ -613,16 +632,14 @@ dyld: Library not loaded：表明动态链接器未能加载一个或多个指�
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">otool -L /usr/local/Cellar/icu4c/74.2/lib/libicui18n.72.dylib
 </span></span><span class="line"><span class="cl"><span class="c1"># 执行结果：</span>
-</span></span><span class="line"><span class="cl">libicuio.73.dylib:
-</span></span><span class="line"><span class="cl">	libicuio.73.dylib <span class="o">(</span>compatibility version 73.0.0, current version 73.2.0<span class="o">)</span>
-</span></span><span class="line"><span class="cl">	libicuuc.73.dylib <span class="o">(</span>compatibility version 73.0.0, current version 73.2.0<span class="o">)</span>
-</span></span><span class="line"><span class="cl">	libicudata.73.dylib <span class="o">(</span>compatibility version 73.0.0, current version 73.2.0<span class="o">)</span>
-</span></span><span class="line"><span class="cl">	libicui18n.73.dylib <span class="o">(</span>compatibility version 73.0.0, current version 73.2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">/usr/local/Cellar/icu4c/74.2/lib/libicui18n.72.dylib:
+</span></span><span class="line"><span class="cl">	libicui18n.72.dylib <span class="o">(</span>compatibility version 72.0.0, current version 72.1.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	libicuuc.72.dylib <span class="o">(</span>compatibility version 72.0.0, current version 72.1.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">	libicudata.72.dylib <span class="o">(</span>compatibility version 72.0.0, current version 72.1.0<span class="o">)</span>
 </span></span><span class="line"><span class="cl">	/usr/lib/libSystem.B.dylib <span class="o">(</span>compatibility version 1.0.0, current version 1292.100.5<span class="o">)</span>
 </span></span><span class="line"><span class="cl">	/usr/lib/libc++.1.dylib <span class="o">(</span>compatibility version 1.0.0, current version 905.6.0<span class="o">)</span>
 </span></span></code></pre></td></tr></table>
@@ -631,21 +648,31 @@ dyld: Library not loaded：表明动态链接器未能加载一个或多个指�
 <p>因为其他文件操作也一样，所以这里直接贴完整的操作过程（<strong>照抄作业即可</strong>）：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">install_name_tool -change libicuuc.72.dylib @loader_path/libicuuc.72.dylib ./libicui18n.72.dylib
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /usr/local/opt/icu4c/lib
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># libicui18n.72.dylib</span>
+</span></span><span class="line"><span class="cl">install_name_tool -change libicuuc.72.dylib @loader_path/libicuuc.72.dylib ./libicui18n.72.dylib
 </span></span><span class="line"><span class="cl">install_name_tool -change libicudata.72.dylib @loader_path/libicudata.72.dylib ./libicui18n.72.dylib
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># libicuuc.72.dylib</span>
 </span></span><span class="line"><span class="cl">install_name_tool -change libicudata.72.dylib @loader_path/libicudata.72.dylib ./libicuuc.72.dylib
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># libicuio.72.dylib</span>
 </span></span><span class="line"><span class="cl">install_name_tool -change libicudata.72.dylib @loader_path/libicudata.72.dylib ./libicuio.72.dylib
 </span></span><span class="line"><span class="cl">install_name_tool -change libicuuc.72.dylib @loader_path/libicuuc.72.dylib ./libicuio.72.dylib
 </span></span><span class="line"><span class="cl">install_name_tool -change libicui18n.72.dylib @loader_path/libicui18n.72.dylib ./libicuio.72.dylib
