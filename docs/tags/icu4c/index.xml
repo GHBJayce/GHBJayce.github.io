@@ -293,7 +293,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	/usr/lib/libc++.1.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version 1.0.0, current version 905.6.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;将如上的依赖库&lt;code&gt;libicuuc.73.dylib&lt;/code&gt;、&lt;code&gt;libicudata.73.dylib&lt;/code&gt;、&lt;code&gt;libicui18n.73.dylib&lt;/code&gt;加上一个&lt;code&gt;@loader_path&lt;/code&gt;特殊前缀，使用&lt;code&gt;install_name_tool&lt;/code&gt;命令进行修改（回答了Q3的问题）。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;将如上的依赖库&lt;code&gt;libicuuc.72.dylib&lt;/code&gt;、&lt;code&gt;libicudata.72.dylib&lt;/code&gt;、&lt;code&gt;libicui18n.72.dylib&lt;/code&gt;加上一个&lt;code&gt;@loader_path&lt;/code&gt;特殊前缀，使用&lt;code&gt;install_name_tool&lt;/code&gt;命令进行修改（回答了Q3的问题）。&lt;/p&gt;
 &lt;p&gt;因为其他文件操作也一样，所以这里直接贴完整的操作过程（&lt;strong&gt;照抄作业即可&lt;/strong&gt;）：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -377,7 +377,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;本来是当时解决完事后打的草稿，后面打算改一下，看了下还挺有趣，不改了，浅浅记录一下。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;因为会用到&lt;code&gt;install_name_tool&lt;/code&gt;对动态链接库进行修改，使用ln的方式会改到原文件，所以拷贝备份到目标目录，直接在备份文件上进行修改。&lt;/p&gt;
+&lt;p&gt;因为会用到&lt;code&gt;install_name_tool&lt;/code&gt;对动态链接库进行修改，使用ln的方式会改到原文件，所以做个拷贝到目标目录，直接在拷贝文件上进行修改。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
