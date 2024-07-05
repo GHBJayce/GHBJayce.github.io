@@ -246,6 +246,13 @@
             <li><a href="#导出和导入">导出和导入</a></li>
           </ol>
         </li>
+        <li><a href="#子组件">子组件</a></li>
+        <li><a href="#props">Props</a>
+          <ol>
+            <li><a href="#获取props">获取Props</a></li>
+          </ol>
+        </li>
+        <li><a href="#渲染列表">渲染列表</a></li>
       </ol>
     </li>
     <li><a href="#jsx">JSX</a>
@@ -600,7 +607,7 @@
 </div>
 </div><p><strong>这就是React组件的定义方式，<code>MyApp</code>是组件名称，名称必须以大写字母开头</strong>，换句话说你可以由此作为依据来辨别React组件，因为HTML标签必须是小写字母开头的。</p>
 <p><code>&lt;h1&gt;Hello, world!&lt;/h1&gt;</code>，这段看起来像HTML，实际上是JavaScript，这种语法被称为JSX，它允许你在JavaScript中嵌入标签。JSX看起来和HTML很像，但它的语法更加严格并且可以动态展示信息。</p>
-<p>但JSX并不属于React，它不是React的特性，<a class="link" href="./JSX" >了解更多关于JSX</a>。</p>
+<p>但JSX并不属于React，它不是React的特性，<a class="link" href="#jsx" >了解更多关于JSX</a>（强烈建议先了解完再回过头来看）。</p>
 <p>简单的JSX写在一行没问题，但如果JSX很多，要换行应该怎么写？就像下面这样：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -682,11 +689,7 @@
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">Buttons</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><blockquote>
-<p><code>function Button({ name })</code>，这种形参的写法叫做<a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter"  target="_blank" rel="noopener"
-    >解构赋值</a>，是JavaScript的表达式。</p>
-</blockquote>
-<p>在另一个文件<code>App.tsx</code>中导入：</p>
+</div><p>在另一个文件<code>App.tsx</code>中导入：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -781,11 +784,153 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><blockquote>
-<p><strong>通过这个例子可以看到，函数返回了JSX，可以实现套娃式嵌套JSX，再联合<code>{}</code>大括号可以将组件玩出花来。</strong></p>
-</blockquote>
-<p><strong>通常，文件中仅包含一个组件时，人们会选择默认导出，而当文件中包含多个组件或某个值需要导出时，则会选择具名导出。</strong></p>
+</div><p><strong>通常，文件中仅包含一个组件时，人们会选择默认导出，而当文件中包含多个组件或某个值需要导出时，则会选择具名导出。</strong></p>
 <p>无论选择哪种方式，请记得给你的组件和相应的文件命名一个有意义的名字。不建议创建未命名的组件，比如 <code>export default () =&gt; {}</code>，因为这样会使得调试变得异常困难。</p>
+<h3 id="子组件">子组件</h3>
+<p>通过上面的例子可以看到，<code>Button</code>是一个子组件，同时也是一个函数，它返回了JSX，并嵌套进了<code>Buttons</code>父组件中，然后再被嵌套进<code>App</code>组件中。</p>
+<p><strong>这个过程可以实现俄罗斯套娃式嵌套JSX，再联合<code>{}</code>大括号可以将组件玩出花来</strong>。</p>
+<h3 id="props">Props</h3>
+<p>React组件使用<code>props</code>来互相通信。每个父组件都可以提供<code>props</code>给它的子组件，从而将一些信息传递给它。<code>Props</code>可能会让你想起 HTML 属性，但你可以通过它们传递任何JavaScript值，包括对象、数组和函数。</p>
+<p>以<code>&lt;img&gt;</code>HTML标签举例，它的属性（在<a class="link" href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element"  target="_blank" rel="noopener"
+    >HTML标准</a>里称为attributes）有：</p>
+<ul>
+<li>alt</li>
+<li>src</li>
+<li>width</li>
+<li>height</li>
+<li>srcset</li>
+<li>loading</li>
+<li>crossorigin</li>
+</ul>
+<p>而在上面的例子中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">Button</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="p">/&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>name</code>就是组件的Props，类似于<code>&lt;img&gt;</code>标签的属性Attributes。</p>
+<h4 id="获取props">获取Props</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="kr">interface</span> <span class="nx">ButtonProps</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name?</span>: <span class="kt">string</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kd">function</span> <span class="nx">Button</span><span class="p">(</span><span class="nx">props</span>: <span class="kt">ButtonProps</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">props</span><span class="p">.</span><span class="nx">name</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span><span class="nx">name</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到<code>props</code>这个形参，这样就能够接收所有赋值给<code>Button</code>组件的props。</p>
+<p>当然，你也可以这么写：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">Button</span><span class="p">({</span> <span class="nx">name</span> <span class="p">}</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span>: <span class="kt">string</span> <span class="p">}</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span><span class="nx">name</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>function Button({ name })</code>，这种形参的写法叫做<a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter"  target="_blank" rel="noopener"
+    >解构赋值</a>，是JavaScript的表达式。</p>
+<h3 id="渲染列表">渲染列表</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Ul() {</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">names</span>: <span class="kt">string</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;jayce&#39;</span><span class="p">,</span> <span class="s1">&#39;jack&#39;</span><span class="p">,</span> <span class="s1">&#39;jay&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">names</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">name</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">          <span class="p">&lt;</span><span class="nt">li</span> <span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">name</span><span class="p">}&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">))</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以这么写：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Ul() {</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">names</span>: <span class="kt">string</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;jayce&#39;</span><span class="p">,</span> <span class="s1">&#39;jack&#39;</span><span class="p">,</span> <span class="s1">&#39;jay&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">items</span> <span class="o">=</span> <span class="nx">names</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">name</span> <span class="o">=&gt;</span> <span class="p">&lt;</span><span class="nt">li</span> <span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">name</span><span class="p">}&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">li</span><span class="p">&gt;);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;{</span><span class="nx">items</span><span class="p">}&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><code>const items = names.map(name =&gt; &lt;li&gt;...&lt;/li&gt;);</code>这种写法叫做<a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body"  target="_blank" rel="noopener"
+    >箭头函数表达式</a>。</p>
+<ul>
+<li>箭头函数<code>=&gt;</code>之后的表达式会被隐式地返回，因此可以省略return语句。</li>
+<li>箭头函数<code>=&gt; {</code>后面的部分被称为块函数体（Block body），它支持多行代码的写法，但必须用显式的return语句返回。</li>
+</ul>
+</blockquote>
+<p>其中<code>&lt;li key={name}&gt;</code>的<code>key</code>属性是必须的，它的值起到唯一标识作用，实际使用不应该是name，而应是id。</p>
+<p>因为这些key会告诉React，每个组件对应着数组里的哪一项，所以React可以把它们匹配起来。这在数组项进行移动（例如排序）、插入或删除等操作时非常重要。一个合适的<code>key</code>可以帮助React 推断发生了什么，从而得以正确地更新DOM树。</p>
 <h2 id="jsx">JSX</h2>
 <p><a class="link" href="https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform"  target="_blank" rel="noopener"
     >JSX和React是两个相互独立的东西</a>，JSX是JavaScript语法扩展，是一种语法扩展，而React是一个JavaScript库。</p>
@@ -1110,6 +1255,8 @@
 <ul>
 <li><a class="link" href="https://react.dev/"  target="_blank" rel="noopener"
     >React</a></li>
+<li><a class="link" href="https://nextjs.org/learn/react-foundations"  target="_blank" rel="noopener"
+    >React Foundations | Next.js 1-7章</a></li>
 <li><a class="link" href="https://vitejs.dev/"  target="_blank" rel="noopener"
     >Vite | Next Generation Frontend Tooling</a></li>
 <li><a class="link" href="https://juejin.cn/post/6959452993057980447"  target="_blank" rel="noopener"
@@ -1118,6 +1265,8 @@
     >Export and Import</a></li>
 <li><a class="link" href="https://transform.tools/html-to-jsx"  target="_blank" rel="noopener"
     >HTML转JSX在线转换器</a></li>
+<li><a class="link" href="https://jsx.github.io/"  target="_blank" rel="noopener"
+    >JSX - a faster, safer, easier JavaScript</a></li>
 </ul>
 
 </section>
