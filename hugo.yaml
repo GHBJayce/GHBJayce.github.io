@@ -194,7 +194,7 @@ params:
             enabled: false
     render:
         image:
-            extranelLink:
+            externalLink:
                 enabled: true
 
 ### Custom menu

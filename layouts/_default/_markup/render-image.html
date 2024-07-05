@@ -1,7 +1,7 @@
 {{- $Permalink := .Destination | safeURL -}}
 {{- $image := "" -}}
 
-{{- if and (hasPrefix $Permalink "http") (default false .Page.Site.Params.render.image.extranelLink.enabled) -}}
+{{- if and (hasPrefix $Permalink "http") (default false .Page.Site.Params.render.image.externalLink.enabled) -}}
 	{{- with resources.GetRemote $Permalink -}}
 		{{- with .Err -}}
 			{{- $warnMsg := printf "%s" $Permalink -}}

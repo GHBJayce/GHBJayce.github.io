@@ -6,7 +6,47 @@
         <description>Recent content in Tags on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Fri, 26 Apr 2024 15:24:57 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 04 Jul 2024 18:36:56 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>ECMAScript6</title>
+        <link>https://ghjayce.github.io/tags/ecmascript6/</link>
+        <pubDate>Thu, 04 Jul 2024 18:36:56 +0800</pubDate>
+        
+        <guid>https://ghjayce.github.io/tags/ecmascript6/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>JavaScript</title>
+        <link>https://ghjayce.github.io/tags/javascript/</link>
+        <pubDate>Thu, 04 Jul 2024 18:36:56 +0800</pubDate>
+        
+        <guid>https://ghjayce.github.io/tags/javascript/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>JSX</title>
+        <link>https://ghjayce.github.io/tags/jsx/</link>
+        <pubDate>Thu, 04 Jul 2024 18:36:56 +0800</pubDate>
+        
+        <guid>https://ghjayce.github.io/tags/jsx/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>React</title>
+        <link>https://ghjayce.github.io/tags/react/</link>
+        <pubDate>Thu, 04 Jul 2024 18:36:56 +0800</pubDate>
+        
+        <guid>https://ghjayce.github.io/tags/react/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>前端</title>
+        <link>https://ghjayce.github.io/tags/%E5%89%8D%E7%AB%AF/</link>
+        <pubDate>Thu, 04 Jul 2024 18:36:56 +0800</pubDate>
+        
+        <guid>https://ghjayce.github.io/tags/%E5%89%8D%E7%AB%AF/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>ICU4C</title>
         <link>https://ghjayce.github.io/tags/icu4c/</link>
         <pubDate>Fri, 26 Apr 2024 15:24:57 +0800</pubDate>
@@ -348,14 +388,6 @@
         <pubDate>Sun, 24 Dec 2017 17:33:45 +0800</pubDate>
         
         <guid>https://ghjayce.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>JavaScript</title>
-        <link>https://ghjayce.github.io/tags/javascript/</link>
-        <pubDate>Wed, 08 Nov 2017 09:05:13 +0800</pubDate>
-        
-        <guid>https://ghjayce.github.io/tags/javascript/</guid>
         <description></description>
         </item>
         <item>

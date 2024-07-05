@@ -816,7 +816,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 	
 ></p>
 <h5 id="我的改动">我的改动</h5>
-<p>我在源文件的基础上，增加了<code>resources.GetRemote</code>获取外链图片的部分，并且在<code>hugo.yaml</code>中增加了一个<code>params.render.image.extranelLink.enabled</code>开关进行控制，是否启用外链图片的逻辑。</p>
+<p>我在源文件的基础上，增加了<code>resources.GetRemote</code>获取外链图片的部分，并且在<code>hugo.yaml</code>中增加了一个<code>params.render.image.externalLink.enabled</code>开关进行控制，是否启用外链图片的逻辑。</p>
 <p>1、<code>layouts/_default/_markup/render-image.html</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -883,7 +883,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 <pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- $Permalink := .Destination | safeURL -}}
 </span></span><span class="line"><span class="cl">{{- $image := &#34;&#34; -}}
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">{{- if and (hasPrefix $Permalink &#34;http&#34;) (default false .Page.Site.Params.render.image.extranelLink.enabled) -}}
+</span></span><span class="line"><span class="cl">{{- if and (hasPrefix $Permalink &#34;http&#34;) (default false .Page.Site.Params.render.image.externalLink.enabled) -}}
 </span></span><span class="line"><span class="cl">	{{- with resources.GetRemote $Permalink -}}
 </span></span><span class="line"><span class="cl">		{{- with .Err -}}
 </span></span><span class="line"><span class="cl">			{{- $warnMsg := printf &#34;%s&#34; $Permalink -}}
@@ -959,7 +959,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 </span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nt">render</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">image</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nt">extranelLink</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nt">externalLink</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -995,7 +995,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 </div><p>有三种解决办法：</p>
 <ol>
 <li>解决掉外链图片访问慢的问题。</li>
-<li>在平常写文章的时候，把<code>params.render.image.extranelLink.enabled</code>关闭，没错外链图片没有交互效果了，但你只是想写文章而已，写完以后可以再打开。</li>
+<li>在平常写文章的时候，把<code>params.render.image.externalLink.enabled</code>关闭，没错外链图片没有交互效果了，但你只是想写文章而已，写完以后可以再打开。</li>
 <li>不需要解决，大可以挑一个网络顺畅的时刻去做这件事，之后再启动时它会使用缓存，启动会很快，也就首次成功启动会受影响而已。</li>
 </ol>
 <hr>
@@ -1112,6 +1112,25 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
             
                 
 <article class="has-image">
+    <a href="/p/language/javascript/package/react/quick-start/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/uwgqqiUfSOHwLzCqNN13MjAyNDA3MDRfMTkwNjEy.jpeg" loading="lazy" data-key="language/javascript/package/react/quick-start" data-hash="https://ghjayce.github.io/asset/blog/uwgqqiUfSOHwLzCqNN13MjAyNDA3MDRfMTkwNjEy.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">React入门</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/static-site-generator/hugo/quick-start/">
         
         
@@ -1162,25 +1181,6 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 
         <div class="article-details">
             <h2 class="article-title">PHP报错解析和如何捕获错误信息</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/language/javascript/key-code/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://ghjayce.github.io/asset/blog/hhu3ZhdElGKvdDDmPImUMjAxNzExMDhfMDkwNTEz.jpeg" loading="lazy" data-key="language/javascript/key-code" data-hash="https://ghjayce.github.io/asset/blog/hhu3ZhdElGKvdDDmPImUMjAxNzExMDhfMDkwNTEz.jpeg"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">JS 键盘按键keyCode对应表</h2>
         </div>
     </a>
 </article>

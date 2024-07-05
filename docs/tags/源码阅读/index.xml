@@ -1219,7 +1219,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;h5 id=&#34;我的改动&#34;&gt;我的改动&lt;/h5&gt;
-&lt;p&gt;我在源文件的基础上，增加了&lt;code&gt;resources.GetRemote&lt;/code&gt;获取外链图片的部分，并且在&lt;code&gt;hugo.yaml&lt;/code&gt;中增加了一个&lt;code&gt;params.render.image.extranelLink.enabled&lt;/code&gt;开关进行控制，是否启用外链图片的逻辑。&lt;/p&gt;
+&lt;p&gt;我在源文件的基础上，增加了&lt;code&gt;resources.GetRemote&lt;/code&gt;获取外链图片的部分，并且在&lt;code&gt;hugo.yaml&lt;/code&gt;中增加了一个&lt;code&gt;params.render.image.externalLink.enabled&lt;/code&gt;开关进行控制，是否启用外链图片的逻辑。&lt;/p&gt;
 &lt;p&gt;1、&lt;code&gt;layouts/_default/_markup/render-image.html&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1286,7 +1286,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{{- $Permalink := .Destination | safeURL -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{{- $image := &amp;#34;&amp;#34; -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{{- if and (hasPrefix $Permalink &amp;#34;http&amp;#34;) (default false .Page.Site.Params.render.image.extranelLink.enabled) -}}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{{- if and (hasPrefix $Permalink &amp;#34;http&amp;#34;) (default false .Page.Site.Params.render.image.externalLink.enabled) -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	{{- with resources.GetRemote $Permalink -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		{{- with .Err -}}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			{{- $warnMsg := printf &amp;#34;%s&amp;#34; $Permalink -}}
@@ -1362,7 +1362,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;			&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;enabled&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;render&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;		&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;			&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;extranelLink&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;			&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;externalLink&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;				&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;enabled&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
@@ -1398,7 +1398,7 @@
 &lt;/div&gt;&lt;p&gt;有三种解决办法：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;解决掉外链图片访问慢的问题。&lt;/li&gt;
-&lt;li&gt;在平常写文章的时候，把&lt;code&gt;params.render.image.extranelLink.enabled&lt;/code&gt;关闭，没错外链图片没有交互效果了，但你只是想写文章而已，写完以后可以再打开。&lt;/li&gt;
+&lt;li&gt;在平常写文章的时候，把&lt;code&gt;params.render.image.externalLink.enabled&lt;/code&gt;关闭，没错外链图片没有交互效果了，但你只是想写文章而已，写完以后可以再打开。&lt;/li&gt;
 &lt;li&gt;不需要解决，大可以挑一个网络顺畅的时刻去做这件事，之后再启动时它会使用缓存，启动会很快，也就首次成功启动会受影响而已。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
