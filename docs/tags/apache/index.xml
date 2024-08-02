@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Apache on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/apache/</link>
+        <link>/tags/apache/</link>
         <description>Recent content in Apache on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 30 Apr 2018 10:51:03 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/apache/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 30 Apr 2018 10:51:03 +0800</lastBuildDate><atom:link href="/tags/apache/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>centos7 安装Apache2.4配置多站点目录</title>
-        <link>https://ghjayce.github.io/p/system/linux/env/apache-site-more/</link>
+        <link>/p/system/linux/env/apache-site-more/</link>
         <pubDate>Mon, 30 Apr 2018 10:51:03 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/linux/env/apache-site-more/</guid>
+        <guid>/p/system/linux/env/apache-site-more/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/qfHDW8fltBrGpL2TeHDSMjAxODA0MzBfMTA1MTAz.jpeg" alt="Featured image of post centos7 安装Apache2.4配置多站点目录" /&gt;&lt;h2 id=&#34;安装apache&#34;&gt;安装apache&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;

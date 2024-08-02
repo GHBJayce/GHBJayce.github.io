@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>对数 on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/%E5%AF%B9%E6%95%B0/</link>
+        <link>/tags/%E5%AF%B9%E6%95%B0/</link>
         <description>Recent content in 对数 on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 28 Sep 2023 14:47:45 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/%E5%AF%B9%E6%95%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 28 Sep 2023 14:47:45 +0800</lastBuildDate><atom:link href="/tags/%E5%AF%B9%E6%95%B0/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>什么是对数？</title>
-        <link>https://ghjayce.github.io/p/subject/math/sequence/logarithm/</link>
+        <link>/p/subject/math/sequence/logarithm/</link>
         <pubDate>Thu, 28 Sep 2023 14:47:45 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/subject/math/sequence/logarithm/</guid>
+        <guid>/p/subject/math/sequence/logarithm/</guid>
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;比如现在来看一组幂运算（也叫求幂）：&lt;/p&gt;
 &lt;ul&gt;

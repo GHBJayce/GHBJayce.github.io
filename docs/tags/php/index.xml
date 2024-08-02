@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>PHP on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/php/</link>
+        <link>/tags/php/</link>
         <description>Recent content in PHP on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Fri, 26 Apr 2024 15:24:57 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/php/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 26 Apr 2024 15:24:57 +0800</lastBuildDate><atom:link href="/tags/php/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Mac系统多个php版本环境下未找到icu4c动态库的解决过程</title>
-        <link>https://ghjayce.github.io/p/system/mac/env/php/icu4c-load-dylib/</link>
+        <link>/p/system/mac/env/php/icu4c-load-dylib/</link>
         <pubDate>Fri, 26 Apr 2024 15:24:57 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/mac/env/php/icu4c-load-dylib/</guid>
+        <guid>/p/system/mac/env/php/icu4c-load-dylib/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/xLrs7QpeKQhM85mLcIcqMjAyNDA0MjZfMTUzMTU1.png" alt="Featured image of post Mac系统多个php版本环境下未找到icu4c动态库的解决过程" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;h3 id=&#34;环境软件版本&#34;&gt;环境&amp;amp;软件版本&lt;/h3&gt;
 &lt;ul&gt;
@@ -688,10 +688,10 @@
         </item>
         <item>
         <title>hyperf constants实现机制</title>
-        <link>https://ghjayce.github.io/p/language/php/hyperf/hyperf-constants/</link>
+        <link>/p/language/php/hyperf/hyperf-constants/</link>
         <pubDate>Mon, 26 Feb 2024 10:01:00 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/language/php/hyperf/hyperf-constants/</guid>
+        <guid>/p/language/php/hyperf/hyperf-constants/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg" alt="Featured image of post hyperf constants实现机制" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;h3 id=&#34;环境说明&#34;&gt;环境说明&lt;/h3&gt;
 &lt;ul&gt;
@@ -1458,10 +1458,10 @@
         </item>
         <item>
         <title>Homestead环境搭建</title>
-        <link>https://ghjayce.github.io/p/language/php/laravel/homestead-install/</link>
+        <link>/p/language/php/laravel/homestead-install/</link>
         <pubDate>Sat, 06 Oct 2018 20:40:41 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/language/php/laravel/homestead-install/</guid>
+        <guid>/p/language/php/laravel/homestead-install/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/acN7lrfIQy4GU6zANY9bMjAxODEwMDZfMjA0MDQx.jpeg" alt="Featured image of post Homestead环境搭建" /&gt;&lt;p&gt;环境：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;win7 x64&lt;/li&gt;
@@ -1639,10 +1639,10 @@ virtualbox&lt;/p&gt;
         </item>
         <item>
         <title>PHP报错解析和如何捕获错误信息</title>
-        <link>https://ghjayce.github.io/p/language/php/exception/error-capture/</link>
+        <link>/p/language/php/exception/error-capture/</link>
         <pubDate>Thu, 16 Nov 2017 16:38:34 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/language/php/exception/error-capture/</guid>
+        <guid>/p/language/php/exception/error-capture/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/mwZTYxkP4GSsgLbC5aXaMjAxNzExMTZfMTYzODM0.jpeg" alt="Featured image of post PHP报错解析和如何捕获错误信息" /&gt;&lt;h2 id=&#34;内容大纲&#34;&gt;内容大纲&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;php的报错类型都有哪些&lt;/li&gt;

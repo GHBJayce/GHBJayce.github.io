@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>教程 on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/%E6%95%99%E7%A8%8B/</link>
+        <link>/tags/%E6%95%99%E7%A8%8B/</link>
         <description>Recent content in 教程 on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 20 Jun 2023 23:46:50 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 20 Jun 2023 23:46:50 +0800</lastBuildDate><atom:link href="/tags/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>hugo快速上手搭建一个静态博客</title>
-        <link>https://ghjayce.github.io/p/static-site-generator/hugo/quick-start/</link>
+        <link>/p/static-site-generator/hugo/quick-start/</link>
         <pubDate>Tue, 20 Jun 2023 23:46:50 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/static-site-generator/hugo/quick-start/</guid>
+        <guid>/p/static-site-generator/hugo/quick-start/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/hYbelawEIwhaejxWE2RNMjAyNDAyMjVfMTU1NTA2.png" alt="Featured image of post hugo快速上手搭建一个静态博客" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;开头废话有点多，&lt;a class=&#34;link&#34; href=&#34;#%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8&#34; &gt;点我进入正题&lt;/a&gt;&lt;/p&gt;
@@ -217,10 +217,10 @@
         </item>
         <item>
         <title>本地快速搭建Jekyll及相关依赖</title>
-        <link>https://ghjayce.github.io/p/static-site-generator/jekyll/quick-start/</link>
+        <link>/p/static-site-generator/jekyll/quick-start/</link>
         <pubDate>Tue, 02 Jan 2018 03:39:35 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/static-site-generator/jekyll/quick-start/</guid>
+        <guid>/p/static-site-generator/jekyll/quick-start/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/l2X2IUWhKLBkgz5kr7qOMjAxODAxMDJfMDMzOTM1.jpeg" alt="Featured image of post 本地快速搭建Jekyll及相关依赖" /&gt;&lt;p&gt;文章为过程记录&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;另外，以下命令行相关的全局变量配置，需要自己去设置。例如：ruby、python&lt;/p&gt;

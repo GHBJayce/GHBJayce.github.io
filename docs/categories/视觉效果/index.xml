@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>视觉效果 on GHJayce</title>
-        <link>https://ghjayce.github.io/categories/%E8%A7%86%E8%A7%89%E6%95%88%E6%9E%9C/</link>
+        <link>/categories/%E8%A7%86%E8%A7%89%E6%95%88%E6%9E%9C/</link>
         <description>Recent content in 视觉效果 on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 31 May 2018 11:03:31 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/categories/%E8%A7%86%E8%A7%89%E6%95%88%E6%9E%9C/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 31 May 2018 11:03:31 +0800</lastBuildDate><atom:link href="/categories/%E8%A7%86%E8%A7%89%E6%95%88%E6%9E%9C/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>3秒钟制作一个复杂的Guilloche图形</title>
-        <link>https://ghjayce.github.io/p/visuals/graph/guilloche/</link>
+        <link>/p/visuals/graph/guilloche/</link>
         <pubDate>Thu, 31 May 2018 11:03:31 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/visuals/graph/guilloche/</guid>
+        <guid>/p/visuals/graph/guilloche/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/4voHlngN1tpz7QP16wP2MjAxODA1MzFfMTEwMzMx.jpeg" alt="Featured image of post 3秒钟制作一个复杂的Guilloche图形" /&gt;&lt;p&gt;Guilloche图形欣赏：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/ZKr6o0fw8Hm8fZDSb9OuMjAxODA1MzFfMTEwMzMx.png&#34;
 	width=&#34;660&#34;

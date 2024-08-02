@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Windows on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/windows/</link>
+        <link>/tags/windows/</link>
         <description>Recent content in Windows on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sat, 04 Nov 2017 21:03:00 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 04 Nov 2017 21:03:00 +0800</lastBuildDate><atom:link href="/tags/windows/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>华硕x45vd安装黑苹果Yosemite 10.10.3记录</title>
-        <link>https://ghjayce.github.io/p/system/hackintosh/asus/x45vd/</link>
+        <link>/p/system/hackintosh/asus/x45vd/</link>
         <pubDate>Sat, 04 Nov 2017 21:03:00 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/hackintosh/asus/x45vd/</guid>
+        <guid>/p/system/hackintosh/asus/x45vd/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/dPMjucATggvoLXmJZXz5MjAxNzExMDRfMjEwMzAw.jpeg" alt="Featured image of post 华硕x45vd安装黑苹果Yosemite 10.10.3记录" /&gt;&lt;h2 id=&#34;准备工作&#34;&gt;准备工作&lt;/h2&gt;
 &lt;p&gt;Yosemite10.10.3懒人版
 链接: &lt;a class=&#34;link&#34; href=&#34;https://pan.baidu.com/s/1i5aOBOT&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -242,10 +242,10 @@
         </item>
         <item>
         <title>将Sublime Text 添加到右键菜单的方法</title>
-        <link>https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/sublime-text/</link>
+        <link>/p/system/windows/regedit/right-click-menu/sublime-text/</link>
         <pubDate>Mon, 26 Dec 2016 10:34:34 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/sublime-text/</guid>
+        <guid>/p/system/windows/regedit/right-click-menu/sublime-text/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/WKRr6SlzDfcw9eTWRv1EMjAxNjEyMjZfMTAzNDM0.jpeg" alt="Featured image of post 将Sublime Text 添加到右键菜单的方法" /&gt;&lt;h2 id=&#34;方法一&#34;&gt;方法一&lt;/h2&gt;
 &lt;p&gt;把以下代码，复制到&lt;strong&gt;SublimeText3的文件目录&lt;/strong&gt;，然后重命名为：&lt;strong&gt;安装右键菜单.inf&lt;/strong&gt;，然后右击安装就可以了。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -350,10 +350,10 @@
         </item>
         <item>
         <title>windows自定义程序到右键菜单</title>
-        <link>https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/custom/</link>
+        <link>/p/system/windows/regedit/right-click-menu/custom/</link>
         <pubDate>Sun, 25 Dec 2016 10:34:34 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/custom/</guid>
+        <guid>/p/system/windows/regedit/right-click-menu/custom/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/jhPbumQV8Q1Tn3JTsxQaMjAxNjEyMjVfMTAzNDM0.jpeg" alt="Featured image of post windows自定义程序到右键菜单" /&gt;&lt;p&gt;打开注册表&lt;code&gt;regedit&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;要在背景上设置右键菜单的
 依次进入&lt;/p&gt;

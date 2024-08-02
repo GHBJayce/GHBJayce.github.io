@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>KeyboardEvent on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/keyboardevent/</link>
+        <link>/tags/keyboardevent/</link>
         <description>Recent content in KeyboardEvent on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Wed, 08 Nov 2017 09:05:13 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/keyboardevent/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 08 Nov 2017 09:05:13 +0800</lastBuildDate><atom:link href="/tags/keyboardevent/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>JS 键盘按键keyCode对应表</title>
-        <link>https://ghjayce.github.io/p/language/javascript/key-code/</link>
+        <link>/p/language/javascript/key-code/</link>
         <pubDate>Wed, 08 Nov 2017 09:05:13 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/language/javascript/key-code/</guid>
+        <guid>/p/language/javascript/key-code/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/hhu3ZhdElGKvdDDmPImUMjAxNzExMDhfMDkwNTEz.jpeg" alt="Featured image of post JS 键盘按键keyCode对应表" /&gt;&lt;h2 id=&#34;keydown-event对象&#34;&gt;keydown event对象&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/XQ9pwkmDr2oRDf8QMnTYMjAxODAzMzFfMTEyMTAw.jpeg&#34;
 	width=&#34;800&#34;

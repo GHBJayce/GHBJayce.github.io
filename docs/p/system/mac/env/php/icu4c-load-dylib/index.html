@@ -13,9 +13,9 @@
 dyld: Library not loaded：表明动态链接器未能加载一个或多个指定的动态库。 Referenced from：指出哪个文件（程序或动态库）引用了缺失的动态库。 Reason：提供无法加载动态库的原因，常见的原因包括： image not found：指定的动态库在文件系统中找不到。 image not loadable：找到了动态库，但由于某些原因（如格式错误、权限问题等）无法加载。 did not find：列出了缺失的动态库的具体路径或名称。 这个错误实际上是Mac操作系统报告的错误，表明动态链接器（dynamic linker，即 dyld）在尝试加载程序所需的一个或多个动态库时遇到了问题。'>
 <title>Mac系统多个php版本环境下未找到icu4c动态库的解决过程</title>
 
-<link rel='canonical' href='https://ghjayce.github.io/p/system/mac/env/php/icu4c-load-dylib/'>
+<link rel='canonical' href='/p/system/mac/env/php/icu4c-load-dylib/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='Mac系统多个php版本环境下未找到icu4c动态库的解决过程'>
+<link rel="stylesheet" href="/scss/style.min.16bf79fde71ad0826cb332f8a542083f14a167d38adecffbc10e3a04b834c453.css"><meta property='og:title' content='Mac系统多个php版本环境下未找到icu4c动态库的解决过程'>
 <meta property='og:description' content='阅读说明 环境&amp;amp;软件版本 MacOS Big Sur v11.0.1 Homebrew v4.0.21 GNU Make v3.81 PHP v7.3.33、v7.4.33、v8.2 ICU4C v72.1、v73.2、v74.2 背景 我的Mac环境早些时候用Homebrew安装了多个php的版本，php 7.3、7.4、8.2都有，为了区分多个php版本，我在~/.bash_profile中用alias做了处理，就像这样：
 1 2 3 alias php73=&amp;#34;/usr/local/opt/php@7.3/bin/php&amp;#34; alias php74=&amp;#34;/usr/local/opt/php@7.4/bin/php&amp;#34; alias php82=&amp;#34;/usr/local/opt/php@8.2/bin/php&amp;#34; 最近要给某个php项目composer install时需要用到php7.3，结果出现了报错：
 1 2 3 4 dyld: Library not loaded: /usr/local/opt/icu4c/lib/libicui18n.72.dylib Referenced from: /usr/local/opt/php@7.3/bin/php Reason: image not found zsh: abort /usr/local/opt/php@7.3/bin/php --version 而8.2的版本执行正常，因为此时安装的icu4c的版本是73.2的。
@@ -26,7 +26,7 @@ dyld: Library not loaded：表明动态链接器未能加载一个或多个指�
 这是应用程序依赖某个动态链接库（Dynamic Link Libraries），而这个动态链接库的加载出现了问题，也就是说在路径下找不到这个文件了，其实不查资料光看报错的内容也能猜到一些。
 那错误内容都有哪些含义或者信息呢？
 dyld: Library not loaded：表明动态链接器未能加载一个或多个指定的动态库。 Referenced from：指出哪个文件（程序或动态库）引用了缺失的动态库。 Reason：提供无法加载动态库的原因，常见的原因包括： image not found：指定的动态库在文件系统中找不到。 image not loadable：找到了动态库，但由于某些原因（如格式错误、权限问题等）无法加载。 did not find：列出了缺失的动态库的具体路径或名称。 这个错误实际上是Mac操作系统报告的错误，表明动态链接器（dynamic linker，即 dyld）在尝试加载程序所需的一个或多个动态库时遇到了问题。'>
-<meta property='og:url' content='https://ghjayce.github.io/p/system/mac/env/php/icu4c-load-dylib/'>
+<meta property='og:url' content='/p/system/mac/env/php/icu4c-load-dylib/'>
 <meta property='og:site_name' content='GHJayce'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='PHP' /><meta property='article:tag' content='Mac' /><meta property='article:tag' content='ICU4C' /><meta property='article:tag' content='动态链接库' /><meta property='article:published_time' content='2024-04-26T15:24:57&#43;08:00'/><meta property='article:modified_time' content='2024-04-26T15:24:57&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/xLrs7QpeKQhM85mLcIcqMjAyNDA0MjZfMTUzMTU1.png' />
 <meta name="twitter:title" content="Mac系统多个php版本环境下未找到icu4c动态库的解决过程">

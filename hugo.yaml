@@ -1,4 +1,4 @@
-baseurl: https://ghjayce.github.io/
++baseurl: https://ghjayce.github.io/
 languageCode: zh-cn
 theme: hugo-theme-stack
 paginate: 10

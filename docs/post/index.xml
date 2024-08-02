@@ -2,17 +2,248 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on GHJayce</title>
-        <link>https://ghjayce.github.io/post/</link>
+        <link>/post/</link>
         <description>Recent content in Posts on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 04 Jul 2024 18:36:56 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 01 Aug 2024 15:04:07 +0800</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>引入CDN的JS文件为什么不可执行？</title>
+        <link>/p/language/javascript/leadin-cdn-script-not-executable/</link>
+        <pubDate>Thu, 01 Aug 2024 15:04:07 +0800</pubDate>
+        
+        <guid>/p/language/javascript/leadin-cdn-script-not-executable/</guid>
+        <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;p&gt;最近在发布&lt;a class=&#34;link&#34; href=&#34;https://github.com/GHJayce/j-weapons/tree/v1.6.1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;j-weapons&lt;/a&gt;前端包的时候遇到了一个问题，引入CDN编译以后的JS文件，在浏览器中查看该脚本文件实际并没有执行。&lt;/p&gt;
+&lt;h2 id=&#34;问题过程&#34;&gt;问题过程&lt;/h2&gt;
+&lt;p&gt;代码文件如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;charset&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;UTF-8&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;testing&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;https://unpkg.com/axios@1.7.2/dist/browser/axios.cjs&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;axios&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;这里以axios为例，情况是如出一辙的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;控制台得到一个错误：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Uncaught ReferenceError: axios is not defined
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    at dist/:14:21
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;script src&lt;/code&gt;文件并没有被执行。&lt;/p&gt;
+&lt;p&gt;赶紧看&lt;code&gt;Network&lt;/code&gt;对应资源文件的请求，如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/ZN9vLDokkbNlREytACscMjAyNDA4MDFfMTUxNzM4.png&#34;
+	width=&#34;619&#34;
+	height=&#34;119&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Status failed&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;520&#34;
+		data-flex-basis=&#34;1248px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;可以看到这里的&lt;code&gt;Status&lt;/code&gt;显示了&lt;code&gt;(failed) net::ERR_BLOCKED_BY_ORB&lt;/code&gt;（而&lt;code&gt;General.Status Code&lt;/code&gt;是200正常的）一番搜寻没找到有用的信息，AI介绍是浏览器应用层处理网络请求时的错误，既不属于HTTP也不是TCP的错误，暂不展开讨论这块。&lt;/p&gt;
+&lt;p&gt;接着看响应头，如图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/uXFHiDNaekrLLBo7XSK6MjAyNDA4MDFfMTUyMDA2.png&#34;
+	width=&#34;620&#34;
+	height=&#34;601&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;response headers&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;103&#34;
+		data-flex-basis=&#34;247px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;重点在&lt;code&gt;Content-Type&lt;/code&gt;，返回的竟然是&lt;code&gt;text/plain&lt;/code&gt;？&lt;/p&gt;
+&lt;p&gt;接着换另一个CDN：&lt;a class=&#34;link&#34; href=&#34;https://www.jsdelivr.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;jsdelivr&lt;/a&gt;再试试：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/browser/axios.cjs&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;同样，脚本也并没有被执行，查看响应头，如图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/z3vYrdvhB72UccoOyNH1MjAyNDA4MDFfMTUyMDIz.png&#34;
+	width=&#34;624&#34;
+	height=&#34;1041&#34;
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;response headers&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;59&#34;
+		data-flex-basis=&#34;143px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Status Code&lt;/code&gt;也是200，并没有出现&lt;code&gt;(failed) net::ERR_BLOCKED_BY_ORB&lt;/code&gt;，而响应类型变成了：&lt;code&gt;Content-Type: application/node&lt;/code&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我在本地用Nginx引入本地文件，试了一下，响应类型是&lt;code&gt;Content-Type: application/javascript&lt;/code&gt;，能够正常执行脚本。&lt;/p&gt;
+&lt;p&gt;证明文件本身没有问题，问题在于响应头的响应类型。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;另外在&lt;code&gt;Console&lt;/code&gt;有一个错误：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Refused to execute script from &amp;#39;https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/browser/axios.cjs&amp;#39; because its MIME type (&amp;#39;application/node&amp;#39;) is not executable, and strict MIME type checking is enabled.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这个错误就比较有意思。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;mime&#34;&gt;MIME&lt;/h3&gt;
+&lt;p&gt;它说CDN文件的MIME type，也就是指响应头里的Content-Type，是&lt;code&gt;application/node&lt;/code&gt;类型，不可以执行，并且启用了严格检查MIME type类型的模式，应该就是指响应头返回的&lt;code&gt;X-Content-Type-Options: nosniff&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;稍加解释一下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MIME type&lt;/a&gt;也称为IANA媒体类型，是一种标准，用来表示文档、文件或一组数据的性质和格式，它在IETF的&lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/html/rfc6838&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 6838&lt;/a&gt;中进行了定义和标准化。它一般包含两个部分：&lt;strong&gt;类型&lt;/strong&gt;和&lt;strong&gt;子类型&lt;/strong&gt;，中间用&lt;code&gt;/&lt;/code&gt;分割，不能有空格，例如：&lt;code&gt;text/plain&lt;/code&gt;、&lt;code&gt;text/javascript&lt;/code&gt;等。&lt;/li&gt;
+&lt;li&gt;而&lt;a class=&#34;link&#34; href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Type&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Content-Type&lt;/a&gt;则表示标头用于指定资源的原始&lt;a class=&#34;link&#34; href=&#34;https://developer.mozilla.org/zh-CN/docs/Glossary/MIME_type&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;媒体类型&lt;/a&gt;，就是指上面说的MIME类型，它是由服务端返回的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;它们都属于HTTP的知识。&lt;/p&gt;
+&lt;h3 id=&#34;mime嗅探&#34;&gt;MIME嗅探&lt;/h3&gt;
+&lt;p&gt;假设我们有一个HTML标签：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/browser/axios.cjs&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;text/javascript&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;当然你可能会看到有使用&lt;code&gt;type=&amp;quot;application/javascript&amp;quot;&lt;/code&gt;的，不过该MIME类型已被弃用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;一般情况下，我们是不需要加&lt;code&gt;type=&amp;quot;text/javascript&amp;quot;&lt;/code&gt;的attributes，浏览器会默认将它视为&lt;code&gt;text/javascript&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;浏览器在获取标签上的文件时，如果该文件的响应头没有&lt;code&gt;Content-Type&lt;/code&gt;或者是&lt;code&gt;Content-type: application/octet-stream&lt;/code&gt;的时候，就会通过读取文件的前几个字节（通常是512字节）分析文件内容的特征从而猜测MIME的类型，这个过程称为MIME嗅探。&lt;/p&gt;
+&lt;p&gt;MIME嗅探会带来安全问题，虽然我们给&lt;code&gt;script src&lt;/code&gt;标签指定了&lt;code&gt;type=&amp;quot;text/javascript&amp;quot;&lt;/code&gt;，但是浏览器一般会根据服务端返回的MIME类型来处理资源，用户可能会因此在不知情的情况下，遭受到XSS攻击。&lt;/p&gt;
+&lt;p&gt;防御的措施一般有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务端始终响应正确的&lt;code&gt;Content-Type&lt;/code&gt;，避免浏览器MIME嗅探的触发。&lt;/li&gt;
+&lt;li&gt;服务端携带&lt;code&gt;X-Content-Type-Options: nosniff&lt;/code&gt;响应头，明确告知浏览器不要进行MIME嗅探。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;回归正题，也就是说报错是因为CDN返回的&lt;code&gt;Content-Type&lt;/code&gt;的MIME类型不是&lt;code&gt;text/application&lt;/code&gt;或者不是&lt;code&gt;application/javascript&lt;/code&gt;才导致&lt;code&gt;script src&lt;/code&gt;标签不执行的，猜测CDN是根据不同的文件后缀给出不同的&lt;code&gt;Content-Type&lt;/code&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://unpkg.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;unpkg&lt;/a&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.cjs&lt;/code&gt;的文件，&lt;code&gt;Content-Type&lt;/code&gt;是&lt;code&gt;text/plain&lt;/code&gt;，通过&lt;a class=&#34;link&#34; href=&#34;https://unpkg.com/browse/axios@1.7.2/dist/browser/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;brose axios files&lt;/a&gt;文件右侧可以进一步确认。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.map&lt;/code&gt;，&lt;code&gt;Content-Type&lt;/code&gt;是&lt;code&gt;application/json&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jsdelivr.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;jsdelivr&lt;/a&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.cjs&lt;/code&gt;，&lt;code&gt;Content-Type&lt;/code&gt;是&lt;code&gt;application/node&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这也解释了为什么我在本地用nginx打开页面是能够正常执行脚本的原因。&lt;/p&gt;
+&lt;p&gt;那为什么我打包以后的文件会是&lt;code&gt;index.umd.cjs&lt;/code&gt;的后缀的？&lt;/p&gt;
+&lt;p&gt;简单提一下，我用的是Vite打包工具，配置项如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;build&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;lib&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;entry&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;src/index.ts&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;formats&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;umd&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;fileName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;index&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;正是&lt;code&gt;fileName&lt;/code&gt;和&lt;code&gt;formats&lt;/code&gt;含&lt;code&gt;umd&lt;/code&gt;的情况下，它会默认将&lt;code&gt;entry&lt;/code&gt;入口文件处理成&lt;code&gt;index.umd.cjs&lt;/code&gt;的后缀，解决这个问题只需要将fileName改成函数自定义返回即可，详情请自行查看文档。&lt;/p&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MIME 类型（IANA 媒体类型） - HTTP | MDN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Type&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Content-Type - HTTP | MDN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/html/rfc6838&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 6838 - Media Type Specifications and Registration Procedures&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://developer.mozilla.org/zh-CN/docs/Glossary/MIME_type&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MIME 类型 - MDN Web 文档术语表：Web 相关术语的定义 | MDN&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>React入门</title>
-        <link>https://ghjayce.github.io/p/language/javascript/package/react/quick-start/</link>
+        <link>/p/language/javascript/package/react/quick-start/</link>
         <pubDate>Thu, 04 Jul 2024 18:36:56 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/language/javascript/package/react/quick-start/</guid>
-        <description>&lt;img src="https://ghjayce.github.io/asset/blog/uwgqqiUfSOHwLzCqNN13MjAyNDA3MDRfMTkwNjEy.jpeg" alt="Featured image of post React入门" /&gt;&lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+        <guid>/p/language/javascript/package/react/quick-start/</guid>
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/uwgqqiUfSOHwLzCqNN13MjAyNDA3MDRfMTkwNjEy.jpeg" alt="Featured image of post React入门" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
+&lt;h3 id=&#34;软件版本&#34;&gt;软件版本&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;React v18.3.1&lt;/li&gt;
+&lt;li&gt;React Dom v18.3.1&lt;/li&gt;
+&lt;li&gt;Vite v5.3.1&lt;/li&gt;
+&lt;li&gt;vitejs/plugin-react v4.3.1&lt;/li&gt;
+&lt;li&gt;TypeScript v5.2.2&lt;/li&gt;
+&lt;li&gt;@types/react v18.3.3&lt;/li&gt;
+&lt;li&gt;@types/react-dom v18.3.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
 &lt;p&gt;React是一个开源的前端JavaScript库，用于构建用户界面。用户界面由按钮、文本和图像等小单元内容构建而成。React帮助你把它们组合成可重用、可嵌套的组件。从we端网站到移动端应用，屏幕上的所有内容都可以被分解成组件。&lt;/p&gt;
 &lt;p&gt;它由Facebook维护，并在2013年首次发布。React的核心特性是其组件化架构，允许开发者使用名为“React组件”的可重用代码片段构建复杂的用户界面。&lt;/p&gt;
 &lt;h2 id=&#34;体验react&#34;&gt;体验React&lt;/h2&gt;
@@ -242,7 +473,7 @@
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zh-hans.react.dev/learn/writing-markup-with-jsx#jsx-putting-markup-into-javascript&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;为什么？&lt;/a&gt;官方说法是web交互性越来越强，逻辑越来越决定页面中的内容，JavaScript控制着HTML的内容。&lt;/p&gt;
 &lt;p&gt;乍眼一看还是很晦涩难懂的，以下是个人的理解看法：&lt;/p&gt;
-&lt;p&gt;例如JS里可以看到&lt;code&gt;createElement&lt;/code&gt;、&lt;code&gt;innerHTML&lt;/code&gt;等等，都是做着渲染HTML的事情，这种写法和过程是很冗长很混乱的，&lt;strong&gt;React的出现，只是将这个过程用JSX更直观地放在了组件中进行，并且它做的更简单、简洁，妥妥优雅那味了嗷。再加上都是JavaScript的东西，不需要再学一些特有的东西，结合友好的文档，有JS基础的人，学起来是真舒服&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;例如JS里可以看到&lt;code&gt;createElement&lt;/code&gt;、&lt;code&gt;innerHTML&lt;/code&gt;等等，都是做着渲染HTML的事情，这种写法和过程是很冗长很混乱的，&lt;strong&gt;React的出现，只是将这个过程用JSX更直观地放在了组件中进行，并且它做的更简单、易懂。再加上都是JavaScript的东西，不需要再学一些特有的东西，结合友好的文档，有JS基础的人，学起来会相对舒服一些&lt;/strong&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;就像这样：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -924,10 +1155,10 @@
         </item>
         <item>
         <title>Mac系统多个php版本环境下未找到icu4c动态库的解决过程</title>
-        <link>https://ghjayce.github.io/p/system/mac/env/php/icu4c-load-dylib/</link>
+        <link>/p/system/mac/env/php/icu4c-load-dylib/</link>
         <pubDate>Fri, 26 Apr 2024 15:24:57 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/mac/env/php/icu4c-load-dylib/</guid>
+        <guid>/p/system/mac/env/php/icu4c-load-dylib/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/xLrs7QpeKQhM85mLcIcqMjAyNDA0MjZfMTUzMTU1.png" alt="Featured image of post Mac系统多个php版本环境下未找到icu4c动态库的解决过程" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;h3 id=&#34;环境软件版本&#34;&gt;环境&amp;amp;软件版本&lt;/h3&gt;
 &lt;ul&gt;
@@ -1604,10 +1835,10 @@
         </item>
         <item>
         <title>04737《C&#43;&#43;程序设计》概要笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/04737/summary/</link>
+        <link>/p/book/080901/04737/summary/</link>
         <pubDate>Thu, 07 Mar 2024 15:41:50 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/04737/summary/</guid>
+        <guid>/p/book/080901/04737/summary/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/pUUpVODdvSxxT4BxTflbMjAyNDAzMDhfMTU0NTM2.png" alt="Featured image of post 04737《C&#43;&#43;程序设计》概要笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;#%e7%ac%ac%e4%b8%80%e7%ab%a0-C&amp;#43;&amp;#43;%e8%af%ad%e8%a8%80%e7%ae%80%e4%bb%8b&#34; &gt;第一章 C++语言简介&lt;/a&gt; &lt;small&gt;P29 ~ 56（14页）&lt;/small&gt;&lt;/li&gt;
@@ -7549,10 +7780,10 @@
         </item>
         <item>
         <title>04757《信息系统开发与管理》概要笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/04757/summary/</link>
+        <link>/p/book/080901/04757/summary/</link>
         <pubDate>Wed, 06 Mar 2024 11:00:20 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/04757/summary/</guid>
+        <guid>/p/book/080901/04757/summary/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/009YvB3LFELPlaoVaw6TMjAyNDAzMDZfMTQyNTE1.png" alt="Featured image of post 04757《信息系统开发与管理》概要笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;#%e7%ac%ac%e4%b8%80%e7%ab%a0-%e7%ae%a1%e7%90%86%e4%bf%a1%e6%81%af%e7%b3%bb%e7%bb%9f%e5%af%bc%e8%ae%ba&#34; &gt;第一章 管理信息系统导论&lt;/a&gt; &lt;small&gt;P17 ~ 36（10页）&lt;/small&gt;&lt;/li&gt;
@@ -9314,10 +9545,10 @@
         </item>
         <item>
         <title>hyperf constants实现机制</title>
-        <link>https://ghjayce.github.io/p/language/php/hyperf/hyperf-constants/</link>
+        <link>/p/language/php/hyperf/hyperf-constants/</link>
         <pubDate>Mon, 26 Feb 2024 10:01:00 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/language/php/hyperf/hyperf-constants/</guid>
+        <guid>/p/language/php/hyperf/hyperf-constants/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg" alt="Featured image of post hyperf constants实现机制" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;h3 id=&#34;环境说明&#34;&gt;环境说明&lt;/h3&gt;
 &lt;ul&gt;
@@ -10084,10 +10315,10 @@
         </item>
         <item>
         <title>Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？</title>
-        <link>https://ghjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/</link>
+        <link>/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/</link>
         <pubDate>Tue, 05 Dec 2023 11:45:25 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/</guid>
+        <guid>/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png" alt="Featured image of post Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;p&gt;为了方便文章描述，文中词汇的含义、未提及的场景如下：&lt;/p&gt;
 &lt;ul&gt;
@@ -10732,10 +10963,10 @@
         </item>
         <item>
         <title>《数据结构导论》考试重点</title>
-        <link>https://ghjayce.github.io/p/book/080901/02142/exam-focus/</link>
+        <link>/p/book/080901/02142/exam-focus/</link>
         <pubDate>Sun, 22 Oct 2023 09:27:30 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02142/exam-focus/</guid>
+        <guid>/p/book/080901/02142/exam-focus/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 《数据结构导论》考试重点" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -10983,10 +11214,10 @@
         </item>
         <item>
         <title>第七章 排序 - 《数据结构导论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02142/chapter7/</link>
+        <link>/p/book/080901/02142/chapter7/</link>
         <pubDate>Fri, 20 Oct 2023 09:27:30 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter7/</guid>
+        <guid>/p/book/080901/02142/chapter7/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第七章 排序 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -11212,10 +11443,10 @@
         </item>
         <item>
         <title>第六章 查找 - 《数据结构导论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02142/chapter6/</link>
+        <link>/p/book/080901/02142/chapter6/</link>
         <pubDate>Thu, 19 Oct 2023 12:23:25 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter6/</guid>
+        <guid>/p/book/080901/02142/chapter6/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第六章 查找 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -11576,10 +11807,10 @@ $$d_i = (d_0 \pm i){\quad}mod{\quad}m$$
         </item>
         <item>
         <title>第五章 图 - 《数据结构导论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02142/chapter5/</link>
+        <link>/p/book/080901/02142/chapter5/</link>
         <pubDate>Mon, 16 Oct 2023 10:31:20 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter5/</guid>
+        <guid>/p/book/080901/02142/chapter5/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第五章 图 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -11964,10 +12195,10 @@ $$图5$$
         </item>
         <item>
         <title>什么是对数？</title>
-        <link>https://ghjayce.github.io/p/subject/math/sequence/logarithm/</link>
+        <link>/p/subject/math/sequence/logarithm/</link>
         <pubDate>Thu, 28 Sep 2023 14:47:45 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/subject/math/sequence/logarithm/</guid>
+        <guid>/p/subject/math/sequence/logarithm/</guid>
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;比如现在来看一组幂运算（也叫求幂）：&lt;/p&gt;
 &lt;ul&gt;
@@ -12090,10 +12321,10 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
         </item>
         <item>
         <title>第四章 树和二叉树 - 《数据结构导论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02142/chapter4/</link>
+        <link>/p/book/080901/02142/chapter4/</link>
         <pubDate>Tue, 26 Sep 2023 09:47:20 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter4/</guid>
+        <guid>/p/book/080901/02142/chapter4/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第四章 树和二叉树 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -13429,10 +13660,10 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
         </item>
         <item>
         <title>第三章 栈、队列和数组 - 《数据结构导论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02142/chapter3/</link>
+        <link>/p/book/080901/02142/chapter3/</link>
         <pubDate>Mon, 18 Sep 2023 12:24:10 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter3/</guid>
+        <guid>/p/book/080901/02142/chapter3/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第三章 栈、队列和数组 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -14587,10 +14818,10 @@ $$loc[i, j] = loc[0, 0] + (n * i + j) * k$$
         </item>
         <item>
         <title>什么是等差数列？</title>
-        <link>https://ghjayce.github.io/p/subject/math/sequence/arithmetic/</link>
+        <link>/p/subject/math/sequence/arithmetic/</link>
         <pubDate>Thu, 07 Sep 2023 19:05:42 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/subject/math/sequence/arithmetic/</guid>
+        <guid>/p/subject/math/sequence/arithmetic/</guid>
         <description>&lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;数列：按特定规律排列的一组数字的集合。&lt;/li&gt;
@@ -14670,10 +14901,10 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
         </item>
         <item>
         <title>在android上安装git环境</title>
-        <link>https://ghjayce.github.io/p/system/android/env/install-git/</link>
+        <link>/p/system/android/env/install-git/</link>
         <pubDate>Wed, 30 Aug 2023 13:26:26 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/android/env/install-git/</guid>
+        <guid>/p/system/android/env/install-git/</guid>
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;一开始打算在手机上安装git，想到的是安装app，于是各种找，找到了有如：&lt;/p&gt;
 &lt;ol&gt;
@@ -14853,10 +15084,10 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
         </item>
         <item>
         <title>第二章 线性表 - 《数据结构导论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02142/chapter2/</link>
+        <link>/p/book/080901/02142/chapter2/</link>
         <pubDate>Tue, 29 Aug 2023 14:46:12 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter2/</guid>
+        <guid>/p/book/080901/02142/chapter2/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第二章 线性表 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -16036,10 +16267,10 @@ $$和 = (首项 + 末项) \times 项数 \div 2$$&lt;/p&gt;
         </item>
         <item>
         <title>第一章 概论 - 《数据结构导论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02142/chapter1/</link>
+        <link>/p/book/080901/02142/chapter1/</link>
         <pubDate>Sun, 20 Aug 2023 16:36:20 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter1/</guid>
+        <guid>/p/book/080901/02142/chapter1/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第一章 概论 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;&lt;strong&gt;第一章 概论&lt;/strong&gt;&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -16457,10 +16688,10 @@ $$S(n)=O(g(n))$$
         </item>
         <item>
         <title>hugo快速上手搭建一个静态博客</title>
-        <link>https://ghjayce.github.io/p/static-site-generator/hugo/quick-start/</link>
+        <link>/p/static-site-generator/hugo/quick-start/</link>
         <pubDate>Tue, 20 Jun 2023 23:46:50 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/static-site-generator/hugo/quick-start/</guid>
+        <guid>/p/static-site-generator/hugo/quick-start/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/hYbelawEIwhaejxWE2RNMjAyNDAyMjVfMTU1NTA2.png" alt="Featured image of post hugo快速上手搭建一个静态博客" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;开头废话有点多，&lt;a class=&#34;link&#34; href=&#34;#%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8&#34; &gt;点我进入正题&lt;/a&gt;&lt;/p&gt;
@@ -16666,10 +16897,10 @@ $$S(n)=O(g(n))$$
         </item>
         <item>
         <title>Homestead环境搭建</title>
-        <link>https://ghjayce.github.io/p/language/php/laravel/homestead-install/</link>
+        <link>/p/language/php/laravel/homestead-install/</link>
         <pubDate>Sat, 06 Oct 2018 20:40:41 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/language/php/laravel/homestead-install/</guid>
+        <guid>/p/language/php/laravel/homestead-install/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/acN7lrfIQy4GU6zANY9bMjAxODEwMDZfMjA0MDQx.jpeg" alt="Featured image of post Homestead环境搭建" /&gt;&lt;p&gt;环境：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;win7 x64&lt;/li&gt;
@@ -16847,10 +17078,10 @@ virtualbox&lt;/p&gt;
         </item>
         <item>
         <title>3秒钟制作一个复杂的Guilloche图形</title>
-        <link>https://ghjayce.github.io/p/visuals/graph/guilloche/</link>
+        <link>/p/visuals/graph/guilloche/</link>
         <pubDate>Thu, 31 May 2018 11:03:31 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/visuals/graph/guilloche/</guid>
+        <guid>/p/visuals/graph/guilloche/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/4voHlngN1tpz7QP16wP2MjAxODA1MzFfMTEwMzMx.jpeg" alt="Featured image of post 3秒钟制作一个复杂的Guilloche图形" /&gt;&lt;p&gt;Guilloche图形欣赏：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/ZKr6o0fw8Hm8fZDSb9OuMjAxODA1MzFfMTEwMzMx.png&#34;
 	width=&#34;660&#34;
@@ -16978,10 +17209,10 @@ virtualbox&lt;/p&gt;
         </item>
         <item>
         <title>centos7 安装Apache2.4配置多站点目录</title>
-        <link>https://ghjayce.github.io/p/system/linux/env/apache-site-more/</link>
+        <link>/p/system/linux/env/apache-site-more/</link>
         <pubDate>Mon, 30 Apr 2018 10:51:03 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/linux/env/apache-site-more/</guid>
+        <guid>/p/system/linux/env/apache-site-more/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/qfHDW8fltBrGpL2TeHDSMjAxODA0MzBfMTA1MTAz.jpeg" alt="Featured image of post centos7 安装Apache2.4配置多站点目录" /&gt;&lt;h2 id=&#34;安装apache&#34;&gt;安装apache&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -17219,10 +17450,10 @@ virtualbox&lt;/p&gt;
         </item>
         <item>
         <title>02323《操作系统概论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02323/summary/</link>
+        <link>/p/book/080901/02323/summary/</link>
         <pubDate>Thu, 22 Mar 2018 11:22:40 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02323/summary/</guid>
+        <guid>/p/book/080901/02323/summary/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/nae2CLNy3GD4lakpo2aBMjAxODAzMjJfMTEyMjQw.png" alt="Featured image of post 02323《操作系统概论》笔记" /&gt;&lt;p&gt;文章内容为个人的学习笔记，绝大部分内容摘抄自书本中的知识点，目录也是如此。仅供各位学习参考，另外备注书本是2017年版。&lt;/p&gt;
 &lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;p&gt;较早前记的笔记，内容并不全，请选择性浏览&lt;/p&gt;
@@ -17524,10 +17755,10 @@ Linux 2.6.11根据进程的优先权不同将就绪队列组织成多个不同�
         </item>
         <item>
         <title>使用python找回在SecureCRT中的Linux登入密码</title>
-        <link>https://ghjayce.github.io/p/tool/terminal/securecrt/forgot-password/</link>
+        <link>/p/tool/terminal/securecrt/forgot-password/</link>
         <pubDate>Sat, 17 Mar 2018 12:00:50 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/tool/terminal/securecrt/forgot-password/</guid>
+        <guid>/p/tool/terminal/securecrt/forgot-password/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/oQBWE3gpg8IKTskSpyzrMjAxODAzMTdfMTIwMDUw.jpeg" alt="Featured image of post 使用python找回在SecureCRT中的Linux登入密码" /&gt;&lt;p&gt;在笔记本上的虚拟机中装了一个Linux系统，有一段时间没用，突然要用到时发现，密码已经不记得了。
 还好之前有用过&lt;strong&gt;secureCRT&lt;/strong&gt;软件连接过&lt;strong&gt;Linux&lt;/strong&gt;，那么就能轻松地使用&lt;strong&gt;python&lt;/strong&gt;找回密码啦。&lt;/p&gt;
 &lt;h2 id=&#34;最终效果&#34;&gt;最终效果&lt;/h2&gt;
@@ -17734,10 +17965,10 @@ Linux 2.6.11根据进程的优先权不同将就绪队列组织成多个不同�
         </item>
         <item>
         <title>本地快速搭建Jekyll及相关依赖</title>
-        <link>https://ghjayce.github.io/p/static-site-generator/jekyll/quick-start/</link>
+        <link>/p/static-site-generator/jekyll/quick-start/</link>
         <pubDate>Tue, 02 Jan 2018 03:39:35 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/static-site-generator/jekyll/quick-start/</guid>
+        <guid>/p/static-site-generator/jekyll/quick-start/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/l2X2IUWhKLBkgz5kr7qOMjAxODAxMDJfMDMzOTM1.jpeg" alt="Featured image of post 本地快速搭建Jekyll及相关依赖" /&gt;&lt;p&gt;文章为过程记录&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;另外，以下命令行相关的全局变量配置，需要自己去设置。例如：ruby、python&lt;/p&gt;
@@ -17933,10 +18164,10 @@ Linux 2.6.11根据进程的优先权不同将就绪队列组织成多个不同�
         </item>
         <item>
         <title>虚拟机Linux Centos7搭建web环境（LNMP）</title>
-        <link>https://ghjayce.github.io/p/system/android/env/web-env-build/</link>
+        <link>/p/system/android/env/web-env-build/</link>
         <pubDate>Sun, 24 Dec 2017 17:33:45 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/android/env/web-env-build/</guid>
+        <guid>/p/system/android/env/web-env-build/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/w6PuBfnL7w3BeiDpzBQvMjAxNzEyMjRfMTczMzQ1.jpeg" alt="Featured image of post 虚拟机Linux Centos7搭建web环境（LNMP）" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
 &lt;p&gt;本文内容是，如何在&lt;strong&gt;Linux centos7&lt;/strong&gt;下快速搭建&lt;strong&gt;LNMP&lt;/strong&gt;环境。虚拟机、实体机环境都可以。
@@ -18595,10 +18826,10 @@ DNS配置文件&lt;/p&gt;
         </item>
         <item>
         <title>PHP报错解析和如何捕获错误信息</title>
-        <link>https://ghjayce.github.io/p/language/php/exception/error-capture/</link>
+        <link>/p/language/php/exception/error-capture/</link>
         <pubDate>Thu, 16 Nov 2017 16:38:34 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/language/php/exception/error-capture/</guid>
+        <guid>/p/language/php/exception/error-capture/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/mwZTYxkP4GSsgLbC5aXaMjAxNzExMTZfMTYzODM0.jpeg" alt="Featured image of post PHP报错解析和如何捕获错误信息" /&gt;&lt;h2 id=&#34;内容大纲&#34;&gt;内容大纲&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;php的报错类型都有哪些&lt;/li&gt;
@@ -18809,10 +19040,10 @@ DNS配置文件&lt;/p&gt;
         </item>
         <item>
         <title>JS 键盘按键keyCode对应表</title>
-        <link>https://ghjayce.github.io/p/language/javascript/key-code/</link>
+        <link>/p/language/javascript/key-code/</link>
         <pubDate>Wed, 08 Nov 2017 09:05:13 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/language/javascript/key-code/</guid>
+        <guid>/p/language/javascript/key-code/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/hhu3ZhdElGKvdDDmPImUMjAxNzExMDhfMDkwNTEz.jpeg" alt="Featured image of post JS 键盘按键keyCode对应表" /&gt;&lt;h2 id=&#34;keydown-event对象&#34;&gt;keydown event对象&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://ghjayce.github.io/asset/blog/XQ9pwkmDr2oRDf8QMnTYMjAxODAzMzFfMTEyMTAw.jpeg&#34;
 	width=&#34;800&#34;
@@ -19253,10 +19484,10 @@ DNS配置文件&lt;/p&gt;
         </item>
         <item>
         <title>华硕x45vd安装黑苹果Yosemite 10.10.3记录</title>
-        <link>https://ghjayce.github.io/p/system/hackintosh/asus/x45vd/</link>
+        <link>/p/system/hackintosh/asus/x45vd/</link>
         <pubDate>Sat, 04 Nov 2017 21:03:00 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/hackintosh/asus/x45vd/</guid>
+        <guid>/p/system/hackintosh/asus/x45vd/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/dPMjucATggvoLXmJZXz5MjAxNzExMDRfMjEwMzAw.jpeg" alt="Featured image of post 华硕x45vd安装黑苹果Yosemite 10.10.3记录" /&gt;&lt;h2 id=&#34;准备工作&#34;&gt;准备工作&lt;/h2&gt;
 &lt;p&gt;Yosemite10.10.3懒人版
 链接: &lt;a class=&#34;link&#34; href=&#34;https://pan.baidu.com/s/1i5aOBOT&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -19487,10 +19718,10 @@ DNS配置文件&lt;/p&gt;
         </item>
         <item>
         <title>将Sublime Text 添加到右键菜单的方法</title>
-        <link>https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/sublime-text/</link>
+        <link>/p/system/windows/regedit/right-click-menu/sublime-text/</link>
         <pubDate>Mon, 26 Dec 2016 10:34:34 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/sublime-text/</guid>
+        <guid>/p/system/windows/regedit/right-click-menu/sublime-text/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/WKRr6SlzDfcw9eTWRv1EMjAxNjEyMjZfMTAzNDM0.jpeg" alt="Featured image of post 将Sublime Text 添加到右键菜单的方法" /&gt;&lt;h2 id=&#34;方法一&#34;&gt;方法一&lt;/h2&gt;
 &lt;p&gt;把以下代码，复制到&lt;strong&gt;SublimeText3的文件目录&lt;/strong&gt;，然后重命名为：&lt;strong&gt;安装右键菜单.inf&lt;/strong&gt;，然后右击安装就可以了。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -19595,10 +19826,10 @@ DNS配置文件&lt;/p&gt;
         </item>
         <item>
         <title>windows自定义程序到右键菜单</title>
-        <link>https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/custom/</link>
+        <link>/p/system/windows/regedit/right-click-menu/custom/</link>
         <pubDate>Sun, 25 Dec 2016 10:34:34 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/custom/</guid>
+        <guid>/p/system/windows/regedit/right-click-menu/custom/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/jhPbumQV8Q1Tn3JTsxQaMjAxNjEyMjVfMTAzNDM0.jpeg" alt="Featured image of post windows自定义程序到右键菜单" /&gt;&lt;p&gt;打开注册表&lt;code&gt;regedit&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;要在背景上设置右键菜单的
 依次进入&lt;/p&gt;

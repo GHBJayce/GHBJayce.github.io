@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>数学 on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/%E6%95%B0%E5%AD%A6/</link>
+        <link>/tags/%E6%95%B0%E5%AD%A6/</link>
         <description>Recent content in 数学 on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 28 Sep 2023 14:47:45 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 28 Sep 2023 14:47:45 +0800</lastBuildDate><atom:link href="/tags/%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>什么是对数？</title>
-        <link>https://ghjayce.github.io/p/subject/math/sequence/logarithm/</link>
+        <link>/p/subject/math/sequence/logarithm/</link>
         <pubDate>Thu, 28 Sep 2023 14:47:45 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/subject/math/sequence/logarithm/</guid>
+        <guid>/p/subject/math/sequence/logarithm/</guid>
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;比如现在来看一组幂运算（也叫求幂）：&lt;/p&gt;
 &lt;ul&gt;
@@ -134,10 +134,10 @@ $$log_a(M \times N) = x + y$$&lt;/p&gt;
         </item>
         <item>
         <title>什么是等差数列？</title>
-        <link>https://ghjayce.github.io/p/subject/math/sequence/arithmetic/</link>
+        <link>/p/subject/math/sequence/arithmetic/</link>
         <pubDate>Thu, 07 Sep 2023 19:05:42 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/subject/math/sequence/arithmetic/</guid>
+        <guid>/p/subject/math/sequence/arithmetic/</guid>
         <description>&lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;数列：按特定规律排列的一组数字的集合。&lt;/li&gt;

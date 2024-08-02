@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Sublime Text on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/sublime-text/</link>
+        <link>/tags/sublime-text/</link>
         <description>Recent content in Sublime Text on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 26 Dec 2016 10:34:34 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/sublime-text/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 26 Dec 2016 10:34:34 +0800</lastBuildDate><atom:link href="/tags/sublime-text/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>将Sublime Text 添加到右键菜单的方法</title>
-        <link>https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/sublime-text/</link>
+        <link>/p/system/windows/regedit/right-click-menu/sublime-text/</link>
         <pubDate>Mon, 26 Dec 2016 10:34:34 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/sublime-text/</guid>
+        <guid>/p/system/windows/regedit/right-click-menu/sublime-text/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/WKRr6SlzDfcw9eTWRv1EMjAxNjEyMjZfMTAzNDM0.jpeg" alt="Featured image of post 将Sublime Text 添加到右键菜单的方法" /&gt;&lt;h2 id=&#34;方法一&#34;&gt;方法一&lt;/h2&gt;
 &lt;p&gt;把以下代码，复制到&lt;strong&gt;SublimeText3的文件目录&lt;/strong&gt;，然后重命名为：&lt;strong&gt;安装右键菜单.inf&lt;/strong&gt;，然后右击安装就可以了。&lt;/p&gt;
 &lt;blockquote&gt;

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Centos on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/centos/</link>
+        <link>/tags/centos/</link>
         <description>Recent content in Centos on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 30 Apr 2018 10:51:03 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/centos/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 30 Apr 2018 10:51:03 +0800</lastBuildDate><atom:link href="/tags/centos/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>centos7 安装Apache2.4配置多站点目录</title>
-        <link>https://ghjayce.github.io/p/system/linux/env/apache-site-more/</link>
+        <link>/p/system/linux/env/apache-site-more/</link>
         <pubDate>Mon, 30 Apr 2018 10:51:03 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/linux/env/apache-site-more/</guid>
+        <guid>/p/system/linux/env/apache-site-more/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/qfHDW8fltBrGpL2TeHDSMjAxODA0MzBfMTA1MTAz.jpeg" alt="Featured image of post centos7 安装Apache2.4配置多站点目录" /&gt;&lt;h2 id=&#34;安装apache&#34;&gt;安装apache&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -249,10 +249,10 @@
         </item>
         <item>
         <title>虚拟机Linux Centos7搭建web环境（LNMP）</title>
-        <link>https://ghjayce.github.io/p/system/android/env/web-env-build/</link>
+        <link>/p/system/android/env/web-env-build/</link>
         <pubDate>Sun, 24 Dec 2017 17:33:45 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/android/env/web-env-build/</guid>
+        <guid>/p/system/android/env/web-env-build/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/w6PuBfnL7w3BeiDpzBQvMjAxNzEyMjRfMTczMzQ1.jpeg" alt="Featured image of post 虚拟机Linux Centos7搭建web环境（LNMP）" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
 &lt;p&gt;本文内容是，如何在&lt;strong&gt;Linux centos7&lt;/strong&gt;下快速搭建&lt;strong&gt;LNMP&lt;/strong&gt;环境。虚拟机、实体机环境都可以。

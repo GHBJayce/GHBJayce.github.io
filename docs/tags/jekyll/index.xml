@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Jekyll on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/jekyll/</link>
+        <link>/tags/jekyll/</link>
         <description>Recent content in Jekyll on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 02 Jan 2018 03:39:35 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/jekyll/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 02 Jan 2018 03:39:35 +0800</lastBuildDate><atom:link href="/tags/jekyll/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>本地快速搭建Jekyll及相关依赖</title>
-        <link>https://ghjayce.github.io/p/static-site-generator/jekyll/quick-start/</link>
+        <link>/p/static-site-generator/jekyll/quick-start/</link>
         <pubDate>Tue, 02 Jan 2018 03:39:35 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/static-site-generator/jekyll/quick-start/</guid>
+        <guid>/p/static-site-generator/jekyll/quick-start/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/l2X2IUWhKLBkgz5kr7qOMjAxODAxMDJfMDMzOTM1.jpeg" alt="Featured image of post 本地快速搭建Jekyll及相关依赖" /&gt;&lt;p&gt;文章为过程记录&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;另外，以下命令行相关的全局变量配置，需要自己去设置。例如：ruby、python&lt;/p&gt;

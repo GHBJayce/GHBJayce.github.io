@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>操作系统 on GHJayce</title>
-        <link>https://ghjayce.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+        <link>/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
         <description>Recent content in 操作系统 on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Fri, 26 Apr 2024 15:24:57 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 26 Apr 2024 15:24:57 +0800</lastBuildDate><atom:link href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Mac系统多个php版本环境下未找到icu4c动态库的解决过程</title>
-        <link>https://ghjayce.github.io/p/system/mac/env/php/icu4c-load-dylib/</link>
+        <link>/p/system/mac/env/php/icu4c-load-dylib/</link>
         <pubDate>Fri, 26 Apr 2024 15:24:57 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/mac/env/php/icu4c-load-dylib/</guid>
+        <guid>/p/system/mac/env/php/icu4c-load-dylib/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/xLrs7QpeKQhM85mLcIcqMjAyNDA0MjZfMTUzMTU1.png" alt="Featured image of post Mac系统多个php版本环境下未找到icu4c动态库的解决过程" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;h3 id=&#34;环境软件版本&#34;&gt;环境&amp;amp;软件版本&lt;/h3&gt;
 &lt;ul&gt;
@@ -688,10 +688,10 @@
         </item>
         <item>
         <title>在android上安装git环境</title>
-        <link>https://ghjayce.github.io/p/system/android/env/install-git/</link>
+        <link>/p/system/android/env/install-git/</link>
         <pubDate>Wed, 30 Aug 2023 13:26:26 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/android/env/install-git/</guid>
+        <guid>/p/system/android/env/install-git/</guid>
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;一开始打算在手机上安装git，想到的是安装app，于是各种找，找到了有如：&lt;/p&gt;
 &lt;ol&gt;
@@ -871,10 +871,10 @@
         </item>
         <item>
         <title>centos7 安装Apache2.4配置多站点目录</title>
-        <link>https://ghjayce.github.io/p/system/linux/env/apache-site-more/</link>
+        <link>/p/system/linux/env/apache-site-more/</link>
         <pubDate>Mon, 30 Apr 2018 10:51:03 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/linux/env/apache-site-more/</guid>
+        <guid>/p/system/linux/env/apache-site-more/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/qfHDW8fltBrGpL2TeHDSMjAxODA0MzBfMTA1MTAz.jpeg" alt="Featured image of post centos7 安装Apache2.4配置多站点目录" /&gt;&lt;h2 id=&#34;安装apache&#34;&gt;安装apache&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1112,10 +1112,10 @@
         </item>
         <item>
         <title>虚拟机Linux Centos7搭建web环境（LNMP）</title>
-        <link>https://ghjayce.github.io/p/system/android/env/web-env-build/</link>
+        <link>/p/system/android/env/web-env-build/</link>
         <pubDate>Sun, 24 Dec 2017 17:33:45 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/android/env/web-env-build/</guid>
+        <guid>/p/system/android/env/web-env-build/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/w6PuBfnL7w3BeiDpzBQvMjAxNzEyMjRfMTczMzQ1.jpeg" alt="Featured image of post 虚拟机Linux Centos7搭建web环境（LNMP）" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
 &lt;p&gt;本文内容是，如何在&lt;strong&gt;Linux centos7&lt;/strong&gt;下快速搭建&lt;strong&gt;LNMP&lt;/strong&gt;环境。虚拟机、实体机环境都可以。
@@ -1774,10 +1774,10 @@ DNS配置文件&lt;/p&gt;
         </item>
         <item>
         <title>华硕x45vd安装黑苹果Yosemite 10.10.3记录</title>
-        <link>https://ghjayce.github.io/p/system/hackintosh/asus/x45vd/</link>
+        <link>/p/system/hackintosh/asus/x45vd/</link>
         <pubDate>Sat, 04 Nov 2017 21:03:00 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/hackintosh/asus/x45vd/</guid>
+        <guid>/p/system/hackintosh/asus/x45vd/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/dPMjucATggvoLXmJZXz5MjAxNzExMDRfMjEwMzAw.jpeg" alt="Featured image of post 华硕x45vd安装黑苹果Yosemite 10.10.3记录" /&gt;&lt;h2 id=&#34;准备工作&#34;&gt;准备工作&lt;/h2&gt;
 &lt;p&gt;Yosemite10.10.3懒人版
 链接: &lt;a class=&#34;link&#34; href=&#34;https://pan.baidu.com/s/1i5aOBOT&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -2008,10 +2008,10 @@ DNS配置文件&lt;/p&gt;
         </item>
         <item>
         <title>将Sublime Text 添加到右键菜单的方法</title>
-        <link>https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/sublime-text/</link>
+        <link>/p/system/windows/regedit/right-click-menu/sublime-text/</link>
         <pubDate>Mon, 26 Dec 2016 10:34:34 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/sublime-text/</guid>
+        <guid>/p/system/windows/regedit/right-click-menu/sublime-text/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/WKRr6SlzDfcw9eTWRv1EMjAxNjEyMjZfMTAzNDM0.jpeg" alt="Featured image of post 将Sublime Text 添加到右键菜单的方法" /&gt;&lt;h2 id=&#34;方法一&#34;&gt;方法一&lt;/h2&gt;
 &lt;p&gt;把以下代码，复制到&lt;strong&gt;SublimeText3的文件目录&lt;/strong&gt;，然后重命名为：&lt;strong&gt;安装右键菜单.inf&lt;/strong&gt;，然后右击安装就可以了。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -2116,10 +2116,10 @@ DNS配置文件&lt;/p&gt;
         </item>
         <item>
         <title>windows自定义程序到右键菜单</title>
-        <link>https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/custom/</link>
+        <link>/p/system/windows/regedit/right-click-menu/custom/</link>
         <pubDate>Sun, 25 Dec 2016 10:34:34 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/custom/</guid>
+        <guid>/p/system/windows/regedit/right-click-menu/custom/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/jhPbumQV8Q1Tn3JTsxQaMjAxNjEyMjVfMTAzNDM0.jpeg" alt="Featured image of post windows自定义程序到右键菜单" /&gt;&lt;p&gt;打开注册表&lt;code&gt;regedit&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;要在背景上设置右键菜单的
 依次进入&lt;/p&gt;

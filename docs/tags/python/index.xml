@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Python on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/python/</link>
+        <link>/tags/python/</link>
         <description>Recent content in Python on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sat, 17 Mar 2018 12:00:50 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 17 Mar 2018 12:00:50 +0800</lastBuildDate><atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>使用python找回在SecureCRT中的Linux登入密码</title>
-        <link>https://ghjayce.github.io/p/tool/terminal/securecrt/forgot-password/</link>
+        <link>/p/tool/terminal/securecrt/forgot-password/</link>
         <pubDate>Sat, 17 Mar 2018 12:00:50 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/tool/terminal/securecrt/forgot-password/</guid>
+        <guid>/p/tool/terminal/securecrt/forgot-password/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/oQBWE3gpg8IKTskSpyzrMjAxODAzMTdfMTIwMDUw.jpeg" alt="Featured image of post 使用python找回在SecureCRT中的Linux登入密码" /&gt;&lt;p&gt;在笔记本上的虚拟机中装了一个Linux系统，有一段时间没用，突然要用到时发现，密码已经不记得了。
 还好之前有用过&lt;strong&gt;secureCRT&lt;/strong&gt;软件连接过&lt;strong&gt;Linux&lt;/strong&gt;，那么就能轻松地使用&lt;strong&gt;python&lt;/strong&gt;找回密码啦。&lt;/p&gt;
 &lt;h2 id=&#34;最终效果&#34;&gt;最终效果&lt;/h2&gt;

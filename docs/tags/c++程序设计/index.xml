@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>C&#43;&#43;程序设计 on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/c&#43;&#43;%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</link>
+        <link>/tags/c&#43;&#43;%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</link>
         <description>Recent content in C&#43;&#43;程序设计 on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 07 Mar 2024 15:41:50 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/c++%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 07 Mar 2024 15:41:50 +0800</lastBuildDate><atom:link href="/tags/c++%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>04737《C&#43;&#43;程序设计》概要笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/04737/summary/</link>
+        <link>/p/book/080901/04737/summary/</link>
         <pubDate>Thu, 07 Mar 2024 15:41:50 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/04737/summary/</guid>
+        <guid>/p/book/080901/04737/summary/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/pUUpVODdvSxxT4BxTflbMjAyNDAzMDhfMTU0NTM2.png" alt="Featured image of post 04737《C&#43;&#43;程序设计》概要笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;#%e7%ac%ac%e4%b8%80%e7%ab%a0-C&amp;#43;&amp;#43;%e8%af%ad%e8%a8%80%e7%ae%80%e4%bb%8b&#34; &gt;第一章 C++语言简介&lt;/a&gt; &lt;small&gt;P29 ~ 56（14页）&lt;/small&gt;&lt;/li&gt;

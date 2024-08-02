@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>环境安装 on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/</link>
+        <link>/tags/%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/</link>
         <description>Recent content in 环境安装 on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Wed, 30 Aug 2023 13:26:26 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 30 Aug 2023 13:26:26 +0800</lastBuildDate><atom:link href="/tags/%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>在android上安装git环境</title>
-        <link>https://ghjayce.github.io/p/system/android/env/install-git/</link>
+        <link>/p/system/android/env/install-git/</link>
         <pubDate>Wed, 30 Aug 2023 13:26:26 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/android/env/install-git/</guid>
+        <guid>/p/system/android/env/install-git/</guid>
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;一开始打算在手机上安装git，想到的是安装app，于是各种找，找到了有如：&lt;/p&gt;
 &lt;ol&gt;

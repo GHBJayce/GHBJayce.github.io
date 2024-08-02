@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>笔记 on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/%E7%AC%94%E8%AE%B0/</link>
+        <link>/tags/%E7%AC%94%E8%AE%B0/</link>
         <description>Recent content in 笔记 on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 07 Mar 2024 15:41:50 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 07 Mar 2024 15:41:50 +0800</lastBuildDate><atom:link href="/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>04737《C&#43;&#43;程序设计》概要笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/04737/summary/</link>
+        <link>/p/book/080901/04737/summary/</link>
         <pubDate>Thu, 07 Mar 2024 15:41:50 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/04737/summary/</guid>
+        <guid>/p/book/080901/04737/summary/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/pUUpVODdvSxxT4BxTflbMjAyNDAzMDhfMTU0NTM2.png" alt="Featured image of post 04737《C&#43;&#43;程序设计》概要笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;#%e7%ac%ac%e4%b8%80%e7%ab%a0-C&amp;#43;&amp;#43;%e8%af%ad%e8%a8%80%e7%ae%80%e4%bb%8b&#34; &gt;第一章 C++语言简介&lt;/a&gt; &lt;small&gt;P29 ~ 56（14页）&lt;/small&gt;&lt;/li&gt;
@@ -5953,10 +5953,10 @@
         </item>
         <item>
         <title>04757《信息系统开发与管理》概要笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/04757/summary/</link>
+        <link>/p/book/080901/04757/summary/</link>
         <pubDate>Wed, 06 Mar 2024 11:00:20 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/04757/summary/</guid>
+        <guid>/p/book/080901/04757/summary/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/009YvB3LFELPlaoVaw6TMjAyNDAzMDZfMTQyNTE1.png" alt="Featured image of post 04757《信息系统开发与管理》概要笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;#%e7%ac%ac%e4%b8%80%e7%ab%a0-%e7%ae%a1%e7%90%86%e4%bf%a1%e6%81%af%e7%b3%bb%e7%bb%9f%e5%af%bc%e8%ae%ba&#34; &gt;第一章 管理信息系统导论&lt;/a&gt; &lt;small&gt;P17 ~ 36（10页）&lt;/small&gt;&lt;/li&gt;
@@ -7718,10 +7718,10 @@
         </item>
         <item>
         <title>《数据结构导论》考试重点</title>
-        <link>https://ghjayce.github.io/p/book/080901/02142/exam-focus/</link>
+        <link>/p/book/080901/02142/exam-focus/</link>
         <pubDate>Sun, 22 Oct 2023 09:27:30 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02142/exam-focus/</guid>
+        <guid>/p/book/080901/02142/exam-focus/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 《数据结构导论》考试重点" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -7969,10 +7969,10 @@
         </item>
         <item>
         <title>第七章 排序 - 《数据结构导论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02142/chapter7/</link>
+        <link>/p/book/080901/02142/chapter7/</link>
         <pubDate>Fri, 20 Oct 2023 09:27:30 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter7/</guid>
+        <guid>/p/book/080901/02142/chapter7/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第七章 排序 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -8198,10 +8198,10 @@
         </item>
         <item>
         <title>第六章 查找 - 《数据结构导论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02142/chapter6/</link>
+        <link>/p/book/080901/02142/chapter6/</link>
         <pubDate>Thu, 19 Oct 2023 12:23:25 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter6/</guid>
+        <guid>/p/book/080901/02142/chapter6/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第六章 查找 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -8562,10 +8562,10 @@ $$d_i = (d_0 \pm i){\quad}mod{\quad}m$$
         </item>
         <item>
         <title>第五章 图 - 《数据结构导论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02142/chapter5/</link>
+        <link>/p/book/080901/02142/chapter5/</link>
         <pubDate>Mon, 16 Oct 2023 10:31:20 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter5/</guid>
+        <guid>/p/book/080901/02142/chapter5/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第五章 图 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -8950,10 +8950,10 @@ $$图5$$
         </item>
         <item>
         <title>第四章 树和二叉树 - 《数据结构导论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02142/chapter4/</link>
+        <link>/p/book/080901/02142/chapter4/</link>
         <pubDate>Tue, 26 Sep 2023 09:47:20 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter4/</guid>
+        <guid>/p/book/080901/02142/chapter4/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第四章 树和二叉树 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -10289,10 +10289,10 @@ $$图5$$
         </item>
         <item>
         <title>第三章 栈、队列和数组 - 《数据结构导论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02142/chapter3/</link>
+        <link>/p/book/080901/02142/chapter3/</link>
         <pubDate>Mon, 18 Sep 2023 12:24:10 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter3/</guid>
+        <guid>/p/book/080901/02142/chapter3/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第三章 栈、队列和数组 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -11447,10 +11447,10 @@ $$loc[i, j] = loc[0, 0] + (n * i + j) * k$$
         </item>
         <item>
         <title>第二章 线性表 - 《数据结构导论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02142/chapter2/</link>
+        <link>/p/book/080901/02142/chapter2/</link>
         <pubDate>Tue, 29 Aug 2023 14:46:12 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter2/</guid>
+        <guid>/p/book/080901/02142/chapter2/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第二章 线性表 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;第一章 概论&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -12630,10 +12630,10 @@ $$loc[i, j] = loc[0, 0] + (n * i + j) * k$$
         </item>
         <item>
         <title>第一章 概论 - 《数据结构导论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02142/chapter1/</link>
+        <link>/p/book/080901/02142/chapter1/</link>
         <pubDate>Sun, 20 Aug 2023 16:36:20 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02142/chapter1/</guid>
+        <guid>/p/book/080901/02142/chapter1/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/k13uqmFROI7ZE6i8K9HpMjAyNDAzMDFfMTM1MDM2.png" alt="Featured image of post 第一章 概论 - 《数据结构导论》笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../chapter1&#34; &gt;&lt;strong&gt;第一章 概论&lt;/strong&gt;&lt;/a&gt; &lt;small&gt;P21 ~ 34（13页）&lt;/small&gt;&lt;/li&gt;
@@ -13051,10 +13051,10 @@ $$S(n)=O(g(n))$$
         </item>
         <item>
         <title>02323《操作系统概论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02323/summary/</link>
+        <link>/p/book/080901/02323/summary/</link>
         <pubDate>Thu, 22 Mar 2018 11:22:40 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02323/summary/</guid>
+        <guid>/p/book/080901/02323/summary/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/nae2CLNy3GD4lakpo2aBMjAxODAzMjJfMTEyMjQw.png" alt="Featured image of post 02323《操作系统概论》笔记" /&gt;&lt;p&gt;文章内容为个人的学习笔记，绝大部分内容摘抄自书本中的知识点，目录也是如此。仅供各位学习参考，另外备注书本是2017年版。&lt;/p&gt;
 &lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;p&gt;较早前记的笔记，内容并不全，请选择性浏览&lt;/p&gt;

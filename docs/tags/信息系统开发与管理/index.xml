@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>信息系统开发与管理 on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B8%8E%E7%AE%A1%E7%90%86/</link>
+        <link>/tags/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B8%8E%E7%AE%A1%E7%90%86/</link>
         <description>Recent content in 信息系统开发与管理 on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Wed, 06 Mar 2024 11:00:20 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B8%8E%E7%AE%A1%E7%90%86/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 06 Mar 2024 11:00:20 +0800</lastBuildDate><atom:link href="/tags/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B8%8E%E7%AE%A1%E7%90%86/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>04757《信息系统开发与管理》概要笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/04757/summary/</link>
+        <link>/p/book/080901/04757/summary/</link>
         <pubDate>Wed, 06 Mar 2024 11:00:20 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/04757/summary/</guid>
+        <guid>/p/book/080901/04757/summary/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/009YvB3LFELPlaoVaw6TMjAyNDAzMDZfMTQyNTE1.png" alt="Featured image of post 04757《信息系统开发与管理》概要笔记" /&gt;&lt;h2 id=&#34;目录&#34;&gt;目录&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;#%e7%ac%ac%e4%b8%80%e7%ab%a0-%e7%ae%a1%e7%90%86%e4%bf%a1%e6%81%af%e7%b3%bb%e7%bb%9f%e5%af%bc%e8%ae%ba&#34; &gt;第一章 管理信息系统导论&lt;/a&gt; &lt;small&gt;P17 ~ 36（10页）&lt;/small&gt;&lt;/li&gt;
@@ -1773,10 +1773,10 @@
         </item>
         <item>
         <title>02323《操作系统概论》笔记</title>
-        <link>https://ghjayce.github.io/p/book/080901/02323/summary/</link>
+        <link>/p/book/080901/02323/summary/</link>
         <pubDate>Thu, 22 Mar 2018 11:22:40 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/book/080901/02323/summary/</guid>
+        <guid>/p/book/080901/02323/summary/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/nae2CLNy3GD4lakpo2aBMjAxODAzMjJfMTEyMjQw.png" alt="Featured image of post 02323《操作系统概论》笔记" /&gt;&lt;p&gt;文章内容为个人的学习笔记，绝大部分内容摘抄自书本中的知识点，目录也是如此。仅供各位学习参考，另外备注书本是2017年版。&lt;/p&gt;
 &lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;p&gt;较早前记的笔记，内容并不全，请选择性浏览&lt;/p&gt;

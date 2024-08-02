@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Linux on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/linux/</link>
+        <link>/tags/linux/</link>
         <description>Recent content in Linux on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sat, 17 Mar 2018 12:00:50 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 17 Mar 2018 12:00:50 +0800</lastBuildDate><atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>使用python找回在SecureCRT中的Linux登入密码</title>
-        <link>https://ghjayce.github.io/p/tool/terminal/securecrt/forgot-password/</link>
+        <link>/p/tool/terminal/securecrt/forgot-password/</link>
         <pubDate>Sat, 17 Mar 2018 12:00:50 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/tool/terminal/securecrt/forgot-password/</guid>
+        <guid>/p/tool/terminal/securecrt/forgot-password/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/oQBWE3gpg8IKTskSpyzrMjAxODAzMTdfMTIwMDUw.jpeg" alt="Featured image of post 使用python找回在SecureCRT中的Linux登入密码" /&gt;&lt;p&gt;在笔记本上的虚拟机中装了一个Linux系统，有一段时间没用，突然要用到时发现，密码已经不记得了。
 还好之前有用过&lt;strong&gt;secureCRT&lt;/strong&gt;软件连接过&lt;strong&gt;Linux&lt;/strong&gt;，那么就能轻松地使用&lt;strong&gt;python&lt;/strong&gt;找回密码啦。&lt;/p&gt;
 &lt;h2 id=&#34;最终效果&#34;&gt;最终效果&lt;/h2&gt;
@@ -218,10 +218,10 @@
         </item>
         <item>
         <title>虚拟机Linux Centos7搭建web环境（LNMP）</title>
-        <link>https://ghjayce.github.io/p/system/android/env/web-env-build/</link>
+        <link>/p/system/android/env/web-env-build/</link>
         <pubDate>Sun, 24 Dec 2017 17:33:45 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/android/env/web-env-build/</guid>
+        <guid>/p/system/android/env/web-env-build/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/w6PuBfnL7w3BeiDpzBQvMjAxNzEyMjRfMTczMzQ1.jpeg" alt="Featured image of post 虚拟机Linux Centos7搭建web环境（LNMP）" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
 &lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
 &lt;p&gt;本文内容是，如何在&lt;strong&gt;Linux centos7&lt;/strong&gt;下快速搭建&lt;strong&gt;LNMP&lt;/strong&gt;环境。虚拟机、实体机环境都可以。

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Homestead on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/homestead/</link>
+        <link>/tags/homestead/</link>
         <description>Recent content in Homestead on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sat, 06 Oct 2018 20:40:41 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/homestead/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 06 Oct 2018 20:40:41 +0800</lastBuildDate><atom:link href="/tags/homestead/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Homestead环境搭建</title>
-        <link>https://ghjayce.github.io/p/language/php/laravel/homestead-install/</link>
+        <link>/p/language/php/laravel/homestead-install/</link>
         <pubDate>Sat, 06 Oct 2018 20:40:41 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/language/php/laravel/homestead-install/</guid>
+        <guid>/p/language/php/laravel/homestead-install/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/acN7lrfIQy4GU6zANY9bMjAxODEwMDZfMjA0MDQx.jpeg" alt="Featured image of post Homestead环境搭建" /&gt;&lt;p&gt;环境：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;win7 x64&lt;/li&gt;

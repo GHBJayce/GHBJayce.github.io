@@ -2,17 +2,28 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>React on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/react/</link>
+        <link>/tags/react/</link>
         <description>Recent content in React on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 04 Jul 2024 18:36:56 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/react/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 04 Jul 2024 18:36:56 +0800</lastBuildDate><atom:link href="/tags/react/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>React入门</title>
-        <link>https://ghjayce.github.io/p/language/javascript/package/react/quick-start/</link>
+        <link>/p/language/javascript/package/react/quick-start/</link>
         <pubDate>Thu, 04 Jul 2024 18:36:56 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/language/javascript/package/react/quick-start/</guid>
-        <description>&lt;img src="https://ghjayce.github.io/asset/blog/uwgqqiUfSOHwLzCqNN13MjAyNDA3MDRfMTkwNjEy.jpeg" alt="Featured image of post React入门" /&gt;&lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+        <guid>/p/language/javascript/package/react/quick-start/</guid>
+        <description>&lt;img src="https://ghjayce.github.io/asset/blog/uwgqqiUfSOHwLzCqNN13MjAyNDA3MDRfMTkwNjEy.jpeg" alt="Featured image of post React入门" /&gt;&lt;h2 id=&#34;阅读说明&#34;&gt;阅读说明&lt;/h2&gt;
+&lt;h3 id=&#34;软件版本&#34;&gt;软件版本&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;React v18.3.1&lt;/li&gt;
+&lt;li&gt;React Dom v18.3.1&lt;/li&gt;
+&lt;li&gt;Vite v5.3.1&lt;/li&gt;
+&lt;li&gt;vitejs/plugin-react v4.3.1&lt;/li&gt;
+&lt;li&gt;TypeScript v5.2.2&lt;/li&gt;
+&lt;li&gt;@types/react v18.3.3&lt;/li&gt;
+&lt;li&gt;@types/react-dom v18.3.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
 &lt;p&gt;React是一个开源的前端JavaScript库，用于构建用户界面。用户界面由按钮、文本和图像等小单元内容构建而成。React帮助你把它们组合成可重用、可嵌套的组件。从we端网站到移动端应用，屏幕上的所有内容都可以被分解成组件。&lt;/p&gt;
 &lt;p&gt;它由Facebook维护，并在2013年首次发布。React的核心特性是其组件化架构，允许开发者使用名为“React组件”的可重用代码片段构建复杂的用户界面。&lt;/p&gt;
 &lt;h2 id=&#34;体验react&#34;&gt;体验React&lt;/h2&gt;
@@ -242,7 +253,7 @@
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zh-hans.react.dev/learn/writing-markup-with-jsx#jsx-putting-markup-into-javascript&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;为什么？&lt;/a&gt;官方说法是web交互性越来越强，逻辑越来越决定页面中的内容，JavaScript控制着HTML的内容。&lt;/p&gt;
 &lt;p&gt;乍眼一看还是很晦涩难懂的，以下是个人的理解看法：&lt;/p&gt;
-&lt;p&gt;例如JS里可以看到&lt;code&gt;createElement&lt;/code&gt;、&lt;code&gt;innerHTML&lt;/code&gt;等等，都是做着渲染HTML的事情，这种写法和过程是很冗长很混乱的，&lt;strong&gt;React的出现，只是将这个过程用JSX更直观地放在了组件中进行，并且它做的更简单、简洁，妥妥优雅那味了嗷。再加上都是JavaScript的东西，不需要再学一些特有的东西，结合友好的文档，有JS基础的人，学起来是真舒服&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;例如JS里可以看到&lt;code&gt;createElement&lt;/code&gt;、&lt;code&gt;innerHTML&lt;/code&gt;等等，都是做着渲染HTML的事情，这种写法和过程是很冗长很混乱的，&lt;strong&gt;React的出现，只是将这个过程用JSX更直观地放在了组件中进行，并且它做的更简单、易懂。再加上都是JavaScript的东西，不需要再学一些特有的东西，结合友好的文档，有JS基础的人，学起来会相对舒服一些&lt;/strong&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;就像这样：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;

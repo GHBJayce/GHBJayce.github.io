@@ -8,15 +8,15 @@ PS：重命名文件之前，需要先在工具&amp;ndash;文件夹选项，查�
 需要把下边的Sublime的安装目录，替换成你的实际的Sublime安装目录。 文件编码必须是ANSI，代码中的中文才会正常显示。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 Windows Registry Editor Version 5.00 [HKEY_CLASSES_ROOT\*\shell\SublimeText3] @=&amp;#34;用 SublimeText3 打开&amp;#34; &amp;#34;Icon&amp;#34;=&amp;#34;D:\\Program Files\\Sublime Text 3\\sublime_text.exe,0&amp;#34; [HKEY_CLASSES_ROOT\*\shell\SublimeText3\command] @=&amp;#34;D:\\Program Files\\Sublime Text 3\\sublime_text.'>
 <title>将Sublime Text 添加到右键菜单的方法</title>
 
-<link rel='canonical' href='https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/sublime-text/'>
+<link rel='canonical' href='/p/system/windows/regedit/right-click-menu/sublime-text/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='将Sublime Text 添加到右键菜单的方法'>
+<link rel="stylesheet" href="/scss/style.min.16bf79fde71ad0826cb332f8a542083f14a167d38adecffbc10e3a04b834c453.css"><meta property='og:title' content='将Sublime Text 添加到右键菜单的方法'>
 <meta property='og:description' content='方法一 把以下代码，复制到SublimeText3的文件目录，然后重命名为：安装右键菜单.inf，然后右击安装就可以了。
 PS：重命名文件之前，需要先在工具&amp;ndash;文件夹选项，查看中，把隐藏已知文件类型的扩展名前边的复选框不勾选。
 1 2 3 4 5 6 7 8 9 10 11 12 [Version] Signature=&amp;#34;$Windows NT$&amp;#34; [DefaultInstall] AddReg=SublimeText3 [SublimeText3] hkcr,&amp;#34;*\\shell\\SublimeText3&amp;#34;,,,&amp;#34;用 SublimeText3 打开&amp;#34; hkcr,&amp;#34;*\\shell\\SublimeText3\\command&amp;#34;,,,&amp;#34;&amp;#34;&amp;#34;%1%\sublime_text.exe&amp;#34;&amp;#34; &amp;#34;&amp;#34;%%1&amp;#34;&amp;#34; %%*&amp;#34; hkcr,&amp;#34;Directory\shell\SublimeText3&amp;#34;,,,&amp;#34;用 SublimeText3 打开&amp;#34; hkcr,&amp;#34;*\\shell\\SublimeText3&amp;#34;,&amp;#34;Icon&amp;#34;,0x20000,&amp;#34;%1%\sublime_text.exe, 0&amp;#34; hkcr,&amp;#34;Directory\shell\SublimeText3\command&amp;#34;,,,&amp;#34;&amp;#34;&amp;#34;%1%\sublime_text.exe&amp;#34;&amp;#34; &amp;#34;&amp;#34;%%1&amp;#34;&amp;#34;&amp;#34; 方法二 把以下代码，复制到SublimeText3的安装目录，然后重命名为：sublime right menu.reg，然后双击就可以了。
 注意：
 需要把下边的Sublime的安装目录，替换成你的实际的Sublime安装目录。 文件编码必须是ANSI，代码中的中文才会正常显示。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 Windows Registry Editor Version 5.00 [HKEY_CLASSES_ROOT\*\shell\SublimeText3] @=&amp;#34;用 SublimeText3 打开&amp;#34; &amp;#34;Icon&amp;#34;=&amp;#34;D:\\Program Files\\Sublime Text 3\\sublime_text.exe,0&amp;#34; [HKEY_CLASSES_ROOT\*\shell\SublimeText3\command] @=&amp;#34;D:\\Program Files\\Sublime Text 3\\sublime_text.'>
-<meta property='og:url' content='https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/sublime-text/'>
+<meta property='og:url' content='/p/system/windows/regedit/right-click-menu/sublime-text/'>
 <meta property='og:site_name' content='GHJayce'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Sublime Text' /><meta property='article:tag' content='编辑器' /><meta property='article:tag' content='右键菜单' /><meta property='article:tag' content='注册表' /><meta property='article:tag' content='Windows' /><meta property='article:published_time' content='2016-12-26T10:34:34&#43;08:00'/><meta property='article:modified_time' content='2016-12-26T10:34:34&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/WKRr6SlzDfcw9eTWRv1EMjAxNjEyMjZfMTAzNDM0.jpeg' />
 <meta name="twitter:title" content="将Sublime Text 添加到右键菜单的方法">

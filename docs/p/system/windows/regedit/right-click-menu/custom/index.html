@@ -10,9 +10,9 @@ HKEY_CLASSES_ROOT Directory shell 注册文件示例 下面内容按照实际进
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 Windows Registry Editor Version 5.'>
 <title>windows自定义程序到右键菜单</title>
 
-<link rel='canonical' href='https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/custom/'>
+<link rel='canonical' href='/p/system/windows/regedit/right-click-menu/custom/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='windows自定义程序到右键菜单'>
+<link rel="stylesheet" href="/scss/style.min.16bf79fde71ad0826cb332f8a542083f14a167d38adecffbc10e3a04b834c453.css"><meta property='og:title' content='windows自定义程序到右键菜单'>
 <meta property='og:description' content='打开注册表regedit
 要在背景上设置右键菜单的 依次进入
 HKEY_CLASSES_ROOT Directory Background shell 要在选中文件时设置右键菜单的 依次进入
@@ -20,7 +20,7 @@ HKEY_CLASSES_ROOT Directory shell 注册文件示例 下面内容按照实际进
 背景的右键菜单示例 保存下面代码为example.reg文件，打开运行即可
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 Windows Registry Editor Version 5.00 ; 这里是右键菜单注册项 [HKEY_CLASSES_ROOT\Directory\Background\shell\cmder] ; @ 是右键菜单的名称 @=&amp;#34;open Cmder&amp;#34; ; Extended 是要按shift&#43;鼠标右键才会显示，不需要的话去除下面一行代码即可 &amp;#34;Extended&amp;#34;=&amp;#34;&amp;#34; ; Icon 表示右键菜单时显示的图标 &amp;#34;Icon&amp;#34;=&amp;#34;C:\\cmder\\icons\\cmder.ico&amp;#34; ; 这里是右键菜单注册项的重要子项 [HKEY_CLASSES_ROOT\Directory\Background\shell\cmder\command] ; 下面表示右键菜单软件的目录 @=&amp;#34;C:\\cmder\\Cmder.exe&amp;#34; 选中文件右键菜单示例 使用方法：保存下面代码为name.reg文件，打开运行即可
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 Windows Registry Editor Version 5.'>
-<meta property='og:url' content='https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/custom/'>
+<meta property='og:url' content='/p/system/windows/regedit/right-click-menu/custom/'>
 <meta property='og:site_name' content='GHJayce'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='右键菜单' /><meta property='article:tag' content='注册表' /><meta property='article:tag' content='Windows' /><meta property='article:published_time' content='2016-12-25T10:34:34&#43;08:00'/><meta property='article:modified_time' content='2016-12-25T10:34:34&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/jhPbumQV8Q1Tn3JTsxQaMjAxNjEyMjVfMTAzNDM0.jpeg' />
 <meta name="twitter:title" content="windows自定义程序到右键菜单">

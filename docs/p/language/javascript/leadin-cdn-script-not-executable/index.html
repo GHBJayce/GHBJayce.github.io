@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='背景 最近在发布j-weapons前端包的时候遇到了一个问题，引入CDN编译以后的JS文件，在浏览器中查看该脚本文件实际并没有执行。
+问题过程 代码文件如下：
+1 2 3 4 5 6 7 8 9 10 11 &amp;lt;!doctype html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;UTF-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;testing&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;script src=&amp;#34;https://unpkg.com/axios@1.7.2/dist/browser/axios.cjs&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt;console.log(axios)&amp;lt;/script&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 这里以axios为例，情况是如出一辙的。
+控制台得到一个错误：
+1 2 Uncaught ReferenceError: axios is not defined at dist/:14:21 script src文件并没有被执行。
+赶紧看Network对应资源文件的请求，如下图：
+可以看到这里的Status显示了(failed) net::ERR_BLOCKED_BY_ORB（而General.Status Code是200正常的）一番搜寻没找到有用的信息，AI介绍是浏览器应用层处理网络请求时的错误，既不属于HTTP也不是TCP的错误，暂不展开讨论这块。
+接着看响应头，如图：
+重点在Content-Type，返回的竟然是text/plain？
+接着换另一个CDN：jsdelivr再试试：
+1 &amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/browser/axios.cjs&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 同样，脚本也并没有被执行，查看响应头，如图：
+Status Code也是200，并没有出现(failed) net::ERR_BLOCKED_BY_ORB，而响应类型变成了：Content-Type: application/node。
+我在本地用Nginx引入本地文件，试了一下，响应类型是Content-Type: application/javascript，能够正常执行脚本。
+证明文件本身没有问题，问题在于响应头的响应类型。
+另外在Console有一个错误：
+1 Refused to execute script from &amp;#39;https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/browser/axios.cjs&amp;#39; because its MIME type (&amp;#39;application/node&amp;#39;) is not executable, and strict MIME type checking is enabled.'>
+<title>引入CDN的JS文件为什么不可执行？</title>
+
+<link rel='canonical' href='/p/language/javascript/leadin-cdn-script-not-executable/'>
+
+<link rel="stylesheet" href="/scss/style.min.16bf79fde71ad0826cb332f8a542083f14a167d38adecffbc10e3a04b834c453.css"><meta property='og:title' content='引入CDN的JS文件为什么不可执行？'>
+<meta property='og:description' content='背景 最近在发布j-weapons前端包的时候遇到了一个问题，引入CDN编译以后的JS文件，在浏览器中查看该脚本文件实际并没有执行。
+问题过程 代码文件如下：
+1 2 3 4 5 6 7 8 9 10 11 &amp;lt;!doctype html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;UTF-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;testing&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;script src=&amp;#34;https://unpkg.com/axios@1.7.2/dist/browser/axios.cjs&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt;console.log(axios)&amp;lt;/script&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 这里以axios为例，情况是如出一辙的。
+控制台得到一个错误：
+1 2 Uncaught ReferenceError: axios is not defined at dist/:14:21 script src文件并没有被执行。
+赶紧看Network对应资源文件的请求，如下图：
+可以看到这里的Status显示了(failed) net::ERR_BLOCKED_BY_ORB（而General.Status Code是200正常的）一番搜寻没找到有用的信息，AI介绍是浏览器应用层处理网络请求时的错误，既不属于HTTP也不是TCP的错误，暂不展开讨论这块。
+接着看响应头，如图：
+重点在Content-Type，返回的竟然是text/plain？
+接着换另一个CDN：jsdelivr再试试：
+1 &amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/browser/axios.cjs&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 同样，脚本也并没有被执行，查看响应头，如图：
+Status Code也是200，并没有出现(failed) net::ERR_BLOCKED_BY_ORB，而响应类型变成了：Content-Type: application/node。
+我在本地用Nginx引入本地文件，试了一下，响应类型是Content-Type: application/javascript，能够正常执行脚本。
+证明文件本身没有问题，问题在于响应头的响应类型。
+另外在Console有一个错误：
+1 Refused to execute script from &amp;#39;https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/browser/axios.cjs&amp;#39; because its MIME type (&amp;#39;application/node&amp;#39;) is not executable, and strict MIME type checking is enabled.'>
+<meta property='og:url' content='/p/language/javascript/leadin-cdn-script-not-executable/'>
+<meta property='og:site_name' content='GHJayce'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='CDN' /><meta property='article:tag' content='JavaScript' /><meta property='article:tag' content='HTTP' /><meta property='article:tag' content='MIME' /><meta property='article:published_time' content='2024-08-01T15:04:07&#43;08:00'/><meta property='article:modified_time' content='2024-08-01T15:04:07&#43;08:00'/>
+<meta name="twitter:title" content="引入CDN的JS文件为什么不可执行？">
+<meta name="twitter:description" content="背景 最近在发布j-weapons前端包的时候遇到了一个问题，引入CDN编译以后的JS文件，在浏览器中查看该脚本文件实际并没有执行。
+问题过程 代码文件如下：
+1 2 3 4 5 6 7 8 9 10 11 &amp;lt;!doctype html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;UTF-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;testing&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;script src=&amp;#34;https://unpkg.com/axios@1.7.2/dist/browser/axios.cjs&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt;console.log(axios)&amp;lt;/script&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 这里以axios为例，情况是如出一辙的。
+控制台得到一个错误：
+1 2 Uncaught ReferenceError: axios is not defined at dist/:14:21 script src文件并没有被执行。
+赶紧看Network对应资源文件的请求，如下图：
+可以看到这里的Status显示了(failed) net::ERR_BLOCKED_BY_ORB（而General.Status Code是200正常的）一番搜寻没找到有用的信息，AI介绍是浏览器应用层处理网络请求时的错误，既不属于HTTP也不是TCP的错误，暂不展开讨论这块。
+接着看响应头，如图：
+重点在Content-Type，返回的竟然是text/plain？
+接着换另一个CDN：jsdelivr再试试：
+1 &amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/browser/axios.cjs&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 同样，脚本也并没有被执行，查看响应头，如图：
+Status Code也是200，并没有出现(failed) net::ERR_BLOCKED_BY_ORB，而响应类型变成了：Content-Type: application/node。
+我在本地用Nginx引入本地文件，试了一下，响应类型是Content-Type: application/javascript，能够正常执行脚本。
+证明文件本身没有问题，问题在于响应头的响应类型。
+另外在Console有一个错误：
+1 Refused to execute script from &amp;#39;https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/browser/axios.cjs&amp;#39; because its MIME type (&amp;#39;application/node&amp;#39;) is not executable, and strict MIME type checking is enabled.">
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/17669653" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">😆</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GHJayce</a></h1>
+            <h2 class="site-description">十年饮冰，难凉热血。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GHJayce'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archive/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#背景">背景</a></li>
+    <li><a href="#问题过程">问题过程</a>
+      <ol>
+        <li><a href="#mime">MIME</a></li>
+        <li><a href="#mime嗅探">MIME嗅探</a></li>
+      </ol>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/" >
+                程序设计语言
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/language/javascript/leadin-cdn-script-not-executable/">引入CDN的JS文件为什么不可执行？</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-08-01</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 1 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="背景">背景</h2>
+<p>最近在发布<a class="link" href="https://github.com/GHJayce/j-weapons/tree/v1.6.1"  target="_blank" rel="noopener"
+    >j-weapons</a>前端包的时候遇到了一个问题，引入CDN编译以后的JS文件，在浏览器中查看该脚本文件实际并没有执行。</p>
+<h2 id="问题过程">问题过程</h2>
+<p>代码文件如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!doctype html&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>testing<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/axios@1.7.2/dist/browser/axios.cjs&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">axios</span><span class="p">)&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>这里以axios为例，情况是如出一辙的。</p>
+</blockquote>
+<p>控制台得到一个错误：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Uncaught ReferenceError: axios is not defined
+</span></span><span class="line"><span class="cl">    at dist/:14:21
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>script src</code>文件并没有被执行。</p>
+<p>赶紧看<code>Network</code>对应资源文件的请求，如下图：</p>
+<p><img src="https://ghjayce.github.io/asset/blog/ZN9vLDokkbNlREytACscMjAyNDA4MDFfMTUxNzM4.png"
+	width="619"
+	height="119"
+	
+	loading="lazy"
+	
+		alt="Status failed"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="520"
+		data-flex-basis="1248px"
+	
+></p>
+<p>可以看到这里的<code>Status</code>显示了<code>(failed) net::ERR_BLOCKED_BY_ORB</code>（而<code>General.Status Code</code>是200正常的）一番搜寻没找到有用的信息，AI介绍是浏览器应用层处理网络请求时的错误，既不属于HTTP也不是TCP的错误，暂不展开讨论这块。</p>
+<p>接着看响应头，如图：</p>
+<p><img src="https://ghjayce.github.io/asset/blog/uXFHiDNaekrLLBo7XSK6MjAyNDA4MDFfMTUyMDA2.png"
+	width="620"
+	height="601"
+	
+	loading="lazy"
+	
+		alt="response headers"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="103"
+		data-flex-basis="247px"
+	
+></p>
+<p>重点在<code>Content-Type</code>，返回的竟然是<code>text/plain</code>？</p>
+<p>接着换另一个CDN：<a class="link" href="https://www.jsdelivr.com/"  target="_blank" rel="noopener"
+    >jsdelivr</a>再试试：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/browser/axios.cjs&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>同样，脚本也并没有被执行，查看响应头，如图：</p>
+<p><img src="https://ghjayce.github.io/asset/blog/z3vYrdvhB72UccoOyNH1MjAyNDA4MDFfMTUyMDIz.png"
+	width="624"
+	height="1041"
+	
+	loading="lazy"
+	
+		alt="response headers"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="59"
+		data-flex-basis="143px"
+	
+></p>
+<p><code>Status Code</code>也是200，并没有出现<code>(failed) net::ERR_BLOCKED_BY_ORB</code>，而响应类型变成了：<code>Content-Type: application/node</code>。</p>
+<blockquote>
+<p>我在本地用Nginx引入本地文件，试了一下，响应类型是<code>Content-Type: application/javascript</code>，能够正常执行脚本。</p>
+<p>证明文件本身没有问题，问题在于响应头的响应类型。</p>
+</blockquote>
+<p>另外在<code>Console</code>有一个错误：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Refused to execute script from &#39;https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/browser/axios.cjs&#39; because its MIME type (&#39;application/node&#39;) is not executable, and strict MIME type checking is enabled.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个错误就比较有意思。</p>
+<hr>
+<h3 id="mime">MIME</h3>
+<p>它说CDN文件的MIME type，也就是指响应头里的Content-Type，是<code>application/node</code>类型，不可以执行，并且启用了严格检查MIME type类型的模式，应该就是指响应头返回的<code>X-Content-Type-Options: nosniff</code>。</p>
+<p>稍加解释一下：</p>
+<ul>
+<li><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types"  target="_blank" rel="noopener"
+    >MIME type</a>也称为IANA媒体类型，是一种标准，用来表示文档、文件或一组数据的性质和格式，它在IETF的<a class="link" href="https://datatracker.ietf.org/doc/html/rfc6838"  target="_blank" rel="noopener"
+    >RFC 6838</a>中进行了定义和标准化。它一般包含两个部分：<strong>类型</strong>和<strong>子类型</strong>，中间用<code>/</code>分割，不能有空格，例如：<code>text/plain</code>、<code>text/javascript</code>等。</li>
+<li>而<a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Type"  target="_blank" rel="noopener"
+    >Content-Type</a>则表示标头用于指定资源的原始<a class="link" href="https://developer.mozilla.org/zh-CN/docs/Glossary/MIME_type"  target="_blank" rel="noopener"
+    >媒体类型</a>，就是指上面说的MIME类型，它是由服务端返回的。</li>
+</ul>
+<p>它们都属于HTTP的知识。</p>
+<h3 id="mime嗅探">MIME嗅探</h3>
+<p>假设我们有一个HTML标签：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/browser/axios.cjs&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>当然你可能会看到有使用<code>type=&quot;application/javascript&quot;</code>的，不过该MIME类型已被弃用。</p>
+</blockquote>
+<p>一般情况下，我们是不需要加<code>type=&quot;text/javascript&quot;</code>的attributes，浏览器会默认将它视为<code>text/javascript</code>。</p>
+<p>浏览器在获取标签上的文件时，如果该文件的响应头没有<code>Content-Type</code>或者是<code>Content-type: application/octet-stream</code>的时候，就会通过读取文件的前几个字节（通常是512字节）分析文件内容的特征从而猜测MIME的类型，这个过程称为MIME嗅探。</p>
+<p>MIME嗅探会带来安全问题，虽然我们给<code>script src</code>标签指定了<code>type=&quot;text/javascript&quot;</code>，但是浏览器一般会根据服务端返回的MIME类型来处理资源，用户可能会因此在不知情的情况下，遭受到XSS攻击。</p>
+<p>防御的措施一般有：</p>
+<ul>
+<li>服务端始终响应正确的<code>Content-Type</code>，避免浏览器MIME嗅探的触发。</li>
+<li>服务端携带<code>X-Content-Type-Options: nosniff</code>响应头，明确告知浏览器不要进行MIME嗅探。</li>
+</ul>
+<hr>
+<h2 id="总结">总结</h2>
+<p>回归正题，也就是说报错是因为CDN返回的<code>Content-Type</code>的MIME类型不是<code>text/application</code>或者不是<code>application/javascript</code>才导致<code>script src</code>标签不执行的，猜测CDN是根据不同的文件后缀给出不同的<code>Content-Type</code>：</p>
+<ul>
+<li><a class="link" href="https://unpkg.com/"  target="_blank" rel="noopener"
+    >unpkg</a>：
+<ul>
+<li><code>.cjs</code>的文件，<code>Content-Type</code>是<code>text/plain</code>，通过<a class="link" href="https://unpkg.com/browse/axios@1.7.2/dist/browser/"  target="_blank" rel="noopener"
+    >brose axios files</a>文件右侧可以进一步确认。</li>
+<li><code>.map</code>，<code>Content-Type</code>是<code>application/json</code>。</li>
+</ul>
+</li>
+<li><a class="link" href="https://www.jsdelivr.com/"  target="_blank" rel="noopener"
+    >jsdelivr</a>：
+<ul>
+<li><code>.cjs</code>，<code>Content-Type</code>是<code>application/node</code>。</li>
+</ul>
+</li>
+</ul>
+<p>这也解释了为什么我在本地用nginx打开页面是能够正常执行脚本的原因。</p>
+<p>那为什么我打包以后的文件会是<code>index.umd.cjs</code>的后缀的？</p>
+<p>简单提一下，我用的是Vite打包工具，配置项如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="nx">build</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">lib</span><span class="o">:</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="nx">entry</span><span class="o">:</span> <span class="s1">&#39;src/index.ts&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">formats</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;umd&#39;</span><span class="p">],</span>  
+</span></span><span class="line"><span class="cl">    <span class="nx">fileName</span><span class="o">:</span> <span class="s1">&#39;index&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>正是<code>fileName</code>和<code>formats</code>含<code>umd</code>的情况下，它会默认将<code>entry</code>入口文件处理成<code>index.umd.cjs</code>的后缀，解决这个问题只需要将fileName改成函数自定义返回即可，详情请自行查看文档。</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types"  target="_blank" rel="noopener"
+    >MIME 类型（IANA 媒体类型） - HTTP | MDN</a></li>
+<li><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Type"  target="_blank" rel="noopener"
+    >Content-Type - HTTP | MDN</a></li>
+<li><a class="link" href="https://datatracker.ietf.org/doc/html/rfc6838"  target="_blank" rel="noopener"
+    >RFC 6838 - Media Type Specifications and Registration Procedures</a></li>
+<li><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Glossary/MIME_type"  target="_blank" rel="noopener"
+    >MIME 类型 - MDN Web 文档术语表：Web 相关术语的定义 | MDN</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/cdn/">CDN</a>
+        
+            <a href="/tags/javascript/">JavaScript</a>
+        
+            <a href="/tags/http/">HTTP</a>
+        
+            <a href="/tags/mime/">MIME</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://unpkg.com/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://unpkg.com/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/language/javascript/package/react/quick-start/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/uwgqqiUfSOHwLzCqNN13MjAyNDA3MDRfMTkwNjEy.jpeg" loading="lazy" data-key="language/javascript/package/react/quick-start" data-hash="https://ghjayce.github.io/asset/blog/uwgqqiUfSOHwLzCqNN13MjAyNDA3MDRfMTkwNjEy.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">React入门</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/language/javascript/key-code/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/hhu3ZhdElGKvdDDmPImUMjAxNzExMDhfMDkwNTEz.jpeg" loading="lazy" data-key="language/javascript/key-code" data-hash="https://ghjayce.github.io/asset/blog/hhu3ZhdElGKvdDDmPImUMjAxNzExMDhfMDkwNTEz.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JS 键盘按键keyCode对应表</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/language/php/hyperf/hyperf-constants/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg" loading="lazy" data-key="language/php/hyperf/hyperf-constants" data-hash="https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">hyperf constants实现机制</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png" loading="lazy" data-key="static-site-generator/hugo/hugo-theme-stack-gallery-study" data-hash="https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/language/php/laravel/homestead-install/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/acN7lrfIQy4GU6zANY9bMjAxODEwMDZfMjA0MDQx.jpeg" loading="lazy" data-key="language/php/laravel/homestead-install" data-hash="https://ghjayce.github.io/asset/blog/acN7lrfIQy4GU6zANY9bMjAxODEwMDZfMjA0MDQx.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Homestead环境搭建</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2024 GHJayce
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/default-skin/default-skin.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://unpkg.com/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

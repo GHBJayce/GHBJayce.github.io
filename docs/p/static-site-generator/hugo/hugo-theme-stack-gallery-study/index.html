@@ -15,9 +15,9 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 {{- $Permalink := .Destination | relURL | safeURL -}} {{- $image := &amp;#34;&amp;#34; -}} {{- if hasPrefix $Permalink &amp;#34;http&amp;#34; -}} {{- $image = resources.GetRemote $Permalink -}} {{- else -}} {{- $image = .'>
 <title>Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？</title>
 
-<link rel='canonical' href='https://ghjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/'>
+<link rel='canonical' href='/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？'>
+<link rel="stylesheet" href="/scss/style.min.16bf79fde71ad0826cb332f8a542083f14a167d38adecffbc10e3a04b834c453.css"><meta property='og:title' content='Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？'>
 <meta property='og:description' content='阅读说明 为了方便文章描述，文中词汇的含义、未提及的场景如下：
 内链图片：和站点同一个域名下的图片。 外链图片：和站点非同一个域名下的图片，通常以http开头的链接。 内联图片：文字和图片处于同一行。 图像组件：将图片处理成在页面中可以进行交互的组件。 图片交互效果：经过图像组件处理以后，在页面进行交互的效果。 文中的相对目录路径，如没有特殊说明，均以一个hugo项目为准，可以参考我的项目结构。 文字非常多，图片很少，大部分是干货和细节，请耐心阅读。
 太多字啦，让我直接看你的解决方案，它最好是改动小且不影响现有的功能。
@@ -30,7 +30,7 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 那么就跟着作者的提示，着手捣鼓一下：
 layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的钩子之一。 resource.GetRemote相关语法文档。 初步解决方案 就如我在讨论中提到的，我在layouts/_default/_markup/render-image.html钩子模板做了以下的修改：
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 {{- $Permalink := .Destination | relURL | safeURL -}} {{- $image := &amp;#34;&amp;#34; -}} {{- if hasPrefix $Permalink &amp;#34;http&amp;#34; -}} {{- $image = resources.GetRemote $Permalink -}} {{- else -}} {{- $image = .'>
-<meta property='og:url' content='https://ghjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/'>
+<meta property='og:url' content='/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/'>
 <meta property='og:site_name' content='GHJayce'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Hugo' /><meta property='article:tag' content='静态站点生成器' /><meta property='article:tag' content='hugo-theme-stack' /><meta property='article:tag' content='TypeScript' /><meta property='article:tag' content='源码阅读' /><meta property='article:published_time' content='2023-12-05T11:45:25&#43;08:00'/><meta property='article:modified_time' content='2023-12-05T11:45:25&#43;08:00'/><meta property='og:image' content='https://ghjayce.github.io/asset/blog/z4EOqI2zCdlD5ce5EawUMjAyNDAyMjVfMTU1MjIy.png' />
 <meta name="twitter:title" content="Hugo Theme Stack图库是怎么工作的？怎样才能支持外链图片？">
@@ -1111,6 +1111,19 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 
             
                 
+<article class="">
+    <a href="/p/language/javascript/leadin-cdn-script-not-executable/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">引入CDN的JS文件为什么不可执行？</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
 <article class="has-image">
     <a href="/p/language/javascript/package/react/quick-start/">
         
@@ -1162,25 +1175,6 @@ layouts/_default/_markup/render-image.html模板文件，hugo markdown渲染的�
 
         <div class="article-details">
             <h2 class="article-title">Homestead环境搭建</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/language/php/exception/error-capture/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://ghjayce.github.io/asset/blog/mwZTYxkP4GSsgLbC5aXaMjAxNzExMTZfMTYzODM0.jpeg" loading="lazy" data-key="language/php/exception/error-capture" data-hash="https://ghjayce.github.io/asset/blog/mwZTYxkP4GSsgLbC5aXaMjAxNzExMTZfMTYzODM0.jpeg"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">PHP报错解析和如何捕获错误信息</h2>
         </div>
     </a>
 </article>

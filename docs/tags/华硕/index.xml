@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>华硕 on GHJayce</title>
-        <link>https://ghjayce.github.io/tags/%E5%8D%8E%E7%A1%95/</link>
+        <link>/tags/%E5%8D%8E%E7%A1%95/</link>
         <description>Recent content in 华硕 on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sat, 04 Nov 2017 21:03:00 +0800</lastBuildDate><atom:link href="https://ghjayce.github.io/tags/%E5%8D%8E%E7%A1%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 04 Nov 2017 21:03:00 +0800</lastBuildDate><atom:link href="/tags/%E5%8D%8E%E7%A1%95/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>华硕x45vd安装黑苹果Yosemite 10.10.3记录</title>
-        <link>https://ghjayce.github.io/p/system/hackintosh/asus/x45vd/</link>
+        <link>/p/system/hackintosh/asus/x45vd/</link>
         <pubDate>Sat, 04 Nov 2017 21:03:00 +0800</pubDate>
         
-        <guid>https://ghjayce.github.io/p/system/hackintosh/asus/x45vd/</guid>
+        <guid>/p/system/hackintosh/asus/x45vd/</guid>
         <description>&lt;img src="https://ghjayce.github.io/asset/blog/dPMjucATggvoLXmJZXz5MjAxNzExMDRfMjEwMzAw.jpeg" alt="Featured image of post 华硕x45vd安装黑苹果Yosemite 10.10.3记录" /&gt;&lt;h2 id=&#34;准备工作&#34;&gt;准备工作&lt;/h2&gt;
 &lt;p&gt;Yosemite10.10.3懒人版
 链接: &lt;a class=&#34;link&#34; href=&#34;https://pan.baidu.com/s/1i5aOBOT&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

@@ -2,308 +2,320 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://ghjayce.github.io/</loc>
+    <loc>/</loc>
+    <lastmod>2024-08-01T15:04:07+08:00</lastmod>
+  </url><url>
+    <loc>/categories/</loc>
+    <lastmod>2024-08-01T15:04:07+08:00</lastmod>
+  </url><url>
+    <loc>/tags/cdn/</loc>
+    <lastmod>2024-08-01T15:04:07+08:00</lastmod>
+  </url><url>
+    <loc>/tags/http/</loc>
+    <lastmod>2024-08-01T15:04:07+08:00</lastmod>
+  </url><url>
+    <loc>/tags/javascript/</loc>
+    <lastmod>2024-08-01T15:04:07+08:00</lastmod>
+  </url><url>
+    <loc>/tags/mime/</loc>
+    <lastmod>2024-08-01T15:04:07+08:00</lastmod>
+  </url><url>
+    <loc>/post/</loc>
+    <lastmod>2024-08-01T15:04:07+08:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2024-08-01T15:04:07+08:00</lastmod>
+  </url><url>
+    <loc>/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/</loc>
+    <lastmod>2024-08-01T15:04:07+08:00</lastmod>
+  </url><url>
+    <loc>/p/language/javascript/leadin-cdn-script-not-executable/</loc>
+    <lastmod>2024-08-01T15:04:07+08:00</lastmod>
+  </url><url>
+    <loc>/tags/ecmascript6/</loc>
     <lastmod>2024-07-04T18:36:56+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/categories/</loc>
+    <loc>/tags/jsx/</loc>
     <lastmod>2024-07-04T18:36:56+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/ecmascript6/</loc>
+    <loc>/tags/react/</loc>
     <lastmod>2024-07-04T18:36:56+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/javascript/</loc>
+    <loc>/p/language/javascript/package/react/quick-start/</loc>
     <lastmod>2024-07-04T18:36:56+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/jsx/</loc>
+    <loc>/tags/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2024-07-04T18:36:56+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/post/</loc>
-    <lastmod>2024-07-04T18:36:56+08:00</lastmod>
-  </url><url>
-    <loc>https://ghjayce.github.io/tags/react/</loc>
-    <lastmod>2024-07-04T18:36:56+08:00</lastmod>
-  </url><url>
-    <loc>https://ghjayce.github.io/p/language/javascript/package/react/quick-start/</loc>
-    <lastmod>2024-07-04T18:36:56+08:00</lastmod>
-  </url><url>
-    <loc>https://ghjayce.github.io/tags/</loc>
-    <lastmod>2024-07-04T18:36:56+08:00</lastmod>
-  </url><url>
-    <loc>https://ghjayce.github.io/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/</loc>
-    <lastmod>2024-07-04T18:36:56+08:00</lastmod>
-  </url><url>
-    <loc>https://ghjayce.github.io/tags/%E5%89%8D%E7%AB%AF/</loc>
-    <lastmod>2024-07-04T18:36:56+08:00</lastmod>
-  </url><url>
-    <loc>https://ghjayce.github.io/tags/icu4c/</loc>
+    <loc>/tags/icu4c/</loc>
     <lastmod>2024-04-26T15:24:57+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/mac/</loc>
+    <loc>/tags/mac/</loc>
     <lastmod>2024-04-26T15:24:57+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/system/mac/env/php/icu4c-load-dylib/</loc>
+    <loc>/p/system/mac/env/php/icu4c-load-dylib/</loc>
     <lastmod>2024-04-26T15:24:57+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/php/</loc>
+    <loc>/tags/php/</loc>
     <lastmod>2024-04-26T15:24:57+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
+    <loc>/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2024-04-26T15:24:57+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93/</loc>
+    <loc>/tags/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93/</loc>
     <lastmod>2024-04-26T15:24:57+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/book/080901/04737/summary/</loc>
+    <loc>/p/book/080901/04737/summary/</loc>
     <lastmod>2024-03-07T15:41:50+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/c&#43;&#43;%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</loc>
+    <loc>/tags/c&#43;&#43;%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</loc>
     <lastmod>2024-03-07T15:41:50+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E7%AC%94%E8%AE%B0/</loc>
+    <loc>/tags/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2024-03-07T15:41:50+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/</loc>
+    <loc>/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2024-03-07T15:41:50+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/categories/%E4%B9%A6%E7%B1%8D/</loc>
+    <loc>/categories/%E4%B9%A6%E7%B1%8D/</loc>
     <lastmod>2024-03-07T15:41:50+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/book/080901/04757/summary/</loc>
+    <loc>/p/book/080901/04757/summary/</loc>
     <lastmod>2024-03-06T11:00:20+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B8%8E%E7%AE%A1%E7%90%86/</loc>
+    <loc>/tags/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E4%B8%8E%E7%AE%A1%E7%90%86/</loc>
     <lastmod>2024-03-06T11:00:20+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/hyperf/</loc>
+    <loc>/tags/hyperf/</loc>
     <lastmod>2024-02-26T10:01:00+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/language/php/hyperf/hyperf-constants/</loc>
+    <loc>/p/language/php/hyperf/hyperf-constants/</loc>
     <lastmod>2024-02-26T10:01:00+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E6%9E%9A%E4%B8%BE/</loc>
+    <loc>/tags/%E6%9E%9A%E4%B8%BE/</loc>
     <lastmod>2024-02-26T10:01:00+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E5%BC%82%E5%B8%B8/</loc>
+    <loc>/tags/%E5%BC%82%E5%B8%B8/</loc>
     <lastmod>2024-02-26T10:01:00+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/</loc>
+    <loc>/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/</loc>
     <lastmod>2024-02-26T10:01:00+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/hugo/</loc>
+    <loc>/tags/hugo/</loc>
     <lastmod>2023-12-05T11:45:25+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/</loc>
+    <loc>/p/static-site-generator/hugo/hugo-theme-stack-gallery-study/</loc>
     <lastmod>2023-12-05T11:45:25+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/hugo-theme-stack/</loc>
+    <loc>/tags/hugo-theme-stack/</loc>
     <lastmod>2023-12-05T11:45:25+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/typescript/</loc>
+    <loc>/tags/typescript/</loc>
     <lastmod>2023-12-05T11:45:25+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E5%99%A8/</loc>
+    <loc>/tags/%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E5%99%A8/</loc>
     <lastmod>2023-12-05T11:45:25+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/book/080901/02142/exam-focus/</loc>
+    <loc>/p/book/080901/02142/exam-focus/</loc>
     <lastmod>2023-10-22T09:27:30+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/</loc>
+    <loc>/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/</loc>
     <lastmod>2023-10-22T09:27:30+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/book/080901/02142/chapter7/</loc>
+    <loc>/p/book/080901/02142/chapter7/</loc>
     <lastmod>2023-10-20T09:27:30+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/book/080901/02142/chapter6/</loc>
+    <loc>/p/book/080901/02142/chapter6/</loc>
     <lastmod>2023-10-19T12:23:25+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/book/080901/02142/chapter5/</loc>
+    <loc>/p/book/080901/02142/chapter5/</loc>
     <lastmod>2023-10-16T10:31:20+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E5%AF%B9%E6%95%B0/</loc>
+    <loc>/tags/%E5%AF%B9%E6%95%B0/</loc>
     <lastmod>2023-09-28T14:47:45+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/subject/math/sequence/logarithm/</loc>
+    <loc>/p/subject/math/sequence/logarithm/</loc>
     <lastmod>2023-09-28T14:47:45+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E6%95%B0%E5%AD%A6/</loc>
+    <loc>/tags/%E6%95%B0%E5%AD%A6/</loc>
     <lastmod>2023-09-28T14:47:45+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/categories/%E5%AD%A6%E7%A7%91/</loc>
+    <loc>/categories/%E5%AD%A6%E7%A7%91/</loc>
     <lastmod>2023-09-28T14:47:45+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/book/080901/02142/chapter4/</loc>
+    <loc>/p/book/080901/02142/chapter4/</loc>
     <lastmod>2023-09-26T09:47:20+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/book/080901/02142/chapter3/</loc>
+    <loc>/p/book/080901/02142/chapter3/</loc>
     <lastmod>2023-09-18T12:24:10+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E7%AD%89%E5%B7%AE%E6%95%B0%E5%88%97/</loc>
+    <loc>/tags/%E7%AD%89%E5%B7%AE%E6%95%B0%E5%88%97/</loc>
     <lastmod>2023-09-07T19:05:42+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/subject/math/sequence/arithmetic/</loc>
+    <loc>/p/subject/math/sequence/arithmetic/</loc>
     <lastmod>2023-09-07T19:05:42+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E6%95%B0%E5%88%97/</loc>
+    <loc>/tags/%E6%95%B0%E5%88%97/</loc>
     <lastmod>2023-09-07T19:05:42+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/android/</loc>
+    <loc>/tags/android/</loc>
     <lastmod>2023-08-30T13:26:26+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/git/</loc>
+    <loc>/tags/git/</loc>
     <lastmod>2023-08-30T13:26:26+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/termux/</loc>
+    <loc>/tags/termux/</loc>
     <lastmod>2023-08-30T13:26:26+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/</loc>
+    <loc>/tags/%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/</loc>
     <lastmod>2023-08-30T13:26:26+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/system/android/env/install-git/</loc>
+    <loc>/p/system/android/env/install-git/</loc>
     <lastmod>2023-08-30T13:26:26+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/book/080901/02142/chapter2/</loc>
+    <loc>/p/book/080901/02142/chapter2/</loc>
     <lastmod>2023-08-29T14:46:12+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/book/080901/02142/chapter1/</loc>
+    <loc>/p/book/080901/02142/chapter1/</loc>
     <lastmod>2023-08-20T16:36:20+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/static-site-generator/hugo/quick-start/</loc>
+    <loc>/p/static-site-generator/hugo/quick-start/</loc>
     <lastmod>2023-06-20T23:46:50+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/categories/%E5%B7%A5%E5%85%B7/</loc>
+    <loc>/categories/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2023-06-20T23:46:50+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E6%95%99%E7%A8%8B/</loc>
+    <loc>/tags/%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2023-06-20T23:46:50+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/page/</loc>
+    <loc>/page/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/archive/</loc>
+    <loc>/archive/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/homestead/</loc>
+    <loc>/tags/homestead/</loc>
     <lastmod>2018-10-06T20:40:41+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/language/php/laravel/homestead-install/</loc>
+    <loc>/p/language/php/laravel/homestead-install/</loc>
     <lastmod>2018-10-06T20:40:41+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/laravel/</loc>
+    <loc>/tags/laravel/</loc>
     <lastmod>2018-10-06T20:40:41+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/visuals/graph/guilloche/</loc>
+    <loc>/p/visuals/graph/guilloche/</loc>
     <lastmod>2018-05-31T11:03:31+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/guilloche/</loc>
+    <loc>/tags/guilloche/</loc>
     <lastmod>2018-05-31T11:03:31+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/photoshop/</loc>
+    <loc>/tags/photoshop/</loc>
     <lastmod>2018-05-31T11:03:31+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/categories/%E8%A7%86%E8%A7%89%E6%95%88%E6%9E%9C/</loc>
+    <loc>/categories/%E8%A7%86%E8%A7%89%E6%95%88%E6%9E%9C/</loc>
     <lastmod>2018-05-31T11:03:31+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E5%9B%BE%E5%BD%A2/</loc>
+    <loc>/tags/%E5%9B%BE%E5%BD%A2/</loc>
     <lastmod>2018-05-31T11:03:31+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%88%B6%E4%BD%9C/</loc>
+    <loc>/tags/%E5%9B%BE%E5%BD%A2%E5%88%B6%E4%BD%9C/</loc>
     <lastmod>2018-05-31T11:03:31+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/apache/</loc>
+    <loc>/tags/apache/</loc>
     <lastmod>2018-04-30T10:51:03+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/centos/</loc>
+    <loc>/tags/centos/</loc>
     <lastmod>2018-04-30T10:51:03+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/centos7/</loc>
+    <loc>/tags/centos7/</loc>
     <lastmod>2018-04-30T10:51:03+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/system/linux/env/apache-site-more/</loc>
+    <loc>/p/system/linux/env/apache-site-more/</loc>
     <lastmod>2018-04-30T10:51:03+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/book/080901/02323/summary/</loc>
+    <loc>/p/book/080901/02323/summary/</loc>
     <lastmod>2018-03-22T11:22:40+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/linux/</loc>
+    <loc>/tags/linux/</loc>
     <lastmod>2018-03-17T12:00:50+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/python/</loc>
+    <loc>/tags/python/</loc>
     <lastmod>2018-03-17T12:00:50+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/securecrt/</loc>
+    <loc>/tags/securecrt/</loc>
     <lastmod>2018-03-17T12:00:50+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/tool/terminal/securecrt/forgot-password/</loc>
+    <loc>/p/tool/terminal/securecrt/forgot-password/</loc>
     <lastmod>2018-03-17T12:00:50+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/jekyll/</loc>
+    <loc>/tags/jekyll/</loc>
     <lastmod>2018-01-02T03:39:35+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/static-site-generator/jekyll/quick-start/</loc>
+    <loc>/p/static-site-generator/jekyll/quick-start/</loc>
     <lastmod>2018-01-02T03:39:35+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/lnmp/</loc>
+    <loc>/tags/lnmp/</loc>
     <lastmod>2017-12-24T17:33:45+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/vmware/</loc>
+    <loc>/tags/vmware/</loc>
     <lastmod>2017-12-24T17:33:45+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
+    <loc>/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
     <lastmod>2017-12-24T17:33:45+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/</loc>
+    <loc>/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/</loc>
     <lastmod>2017-12-24T17:33:45+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/system/android/env/web-env-build/</loc>
+    <loc>/p/system/android/env/web-env-build/</loc>
     <lastmod>2017-12-24T17:33:45+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/language/php/exception/error-capture/</loc>
+    <loc>/p/language/php/exception/error-capture/</loc>
     <lastmod>2017-11-16T16:38:34+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/language/javascript/key-code/</loc>
+    <loc>/p/language/javascript/key-code/</loc>
     <lastmod>2017-11-08T09:05:13+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/keyboardevent/</loc>
+    <loc>/tags/keyboardevent/</loc>
     <lastmod>2017-11-08T09:05:13+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/keycode/</loc>
+    <loc>/tags/keycode/</loc>
     <lastmod>2017-11-08T09:05:13+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/macos/</loc>
+    <loc>/tags/macos/</loc>
     <lastmod>2017-11-04T21:03:00+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/windows/</loc>
+    <loc>/tags/windows/</loc>
     <lastmod>2017-11-04T21:03:00+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/</loc>
+    <loc>/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/</loc>
     <lastmod>2017-11-04T21:03:00+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E5%8D%8E%E7%A1%95/</loc>
+    <loc>/tags/%E5%8D%8E%E7%A1%95/</loc>
     <lastmod>2017-11-04T21:03:00+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/system/hackintosh/asus/x45vd/</loc>
+    <loc>/p/system/hackintosh/asus/x45vd/</loc>
     <lastmod>2017-11-04T21:03:00+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/sublime-text/</loc>
+    <loc>/tags/sublime-text/</loc>
     <lastmod>2016-12-26T10:34:34+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E7%BC%96%E8%BE%91%E5%99%A8/</loc>
+    <loc>/tags/%E7%BC%96%E8%BE%91%E5%99%A8/</loc>
     <lastmod>2016-12-26T10:34:34+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/sublime-text/</loc>
+    <loc>/p/system/windows/regedit/right-click-menu/sublime-text/</loc>
     <lastmod>2016-12-26T10:34:34+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/</loc>
+    <loc>/tags/%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/</loc>
     <lastmod>2016-12-26T10:34:34+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/tags/%E6%B3%A8%E5%86%8C%E8%A1%A8/</loc>
+    <loc>/tags/%E6%B3%A8%E5%86%8C%E8%A1%A8/</loc>
     <lastmod>2016-12-26T10:34:34+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/p/system/windows/regedit/right-click-menu/custom/</loc>
+    <loc>/p/system/windows/regedit/right-click-menu/custom/</loc>
     <lastmod>2016-12-25T10:34:34+08:00</lastmod>
   </url><url>
-    <loc>https://ghjayce.github.io/about/</loc>
+    <loc>/about/</loc>
   </url><url>
-    <loc>https://ghjayce.github.io/search/</loc>
+    <loc>/search/</loc>
   </url>
 </urlset>
