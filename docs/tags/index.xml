@@ -6,12 +6,28 @@
         <description>Recent content in Tags on GHJayce</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 01 Aug 2024 15:04:07 +0800</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 06 Aug 2024 14:28:05 +0800</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>CDN</title>
         <link>/tags/cdn/</link>
-        <pubDate>Thu, 01 Aug 2024 15:04:07 +0800</pubDate>
+        <pubDate>Tue, 06 Aug 2024 14:28:05 +0800</pubDate>
         
         <guid>/tags/cdn/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>JavaScript</title>
+        <link>/tags/javascript/</link>
+        <pubDate>Tue, 06 Aug 2024 14:28:05 +0800</pubDate>
+        
+        <guid>/tags/javascript/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Vite</title>
+        <link>/tags/vite/</link>
+        <pubDate>Tue, 06 Aug 2024 14:28:05 +0800</pubDate>
+        
+        <guid>/tags/vite/</guid>
         <description></description>
         </item>
         <item>
@@ -20,14 +36,6 @@
         <pubDate>Thu, 01 Aug 2024 15:04:07 +0800</pubDate>
         
         <guid>/tags/http/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>JavaScript</title>
-        <link>/tags/javascript/</link>
-        <pubDate>Thu, 01 Aug 2024 15:04:07 +0800</pubDate>
-        
-        <guid>/tags/javascript/</guid>
         <description></description>
         </item>
         <item>
