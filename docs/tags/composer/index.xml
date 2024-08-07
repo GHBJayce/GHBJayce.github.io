@@ -244,7 +244,73 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;该方式的缺点是，万一腾讯云也没更新该包的最新版本的话，问题依旧。&lt;/p&gt;
 &lt;h3 id=&#34;解决方法二&#34;&gt;解决方法二&lt;/h3&gt;
-&lt;p&gt;多个镜像源混合使用，修改&lt;code&gt;~/.composer/config.json&lt;/code&gt;如下：&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://developer.aliyun.com/composer&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;阿里云镜像源文档&lt;/a&gt;提到了&lt;a class=&#34;link&#34; href=&#34;https://getcomposer.org/doc/articles/repository-priorities.md#making-repositories-non-canonical&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;canonical参数&lt;/a&gt;，配置如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;repositories&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;description&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;阿里云镜像&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;composer&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;url&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://mirrors.aliyun.com/composer/&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;canonical&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;解释是阿里云镜像站下载文件出错（例如404或者超时的情况等）或者包不是最新时，再从官方源上下载，这样确实能够解决阿里云包不是最新的问题。&lt;/p&gt;
+&lt;p&gt;但这个参数是怎么起作用的？怎么工作的呢？来细细研究一下。&lt;/p&gt;
+&lt;p&gt;composer在解决包依赖的时候，会从&lt;code&gt;repositories&lt;/code&gt;数组中上到下从镜像源中寻找包。&lt;/p&gt;
+&lt;p&gt;这里还有一个默认行为，&lt;a class=&#34;link&#34; href=&#34;https://repo.packagist.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;packagist.org官方源&lt;/a&gt;会被隐式的添加到&lt;code&gt;repositories&lt;/code&gt;的最后一个，如果要&lt;a class=&#34;link&#34; href=&#34;https://getcomposer.org/doc/05-repositories.md#disabling-packagist-org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;禁用该行为&lt;/a&gt;，设置如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;repositories&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;packagist.org&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;回到正题，&lt;a class=&#34;link&#34; href=&#34;https://getcomposer.org/doc/articles/repository-priorities.md#canonical-repositories&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;canonical参数的官方解释&lt;/a&gt;，我大概复述一下，我们所说的镜像，其实在官方是指存储库，即&lt;code&gt;repositories&lt;/code&gt;属性中的配置，存储库又分为规范存储库（Canonical repositories）和非规范存储库（repositories non-canonical）。&lt;/p&gt;
+&lt;p&gt;在composer v2.x的版本中，默认所有存储库都是规范的（即&lt;code&gt;&amp;quot;canonical&amp;quot;: true&lt;/code&gt;）。&lt;/p&gt;
+&lt;p&gt;而composer v1.x所有存储库都视为非规范存储库（即&lt;code&gt;&amp;quot;canonical&amp;quot;: false&lt;/code&gt;）。&lt;/p&gt;
+&lt;p&gt;规范存储库有两个好处：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;性能好，一旦在某个存储库中找到包以后，就会停止去扫描别的存储库去寻找包。&lt;/li&gt;
+&lt;li&gt;更安全，假设你设置了一个非规范的私有存储库，当你的项目中依赖一个私有包&lt;code&gt;foo/bar ^2.0&lt;/code&gt;（假设版本是v2.4.3），之后当有人在packagist.org发布了一个&lt;code&gt;foo/bar v2.999&lt;/code&gt;的话，那么composer会读取到该包，因为v2.999的包更新，并且符合&lt;code&gt;^2.0&lt;/code&gt;的约束，那么你的项目可能会安装到预期以外的东西。规范存储库就不会有这个问题，因为在规范存储库中找到包以后就不会再去扫描别的存储库了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;解决方法三&#34;&gt;解决方法三&lt;/h3&gt;
+&lt;p&gt;正如上面所提到的，设置成非规范化存储库是有风险的，并且安装过程会更慢。&lt;/p&gt;
+&lt;p&gt;解决办法也不是没有，可以多个镜像源混合使用，修改&lt;code&gt;~/.composer/config.json&lt;/code&gt;如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -277,75 +343,20 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;composer在解决依赖的时候，会从上到下从镜像源中寻找包，&lt;code&gt;exclude&lt;/code&gt;的作用是排除寻找某个包，这样它就会从下一个镜像源中去寻找。&lt;/p&gt;
-&lt;p&gt;缺点是配置麻烦，如果出现源有很多包都没更新的情况下，配置是个噩梦，这种情况下还是建议换源。&lt;/p&gt;
-&lt;p&gt;这里还有一个默认行为，&lt;a class=&#34;link&#34; href=&#34;https://repo.packagist.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;packagist.org官方源&lt;/a&gt;会被隐式的添加到&lt;code&gt;repositories&lt;/code&gt;的最后一个，如果要&lt;a class=&#34;link&#34; href=&#34;https://getcomposer.org/doc/05-repositories.md#disabling-packagist-org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;禁用该行为&lt;/a&gt;，设置如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;repositories&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;packagist.org&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;hr&gt;
-&lt;p&gt;题外话：&lt;/p&gt;
-&lt;p&gt;阿里云镜像源文档提到了&lt;a class=&#34;link&#34; href=&#34;https://getcomposer.org/doc/articles/repository-priorities.md#making-repositories-non-canonical&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;canonical参数&lt;/a&gt;，配置如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;repositories&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;description&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;阿里云镜像&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;composer&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;url&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://mirrors.aliyun.com/composer/&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;canonical&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;意指阿里云镜像站下载文件出错时（例如404或者超时的情况）再从官方源上下载。&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://getcomposer.org/doc/articles/repository-priorities.md#canonical-repositories&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;该参数的官方解释&lt;/a&gt;，我大概复述一下，我们所说的镜像，其实在官方是指存储库，即&lt;code&gt;repositories&lt;/code&gt;属性中的配置，存储库又分为规范存储库（Canonical repositories）和非规范存储库（repositories non-canonical）。&lt;/p&gt;
-&lt;p&gt;在composer 2.x的版本中，默认所有存储库都是规范的（即&lt;code&gt;&amp;quot;canonical&amp;quot;: true&lt;/code&gt;），而composer 1.x所有存储库都视为非规范存储库（即&lt;code&gt;&amp;quot;canonical&amp;quot;: false&lt;/code&gt;）。&lt;/p&gt;
-&lt;p&gt;规范存储库有两个好处：&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;exclude&lt;/code&gt;的作用是排除寻找某个包，这样它就会从下一个规范化仓库的镜像源中去寻找包。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;性能好，一旦在某个存储库中找到包以后，就会停止去别的存储库中寻找包。&lt;/li&gt;
-&lt;li&gt;更安全，假设你设置了一个非规范的私有存储库，当你的项目中依赖一个私有包&lt;code&gt;foo/bar ^2.0&lt;/code&gt;（假设版本是v2.4.3），之后当有人在packagist.org发布了一个&lt;code&gt;foo/bar v2.999&lt;/code&gt;的话，那么composer会读取到该包，因为v2.999的包更新，并且符合&lt;code&gt;^2.0&lt;/code&gt;的约束，那么你的项目可能会安装到预期以外的东西。规范存储库就不会有这个问题，因为在规范存储库中找到包以后就不会再去扫描别的存储库了。&lt;/li&gt;
+&lt;li&gt;缺点：
+&lt;ul&gt;
+&lt;li&gt;配置麻烦，如果出现正源有很多包都没更新的情况下，配置是个噩梦，这种情况下还是建议换源。&lt;/li&gt;
+&lt;li&gt;备用镜像源也没有最新包的情况下，问题依旧，还需再另外配置备用镜像源。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;解决方法三&#34;&gt;解决方法三&lt;/h3&gt;
+&lt;/li&gt;
+&lt;li&gt;好处：性能更好，更安全。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;解决方法四&#34;&gt;解决方法四&lt;/h3&gt;
 &lt;p&gt;自己搭建源，暂不开展&lt;/p&gt;
 &lt;p&gt;缺点：增加维护包的成本、搭建服务成本。&lt;/p&gt;
-&lt;h3 id=&#34;解决方法四&#34;&gt;解决方法四&lt;/h3&gt;
+&lt;h3 id=&#34;解决方法五&#34;&gt;解决方法五&lt;/h3&gt;
 &lt;p&gt;修改项目的&lt;code&gt;composer.json&lt;/code&gt;，设置查找包的方式：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;

@@ -236,6 +236,7 @@
         <li><a href="#解决方法二">解决方法二</a></li>
         <li><a href="#解决方法三">解决方法三</a></li>
         <li><a href="#解决方法四">解决方法四</a></li>
+        <li><a href="#解决方法五">解决方法五</a></li>
       </ol>
     </li>
     <li><a href="#镜像源">镜像源</a></li>
@@ -551,7 +552,73 @@
 </div>
 </div><p>该方式的缺点是，万一腾讯云也没更新该包的最新版本的话，问题依旧。</p>
 <h3 id="解决方法二">解决方法二</h3>
-<p>多个镜像源混合使用，修改<code>~/.composer/config.json</code>如下：</p>
+<p><a class="link" href="https://developer.aliyun.com/composer"  target="_blank" rel="noopener"
+    >阿里云镜像源文档</a>提到了<a class="link" href="https://getcomposer.org/doc/articles/repository-priorities.md#making-repositories-non-canonical"  target="_blank" rel="noopener"
+    >canonical参数</a>，配置如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;阿里云镜像&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;composer&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://mirrors.aliyun.com/composer/&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;canonical&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解释是阿里云镜像站下载文件出错（例如404或者超时的情况等）或者包不是最新时，再从官方源上下载，这样确实能够解决阿里云包不是最新的问题。</p>
+<p>但这个参数是怎么起作用的？怎么工作的呢？来细细研究一下。</p>
+<p>composer在解决包依赖的时候，会从<code>repositories</code>数组中上到下从镜像源中寻找包。</p>
+<p>这里还有一个默认行为，<a class="link" href="https://repo.packagist.org"  target="_blank" rel="noopener"
+    >packagist.org官方源</a>会被隐式的添加到<code>repositories</code>的最后一个，如果要<a class="link" href="https://getcomposer.org/doc/05-repositories.md#disabling-packagist-org"  target="_blank" rel="noopener"
+    >禁用该行为</a>，设置如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;packagist.org&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>回到正题，<a class="link" href="https://getcomposer.org/doc/articles/repository-priorities.md#canonical-repositories"  target="_blank" rel="noopener"
+    >canonical参数的官方解释</a>，我大概复述一下，我们所说的镜像，其实在官方是指存储库，即<code>repositories</code>属性中的配置，存储库又分为规范存储库（Canonical repositories）和非规范存储库（repositories non-canonical）。</p>
+<p>在composer v2.x的版本中，默认所有存储库都是规范的（即<code>&quot;canonical&quot;: true</code>）。</p>
+<p>而composer v1.x所有存储库都视为非规范存储库（即<code>&quot;canonical&quot;: false</code>）。</p>
+<p>规范存储库有两个好处：</p>
+<ul>
+<li>性能好，一旦在某个存储库中找到包以后，就会停止去扫描别的存储库去寻找包。</li>
+<li>更安全，假设你设置了一个非规范的私有存储库，当你的项目中依赖一个私有包<code>foo/bar ^2.0</code>（假设版本是v2.4.3），之后当有人在packagist.org发布了一个<code>foo/bar v2.999</code>的话，那么composer会读取到该包，因为v2.999的包更新，并且符合<code>^2.0</code>的约束，那么你的项目可能会安装到预期以外的东西。规范存储库就不会有这个问题，因为在规范存储库中找到包以后就不会再去扫描别的存储库了。</li>
+</ul>
+<h3 id="解决方法三">解决方法三</h3>
+<p>正如上面所提到的，设置成非规范化存储库是有风险的，并且安装过程会更慢。</p>
+<p>解决办法也不是没有，可以多个镜像源混合使用，修改<code>~/.composer/config.json</code>如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -584,75 +651,20 @@
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>composer在解决依赖的时候，会从上到下从镜像源中寻找包，<code>exclude</code>的作用是排除寻找某个包，这样它就会从下一个镜像源中去寻找。</p>
-<p>缺点是配置麻烦，如果出现源有很多包都没更新的情况下，配置是个噩梦，这种情况下还是建议换源。</p>
-<p>这里还有一个默认行为，<a class="link" href="https://repo.packagist.org"  target="_blank" rel="noopener"
-    >packagist.org官方源</a>会被隐式的添加到<code>repositories</code>的最后一个，如果要<a class="link" href="https://getcomposer.org/doc/05-repositories.md#disabling-packagist-org"  target="_blank" rel="noopener"
-    >禁用该行为</a>，设置如下：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;packagist.org&#34;</span><span class="p">:</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><hr>
-<p>题外话：</p>
-<p>阿里云镜像源文档提到了<a class="link" href="https://getcomposer.org/doc/articles/repository-priorities.md#making-repositories-non-canonical"  target="_blank" rel="noopener"
-    >canonical参数</a>，配置如下：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;阿里云镜像&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;composer&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://mirrors.aliyun.com/composer/&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;canonical&#34;</span><span class="p">:</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>意指阿里云镜像站下载文件出错时（例如404或者超时的情况）再从官方源上下载。</p>
-<p><a class="link" href="https://getcomposer.org/doc/articles/repository-priorities.md#canonical-repositories"  target="_blank" rel="noopener"
-    >该参数的官方解释</a>，我大概复述一下，我们所说的镜像，其实在官方是指存储库，即<code>repositories</code>属性中的配置，存储库又分为规范存储库（Canonical repositories）和非规范存储库（repositories non-canonical）。</p>
-<p>在composer 2.x的版本中，默认所有存储库都是规范的（即<code>&quot;canonical&quot;: true</code>），而composer 1.x所有存储库都视为非规范存储库（即<code>&quot;canonical&quot;: false</code>）。</p>
-<p>规范存储库有两个好处：</p>
+</div><p><code>exclude</code>的作用是排除寻找某个包，这样它就会从下一个规范化仓库的镜像源中去寻找包。</p>
 <ul>
-<li>性能好，一旦在某个存储库中找到包以后，就会停止去别的存储库中寻找包。</li>
-<li>更安全，假设你设置了一个非规范的私有存储库，当你的项目中依赖一个私有包<code>foo/bar ^2.0</code>（假设版本是v2.4.3），之后当有人在packagist.org发布了一个<code>foo/bar v2.999</code>的话，那么composer会读取到该包，因为v2.999的包更新，并且符合<code>^2.0</code>的约束，那么你的项目可能会安装到预期以外的东西。规范存储库就不会有这个问题，因为在规范存储库中找到包以后就不会再去扫描别的存储库了。</li>
+<li>缺点：
+<ul>
+<li>配置麻烦，如果出现正源有很多包都没更新的情况下，配置是个噩梦，这种情况下还是建议换源。</li>
+<li>备用镜像源也没有最新包的情况下，问题依旧，还需再另外配置备用镜像源。</li>
 </ul>
-<hr>
-<h3 id="解决方法三">解决方法三</h3>
+</li>
+<li>好处：性能更好，更安全。</li>
+</ul>
+<h3 id="解决方法四">解决方法四</h3>
 <p>自己搭建源，暂不开展</p>
 <p>缺点：增加维护包的成本、搭建服务成本。</p>
-<h3 id="解决方法四">解决方法四</h3>
+<h3 id="解决方法五">解决方法五</h3>
 <p>修改项目的<code>composer.json</code>，设置查找包的方式：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
