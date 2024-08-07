@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='阅读说明 软件版本 PHP v8.2.8 Composer v2.7.7 问题过程 背景 最近在给Laravel v11.1.4安装依赖的时候遇到如下报错：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 Downloading https://mirrors.aliyun.com/composer/p2/fruitcake/php-cors~dev.json if modified [304] https://mirrors.aliyun.com/composer/p2/fruitcake/php-cors~dev.json Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors.json from cache Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.'>
+<title>composer国内源找不到包版本的解决方法</title>
+
+<link rel='canonical' href='/p/language/php/composer/repositories-not-found-version/'>
+
+<link rel="stylesheet" href="/scss/style.min.16bf79fde71ad0826cb332f8a542083f14a167d38adecffbc10e3a04b834c453.css"><meta property='og:title' content='composer国内源找不到包版本的解决方法'>
+<meta property='og:description' content='阅读说明 软件版本 PHP v8.2.8 Composer v2.7.7 问题过程 背景 最近在给Laravel v11.1.4安装依赖的时候遇到如下报错：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 Downloading https://mirrors.aliyun.com/composer/p2/fruitcake/php-cors~dev.json if modified [304] https://mirrors.aliyun.com/composer/p2/fruitcake/php-cors~dev.json Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors.json from cache Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.'>
+<meta property='og:url' content='/p/language/php/composer/repositories-not-found-version/'>
+<meta property='og:site_name' content='GHJayce'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='PHP' /><meta property='article:tag' content='Composer' /><meta property='article:published_time' content='2024-08-07T10:54:39&#43;08:00'/><meta property='article:modified_time' content='2024-08-07T10:54:39&#43;08:00'/>
+<meta name="twitter:title" content="composer国内源找不到包版本的解决方法">
+<meta name="twitter:description" content="阅读说明 软件版本 PHP v8.2.8 Composer v2.7.7 问题过程 背景 最近在给Laravel v11.1.4安装依赖的时候遇到如下报错：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 Downloading https://mirrors.aliyun.com/composer/p2/fruitcake/php-cors~dev.json if modified [304] https://mirrors.aliyun.com/composer/p2/fruitcake/php-cors~dev.json Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors.json from cache Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.">
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/17669653" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://avatars.githubusercontent.com/u/17669653" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">😆</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">GHJayce</a></h1>
+            <h2 class="site-description">十年饮冰，难凉热血。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/GHJayce'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于我</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archive/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#阅读说明">阅读说明</a>
+      <ol>
+        <li><a href="#软件版本">软件版本</a></li>
+      </ol>
+    </li>
+    <li><a href="#问题过程">问题过程</a>
+      <ol>
+        <li><a href="#背景">背景</a></li>
+        <li><a href="#解决方法一">解决方法一</a></li>
+        <li><a href="#解决方法二">解决方法二</a></li>
+        <li><a href="#解决方法三">解决方法三</a></li>
+        <li><a href="#解决方法四">解决方法四</a></li>
+      </ol>
+    </li>
+    <li><a href="#镜像源">镜像源</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/" >
+                程序设计语言
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/language/php/composer/repositories-not-found-version/">composer国内源找不到包版本的解决方法</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-08-07</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 3 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="阅读说明">阅读说明</h2>
+<h3 id="软件版本">软件版本</h3>
+<ul>
+<li>PHP v8.2.8</li>
+<li>Composer v2.7.7</li>
+</ul>
+<h2 id="问题过程">问题过程</h2>
+<h3 id="背景">背景</h3>
+<p>最近在给Laravel v11.1.4安装依赖的时候遇到如下报错：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Downloading https://mirrors.aliyun.com/composer/p2/fruitcake/php-cors~dev.json <span class="k">if</span> modified
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>304<span class="o">]</span> https://mirrors.aliyun.com/composer/p2/fruitcake/php-cors~dev.json
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors~dev.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors~dev.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors~dev.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors~dev.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors~dev.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors~dev.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors~dev.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Reading /Users/jayce/Library/Caches/composer/repo/https---mirrors.aliyun.com-composer/provider-fruitcake~php-cors~dev.json from cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Your requirements could not be resolved to an installable <span class="nb">set</span> of packages.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Problem <span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- laravel/framework<span class="o">[</span>v11.9.0, v11.9.1, v11.9.2<span class="o">]</span> require fruitcake/php-cors ^1.3 -&gt; found fruitcake/php-cors<span class="o">[</span>dev-feat-setOptions, dev-master, dev-main, dev-test-8.2, v0.1.0, v0.1.1, v0.1.2, v1.0-alpha1, v1.0-alpha2, v1.0-beta1, v1.0.0, v1.0.1, v1.1.0, 1.1.x-dev <span class="o">(</span><span class="nb">alias</span> of dev-main<span class="o">)</span>, v1.2.0, 1.2.x-dev <span class="o">(</span><span class="nb">alias</span> of dev-master<span class="o">)]</span> but it does not match the constraint.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- Root composer.json requires laravel/framework ^11.9 -&gt; satisfiable by laravel/framework<span class="o">[</span>v11.9.0, v11.9.1, v11.9.2<span class="o">]</span>.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>说是<a class="link" href="https://packagist.org/packages/fruitcake/php-cors"  target="_blank" rel="noopener"
+    >fruitcake/php-cors</a>的包找不到<code>v1.3.0</code>的版本，laravel/framework依赖了这个包，对应依赖如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;require&#34;</span><span class="err">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;fruitcake/php-cors&#34;</span><span class="p">:</span> <span class="s2">&#34;^1.3&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过命令进行检查：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">composer show --latest -a fruitcake/php-cors
+</span></span><span class="line"><span class="cl"><span class="c1"># 以下为输出结果</span>
+</span></span><span class="line"><span class="cl">name     : fruitcake/php-cors
+</span></span><span class="line"><span class="cl">descrip. : Cross-origin resource sharing library <span class="k">for</span> the Symfony HttpFoundation
+</span></span><span class="line"><span class="cl">keywords : symfony, cors, laravel
+</span></span><span class="line"><span class="cl">versions : dev-master, 1.2.x-dev, v1.2.0, 1.1.x-dev, v1.1.0, v1.0.1, v1.0.0, v1.0-beta1, v1.0-alpha2, v1.0-alpha1, v0.1.2, v0.1.1, v0.1.0, dev-main, dev-test-8.2, dev-feat-setOptions
+</span></span><span class="line"><span class="cl">latest   : v1.2.0 released 2022-02-20, <span class="m">2</span> years ago
+</span></span><span class="line"><span class="cl"><span class="nb">type</span>     : library
+</span></span><span class="line"><span class="cl">license  : MIT License <span class="o">(</span>MIT<span class="o">)</span> <span class="o">(</span>OSI approved<span class="o">)</span> https://spdx.org/licenses/MIT.html#licenseText
+</span></span><span class="line"><span class="cl">homepage : https://github.com/fruitcake/php-cors
+</span></span><span class="line"><span class="cl"><span class="nb">source</span>   : <span class="o">[</span>git<span class="o">]</span> https://github.com/fruitcake/php-cors.git c70ea7b05b9a1b13d3196f235d5995b3deb93ae8
+</span></span><span class="line"><span class="cl">dist     : <span class="o">[</span>zip<span class="o">]</span> https://api.github.com/repos/fruitcake/php-cors/zipball/c70ea7b05b9a1b13d3196f235d5995b3deb93ae8 c70ea7b05b9a1b13d3196f235d5995b3deb93ae8
+</span></span><span class="line"><span class="cl">names    : fruitcake/php-cors
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">support
+</span></span><span class="line"><span class="cl">issues : https://github.com/fruitcake/php-cors/issues
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> : https://github.com/fruitcake/php-cors/tree/master
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">autoload
+</span></span><span class="line"><span class="cl">psr-4
+</span></span><span class="line"><span class="cl">Fruitcake<span class="se">\C</span>ors<span class="se">\ </span><span class="o">=</span>&gt; src/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">requires
+</span></span><span class="line"><span class="cl">php ^7.4<span class="p">|</span>^8.0
+</span></span><span class="line"><span class="cl">symfony/http-foundation ^4.4<span class="p">|</span>^5.4<span class="p">|</span>^6<span class="p">|</span>^7
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">requires <span class="o">(</span>dev<span class="o">)</span>
+</span></span><span class="line"><span class="cl">phpunit/phpunit ^9
+</span></span><span class="line"><span class="cl">squizlabs/php_codesniffer ^3.5
+</span></span><span class="line"><span class="cl">phpstan/phpstan ^1.4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>检查<a class="link" href="https://mirrors.aliyun.com/composer/p2/fruitcake/php-cors.json"  target="_blank" rel="noopener"
+    >阿里云镜像fruitcake/php-cors包的json</a>，同样也是包的最新版本是v1.2.0（2022-02-20），该包在23年10月12日就发布了v1.3.0的版本，看来是阿里云已经很长时间没更新这个包了。</p>
+<h3 id="解决方法一">解决方法一</h3>
+<p>最简单直接的方式是换源，<a class="link" href="#%e9%95%9c%e5%83%8f%e6%ba%90" >点我更换镜像源</a>。</p>
+<p>这里以腾讯云为例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">composer config -g repos.packagist composer https://mirrors.tencent.com/composer/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对应<code>~/.composer/config.json</code>配置被修改如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;packagist&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;composer&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://mirrors.tencent.com/composer/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>该方式的缺点是，万一腾讯云也没更新该包的最新版本的话，问题依旧。</p>
+<h3 id="解决方法二">解决方法二</h3>
+<p>多个镜像源混合使用，修改<code>~/.composer/config.json</code>如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;repositories&#34;</span>: <span class="o">[</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;type&#34;</span>: <span class="s2">&#34;composer&#34;</span>,
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;url&#34;</span>: <span class="s2">&#34;https://mirrors.aliyun.com/composer/&#34;</span>,
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;exclude&#34;</span>: <span class="o">[</span><span class="s2">&#34;fruitcake/php-cors&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;type&#34;</span>: <span class="s2">&#34;composer&#34;</span>,
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;url&#34;</span>: <span class="s2">&#34;https://mirrors.tencent.com/composer/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>composer在解决依赖的时候，会从上到下从镜像源中寻找包，<code>exclude</code>的作用是排除寻找某个包，这样它就会从下一个镜像源中去寻找。</p>
+<p>缺点是配置麻烦，如果出现源有很多包都没更新的情况下，配置是个噩梦，这种情况下还是建议换源。</p>
+<p>这里还有一个默认行为，<a class="link" href="https://repo.packagist.org"  target="_blank" rel="noopener"
+    >packagist.org官方源</a>会被隐式的添加到<code>repositories</code>的最后一个，如果要<a class="link" href="https://getcomposer.org/doc/05-repositories.md#disabling-packagist-org"  target="_blank" rel="noopener"
+    >禁用该行为</a>，设置如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;packagist.org&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<p>题外话：</p>
+<p>阿里云镜像源文档提到了<a class="link" href="https://getcomposer.org/doc/articles/repository-priorities.md#making-repositories-non-canonical"  target="_blank" rel="noopener"
+    >canonical参数</a>，配置如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;阿里云镜像&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;composer&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://mirrors.aliyun.com/composer/&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;canonical&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>意指阿里云镜像站下载文件出错时（例如404或者超时的情况）再从官方源上下载。</p>
+<p><a class="link" href="https://getcomposer.org/doc/articles/repository-priorities.md#canonical-repositories"  target="_blank" rel="noopener"
+    >该参数的官方解释</a>，我大概复述一下，我们所说的镜像，其实在官方是指存储库，即<code>repositories</code>属性中的配置，存储库又分为规范存储库（Canonical repositories）和非规范存储库（repositories non-canonical）。</p>
+<p>在composer 2.x的版本中，默认所有存储库都是规范的（即<code>&quot;canonical&quot;: true</code>），而composer 1.x所有存储库都视为非规范存储库（即<code>&quot;canonical&quot;: false</code>）。</p>
+<p>规范存储库有两个好处：</p>
+<ul>
+<li>性能好，一旦在某个存储库中找到包以后，就会停止去别的存储库中寻找包。</li>
+<li>更安全，假设你设置了一个非规范的私有存储库，当你的项目中依赖一个私有包<code>foo/bar ^2.0</code>（假设版本是v2.4.3），之后当有人在packagist.org发布了一个<code>foo/bar v2.999</code>的话，那么composer会读取到该包，因为v2.999的包更新，并且符合<code>^2.0</code>的约束，那么你的项目可能会安装到预期以外的东西。规范存储库就不会有这个问题，因为在规范存储库中找到包以后就不会再去扫描别的存储库了。</li>
+</ul>
+<hr>
+<h3 id="解决方法三">解决方法三</h3>
+<p>自己搭建源，暂不开展</p>
+<p>缺点：增加维护包的成本、搭建服务成本。</p>
+<h3 id="解决方法四">解决方法四</h3>
+<p>修改项目的<code>composer.json</code>，设置查找包的方式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;package&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;package&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;wppd/aliyun-log-php-sdk&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0.4&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;dist&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://github.com/aliyun/aliyun-log-php-sdk/archive/refs/tags/v1.0.zip&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;zip&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>	
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者将包下载到本地，直接引用本地路径：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[{</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;path&#34;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;/your_local_path/fruitcake/php-cors&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>缺点：需要额外配置。</p>
+<h2 id="镜像源">镜像源</h2>
+<p>列一下常用的几个镜像源，请自行设置：</p>
+<ul>
+<li><a class="link" href="https://developer.aliyun.com/composer"  target="_blank" rel="noopener"
+    >阿里云</a>：https://mirrors.aliyun.com/composer/</li>
+<li><a class="link" href="https://mirrors.huaweicloud.com/mirrorDetail/5ea0f1e03fdb11a72fd319b3?mirrorName=php&amp;catalog=language"  target="_blank" rel="noopener"
+    >华为云</a>：https://mirrors.huaweicloud.com/repository/php/</li>
+<li><a class="link" href="https://mirrors.cloud.tencent.com/composer/"  target="_blank" rel="noopener"
+    >腾讯云</a>：https://mirrors.tencent.com/composer/</li>
+<li><a class="link" href="https://mirrors.sjtug.sjtu.edu.cn/packagist/"  target="_blank" rel="noopener"
+    >上海交通大学</a>：https://packagist.mirrors.sjtug.sjtu.edu.cn</li>
+<li><a class="link" href="https://pkg.xyz/"  target="_blank" rel="noopener"
+    >中国全量镜像</a>：https://packagist.phpcomposer.com</li>
+<li><a class="link" href="https://packagist.org/"  target="_blank" rel="noopener"
+    >官方源</a>：https://repo.packagist.org</li>
+<li><a class="link" href="https://packagist.pages.dev/"  target="_blank" rel="noopener"
+    >官方全球镜像</a>：https://packagist.pages.dev</li>
+</ul>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a class="link" href="https://repo.packagist.org/mirrors"  target="_blank" rel="noopener"
+    >Packagist mirrors</a></li>
+<li><a class="link" href="https://blog.csdn.net/liuxl57805678/article/details/139775909"  target="_blank" rel="noopener"
+    >国内composer镜像有哪些_composer国内镜像-CSDN博客</a></li>
+<li><a class="link" href="https://learnku.com/articles/30258"  target="_blank" rel="noopener"
+    >Composer 国内全量镜像大全 | PHP 技术论坛</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/php/">PHP</a>
+        
+            <a href="/tags/composer/">Composer</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://unpkg.com/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://unpkg.com/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/language/php/hyperf/hyperf-constants/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg" loading="lazy" data-key="language/php/hyperf/hyperf-constants" data-hash="https://ghjayce.github.io/asset/blog/FhYnPBeIezDAGMZ0BQgUMjAyNDAzMDFfMTU0NzE4.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">hyperf constants实现机制</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/language/php/laravel/homestead-install/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/acN7lrfIQy4GU6zANY9bMjAxODEwMDZfMjA0MDQx.jpeg" loading="lazy" data-key="language/php/laravel/homestead-install" data-hash="https://ghjayce.github.io/asset/blog/acN7lrfIQy4GU6zANY9bMjAxODEwMDZfMjA0MDQx.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Homestead环境搭建</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/language/php/exception/error-capture/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://ghjayce.github.io/asset/blog/mwZTYxkP4GSsgLbC5aXaMjAxNzExMTZfMTYzODM0.jpeg" loading="lazy" data-key="language/php/exception/error-capture" data-hash="https://ghjayce.github.io/asset/blog/mwZTYxkP4GSsgLbC5aXaMjAxNzExMTZfMTYzODM0.jpeg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">PHP报错解析和如何捕获错误信息</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/language/javascript/package/vite/vite-cdn-external-build-fail/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Failed to resolve module specifier &#39;vue&#39; Relative references xxx 报错处理过程</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/language/javascript/leadin-cdn-script-not-executable/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">引入CDN的JS文件为什么不可执行？</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2024 GHJayce
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/default-skin/default-skin.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://unpkg.com/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
