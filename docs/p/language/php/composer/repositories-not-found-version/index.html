@@ -617,7 +617,7 @@
 <li>更安全，假设你设置了一个非规范的私有存储库，当你的项目中依赖一个私有包<code>foo/bar ^2.0</code>（假设版本是v2.4.3），之后当有人在packagist.org发布了一个<code>foo/bar v2.999</code>的话，那么composer会读取到该包，因为v2.999的包更新，并且符合<code>^2.0</code>的约束，那么你的项目可能会安装到预期以外的东西。规范存储库就不会有这个问题，因为在规范存储库中找到包以后就不会再去扫描别的存储库了。</li>
 </ul>
 <h3 id="解决方法三">解决方法三</h3>
-<p>正如上面所提到的，设置成非规范化存储库是有风险的，并且安装过程会更慢。</p>
+<p>正如上面所提到的，设置成非规范存储库是有风险的，并且安装过程会更慢。</p>
 <p>解决办法也不是没有，可以多个镜像源混合使用，修改<code>~/.composer/config.json</code>如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -651,7 +651,7 @@
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><code>exclude</code>的作用是排除寻找某个包，这样它就会从下一个规范化仓库的镜像源中去寻找包。</p>
+</div><p><code>exclude</code>的作用是排除寻找某个包，这样它就会从下一个规范仓库的镜像源中去寻找包。</p>
 <ul>
 <li>缺点：
 <ul>
@@ -721,7 +721,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>缺点：需要额外配置。</p>
+</div><p>缺点：需要额外配置项目的<code>composer.json</code>以及维护包的版本。</p>
 <h2 id="镜像源">镜像源</h2>
 <p>列一下常用的几个镜像源，请自行设置：</p>
 <ul>
@@ -816,6 +816,32 @@
         <div class="flex article-list--tile">
             
                 
+<article class="">
+    <a href="/p/language/php/laravel/container-singleton/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Laravel源码阅读之Container singleton与make</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/language/php/laravel/index-work-principle/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Laravel入口文件工作原理</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
 <article class="has-image">
     <a href="/p/language/php/hyperf/hyperf-constants/">
         
@@ -867,32 +893,6 @@
 
         <div class="article-details">
             <h2 class="article-title">PHP报错解析和如何捕获错误信息</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/language/javascript/package/vite/vite-cdn-external-build-fail/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Failed to resolve module specifier &#39;vue&#39; Relative references xxx 报错处理过程</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/language/javascript/leadin-cdn-script-not-executable/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">引入CDN的JS文件为什么不可执行？</h2>
         </div>
     </a>
 </article>

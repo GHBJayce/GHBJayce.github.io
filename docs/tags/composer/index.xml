@@ -309,7 +309,7 @@
 &lt;li&gt;更安全，假设你设置了一个非规范的私有存储库，当你的项目中依赖一个私有包&lt;code&gt;foo/bar ^2.0&lt;/code&gt;（假设版本是v2.4.3），之后当有人在packagist.org发布了一个&lt;code&gt;foo/bar v2.999&lt;/code&gt;的话，那么composer会读取到该包，因为v2.999的包更新，并且符合&lt;code&gt;^2.0&lt;/code&gt;的约束，那么你的项目可能会安装到预期以外的东西。规范存储库就不会有这个问题，因为在规范存储库中找到包以后就不会再去扫描别的存储库了。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;解决方法三&#34;&gt;解决方法三&lt;/h3&gt;
-&lt;p&gt;正如上面所提到的，设置成非规范化存储库是有风险的，并且安装过程会更慢。&lt;/p&gt;
+&lt;p&gt;正如上面所提到的，设置成非规范存储库是有风险的，并且安装过程会更慢。&lt;/p&gt;
 &lt;p&gt;解决办法也不是没有，可以多个镜像源混合使用，修改&lt;code&gt;~/.composer/config.json&lt;/code&gt;如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -343,7 +343,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;code&gt;exclude&lt;/code&gt;的作用是排除寻找某个包，这样它就会从下一个规范化仓库的镜像源中去寻找包。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;exclude&lt;/code&gt;的作用是排除寻找某个包，这样它就会从下一个规范仓库的镜像源中去寻找包。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;缺点：
 &lt;ul&gt;
@@ -413,7 +413,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;缺点：需要额外配置。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;缺点：需要额外配置项目的&lt;code&gt;composer.json&lt;/code&gt;以及维护包的版本。&lt;/p&gt;
 &lt;h2 id=&#34;镜像源&#34;&gt;镜像源&lt;/h2&gt;
 &lt;p&gt;列一下常用的几个镜像源，请自行设置：&lt;/p&gt;
 &lt;ul&gt;
